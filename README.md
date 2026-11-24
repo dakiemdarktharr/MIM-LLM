@@ -1,12 +1,12 @@
 # MIM-LLM
 
-**Status: research planning.** This repository is the starting point for a software-only research program on autoregressive story continuation. It contains no trained model, benchmark result, submitted manuscript, or publication yet.
+**Status: research planning and tested code prototype.** This repository is a software-only research program on autoregressive story continuation. It contains executable model, data, evaluation and annotation code. It contains no validated benchmark result, submitted manuscript, accepted paper, or publication.
 
 ## Research question
 
 MIM-LLM investigates whether the **Memory In Memory (MIM)** mechanism introduced by Yunbo Wang and colleagues for video prediction at CVPR 2019 can improve the logical consistency of a small next-token language model. The original [paper](https://arxiv.org/abs/1811.07490) and [author code](https://github.com/Yunbo426/MIM) are the methodological starting points, not contributions of this project.
 
-The proposed prototype is called **MIM-LM**. Its exact trainable parameter count will be reported from the implemented model, alongside its tokenizer, training tokens, estimated FLOPs, VRAM use, throughput, and GPU-hours. The initial planning range is approximately 1–5 million parameters; it is not a measured model size.
+The prototype is called **MIM-LM**. The reference byte-token model with width 192 and two layers has **1,984,320 trainable parameters**; the tested 512-piece BPE configuration at that width has **2,081,472**. These are actual counts for those configurations, not claims about accuracy. Each run records its own count, tokenizer and corpus hashes, training tokens, rough FLOP proxy, allocated/reserved VRAM, throughput and GPU-hours.
 
 **Hypothesis.** Under matched input information and training resources, explicitly differencing consecutive lower-layer hidden states and passing that signal through MIM-N and MIM-S will reduce contradictions in generated continuations, particularly after repeated state changes and when actual and counterfactual situations must remain separate. A strong alternative is that a learned projection of the *pair* of consecutive hidden states, or a simpler recurrent model, will do as well or better. The experiments will test both possibilities and report negative results.
 
@@ -27,7 +27,13 @@ tokens → embedding → base recurrent layer → MIM-N(Δ hidden state)
        → MIM-S(temporal memory) → recurrent output → LM head → next-token logits
 ```
 
-The original MIM uses convolutional ST-LSTM cells and an additional zigzag spatiotemporal memory for image sequences. Replacing image convolutions with vector projections and deciding whether to retain an analogue of that extra memory are **our proposed language-model variants**. No claim of faithful equivalence or improved performance is made before implementation and ablation.
+The original MIM uses convolutional ST-LSTM cells and an additional zigzag spatiotemporal memory for image sequences. Replacing image convolutions with vector projections is **our language-model variant**. The implemented `mim_no_m` ablation removes the vector analogue of the zigzag memory; `difference_mode=direct` and `cascade` test two higher-layer difference paths. This is not a faithful reproduction of the video model. The [equation-to-code map](docs/RESEARCH.md) identifies what was inherited and changed.
+
+## Code and reproducibility
+
+The package implements MIM-LM, MIM-N/MIM-S/M ablations, a two-state learned-projection control, LSTM, Nested LSTM, GRU, minGRU, Delta-RNN, a small causal Transformer and a token-shift GRU control. The last control is **not** full RWKV. A byte tokenizer and train-only-fitted SentencePiece BPE are available. Synthetic overwrite-depth pairs have an executable oracle and content lock; TinyStories can be streamed as a bounded, pinned subset. Story-level split checks, next-token training, checkpoint resume, generation, held-out perplexity, blinded two-reader packets and source-pair bootstrap scoring are included.
+
+See the [Windows runbook](docs/RUNBOOK.md), [technical protocol](docs/METHODS.md), [research and novelty map](docs/RESEARCH.md), and [manuscript status](docs/STATUS.md). `mimlm paper-tracks` prints the conditional experiment gates. The synthetic pilot and small smoke runs are **not** evidence of scientific superiority.
 
 ## Evaluation plan
 
@@ -50,11 +56,13 @@ For every manuscript, track **drafted**, **submitted**, **accepted**, and **publ
 
 ## Next steps
 
-1. Record a dated literature and novelty search, including close prior work and the limits of the search.
-2. Specify the model equations, state reset and masking rules, dataset provenance, and paired benchmark scoring protocol.
-3. Implement the PyTorch prototype on Windows, then verify small-batch overfitting, causal masking, and agreement between full-sequence and stepwise evaluation.
-4. Measure actual RTX 3060 12 GB throughput and memory before scheduling larger runs. Prioritize a strong learned-pair control against full MIM-LM.
+1. Expand the synthetic pilot into a licensed human-authored story subset and validate the annotation protocol with two blind readers.
+2. Use the actual laptop GPU to measure sustained throughput and memory at the intended corpus size, then set a feasible token and seed budget.
+3. Run the strongest matched comparison first: MIM-LM versus the learned projection of two consecutive hidden states. Freeze the test set before final configuration selection.
+4. Add wider baselines and ablations only if the first comparison and evaluation protocol warrant them. Report negative or inconclusive effects.
 
 ## Achievements
 
-- Repository initialized with this research plan. No scientific or editorial outcome has yet been established.
+- Public repository and research plan initialized.
+- A PyTorch prototype and reproducibility pipeline were implemented and smoke-tested on Windows with the machine's **RTX 5050 Laptop GPU (8,151 MiB reported by `nvidia-smi`)**. This machine does not have an RTX 3060 installed.
+- No scientific or editorial outcome has yet been established.

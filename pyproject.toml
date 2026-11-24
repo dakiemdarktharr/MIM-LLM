@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mim-llm"
+version = "0.1.0"
+description = "Research code for vector MIM language models and state-consistent story continuation"
+requires-python = ">=3.11"
+dependencies = ["torch>=2.7,<3", "numpy>=1.26,<3", "sentencepiece>=0.2,<1", "protobuf>=4,<8"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+data = ["datasets>=3,<5", "huggingface_hub>=0.30,<2"]
+
+[project.scripts]
+mimlm = "mim_llm.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
