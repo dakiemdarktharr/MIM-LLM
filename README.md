@@ -35,7 +35,9 @@ The package implements MIM-LM, MIM-N/MIM-S/M ablations, a two-state learned-proj
 
 See the [Windows runbook](docs/RUNBOOK.md), [technical protocol](docs/METHODS.md), [research and novelty map](docs/RESEARCH.md), and [manuscript status](docs/STATUS.md). `mimlm paper-tracks` prints the conditional experiment gates. The synthetic pilot and small smoke runs are **not** evidence of scientific superiority.
 
-The Q3-A preparation package includes a [research dossier](docs/Q3_A_RESEARCH_DOSSIER.vi.md), [ten advisor questions and proposed answers](docs/Q3_A_ADVISOR_QA.vi.md), and an [auditable source ledger](docs/Q3_A_SOURCE_LEDGER.vi.md), written in Vietnamese. The 25 November 2026 review narrows its intended contribution to incremental diagnostic value; counterfactual invariance and self-generated narrative consistency already have close precedents. The current cabinet pilot needs stronger shortcut controls and human validation before it can support research claims.
+The Q3-A preparation package includes an earlier [research dossier](docs/Q3_A_RESEARCH_DOSSIER.vi.md), [ten current advisor questions and proposed answers](docs/Q3_A_ADVISOR_QA_REV2.vi.md), and an [auditable source ledger](docs/Q3_A_SOURCE_LEDGER.vi.md), written in Vietnamese. The 25 November 2026 review narrows its intended contribution to incremental diagnostic value; counterfactual invariance and self-generated narrative consistency already have close precedents. The current cabinet pilot needs stronger shortcut controls and human validation before it can support research claims.
+
+The current [Q3-A study plan, revision 2](docs/Q3_A_STUDY_PLAN.vi.md) focuses on evaluator validation. It compares a world/time grouped evaluator with a strong flat checklist using the same proposition information and judge backbone. The core is inference-first; the earlier 120M-target training matrix is an optional architecture extension. This is a proposed study, not an implemented or validated evaluator.
 
 The [publication and compute plan](docs/PUBLICATION_PLAN.vi.md) records the journal/UEH funding checks and conditional laptop/Colab budgets as of 25 November 2026. Three [English LaTeX research shells](papers/README.md) include methods, empty result tables and evidence gates, and generate local PDF planning documents. The [development log](docs/DEVELOPMENT_LOG.md) records public project changes.
 
@@ -51,12 +53,14 @@ The [publication and compute plan](docs/PUBLICATION_PLAN.vi.md) records the jour
 
 These are **working manuscript directions**, not publication claims. Each requires an independent question and sufficient evidence; directions may be revised, merged, or stopped.
 
-1. **Q3-A — State-change and counterfactual continuation benchmark:** construct and validate a benchmark that accepts multiple coherent continuations and distinguishes required changes from preserved facts.
+1. **Q3-A — Temporal state evaluation:** validate scoring of legitimate updates, stale states, invariant violations and omitted consequences; supply a frozen rubric/evaluator and task contract for Q1.
 2. **Q3-B — State supervision versus intrinsic memory:** test whether explicit state supervision at training changes consistency and generalization compared with unassisted recurrent memory.
 3. **Q3-C — Recurrent memory mechanisms under local compute limits:** analyze MIM-N/MIM-S ablations, learned-pair controls, efficiency, and failure modes.
 4. **Q1 — MIM-LM architecture study:** submit only if rigorous, resource-matched evidence demonstrates a broadly relevant contribution beyond the component studies. It need not wait for the other manuscripts.
 
 For every manuscript, track **drafted**, **submitted**, **accepted**, and **published** as separate, evidence-backed milestones. Journal fit, fees, indexing, and subject-specific quartiles must be checked again at submission. The publication budget is 0 VND; no paid API or cloud GPU is assumed.
+
+The three Q3 studies support the Q1 architecture paper through validated evaluation (A), train-only supervision evidence (B), and mechanism/compute evidence (C). Shared artifacts and prior findings must be disclosed and cited. Q1 needs new held-out source stories after any Q3-driven model selection; Q3 results cannot be repackaged as new Q1 results.
 
 ## Next steps
 

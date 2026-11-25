@@ -1,5 +1,10 @@
 # Q3-A — Sổ nguồn và phạm vi kiểm chứng
 
+> Revision 2 bổ sung CheckEval (PDF) và survey narrative consistency (metadata/
+> abstract), đồng thời tái kiểm tra scope/fee J.UCS và JLM. Phạm vi nguồn bổ sung,
+> hash và giới hạn truy cập nằm trong [đề cương hiện hành](Q3_A_STUDY_PLAN.vi.md).
+> Tập 17 PDF và manifest bên dưới giữ nguyên như dấu vết lượt nghiên cứu đầu.
+
 Ngày truy xuất/đọc: **25/11/2026**, Asia/Ho_Chi_Minh. Mục đích là chuẩn bị đề cương
 Q3-A; không phải systematic review có protocol tìm kiếm toàn diện.
 

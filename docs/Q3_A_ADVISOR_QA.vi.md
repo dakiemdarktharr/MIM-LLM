@@ -1,5 +1,15 @@
 # Q3-A — 10 câu hỏi khó và câu trả lời để bảo vệ đề cương
 
+> **Sau revision 2:** xem [đề cương hiện hành](Q3_A_STUDY_PLAN.vi.md). Q3-A hiện là
+> nghiên cứu kiểm chứng evaluator để phục vụ Q1; primary là E2−E1 balanced accuracy
+> đối chiếu nhãn người, không phải điểm của generator. Các câu trả lời dưới đây
+> ghi lập luận của đề cương trước, vẫn hữu ích về ngữ nghĩa/validity; khi trình bày
+> phải dùng scope và ngân sách hiện hành thay matrix train cũ. Q3-B/C vẫn lần lượt
+> cung cấp bằng chứng supervision và cơ chế cho Q1.
+>
+> Dùng [10 câu trả lời đã cập nhật theo revision 2](Q3_A_ADVISOR_QA_REV2.vi.md)
+> cho buổi bảo vệ hiện tại; phần bên dưới giữ làm lịch sử lập luận.
+
 Ngày: **25/11/2026**. Các câu trả lời dưới đây là lời đáp mẫu cho giai đoạn đề
 cương. “Em sẽ” là công việc đề xuất; không đổi thành “em đã” khi chưa có log thật.
 Xem [hồ sơ nghiên cứu](Q3_A_RESEARCH_DOSSIER.vi.md) và

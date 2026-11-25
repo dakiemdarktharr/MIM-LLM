@@ -64,3 +64,30 @@ and this conversation; the Obsidian vault contains the fuller research notebook.
 - Created four Q3-A Obsidian notes and updated the overview, experiment plan,
   decisions and dated development records. No human labels, scientific training
   results, submission, acceptance or publication were added.
+
+### Q3-A revision 2 and support for Q1 — 25 November 2026
+
+- Revised Q3-A to an evaluator-validity study with a strong information-matched
+  checklist control, unmodified generated prose as the primary sample, paired
+  source-clustered balanced-accuracy difference, and controlled errors as diagnostics.
+  This is a design revision; the evaluators and revised data schema are not implemented.
+- Preserved the user's program: Q3-A supplies validated evaluation, Q3-B supplies
+  train-only supervision evidence, and Q3-C supplies mechanism/compute evidence
+  for Q1. Require disclosure/citation of shared artifacts and fresh Q1 test sources.
+- Removed mandatory 120M-target architecture training from Q3-A's core; retained
+  it as a conditional Q1/Q3-C extension. Added a canonical study plan, JSON planning
+  manifest and ten updated advisor answers; marked earlier scope as historical.
+- Added CheckEval as a close primary baseline source (28-page PDF retrieved;
+  relevant methodology/setup read, not reproduced) and screened a 2026 narrative
+  consistency survey through the authors' institutional repository.
+- Rechecked official journal scope/fee statements. Fresh SCImago and full J.UCS
+  submission pages returned HTTP 403; the plan no longer calls this a fresh
+  submission-verified fee/rank/template check. No acceptance probability is claimed.
+- Updated README, publication plan, status, Q3-A LaTeX and paper-tracks metadata;
+  model/training/evaluator implementations are unchanged. CLI paper-tracks ran
+  successfully. All three LaTeX builds passed; rendered and inspected 6/5/5 pages.
+- Created two current Obsidian notes; appended decisions, plans and support roles
+  without deleting earlier records. Checked 25 relative Markdown links, 42 notes
+  and 73 wikilinks. Details are in Q3_A_REVISION2_QA.vi.md.
+- No new model weights, training, human labels, paid compute, scientific findings,
+  submission, acceptance or publication occurred in this revision.

@@ -1,5 +1,11 @@
 # Q3-A — Hồ sơ nghiên cứu để chuẩn bị viết
 
+> **Cập nhật định hướng, revision 2:** phạm vi, primary outcome và core budget bên
+> dưới là hồ sơ nghiên cứu trước lần sửa. Đề cương hiện hành nằm ở
+> [Q3-A study plan](Q3_A_STUDY_PLAN.vi.md): kiểm chứng evaluator, đối chứng checklist
+> mạnh cùng thông tin và inference-first để cung cấp phép đo cho Q1. Giữ hồ sơ này
+> để truy vết tài liệu/ngữ nghĩa, không dùng matrix 120M cũ làm điều kiện của Q3-A.
+
 Ngày rà soát: **25/11/2026**, múi giờ Việt Nam. Trạng thái: **research planning**.
 Đây là tổng hợp tài liệu và đề xuất protocol; chưa có kết quả khoa học, nhãn người
 đọc hay bản thảo hoàn chỉnh. Tên Q3-A là mục tiêu của chương trình, không phải hạng

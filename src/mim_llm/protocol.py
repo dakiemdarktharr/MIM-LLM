@@ -9,17 +9,23 @@ from .models import ModelConfig, build_model, parameter_count
 
 PAPER_TRACKS: dict[str, dict[str, Any]] = {
     "q3_benchmark": {
-        "question": "Can paired state-change continuations be measured without a single reference text?",
+        "question": "Does world/time grouping improve evaluator validity beyond a strong information-matched checklist on held-out story continuations?",
+        "supports": "q1_architecture: validated task contract, frozen scoring protocol and fresh-source test design",
+        "plan_status": "revision 2; evaluator study design, not an implemented evaluator",
         "required": [
             "validated executable obligations",
             "held-out source stories",
             "two blind human readers",
             "inter-rater agreement",
             "generic-evasion audit",
+            "strong flat checklist with identical proposition information",
+            "primary evaluator delta on unmodified generated prose",
+            "paired source-clustered uncertainty and evaluator cost",
         ],
-        "stop_or_merge": "Merge if labels or human agreement cannot support a distinct benchmark claim.",
+        "stop_or_merge": "Merge into Q1 evaluation if labels, evaluator capability or incremental findings cannot support an independent validity study.",
     },
     "q3_supervision": {
+        "supports": "q1_architecture: train-only state-label schema and supervision ablation",
         "question": "Does training-only state supervision improve continuation consistency beyond the same backbone without it?",
         "required": [
             "identical corpus and tokens",
@@ -30,6 +36,7 @@ PAPER_TRACKS: dict[str, dict[str, Any]] = {
         "stop_or_merge": "Merge if supervision effect is too small or depends only on synthetic templates.",
     },
     "q3_mechanisms": {
+        "supports": "q1_architecture: N/S/M mechanisms, failure scope and resource-matched controls",
         "question": "Which parts of vector MIM matter per parameter and per unit of compute?",
         "required": [
             "MIM-N/S/M ablations",

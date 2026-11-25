@@ -1,11 +1,17 @@
 # MIM-LLM: đề tài, journal, tài trợ UEH và dự toán
 Ngày khảo sát: **25/11/2026**, múi giờ Việt Nam. Đây là thiết kế dự kiến; không phải bốn bài đã có kết quả. Bạn xác nhận là **sinh viên UEH, chưa có giảng viên đồng tác giả**.
 
+**Q3-A revision 2:** đề cương hiện hành là [nghiên cứu kiểm chứng evaluator](Q3_A_STUDY_PLAN.vi.md),
+inference-first để cung cấp phép đo đáng tin cho Q1. Cả ba Q3 vẫn hỗ trợ Q1:
+A cung cấp evaluation, B cung cấp supervision evidence, C cung cấp mechanism/compute
+evidence. Các nghiên cứu có thể dùng sản phẩm của nhau trước khi được xuất bản,
+nhưng phải khai báo/citation phần dùng chung và dành test mới cho Q1.
+
 ## Bốn câu hỏi độc lập
 
 | Bài | Tiêu đề làm việc | Mục tiêu và câu hỏi chính | Đóng góp cần chứng minh | Journal dự kiến |
 | --- | --- | --- | --- | --- |
-| Q3-A | Temporal Conditions, State Overwrites, and Counterfactual Invariance in Autoregressive Story Continuation | Đo việc mô hình giữ đúng phạm vi thời gian của điều kiện sau nhiều lần thay đổi trạng thái. Đổi một tiền đề làm đổi hệ quả nào, giữ dữ kiện nào? | Phương pháp chấm cùng phát hiện thực nghiệm về tương tác giữa ghi đè, thời gian và hai thế giới; không chỉ phát hành dữ liệu. | **J.UCS**; JLM chỉ khi có phát hiện ngôn ngữ học đủ sâu và chấp nhận Q3 ngành Linguistics. |
+| Q3-A | Evaluating Temporal State Consistency in Story Continuation: A Controlled Study of Updates, Invariance, and Omission | Cùng thông tin và judge, world/time grouping có chấm đúng semantic task success hơn checklist phẳng mạnh trên output nguyên trạng chưa dùng chọn cấu hình không? | Kiểm chứng evaluator bằng nhãn độc lập, lỗi có kiểm soát và transfer; cung cấp rubric/evaluator cho Q1. | **J.UCS** là ứng viên scope; fresh fee/rank/template verification còn thiếu do 403. JLM chỉ xét lại khi có linguistic insight. |
 | Q3-B | Training-Only State Supervision for Consistent Short Story Continuation | Nhãn trạng thái khi train có giúp cùng backbone viết ít mâu thuẫn hơn trên truyện mới, khi inference không có bảng trạng thái? | Hiệu ứng của thông tin giám sát, khả năng chuyển miền và chi phí nhãn; tách khỏi đổi kiến trúc. | **Inteligencia Artificial**, tạm thời vì hạng cần xác minh trực tiếp; **J.UCS** dự phòng. |
 | Q3-C | Which Recurrent Memories Matter? A Controlled Study of Vector MIM for Story Continuation | N, S, M đóng góp gì trên mỗi tham số và mỗi giờ GPU? Có còn ích khi đối chứng nhìn cả hai trạng thái? | Phát hiện về cơ chế/hiệu quả và phạm vi thất bại, có thể là kết quả âm. | **J.UCS**; Inteligencia Artificial dự phòng có điều kiện. |
 | Q1 | Explicit State Differences and Nested Memory for Consistent Autoregressive Story Continuation | Buộc dùng sai phân qua MIM-N → MIM-S có cải thiện tổng quát trên truyện tự nhiên, hai tình huống và sự kiện tự sinh? | Bằng chứng kiến trúc vượt đối chứng trộn hai trạng thái, nhiều seed và miền, có chi phí và chất lượng viết. | **TACL**; **JMLR** chỉ khi phát hiện có giá trị rộng cho ML, không phải phương án dễ hơn. |
@@ -17,13 +23,13 @@ Q3/Q1 là **mục tiêu chọn nơi nộp**. Quartile phụ thuộc năm, hệ x
 | Hạng mục | Q3-A: đo lường/ngữ nghĩa | Q3-B: giám sát trạng thái | Q3-C: cơ chế bộ nhớ |
 | --- | --- | --- | --- |
 | Đơn vị dữ liệu | Truyện nguồn + cặp tiền đề; không lấy mỗi câu làm mẫu độc lập | Cùng corpus, thêm nhãn trạng thái ở train | Cùng corpus/tokenizer và benchmark đã khóa |
-| Dữ liệu | TinyStories cho viết nói chung; synthetic có oracle; truyện tự viết hoặc cấp phép, người đọc tại Việt Nam | Cùng dữ liệu ngôn ngữ; nhãn train đã kiểm tra; test khác truyện và dạng quy tắc | Cùng dữ liệu ngôn ngữ và test; không dùng trạng thái chuẩn lúc inference |
-| Core matrix dự kiến | LSTM, Transformer, MIM, learned-pair × 3 seed | MIM/LSTM × có/không auxiliary state loss × 3 seed | MIM, no-N, no-S, no-M, learned-pair, Delta-RNN, Nested LSTM, minGRU × 3 seed |
+| Dữ liệu | Controlled edits và output nguyên trạng; human-authored naturalistic subset, nguồn có phép và nhãn độc lập | Cùng dữ liệu ngôn ngữ; nhãn train đã kiểm tra; test khác truyện và dạng quy tắc | Cùng dữ liệu ngôn ngữ và test; không dùng trạng thái chuẩn lúc inference |
+| Core matrix dự kiến | Hai generator mở; E0 direct/E1 strong checklist/E2 world-time grouped; cùng backbone trong contrast E2−E1 | MIM/LSTM × có/không auxiliary state loss × 3 seed | MIM, no-N, no-S, no-M, learned-pair, Delta-RNN, Nested LSTM, minGRU × 3 seed |
 | Thông tin quan trọng | Cặp chỉ sửa một span; tách mệnh đề buộc đổi/giữ/tuỳ chọn | Giữ head có cùng kích thước ở arm đối chứng; báo tổng và tham số thực sự cập nhật | Learned-pair có thể học chính phép trừ; phải nhìn cả hai vector |
-| Chỉ số chính | Đoạn 3–5 câu đủ mệnh đề bắt buộc và không mâu thuẫn | Chênh lệch chỉ số chính khi bật/tắt state loss ở cùng backbone | Chênh lệch của từng memory path ở khớp tham số; báo thêm khớp chi phí |
-| Chỉ số phụ | Hệ quả đổi, invariant, phạm vi điều kiện, self-event, độ phủ, fluency, PPL | Như A; thêm state-probe, lỗi nhãn và chuyển miền | Như A; thêm throughput, VRAM, GPU-giờ và độ ổn định seed |
-| Hình quyết định | Lỗi theo độ sâu ghi đè × dạng điều kiện; độ đúng hệ quả đổi so với invariant | Hiệu ứng có/không nhãn theo nguồn truyện và độ sâu | Consistency theo GPU-giờ; hiệu ứng bỏ N/S/M |
-| Bảng quyết định | Số nguồn, giấy phép, đồng thuận trước phân xử, metric theo seed | 4 arm; tham số/head, tokens, compute, interval | 8 arm; tham số/gap, metric, fluency, compute |
+| Chỉ số chính | Delta balanced accuracy E2−E1 so với human semantic-success labels, paired theo source | Chênh lệch generator strict-success khi bật/tắt state loss ở cùng backbone | Chênh lệch generator strict-success của từng memory path ở khớp tham số; báo thêm khớp chi phí |
+| Chỉ số phụ | Evaluator false accept/reject, valid-update false alarm, stale/world-mix/omission, cost; generator fluency/format riêng | Generator coverage/contradiction/changed/invariant/self-event/fluency/PPL; thêm state-probe, lỗi nhãn và chuyển miền | Generator coverage/contradiction/changed/invariant/self-event/fluency/PPL; thêm throughput, VRAM, GPU-giờ và độ ổn định seed |
+| Hình quyết định | CI của paired delta evaluator; confusion/error taxonomy; controlled vs unmodified outputs và hai provenance strata | Hiệu ứng có/không nhãn theo nguồn truyện và độ sâu | Consistency theo GPU-giờ; hiệu ứng bỏ N/S/M |
+| Bảng quyết định | Số nguồn/license, đồng thuận trước phân xử, judge/gen versions, BA/delta CI và cost | 4 arm; tham số/head, tokens, compute, interval | 8 arm; tham số/gap, metric, fluency, compute |
 | Điều kiện viết | Nhiều dạng hiện tượng; test tự nhiên; chấm đáng tin; có phát hiện khoa học | Hiệu ứng ổn định hoặc kết quả âm giải thích được; không chỉ học grammar của nhãn | Có kết luận cơ chế độc lập, khớp thông tin và công bố sai lệch tài nguyên |
 | Gộp/dừng | Chỉ một mẫu tủ; dữ liệu/nhãn không đáng tin; chỉ còn bài dữ liệu | Chỉ một head phụ không tạo hiểu biết mới | Trùng câu hỏi/bảng kết quả Q1 hoặc hiệu ứng do tài nguyên |
 | Tệp LaTeX | papers/q3_a_temporal_benchmark/main.tex | papers/q3_b_state_supervision/main.tex | papers/q3_c_memory_mechanisms/main.tex |
@@ -54,7 +60,7 @@ Chưa tìm thấy văn bản công khai thay thế 491 trong phạm vi tra cứu
 
 | Tạp chí, ISSN, nhà xuất bản | Phù hợp | SJR 2025 (SCImago) | JCR-JIF, tách riêng | Phí bắt buộc | Trạng thái tại ngày tra |
 | --- | --- | --- | --- | --- | --- |
-| Journal of Universal Computer Science; 0948-695X / 0948-6968; Graz University of Technology, nền tảng ARPHA/Pensoft | A, C; B dự phòng | 0.308; Q3 Computer Science (miscellaneous), Q4 Theoretical Computer Science [S1] | Trang journal hiển thị JIF 1, Q3 Theory & Methods, Q4 Software Engineering; không ghi rõ năm JIF ở chỗ này. Chưa truy cập trực tiếp bảng JCR Clarivate. | Chính sách miễn phí cho tác giả và người đọc [J1] | **Đã xác minh cả phí và hạng (SJR)**; tuyến UEH/JCR cần xác nhận; Scopus trực tiếp bị 403. |
+| Journal of Universal Computer Science; 0948-695X / 0948-6968; Graz University of Technology, nền tảng ARPHA/Pensoft | A, C; B dự phòng | Bản tra trước: 0.308; Q3 Computer Science (miscellaneous), Q4 Theoretical Computer Science [S1]; lượt tái tra revision 2 bị 403 | Trang journal hiển thị JIF 1, Q3 Theory & Methods, Q4 Software Engineering; không ghi rõ năm JIF ở chỗ này. Chưa truy cập trực tiếp bảng JCR Clarivate. | Chính sách miễn phí chung cho tác giả/người đọc [J1] được tái kiểm tra; phí phụ/độ dài/template chưa truy cập đủ | **Chưa đủ căn cứ tái xác minh để nộp**; lưu số SJR từ lượt đầu, không coi là fresh-verified. UEH/JCR/Scopus active cần xác nhận. |
 | Journal of Language Modelling; 2299-8470 / 2299-856X; Institute of Computer Science, Polish Academy of Sciences | A chỉ khi có insight ngữ nghĩa/ngôn ngữ học | 0.155; Q3 Linguistics and Language, **Q4 Computer Science Applications**, Q4 Modeling and Simulation [S2] | Chưa xác minh JCR-JIF; không lấy số “impact factor” ở site tổng hợp | Miễn phí tác giả/người đọc [J2]; bản in theo yêu cầu là tùy chọn | **Đã xác minh cả phí và hạng (SJR)**; không chốt là Q3 CS; UEH Scopus quartile chưa rõ. |
 | Inteligencia Artificial; 1137-3601 / 1988-3064; IBERAMIA | B; C dự phòng | Nguồn thứ cấp ghi 0.302 Q3 AI/Software; SCImago trực tiếp [S3] bị 403, chưa xác minh đủ | Trang journal tự công bố 2025 JIF 0.9 Q4, ESCI, có chú thích lỗi tên; không chuyển thành SCIE Q3 [J3m] | Không phí nộp, review, APC, xuất bản, editing; đóng góp tự nguyện không bắt buộc [J3] | **Chưa đủ căn cứ** cho hạng trực tiếp/active index và mức UEH, dù chính sách phí rõ. |
 | Transactions of the Association for Computational Linguistics; 2307-387X; ACL, MIT Press | Q1 chính | 2.144; Q1 Artificial Intelligence và Computer Science Applications [S4] | Chưa xác minh trực tiếp JCR-JIF Clarivate; không đồng nhất SJR Q1 với JCR Q1 | MIT Press liệt kê Diamond OA (không APC) [J4] | **Đã xác minh cả phí và hạng (SJR)**; chưa xác nhận toàn bộ phí phụ và điều kiện UEH. |
@@ -93,7 +99,7 @@ Công thức: H_train = tổng(tokens_run / throughput_run) / 3,600. Với chia 
 
 | Bài | Core budget đề xuất | Tổng tokens | Chỉ laptop | Chỉ Colab theo giả định | Chia 50/50, chạy song song |
 | --- | --- | ---: | ---: | ---: | ---: |
-| Q3-A | 4 model × 3 seed × 10M | 120M | 67–133 giờ | 22–67 giờ | 33–67 giờ |
+| Q3-A revision 2 | Inference-first evaluator validation | Không bắt buộc train mới | Inference/judging chưa đo | Chưa đo | Chưa đo |
 | Q3-B | 2 backbone × 2 arm × 3 seed × 10M | 120M | 67–133 giờ | 22–67 giờ | 33–67 giờ |
 | Q3-C | 8 arm × 3 seed × 10M | 240M | 133–267 giờ | 44–133 giờ | 67–133 giờ |
 | Q1 core | 7 model × 5 seed × 50M | 1.75B | 972–1,944 giờ | 324–972 giờ | 486–972 giờ |
@@ -101,7 +107,7 @@ Công thức: H_train = tổng(tokens_run / throughput_run) / 3,600. Với chia 
 
 50M/10M là ngân sách đề xuất để kiểm nghiệm, chưa biết có đủ học viết tự nhiên và làm theo yêu cầu. Cần kiểm tra fluency trước khi mở rộng. Q1 có thể vượt xa khả năng dùng máy/Colab nếu tốc độ thực thấp; không hứa Q1 chỉ bằng tăng số tokens.
 
-Dự phòng riêng **20% token-equivalent compute** cho kiểm tra cấu hình/sự cố, khóa trước thay vì grid vô hạn. Validation/generation/annotation phải đo cộng riêng. Nếu chia 50/50 như trên, A tương đương khoảng 4–8 ngày **khi cả hai nơi đều chạy 8 giờ hữu ích/ngày**; C khoảng 8–17 ngày; Q1 khoảng 61–122 ngày. Không đồng nhất các con số này với ngày hoàn tất paper.
+Dự phòng riêng **20% token-equivalent compute** cho kiểm tra cấu hình/sự cố, khóa trước thay vì grid vô hạn. Validation/generation/annotation phải đo cộng riêng. Nếu chia 50/50 như trên, C khoảng 8–17 ngày; Q1 khoảng 61–122 ngày **khi cả hai nơi đều chạy 8 giờ hữu ích/ngày**. A không dùng ngoại suy train này nữa; matrix 120M cũ chỉ là extension kiến trúc có điều kiện. Không đồng nhất các con số này với ngày hoàn tất paper.
 
 Không cộng mù ngân sách của bốn bài: những run trùng corpus, tokenizer, architecture, seed, lịch train, token cap và selection policy có thể tái sử dụng và phải khai báo. Số tokens duy nhất sau loại trùng hiện **chưa chốt**. Tập test/nhãn đã dùng trong bài trước không còn là test “chưa từng nhìn” cho lựa chọn kiến trúc Q1: cần tranche nguồn mới hoặc khóa toàn bộ quyết định trước lần mở test đầu.
 
@@ -109,14 +115,14 @@ Không cộng mù ngân sách của bốn bài: những run trùng corpus, token
 
 | Bài | Thời gian chủ động dự kiến | Phụ thuộc và việc song song |
 | --- | --- | --- |
-| Q3-A | 3–5 tháng | Ngữ nghĩa, dữ liệu có phép, pilot chấm; pilot MIM/pair chạy song song ngay |
+| Q3-A | Revision 2: dự kiến 8–12 tuần, điều kiện feasibility/nhãn đạt; có thể lâu hơn | Hai bộ output controlled/unmodified, checklist mạnh và nhãn độc lập; pilot MIM/pair cho Q1/C vẫn có thể chạy song song |
 | Q3-B | 3–5 tháng sau khi có schema nhãn | Có thể bắt đầu nhãn và loss khi A còn kiểm tra agreement |
 | Q3-C | 3–5 tháng sau khi có benchmark đáng tin | Profile/ablation song song; dành 2–4 tuần sửa implementation |
 | Q1 | Tổng chương trình khoảng 18–30 tháng | Dựa trên tín hiệu đầu; không đợi ba Q3 được nhận |
 
 Đây là ước lượng lập kế hoạch cho sinh viên, không phải cam kết lịch của tạp chí. Mỗi bài dự trù thêm 2–6 tuần sửa bản thảo nội bộ và các vòng sửa theo reviewer; **thời gian phản biện chưa biết**.
 
-Công sức người đọc có thể lớn hơn train: mẫu 50 cặp nguồn × 2 điều kiện × 4 model × 3 seed = 1,200 đoạn. Hai người, 3–5 phút/đoạn → khoảng **120–200 giờ-người**, chưa tính huấn luyện rubric, self-event follow-up và phân xử. Đây là phép tính khối lượng, chưa phải số mẫu cuối. Chọn cỡ mẫu từ độ chính xác cần thiết ở cấp truyện, không từ số câu.
+Công sức người đọc có thể lớn hơn compute. Q3-A revision 2 dự kiến 96 test sources×2 premise×2 generators=384 output; hai người, 2–4 phút/output ⇒ **25,6–51,2 giờ-người**, chưa tính controlled edits, viết truyện, training rubric và phân xử. Số mẫu/phút đều là giả định phải đo. Ví dụ matrix kiến trúc cũ 1.200 output vẫn tương đương 120–200 giờ-người ở 3–5 phút; không còn là core bắt buộc của A. Chọn cỡ mẫu từ precision/power ở cấp truyện trước test, không từ số câu.
 
 ## Điều kiện để hoàn tất bản thảo
 
