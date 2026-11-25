@@ -8,6 +8,7 @@ output/
 *.aux
 *.xdv
 *.synctex.gz
+*.pdf
 data/raw/
 data/processed/
 *.pt

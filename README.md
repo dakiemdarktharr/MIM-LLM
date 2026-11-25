@@ -35,7 +35,7 @@ The package implements MIM-LM, MIM-N/MIM-S/M ablations, a two-state learned-proj
 
 See the [Windows runbook](docs/RUNBOOK.md), [technical protocol](docs/METHODS.md), [research and novelty map](docs/RESEARCH.md), and [manuscript status](docs/STATUS.md). `mimlm paper-tracks` prints the conditional experiment gates. The synthetic pilot and small smoke runs are **not** evidence of scientific superiority.
 
-The [publication and compute plan](docs/PUBLICATION_PLAN.vi.md) records the journal/UEH funding checks and conditional laptop/Colab budgets as of 25 November 2026. Three [English LaTeX research shells](papers/README.md) include methods, empty result tables and evidence gates; their compiled PDFs are planning documents.
+The [publication and compute plan](docs/PUBLICATION_PLAN.vi.md) records the journal/UEH funding checks and conditional laptop/Colab budgets as of 25 November 2026. Three [English LaTeX research shells](papers/README.md) include methods, empty result tables and evidence gates, and generate local PDF planning documents. The [development log](docs/DEVELOPMENT_LOG.md) records public project changes.
 
 ## Evaluation plan
 

@@ -25,6 +25,8 @@ python scripts/build_papers.py
 
 This uses Tectonic, emits the three PDFs and a diagnostic JSON under output/pdf/,
 and copies each successful PDF to draft.pdf beside its main.tex source.
+PDF build outputs are kept locally and excluded from Git. Commit the LaTeX sources
+and verification notes when updating a manuscript shell.
 The script rejects compile errors, undefined citations/references and overfull boxes.
 It does not verify scientific claims or visual layout. Inspect the rendered pages too.
 The Codex app editor can open each main.tex for editing; the terminal build is the
