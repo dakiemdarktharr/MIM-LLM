@@ -3,6 +3,36 @@
 Dates use Asia/Ho_Chi_Minh. Entries below summarize verified repository events
 and this conversation; the Obsidian vault contains the fuller research notebook.
 
+## 2026-11-26 — Q3-A preparation with an explicit training hold
+
+- User reports purchasing a $50 Colab plan and explicitly requires waiting before
+  any training. Added a fail-closed model/tokenizer permission policy with exact
+  run/plan IDs, including legacy training functions. No runtime was started in Colab.
+- Implemented Q3-A controlled pairs and four training arms, response-only CE,
+  train-only invariant-probe JS, exact target accounting, immutable input/code
+  plans, atomic checkpoints/resume, free generation, test-selection/registration
+  gates, blank blinded-reader packets, adjudication and source-paired analysis.
+- Added eval-only Transformer KV reuse, checked against full/chunked/padded
+  forward on CPU/CUDA, with unchanged parameterization. Suppressed BOS/PAD sampling.
+- Prepared final 6,000/400/400 controlled source groups and a pinned 3,000/300/300
+  TinyStories subset. Fixed a duplicate-source draw issue before any training;
+  earlier preparation artifacts are superseded. Naturalistic transfer is not validated.
+- Operational fixed-byte/context-2048 backbones are minGRU 2,099,864 and
+  Transformer 2,119,408 actual parameters, replacing earlier Q3-A counting examples.
+  Physical warm-up reuse may only be credited when identical checkpoints are used.
+- 93 tests passed; six training/fitting cases were deselected, including two
+  newly written Q3-A optimizer/JS/interruption-resume integration cases. Real-config
+  CPU/CUDA preflight left every parameter unchanged with zero optimizer steps.
+  Optimizer/overfit/training-resume integration remains intentionally unexecuted.
+- Validated and executed all four preparation-notebook code cells locally on CPU;
+  not a Colab execution claim. Exported and round-trip verified a local preparation
+  bundle. No training cell is executable in the notebook. Raw datasets, ZIP and
+  generated PDFs remain local/Git-ignored.
+- Expanded the standalone English methods draft; all four TeX builds passed and
+  all five updated Q3-A pages were rendered/inspected. No trained results or real
+  labels were inserted. Updated Obsidian and preserved prior records/milestones.
+  See [pretraining QA](Q3_A_PRETRAIN_QA.vi.md) and [handoff](Q3_A_PRETRAIN_RUNBOOK.vi.md).
+
 ## 2026-11-26 — Clarified the conversational model objective
 
 - Recorded the user's explicit long-term target: a MIM-based autoregressive

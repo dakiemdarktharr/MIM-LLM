@@ -98,6 +98,7 @@ def test_mingru_scan_matches_masked_stepwise_long_sequence():
     torch.testing.assert_close(full, torch.cat(parts, dim=1), rtol=1e-5, atol=1e-6)
 
 
+@pytest.mark.training
 def test_tiny_batch_loss_falls():
     torch.manual_seed(0)
     model = build_model(ModelConfig(kind="mim", width=12, layers=2, context=12))

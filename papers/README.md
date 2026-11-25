@@ -31,6 +31,11 @@ Adopt a verified journal template only when ready to submit.
 
 ## Completion gates
 
+Q3-A has preparation code and a [pretraining handoff](../docs/Q3_A_PRETRAIN_RUNBOOK.vi.md).
+Its [Colab notebook](../notebooks/Q3_A_Prepare_Colab.ipynb) contains no executable
+training cell. The current permission policy blocks model and tokenizer training.
+Other revised study procedures remain implementation work.
+
 Implement and test the new data/objective/history/architecture procedures; audit
 licenses, source splits and labels; establish writing feasibility; preregister
 contrasts and budgets; lock tests; train declared seeds; collect genuine blinded

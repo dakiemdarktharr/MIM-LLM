@@ -10,13 +10,15 @@ milestones are separate from the publication milestones below.
 
 | Track | Drafted with results | Submitted | Accepted | Published | Next gate |
 |---|---|---|---|---|---|
-| A: selective counterfactual training | No | No | No | No | No-op versus matched lexical controls, with nontrivial transfer |
+| A: selective counterfactual training | No | No | No | No | Code/data preparation; training locked, optimizer integration and naturalistic transfer pending |
 | B: delayed supervision | No | No | No | No | Isolate token/write interference and label/compute confounds |
 | C: history provenance | No | No | No | No | Matched frozen histories and actual-event continuation labels |
 | Branch-residual architecture | No | No | No | No | Novelty versus SEED/TreeWY/Flide/DASC/MoDr; full-state implementation and memory-quality evidence |
 
 Four standalone English planning shells exist with empty authors and independent
-questions. New revision-3 procedures are not implemented by those documents.
+questions. Q3-A now has implementation and non-optimizing checks, documented in
+the [pretraining handoff](Q3_A_PRETRAIN_RUNBOOK.vi.md). Optimization has not been
+authorized. Other revision-3 procedures are not implemented by those documents.
 Historical prototype tests cover only the older implementation.
 See [current portfolio](PORTFOLIO_V3.vi.md) and [novelty audit](NOVELTY_AUDIT_V3.vi.md).
 The evaluator-only A and mechanism-only C scopes from earlier revisions are

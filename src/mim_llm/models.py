@@ -517,6 +517,72 @@ class TransformerLM(nn.Module):
             else None
         )
 
+    def _cached_eval(
+        self,
+        input_ids: Tensor,
+        attention_mask: Tensor | None,
+        state: dict[str, Any] | None,
+    ) -> tuple[Tensor, Tensor | None, dict[str, Any]]:
+        """Exact causal KV reuse with the existing encoder weights, in eval mode.
+
+        An explicit absolute-position mask is used for chunks with a prefix;
+        SDPA's non-square is_causal mask would align differently.
+        """
+        if input_ids.ndim != 2 or input_ids.shape[1] == 0:
+            raise ValueError("Nonempty [batch,time] inputs required")
+        batch, time = input_ids.shape
+        offset = state["length"] if state is not None else 0
+        total = offset + time
+        if total > self.config.context:
+            raise ValueError("Sequence exceeds Transformer context")
+        active = (
+            attention_mask.bool()
+            if attention_mask is not None
+            else torch.ones_like(input_ids, dtype=torch.bool)
+        )
+        active = (
+            torch.cat((state["mask"], active), dim=1) if state is not None else active
+        )
+        positions = torch.arange(offset, total, device=input_ids.device)
+        x = self.embedding(input_ids) + self.position(positions)[None, :, :]
+        allowed = (
+            torch.arange(total, device=input_ids.device)[None, :] <= positions[:, None]
+        )[None, None, :, :]
+        allowed = allowed & active[:, None, None, :]
+        caches = []
+        for index, layer in enumerate(self.blocks.layers):
+            norm = layer.norm1(x)
+            q, k, v = F.linear(
+                norm, layer.self_attn.in_proj_weight, layer.self_attn.in_proj_bias
+            ).chunk(3, dim=-1)
+            heads = layer.self_attn.num_heads
+            dimension = self.config.width // heads
+            q = q.reshape(batch, time, heads, dimension).transpose(1, 2)
+            k = k.reshape(batch, time, heads, dimension).transpose(1, 2)
+            v = v.reshape(batch, time, heads, dimension).transpose(1, 2)
+            if state is not None:
+                old_k, old_v = state["kv"][index]
+                k = torch.cat((old_k, k), dim=2)
+                v = torch.cat((old_v, v), dim=2)
+            attended = F.scaled_dot_product_attention(
+                q, k, v, attn_mask=allowed, dropout_p=0.0
+            )
+            attended = attended.transpose(1, 2).reshape(batch, time, self.config.width)
+            x = x + layer.dropout1(layer.self_attn.out_proj(attended))
+            feed = layer.linear2(
+                layer.dropout(layer.activation(layer.linear1(layer.norm2(x))))
+            )
+            x = x + layer.dropout2(feed)
+            caches.append((k, v))
+        if self.blocks.norm is not None:
+            x = self.blocks.norm(x)
+        hidden = self.norm(x)
+        return (
+            self.head(hidden),
+            self.state_head(hidden) if self.state_head else None,
+            {"kv": caches, "length": total, "mask": active},
+        )
+
     def forward(
         self,
         input_ids: Tensor,
@@ -525,6 +591,12 @@ class TransformerLM(nn.Module):
         state: dict[str, Any] | None = None,
         return_state: bool = False,
     ) -> tuple[Tensor, Tensor | None] | tuple[Tensor, Tensor | None, dict[str, Any]]:
+        if not self.training and return_state and (state is None or "kv" in state):
+            return self._cached_eval(input_ids, attention_mask, state)
+        if state is not None and "kv" in state:
+            raise ValueError(
+                "KV-cached state is supported only for eval with return_state=True"
+            )
         if state is not None:
             input_ids = torch.cat((state["tokens"], input_ids), dim=1)
             if attention_mask is not None and state.get("mask") is not None:

@@ -1,5 +1,15 @@
 # MIM-LLM project workflow
 
+## Training hold — 2026-11-26
+
+The user purchased a $50 Colab plan (self-reported; exact SKU/credits unverified)
+and requested Q3-A preparation up to training, then waiting for a new instruction.
+Do not train any model or fit a tokenizer, including overfit/smoke/resume tests.
+Forward/backward checks without optimizer steps are permitted preparation.
+Keep `configs/training_permission.json` closed until the user explicitly orders
+training. Neither a Colab purchase nor a passing readiness check lifts this hold.
+Do not allocate a paid Colab runtime or start remote jobs during preparation.
+
 ## Long-term model objective
 
 The user's explicit objective, clarified on 2026-11-26, is a MIM-based

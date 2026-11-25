@@ -1,8 +1,12 @@
 \documentclass[11pt,a4paper]{article}
 \input{../shared/preamble}
+\renewcommand{\projectstatus}{\begin{quote}\small\textbf{Methods draft and
+preparation record, 26 November 2026.} Code has undergone non-optimizing
+checks. Model/tokenizer training is on hold. No trained results, human
+annotations, submission or editorial outcome is implied.\end{quote}}
 \title{Learning When a Premise Change Should Not Change a Story}
 \author{}
-\date{Research design: 25 November 2026}
+\date{Methods draft and preparation: 26 November 2026}
 \begin{document}
 \maketitle
 \projectstatus
@@ -64,7 +68,7 @@ This is a limited response-matching adaptation, not a reproduction of every
 component of the prior method. Declare extra auxiliary labels/passes and cost;
 the primary A1--A2 contrast does not depend on them.
 
-\input{../shared/standalone_common}
+\input{implementation}
 
 \section{Primary outcome and decisive analyses}
 For each source pair, joint success is \(Y_{\rm pair}=Y(x)Y(x')\), with mandatory
@@ -95,9 +99,16 @@ principle after lexical and data-quality controls. If the effect is confined to
 a single template or explained by extra exposure, narrow the conclusion.
 No new invariance algorithm or causal-discovery ability is established by this
 design. Discuss annotation ambiguity, small-model writing limits, English-only
-scope and corpus licensing. No test sample or human reliability statistic is yet
+scope and corpus licensing. No trained test outputs or human reliability statistic is yet
 available. Freeze the primary analysis before opening the final test, report
 negative outcomes and publish actual author, consent and data/code declarations.
+
+\IfFileExists{tables/results_generated.tex}{
+\begin{table}[ht]\centering
+\caption{Primary contrast from supplied test-label analysis. Source-clustered
+intervals are conditional on the reported training seeds.}
+\input{tables/results_generated}
+\end{table}}{}
 
 \input{references}
 \end{document}

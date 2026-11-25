@@ -1,0 +1,12 @@
+{
+  "status": "draft_not_registered",
+  "plan_id": null,
+  "primary_contrast": ["A1", "A2"],
+  "smallest_useful_effect": null,
+  "gpu_hours_cap_per_study": null,
+  "test_results_used": false,
+  "test_source_ids": [],
+  "sample_method_and_rationale": "Fill using source strata before generating final-test outputs; retain complete pairs and all compared systems/seeds.",
+  "two_independent_readers_planned": true,
+  "naturalistic_transfer_manifest": null
+}

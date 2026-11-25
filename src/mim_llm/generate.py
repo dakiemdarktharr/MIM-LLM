@@ -41,6 +41,8 @@ def generate_from_ids(
     emitted: list[int] = []
     for _ in range(max_new_tokens):
         scores = next_logits.float() / temperature
+        scores[:, tokenizer.pad_id] = -torch.inf
+        scores[:, tokenizer.bos_id] = -torch.inf
         values, indices = torch.topk(scores, min(top_k, scores.shape[-1]), dim=-1)
         probabilities = torch.softmax(values, dim=-1)
         chosen = indices.gather(

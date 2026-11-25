@@ -1,0 +1,7 @@
+{
+  "model_training_authorized": false,
+  "tokenizer_fitting_authorized": false,
+  "authorized_run_ids": [],
+  "authorized_plan_ids": [],
+  "reason": "User instruction on 2026-11-26: prepare Q3-A and wait for a new explicit instruction before any training. Colab purchase is not training authorization."
+}

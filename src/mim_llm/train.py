@@ -20,6 +20,7 @@ from torch.utils.data import DataLoader
 from .data import StoryDataset, collate, load_jsonl
 from .models import ModelConfig, build_model, cross_entropy, parameter_count
 from .tokenizer import load_tokenizer
+from .training_gate import require_training_permission
 
 
 def seed_everything(seed: int) -> None:
@@ -86,6 +87,7 @@ def train(
     resume: bool = False,
     checkpoint_every_updates: int = 100,
 ) -> dict[str, Any]:
+    require_training_permission("model", str(Path(output_dir)))
     if (
         batch_size < 1
         or max_train_tokens < 1

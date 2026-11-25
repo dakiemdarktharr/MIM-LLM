@@ -47,3 +47,9 @@ The final locked test split is evaluated **once after model and decoding selecti
 
 For a new resource budget, measure on this machine. Approximate GPU-hours as
 \(\sum_{model,seed} N_{train}/r_{train} / 3600\), then add measured validation and generation time; \(r_{train}\) is the **sustained** token throughput from that architecture on this GPU. The present 339-token and 1,024-token runs are only smoke tests, so the full-study GPU-hour budget is **not measured yet**. `peak_vram_bytes` and `peak_vram_reserved_bytes` are PyTorch allocator figures, not total device consumption reported by `nvidia-smi`.
+# Training hold — 26 November 2026
+
+Model optimization and tokenizer fitting are locked until the user's new
+explicit instruction. Commands below describe the legacy workflow; they do
+not grant authorization. Use the [Q3-A preparation handoff](Q3_A_PRETRAIN_RUNBOOK.vi.md)
+for the current non-training pipeline. Colab purchase does not lift the hold.

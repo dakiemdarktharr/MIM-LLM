@@ -2,8 +2,9 @@
 
 **Status: research planning with a tested legacy code prototype.** This software-only
 project studies autoregressive story continuation and recurrent language-model
-memory. The revision-3 training studies and branch-residual architecture are
-research designs, not implemented or validated results. No manuscript has been
+memory. Q3-A now has preparation code and non-optimizing checks; training is
+locked pending a new user instruction. The other revised procedures and the
+branch-residual architecture remain research designs. No manuscript has been
 submitted, accepted or published.
 
 ## Long-term objective
@@ -71,8 +72,9 @@ does change. The one-time rule does not uniquely require opening at 9:05.
 These are conditional hypotheses, not established novelty or publication claims.
 The three training studies each plan four arms, two backbones and three seeds,
 with equal token/selection caps and equal GPU-hour caps chosen after profiling.
-The instantiated BPE-512 minGRU has **2,081,384** parameters (width 604); the
-Transformer has **2,074,320** (width 268). New-configuration throughput and writing
+Earlier BPE-512/context-256 counting examples are historical for Q3-A. Its
+prepared fixed-byte/context-2048 minGRU has **2,099,864** parameters (width 662);
+the Transformer has **2,119,408** (width 248). New-configuration throughput and writing
 quality are unmeasured. A pilot allocates 48M post-training targets per study,
 with shared warm-up counted once and a separate 15% selection reserve.
 
@@ -88,8 +90,12 @@ The earlier PyTorch prototype implements vector MIM, N/S/M ablations, a learned
 projection of both consecutive states, LSTM, Nested LSTM, GRU, minGRU, Delta-RNN,
 a small causal Transformer and a token-shift GRU. Token-shift GRU is **not** full
 RWKV. Tokenization, training/resume and a synthetic smoke benchmark exist.
-They do not implement the new paired-training, delayed-probe, history-bank or
-branch-residual procedures. See the [runbook](docs/RUNBOOK.md) and
+Q3-A's separate pipeline now implements paired response training, invariant-probe
+JS, checkpointing, generation, blank blind annotation and source-paired analysis.
+Its optimizer integration and overfit tests await authorization; no new weights
+have been trained. Delayed-supervision, history-bank and branch-residual
+procedures remain future implementation. See the [Q3-A preparation handoff](docs/Q3_A_PRETRAIN_RUNBOOK.vi.md),
+[preparation-only Colab notebook](notebooks/Q3_A_Prepare_Colab.ipynb), [legacy runbook](docs/RUNBOOK.md) and
 [original mechanism map](docs/RESEARCH.md) for their verified scope.
 
 Keep tokenizers, source splits, input information, training exposure and decoding

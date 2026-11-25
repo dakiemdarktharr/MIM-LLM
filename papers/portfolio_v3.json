@@ -64,7 +64,19 @@
     "a": {
       "directory": "q3_a_temporal_benchmark",
       "title": "Learning When a Premise Change Should Not Change a Story",
-      "primary_contrast": "effective_plus_semantic_noop minus effective_plus_paraphrase"
+      "primary_contrast": "effective_plus_semantic_noop minus effective_plus_paraphrase",
+      "operational_update_2026_11_26": {
+        "config": "configs/q3a/pilot.json",
+        "snapshot": "configs/q3a/prepared_snapshot.json",
+        "status": "prepared_training_locked",
+        "tokenizer": "fixed_utf8_byte_259",
+        "context": 2048,
+        "actual_parameters": {
+          "mingru": 2099864,
+          "transformer": 2119408
+        },
+        "warmup_reuse": "Only credit shared initialization when actual B/C config/corpus/tokenizer/checkpoint matches; earlier BPE counting configs are historical for A."
+      }
     },
     "b": {
       "directory": "q3_b_state_supervision",

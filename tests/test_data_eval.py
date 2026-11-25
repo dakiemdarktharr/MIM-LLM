@@ -54,6 +54,7 @@ def test_utf8_tokenizer_roundtrip():
     assert tokenizer.decode(tokenizer.encode(text, bos=True, eos=True)) == text
 
 
+@pytest.mark.training
 def test_bpe_state_alignment_and_no_validation_fit(tmp_path):
     path = tmp_path / "demo.jsonl"
     write_demo_corpus(path, stories=30)
@@ -97,6 +98,7 @@ def test_benchmark_lock_rejects_source_crossing_splits(tmp_path):
         lock_benchmark(str(path), str(tmp_path / "lock.json"))
 
 
+@pytest.mark.training
 def test_checkpoint_tokenizer_hash_is_enforced(tmp_path):
     corpus = tmp_path / "corpus.jsonl"
     write_demo_corpus(corpus, stories=30)

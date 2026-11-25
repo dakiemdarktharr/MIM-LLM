@@ -9,6 +9,13 @@ lượt hoàn chỉnh, không dừng ở benchmark truyện hoặc bốn bài b�
 dưới đây là nghiên cứu thành phần; xem [mục tiêu khả năng và lộ trình chat](PROJECT_OBJECTIVE.vi.md).
 Việc làm rõ này không tăng ngân sách hay thay câu hỏi/đối chứng đã định.
 
+**Cập nhật vận hành Q3-A ngày 26/11:** đã chuẩn bị pipeline với tokenizer byte
+259, context 2.048, minGRU 2.099.864 và Transformer 2.119.408 tham số. Các ví dụ
+đếm BPE-512/context-256 bên dưới là lịch sử cho A. Xem [handoff trước train](Q3_A_PRETRAIN_RUNBOOK.vi.md).
+Chưa train; không fit tokenizer. Credit warm-up giữa ba bài chỉ có hiệu lực khi
+thật sự dùng cùng checkpoint/corpus/config; khi chạy A riêng phải báo đủ physical
+warm-up, không nhận sharing chưa xảy ra. Trần post-training/selection vẫn ngang nhau.
+
 Yêu cầu áp dụng: ba nghiên cứu Q3 đều có huấn luyện và cùng trần ngân sách;
 mỗi bản thảo tự trình bày vấn đề, tài liệu, phương pháp và bằng chứng của mình.
 Không đặt tên chương trình, nhãn quartile, mục tiêu hỗ trợ bài khác hoặc kế hoạch

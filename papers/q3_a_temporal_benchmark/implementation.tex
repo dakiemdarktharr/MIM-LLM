@@ -1,0 +1,123 @@
+\section{Operational data and model specification}
+The prepared controlled corpus contains 6,000 training source groups, 400
+validation groups and 400 test groups, each with base, effective, no-op and
+paraphrase variants. These are project-generated templates, not human-authored
+stories. Exact duplicate base prompts are rejected during generation. Test
+integrity is hashed before model selection; this is not a preregistration claim.
+Two surface renderers are used in training and distinct renderers in validation
+and test. Surface separation does not establish transfer to new semantic domains.
+
+Each source has one to six successful key transfers, a decision time, a power
+return time and an opening-permission condition. Some sources also contain
+explicitly cancelled transfer plans, which do not change possession. The
+decision is evaluated once, assuming stated rule compliance. Power available
+exactly at the decision satisfies the condition; missing permission still
+requires waiting. An effective variant changes either power timing or permission
+so the required action changes. A no-op shifts power timing within the same
+decision region. The return time changes even when the required action does not.
+No later opening is uniquely entailed by the one-time rule.
+
+Each required continuation has three to five sentences expressing the key
+holder, decision action, cabinet state at that time and a sufficient valid
+reason. Applicable state facts are distinct from mandatory mentions: a waiting
+explanation need not enumerate every satisfied prerequisite. Multiple coherent
+optional details are permitted. Generation sees the prose prefix and instruction;
+gold tables and probe answers are not supplied at inference.
+
+The prepared warm-up subset contains 3,000 training, 300 validation and 300
+test TinyStories sources~\cite{tiny}, pinned to dataset revision
+\texttt{f54c09fd23315a6f9c86f9dc80f725de7d8f9c64} and recorded under its
+CDLA-Sharing-1.0 dataset-card license. Warm-up data are deduplicated across splits.
+Do not call this externally sourced synthetic corpus human-authored prose.
+A separately licensed and audited naturalistic intervention set remains a
+required transfer gate before a broad scientific claim.
+
+\begin{table}[ht]\centering\small
+\caption{Instantiated preparation configurations; no trained quality is implied.}
+\begin{tabular}{lrrrr}\toprule
+Backbone & Vocabulary & Layers & Width & Actual parameters\\\midrule
+minGRU & 259 & 2 & 662 & 2,099,864\\
+Causal Transformer & 259 & 2 & 248 & 2,119,408\\
+\bottomrule\end{tabular}\end{table}
+
+Both use the same fixed UTF-8 byte tokenizer, context 2,048 and dropout zero.
+Special IDs are PAD=0, BOS=1 and EOS=2; bytes map to IDs 3--258. No tokenizer
+fitting is needed. The parameter difference is approximately 0.93\%; the longest
+prepared prompt plus reserved generation length is 1,476 tokens. This operational
+configuration replaces preliminary vocabulary-512/context-256 counting examples.
+It is a preparation choice, not evidence that either model can write well.
+
+\section{Training contract and accounting}
+Warm-up uses ordinary next-token cross-entropy. Long stories are divided into
+context-sized windows without mixing sources; state resets at each window.
+Post-training uses complete prompt--response examples with a fresh state per
+example. For token sequence z and response start index p, logits at position
+i predict \(z_{i+1}\); prompt positions \(i<p-1\) and padding are masked with
+ignore-index -100. Response characters and EOS are supervised. No post-training
+example is silently truncated. Inputs and states have shapes \([B,T]\),
+\([B,T,H]\) and, for each recurrent hidden vector, \([B,H]\); logits are
+\([B,T,259]\). Padding does not advance recurrent state.
+
+Four conditions, two backbones and three seeds give 24 post-training runs,
+capped at 2M response targets each: 48M total. Each backbone/seed first has a
+5M-target warm-up, giving six initialization checkpoints and 30M unique warm-up
+targets. Every condition forks the matching identical initialization with a fresh
+optimizer. Reuse must be counted once in physical compute. Selection has a
+separate 7.2M-target cap; it has not been spent. These are planning caps, not
+adequacy guarantees or completed training.
+
+The prepared optimizer is AdamW with learning rate \(3\cdot10^{-4}\), weight
+decay 0.01 and gradient clipping at norm 1, using float32 and microbatch two.
+The final partial batch masks surplus response labels to obey the target cap
+exactly. Epochs, cursor, optimizer/RNG states and input/code fingerprints support
+atomic checkpoints. Resume rejects changed plans or inputs. Work after the last
+checkpoint may need replay and must be counted rather than hidden.
+
+A3 cycles holder, action, cabinet, power-availability and permission probes on
+base/no-op pairs. The JS penalty is evaluated only on aligned teacher-forced
+canonical answer-token positions, including EOS, with weight 0.1. Probe answer
+prefixes are train-only information. No probe CE is added; extra forward/backward
+passes, input tokens and probe positions are logged separately. This is a limited
+published-invariance adaptation, not a new invariance objective or full reproduction.
+The primary comparison A1--A2 does not rely on this extra information.
+
+Parameter matching, target-token matching and compute matching are separate.
+Measure training time, GPU name, allocated/reserved VRAM, processed tokens,
+probe cost and selection cost. A \(6P\) per processed-token proxy omits attention's
+quadratic term and probe/optimizer/validation costs and is not total FLOPs.
+The host is an RTX 5050 Laptop; Colab GPU, credit burn and training throughput
+have not been measured. No training was authorized during preparation.
+
+\section{Scoring, selection and inference protocol}
+Use EOS termination and shared sampling: temperature 0.8, top-k 40, up to 512
+new byte tokens, decoding seed 17 in the preparation plan. Suppress PAD/BOS
+sampling. Reserve the same complete visible context for both backbones.
+Test generation is blocked until checkpoint hashes, decoding and validation
+selection rationale are frozen; hashing data alone does not release the test.
+Fix the smallest useful effect and resource limits before final selection.
+
+Two independent blinded readers receive anonymous prose items and mandatory
+propositions, with a separate hidden system key. Labels include per-proposition
+correctness, joint correctness, contradiction/type, sentence format, coverage,
+fluency, ambiguity and evidence spans. Empty labels are rejected. Logical
+disagreements require adjudication before a primary effect is computed. Report
+pre-adjudication agreement and kappa (undefined in degenerate marginals).
+Unclear items remain in the denominator as conservative failures; disclose them.
+
+Let Y denote all mandatory propositions correct, valid sentence format and no
+contradiction. For each source, average \(Y_{\rm base}Y_{\rm effective}\) and
+\(Y_{\rm base}Y_{\rm noop}\) with equal pair-kind weights. The primary effect is
+A1 minus A2. Report each kind separately, changed/preserved holder/action/state
+accuracy, coverage, contradiction type, fluency and held-out text perplexity.
+Resample source clusters paired across arms, retaining both pairs, all decoding
+outputs and all observed training seeds. The 95\% source bootstrap interval is
+conditional on those seeds; show every training seed separately rather than
+claiming a source-only interval captures optimization uncertainty.
+
+Before optimization, run causal future-token tests, padded/full/step/reset
+equivalence, label alignment, finite CE/JS gradients, permission-lock and
+data-integrity checks without optimizer updates. Tiny-batch memorization and
+interrupted-training integration tests are deliberately deferred until training
+is explicitly authorized. No human labels or trained results exist for this
+revision. Prepared code and a compiled methods draft do not establish a
+successful experiment, novel finding or conversational assistant capability.

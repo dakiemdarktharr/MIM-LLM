@@ -8,6 +8,7 @@ from mim_llm.evaluation import write_jsonl
 from mim_llm.models import ModelConfig
 
 
+@pytest.mark.training
 def test_interrupted_training_resumes_same_weights(tmp_path, monkeypatch):
     training = importlib.import_module("mim_llm.train")
     corpus = tmp_path / "stories.jsonl"

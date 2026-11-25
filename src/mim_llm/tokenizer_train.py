@@ -6,11 +6,13 @@ from pathlib import Path
 
 from .data import load_jsonl
 from .tokenizer import SentencePieceTokenizer
+from .training_gate import require_training_permission
 
 
 def train_tokenizer(
     corpus: str, output_model: str, *, vocab_size: int = 2048
 ) -> dict[str, object]:
+    require_training_permission("tokenizer", str(Path(output_model)))
     import sentencepiece as spm
 
     if vocab_size < 300:

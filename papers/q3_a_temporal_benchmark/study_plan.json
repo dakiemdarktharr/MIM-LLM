@@ -18,13 +18,27 @@
   "confirmatory_targets_per_run": 10000000,
   "post_training_runs": 24,
   "actual_candidate_parameters": {
-    "mingru": 2081384,
-    "transformer": 2074320
+    "mingru": 2099864,
+    "transformer": 2119408
   },
   "milestones": {
     "drafted_with_results": false,
     "submitted": false,
     "accepted": false,
     "published": false
-  }
+  },
+  "implementation_status": "code_prepared_training_locked",
+  "operational_config": "configs/q3a/pilot.json",
+  "tokenizer": "fixed_utf8_byte_259",
+  "context": 2048,
+  "controlled_sources": {
+    "train": 6000,
+    "validation": 400,
+    "test": 400
+  },
+  "prepared_plan_id": "c0d50e6062189dea5ed1ee3a50c3a220e18093d20eca5b030d4ac673057db47e",
+  "preregistered": false,
+  "training_authorized": false,
+  "optimizer_integration_tested": false,
+  "naturalistic_transfer_validated": false
 }

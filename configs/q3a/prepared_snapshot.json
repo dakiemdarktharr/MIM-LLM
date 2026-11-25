@@ -1,0 +1,103 @@
+{
+  "prepared_on": "2026-11-26",
+  "status": "training_locked_non_optimizing_checks_only",
+  "plan_id": "c0d50e6062189dea5ed1ee3a50c3a220e18093d20eca5b030d4ac673057db47e",
+  "dataset": {
+    "schema_version": 1,
+    "seed": 2026,
+    "counts": {
+      "train": 6000,
+      "validation": 400,
+      "test": 400
+    },
+    "sha256": {
+      "train.jsonl": "5ad9aa8a5d4b4c5bf23461cf7a78976592973b81c353a677144714e2d5b56abd",
+      "validation.jsonl": "e6ffcd8b101552dea7bbee0cd2c59570359c06cddc95eeadb9ed218f8a8d9338",
+      "test.jsonl": "65793866948eeb194876720db57df3873cdaae468c42a19570bb125ab3575499"
+    },
+    "origin": "controlled synthetic, not human-authored",
+    "surface_family_disjoint": true,
+    "template_revision": "selective-v3-deduplicated",
+    "duplicate_source_draws_rejected": 4,
+    "generator_code_sha256": "eac5dc29065cb95193e1c1c88804210eeb6d67cf02e137bdf9aa3576687e3c54",
+    "naturalistic_transfer": "requires separately registered licensed sources and real labels",
+    "human_labels_collected": false,
+    "dataset_id": "0d3daf546972285dde55a7ddf3211c8ed8498e134140a45177bb5849a3c18b18"
+  },
+  "warmup_provenance": {
+    "dataset": "roneneldan/TinyStories",
+    "revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+    "license": "cdla-sharing-1.0",
+    "stream_shuffle_seed": 2026,
+    "counts": {
+      "train": 3000,
+      "validation": 300,
+      "test": 300
+    },
+    "sha256": "8001e21a0e11f0cb10f3ca3133f6696640b000cd5ebfdd76d389b8380676f466",
+    "source": "https://huggingface.co/datasets/roneneldan/TinyStories"
+  },
+  "config_sha256": "9e6eab0fac292da16d29f6d04b9fcf38b4a2783f56965537689107d6e5531da9",
+  "models": {
+    "mingru": {
+      "config": {
+        "kind": "mingru",
+        "vocab_size": 259,
+        "width": 662,
+        "layers": 2,
+        "dropout": 0.0,
+        "context": 2048,
+        "state_classes": 0,
+        "mim_memory": true,
+        "difference_mode": "direct"
+      },
+      "target_parameters": 2100000,
+      "actual_parameters": 2099864,
+      "relative_parameter_gap": -6.476190476190476e-05
+    },
+    "transformer": {
+      "config": {
+        "kind": "transformer",
+        "vocab_size": 259,
+        "width": 248,
+        "layers": 2,
+        "dropout": 0.0,
+        "context": 2048,
+        "state_classes": 0,
+        "mim_memory": true,
+        "difference_mode": "direct"
+      },
+      "target_parameters": 2100000,
+      "actual_parameters": 2119408,
+      "relative_parameter_gap": 0.009241904761904762
+    }
+  },
+  "maximum_task_context": 1476,
+  "budget": {
+    "post_runs": 24,
+    "post_targets": 48000000,
+    "shared_warmup_runs": 6,
+    "unique_warmup_targets": 30000000,
+    "selection_reserve_targets": 7200000
+  },
+  "implementation_fingerprints": {
+    "generate.py": "439374fe2493d5a09f15b7db4498637fbc97e6c3f5c53ba4c0f1445a3e45568a",
+    "models.py": "340ff3ac6566439edef3bc9e9a6e6f6292e390bf24b2b5c24c757af168d3cd6e",
+    "q3a/__init__.py": "ca71ec6ffb0ebc48464b52f381fcb92a1dcaebbab8982369c9caf5c19297e5e7",
+    "q3a/cli.py": "26e9629630cfeff7181eacaf3bceddae88915cdf73d08a7889a3095b8e4e9ff6",
+    "q3a/data.py": "eac5dc29065cb95193e1c1c88804210eeb6d67cf02e137bdf9aa3576687e3c54",
+    "q3a/evaluate.py": "8697b5955219e40ff7f1cec390abd28127ea71067360715891abd5aadeed0781",
+    "q3a/io.py": "f086af4cd49fe4fbb1520388876792bbb628f4f421c2b2f5f1e64a597c8b047c",
+    "q3a/objectives.py": "fd077c4fd0d8407457bfa0a4ef850c569b3c9cc493c49b3beca82a2ea04ff810",
+    "q3a/plan.py": "44c3adf386e041a6bba877aa4a790bd4e6cf7ba255d3cfaec2390e7c9ffc3a1f",
+    "q3a/preflight.py": "3840b971e9507d7d59eb08987990f0d143983b39d74764331691960d45b9a9f3",
+    "q3a/report.py": "49b4f8e4f9934d3c4e1f76403fe181c7e3edcc20db6a14a8fcb0823c545d6325",
+    "q3a/runner.py": "3050afb495a8ed0b6cc1b319f025cc978a44d995b3ccb781c4208be743bd3fc7",
+    "tokenizer.py": "93c4876b08532068ab9c90f2f848fab91e81195a67602ec8f141881f6517eb92",
+    "training_gate.py": "2a1704105e5193362ed3aeb81e8f5fe8359a0ba2461255b8c03a12478c97d996"
+  },
+  "optimizer_steps": 0,
+  "tokenizer_fitted": false,
+  "colab_plan": "user-reported $50; SKU, credits and rate not verified",
+  "measured_train_throughput": null
+}
