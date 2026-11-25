@@ -1,0 +1,142 @@
+\documentclass[11pt,a4paper]{article}
+\input{../shared/preamble}
+\title{Which Recurrent Memories Matter?\\A Controlled Study of Vector MIM for Story Continuation}
+\author{MIM-LLM research program\\Author list and affiliations to be confirmed}
+\date{Research plan: 25 November 2026}
+\begin{document}
+\maketitle
+\projectstatus
+\begin{abstract}
+This planned study isolates the roles of the non-stationary, stationary and
+additional memory paths in a vector adaptation of Memory in Memory for language
+modeling. It compares ablations with a control that sees both consecutive hidden
+states and can learn their difference. The study will quantify consistency,
+writing quality and measured resource costs rather than infer architectural
+value from parameter count alone.
+\pending{Populate actual models, counts, corpus, seeds, effects and uncertainty;
+report the conclusion even if simpler controls win.}
+\end{abstract}
+
+\section{Question and distinct scope}
+Which of MIM-N, MIM-S and the additional zigzag memory \(M\) contributes useful
+continuation behavior under a small-model budget? Are observed differences due
+to transition bias, capacity or extra compute? The independent contribution
+must be a mechanistic or efficiency finding, not a second publication of the
+Q1 study's main system ranking.
+
+MIM originated in video prediction~\cite{mim}; nesting already exists in
+Nested LSTMs~\cite{nested}. Delta-RNN~\cite{delta} uses gated recurrent updates,
+and minGRU~\cite{mingru} provides an input-gated recurrent control.
+Adapting these cells to token vectors does not by itself demonstrate a new
+language capability.
+
+\section{Vector mechanism and ablation definition}
+Let \(u_t=h_t^{\ell-1}\), \(v_t=h_{t-1}^{\ell-1}\). The explicit MIM signal is
+\(\delta_t=u_t-v_t\), followed by MIM-N and MIM-S:
+\[
+ D_t=\operatorname{MIMN}(\delta_t,N_{t-1}),\qquad
+ T_t=\operatorname{MIMS}(D_t,C_{t-1},S_{t-1}),\qquad
+ C_t=T_t+i_t\odot g_t .
+\]
+The outer hidden output combines \(C_t\) with the optional zigzag \(M_t\).
+The first layer is the vector ST-LSTM analogue. All states have shape
+\([B,d]\), and the first difference signal is zero.
+This is a vector language-model variant of the original convolutional model;
+it is not an exact replication of video experiments.
+
+The information-matched control uses
+\[
+ \delta_t^{\rm pair}=W[u_t;v_t]+b.
+\]
+Setting \(W=[I,-I]\) and \(b=0\) represents subtraction exactly.
+Therefore any benefit of explicit differencing concerns inductive bias or
+optimization under the specified budget, not access to more input information.
+
+\begin{table}[ht]
+\centering\small
+\caption{Core mechanism matrix and the function changed in each arm.}
+\begin{tabularx}{\linewidth}{lYY}
+\toprule
+Arm & What is retained or replaced & Interpretation constraint\\
+\midrule
+MIM-LM & N, S, C, vector M & Reference variant\\
+Without N & Direct projection of difference & Capacity/cost rematched\\
+Without S & Direct projection of D and old C & Capacity/cost rematched\\
+Without M & Remove vector zigzag memory & Tests image-memory adaptation\\
+Learned pair & Affine projection of both states & Can learn subtraction\\
+Delta-RNN & Gated recurrent interpolation & Different use of delta\\
+Nested LSTM & Inner recurrent memory & Nesting control\\
+minGRU & Input-only gates and scan & Modern recurrent efficiency\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The core matrix has eight arms and three seeds at ten million targets per run,
+or 240 million targets before selection and compute-matched follow-ups.
+A direct/cascade comparison needs at least three layers; two layers make those
+higher-layer paths equivalent. Treat that comparison as a separate registered
+extension. The token-shift GRU, if added, is not a full RWKV model.
+
+\section{Experiments that discriminate explanations}
+Use parameter-adjusted widths and a separate measured-time experiment. Profile
+each arm on the intended context and hardware before allocating a cost budget.
+Include an overwrite-depth stress test and a fixed-depth length test.
+Compare named failure types, state-probe dynamics and gradient/optimization
+diagnostics. Hidden-state plots are descriptive; causal claims need interventions.
+A planned state reset or memory erasure intervention must preserve the input
+sequence, identify the affected state and include a matched control intervention.
+\pending{Implement and test any intervention before calling it an available result.}
+
+Keep state supervision off in the core intrinsic-memory comparison.
+If retained as a separate factorial extension, label its additional information
+and compute. Do not introduce an inference-time gold state table.
+
+\input{../shared/evaluation}
+
+\section{Results and decision figures}
+\begin{table}[ht]
+\centering\small
+\caption{Main ablation shell. Populate from immutable run and annotation records.}
+\begin{tabularx}{\linewidth}{lYYYY}
+\toprule
+Arm & Actual P/gap & Primary/CI & Fluency/PPL & Time/VRAM\\
+\midrule
+MIM-LM & -- & -- & -- & --\\
+Without N / S / M & -- & -- & -- & --\\
+Learned pair & -- & -- & -- & --\\
+Delta-RNN & -- & -- & -- & --\\
+Nested LSTM & -- & -- & -- & --\\
+minGRU & -- & -- & -- & --\\
+\bottomrule
+\end{tabularx}
+\end{table}
+The decisive figure is consistency against measured GPU-hours, accompanied by
+coverage and fluency; it must not hide an advantage obtained by writing generic
+text. A second figure shows the effect of each memory path versus overwrite
+depth. Report every seed and residual parameter/compute gaps.
+\pending{Replace the combined no-N/no-S/no-M row with three real rows, include
+cost-matched outcomes, and discuss stable versus seed-sensitive effects.}
+
+If the pair control ties or wins, report that explicit subtraction is not beneficial
+under the tested conditions. If \(M\) can be removed without loss, discuss the
+limited transfer of image-oriented memory. If benefits vanish after matching
+compute, narrow the claim to that budget-dependent observation.
+
+\section{Venue, limitations, and completion gate}
+The primary candidate is \emph{Journal of Universal Computer Science}, with
+\emph{Inteligencia Artificial} conditional on a fresh index/rank check.
+Both have official free-author publication statements; submission format and
+article type must be rechecked. Journal acceptance and UEH funding are separate.
+
+A Q1 architecture paper would need broader natural-story replication, scale and
+strong baseline evidence. This Q3 study may stand alone if it explains which
+memory paths matter and why. Merge it if it contains only the Q1 ablation table.
+Small synthetic effects, missing cost measurements, weak fluency, or unstable
+reader judgments are reasons to repair or stop, not to repeat searches for a
+favorable seed.
+
+\pending{Insert actual authorship, approved funding, licenses, reader protocol,
+conflicts and AI-assistance declaration. Rewrite abstract, discussion and
+conclusion from the completed evidence and adopt the final journal template.}
+\input{../shared/references}
+\end{document}

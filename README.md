@@ -35,6 +35,8 @@ The package implements MIM-LM, MIM-N/MIM-S/M ablations, a two-state learned-proj
 
 See the [Windows runbook](docs/RUNBOOK.md), [technical protocol](docs/METHODS.md), [research and novelty map](docs/RESEARCH.md), and [manuscript status](docs/STATUS.md). `mimlm paper-tracks` prints the conditional experiment gates. The synthetic pilot and small smoke runs are **not** evidence of scientific superiority.
 
+The [publication and compute plan](docs/PUBLICATION_PLAN.vi.md) records the journal/UEH funding checks and conditional laptop/Colab budgets as of 25 November 2026. Three [English LaTeX research shells](papers/README.md) include methods, empty result tables and evidence gates; their compiled PDFs are planning documents.
+
 ## Evaluation plan
 
 - Compare LSTM, Nested LSTM, a small Transformer, a suitable modern recurrent baseline, full MIM-LM, MIM-N/MIM-S ablations, and a key control that receives both consecutive hidden states and learns a mixing or projection function. A token-shift-only control will be named as such, rather than called a full RWKV model.

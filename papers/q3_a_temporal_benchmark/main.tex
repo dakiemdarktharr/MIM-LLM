@@ -1,0 +1,153 @@
+\documentclass[11pt,a4paper]{article}
+\input{../shared/preamble}
+\title{Temporal Conditions, State Overwrites, and Counterfactual Invariance\\
+in Autoregressive Story Continuation}
+\author{MIM-LLM research program\\Author list and affiliations to be confirmed}
+\date{Research plan: 25 November 2026}
+\begin{document}
+\maketitle
+\projectstatus
+\begin{abstract}
+This planned study asks whether temporal scope and repeated state changes expose
+different failures in short story continuation. We specify premise pairs that change
+one event time while preserving ownership history, and allow several coherent
+continuations. An executable state model supplies necessary propositions; human
+readers assess their expression, contradictions and writing quality. The study will
+contrast required changes with retained invariants, include events written by the
+model itself, and test transfer to licensed natural narratives.
+\pending{Insert actual source counts, model counts, effect estimates and uncertainty;
+state only the conclusions the completed evidence supports.}
+\end{abstract}
+
+\section{Research question and intended contribution}
+The question is whether models preserve the temporal scope of conditional rules
+while updating overwritten state and separating actual from hypothetical worlds.
+The proposed contribution is a controlled measurement method and an empirical
+account of this interaction. Releasing a cabinet dataset alone is insufficient.
+
+\textbf{Primary contrast:} the paired change in required action at a fixed decision
+time, accompanied by retention of ownership and transfer history. \textbf{Planned
+hypothesis:} greater overwrite depth will increase state errors, and success on
+one-name entity probes will not imply consistent multi-sentence continuation.
+A null interaction or a reversed relationship is a publishable observation only
+if the test is reliable and the analysis gives independent insight.
+
+Counterfactual generation already exists in TIME TRAVEL~\cite{timetravel};
+PASTA models participant states~\cite{pasta}; entity tracking
+probes~\cite{entity} and OpenMEVA~\cite{openmeva} motivate evaluating state,
+discourse and writing separately. We do not claim these broad tasks are new.
+\pending{Complete the citation-forward novelty audit and document overlap with
+newer state-tracking datasets before data collection.}
+
+\section{Task, semantics, and design}
+Let a state be \(s_t=(\text{holder},\text{power},\text{lock},\text{location},\text{world})\).
+A transfer overwrites holder; an opening at time \(t^\ast\) is obligatory exactly when
+the rule's conditions hold in that world. A conditional is evaluated at its stated
+time, rather than at the time the reader finishes the text.
+
+\begin{quote}\small
+Illustration, not model output: Lan passes the key to Huy; Huy passes it to Mai.
+At exactly 9:00 the holder must open the cabinet if power has returned.
+Change only \texttt{8:55} to \texttt{9:05} for the power return.
+Mai remains holder in both premises; opening at 9:00 changes to waiting.
+If a generated continuation puts the key in a drawer, later text must respect
+that choice. A different coherent location is equally acceptable.
+\end{quote}
+
+Cross overwrite depth, distractor distance, temporal relation and conditional scope.
+Separate direct consequences, invariant facts and optional narrative choices.
+The current cabinet generator covers depth 2--5 and one time rule.
+Additional rule forms and multiple objects are \textbf{planned extensions}, not
+implemented benchmark coverage. Counterfactual text must be attributed to the
+hypothetical world before contradiction scoring.
+
+\begin{table}[ht]
+\centering\small
+\caption{Proposed data inventory. All sizes remain to be established.}
+\begin{tabularx}{\linewidth}{lYY}
+\toprule
+Partition & Purpose and source & Required evidence\\
+\midrule
+Synthetic development & Executable transitions and annotation debugging &
+Template families; oracle checks; split hashes\\
+Natural validation & Licensed stories or original stories collected in Vietnam &
+Consent/license; independent readers; selection log\\
+Locked natural test & Held-out source stories and premise pairs &
+No source crossing; frozen obligations; withheld labels\\
+Self-event subset & Frozen first continuation, then continuation again &
+Actual generated state table; evasion audit\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Experiment design}
+Start with LSTM, a causal Transformer, MIM-LM and its learned-pair control,
+with three seeds each. The planning cap is ten million training targets per run:
+\(4\times3\times10^7=120\) million targets before selection runs.
+This is an initial evidence budget, not a fluency guarantee.
+Use TinyStories~\cite{tiny} for general language training and a source-disjoint
+continuation training set if instruction learning is needed. Declare the mixture
+and hold it constant. The synthetic smoke corpus is not adequate pretraining.
+One-name probes are auxiliary diagnostics.
+
+\textbf{Critical linguistic analysis:} classify scope mistakes, stale ownership,
+world mixing, invalid temporal ordering and inconsistent self-written locations.
+Compare effect versus depth at matched length, and effect versus length at fixed
+depth, to distinguish overwritten state from generic context difficulty.
+\pending{Register the source sample, contrast, test uncertainty target, decoding
+settings and annotation rubric after a validation-only reliability pilot.}
+
+\input{../shared/evaluation}
+
+\section{Results to populate}
+\begin{table}[ht]
+\centering\small
+\caption{Main result shell. Dashes indicate missing evidence, never zero performance.}
+\begin{tabularx}{\linewidth}{lYYYY}
+\toprule
+System & Actual parameters & Primary rate/CI & Changed/invariant & Fluency/evasion\\
+\midrule
+LSTM & -- & -- & -- & --\\
+Transformer & -- & -- & -- & --\\
+MIM-LM & -- & -- & -- & --\\
+Learned pair & -- & -- & -- & --\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\noindent Figure 1 will show error against overwrite depth by temporal rule.
+Figure 2 will show changed-fact accuracy versus invariant retention.
+Table 2 must report independent reader agreement, adjudication counts and
+annotation time. Include all seeds, uncertainty and representative failure cases
+selected by a declared sampling rule, not by visual appeal.
+\pending{Import result tables from checked run records and blinded annotations.
+Discuss null results, scope, generalization and alternative explanations.}
+
+\section{Journal fit, ethics, and completion gate}
+The primary computing-journal candidate is \emph{Journal of Universal Computer
+Science}; \emph{Journal of Language Modelling} is conditional on a substantive
+linguistic finding about temporal or conditional scope. Its SJR 2025 Q3 is in
+Linguistics and Language; its Computer Science Applications category is Q4.
+The definitive target needs a current fee, index, category and UEH check.
+
+Collect primary human judgments in Vietnam if pursuing UEH support and obtain
+the appropriate consent and institutional guidance. UEH excludes data papers;
+this study must genuinely support a research claim. A student without a UEH
+staff coauthor is not currently eligible for that funding route.
+Do not list an unapproved funder or a person who has not contributed.
+
+Completion requires a locked licensed natural-story sample, reliable independent
+annotation, valid changed/invariant scoring, adequate writing quality and a
+distinct scientific insight. Merge or stop if only one template works, labeling
+cannot be made reliable, or this contribution reduces to a data release.
+
+\section{Limitations, declarations, and final writing checklist}
+Small English story models do not establish competence in Vietnamese.
+Primary source licensing, source duplication, reader subjectivity and context
+truncation must be discussed. No human reliability statistic has yet been measured.
+\pending{Add real author contributions, funding decisions, conflicts, consent,
+availability and venue-compliant disclosure of Codex/Undermind assistance.}
+Rewrite the abstract and conclusion after analysis; add exact data/run versions,
+negative outcomes, comparison with prior work, and the submission-specific template.
+A successful LaTeX build confirms typesetting, not scientific completion.
+\input{../shared/references}
+\end{document}

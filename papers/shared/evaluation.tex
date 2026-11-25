@@ -1,0 +1,60 @@
+\section{Shared evaluation contract}
+An input contains a narrative prefix and a request for a three-to-five-sentence continuation.
+Generation is autoregressive: \(p_\theta(y\mid x)=\prod_{t=1}^{|y|}p_\theta(y_t\mid x,y_{<t})\).
+An obligation is a proposition with a specified truth value at a specified time or in
+a specified world. Multiple surface continuations may satisfy the same obligations.
+
+For continuation \(i\), let \(A_i\) mean that all required propositions are expressed,
+\(F_i\) that the sentence-count constraint is met, and \(C_i\) that a contradiction
+occurs in the prefix or generated history. The proposed primary metric is
+\[
+ \widehat{P}=\frac{1}{n}\sum_{i=1}^n
+ \mathbf{1}\{A_i\land F_i\land\neg C_i\}.
+\]
+Missing propositions do not count as correct. Secondary measures are proposition
+coverage, contradiction rate by type, changed-fact accuracy, invariant retention,
+counterfactual accuracy, pair success, fluency, concrete-event rate, and held-out
+perplexity \(\exp[-N^{-1}\sum_t\log p_\theta(w_t\mid w_{<t})]\).
+Perplexity is compared only under the same tokenizer and held-out text.
+
+For self-written events, freeze the first continuation as raw token IDs, record its
+resulting state, and request another continuation. Score against that actual history,
+including model-chosen storage locations. Report the unconditional rate of concrete
+events that remain consistent, and the conditional rate among concrete events.
+Report evasion separately; silence is not evidence of memory.
+
+Two readers label a representative sample independently while blinded to model identity.
+Record reader training, time, disagreement, agreement before adjudication, and final
+human resolutions. No labels are generated to imitate human judgments.
+Bootstrap source stories, keeping every premise pair from a source in one resampled
+cluster. Report every training seed and a source-clustered interval per seed; any
+pooled comparison must also account for seed variability. Do not treat sentences
+or repeated outputs from the same source as independent observations.
+\pending{Freeze sample size and precision target using validation only; lock the test
+hash, selection budget, decoding and primary contrast before final testing.}
+
+\section{Reproducibility and resource accounting}
+All systems share the corpus, tokenizer, source splits, input information, training
+targets, and decoding policy. Fit SentencePiece only to the training split.
+The reference vector MIM-LM with width 192, two layers, and the tested BPE vocabulary
+of 512 has \textbf{2,081,472 trainable parameters}; the corresponding byte-vocabulary
+configuration has \textbf{1,984,320}. Report actual counts for every selected run.
+The learned-pair control receives both consecutive lower-layer states and can
+represent subtraction exactly. It is the principal information-matched control.
+
+Distinguish a parameter-matched experiment from a cost-matched experiment.
+Log actual target tokens, parameter gap, training and validation time, allocated
+and reserved VRAM, GPU-hours, decoding time, and hyperparameter-selection budget.
+The manifest's \(6PN\) value is a rough dense-model proxy, not measured total FLOPs.
+Choose a common context that holds each entire evaluation prompt and both
+continuations if self-event evaluation is enabled. The current training code resets
+state at independent windows; report this truncation and test longer contexts
+before making long-memory claims.
+
+The observed local GPU is an RTX 5050 Laptop with 8,151 MiB reported by
+\texttt{nvidia-smi}; no RTX 3060 is installed. Colab Pro hardware and throughput
+have not been measured. Allocate independent model/seed runs across devices and
+record their environments. Checkpoint interruption tests, future-token causality,
+padding, full/stepwise equivalence and a tiny-batch memorization check are required.
+\pending{Insert immutable run IDs, corpus/tokenizer hashes, package versions,
+actual token counts, and separately measured generation/annotation costs.}

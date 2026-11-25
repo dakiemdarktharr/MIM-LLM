@@ -4,6 +4,10 @@ __pycache__/
 .pytest_cache/
 *.py[cod]
 artifacts/
+output/
+*.aux
+*.xdv
+*.synctex.gz
 data/raw/
 data/processed/
 *.pt

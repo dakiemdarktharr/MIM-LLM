@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-25",
+  "scope": "Short repeated-corpus timing calibration only; no quality comparison; Colab unmeasured.",
+  "runs": [
+    {
+      "config": {
+        "kind": "mim",
+        "vocab_size": 512,
+        "width": 192,
+        "layers": 2,
+        "dropout": 0.0,
+        "context": 128,
+        "state_classes": 0,
+        "mim_memory": true,
+        "difference_mode": "direct"
+      },
+      "parameters": 2081472,
+      "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+      "torch": "2.10.0+cu128",
+      "train_tokens_actual": 20306,
+      "train_seconds": 39.83793850002985,
+      "seconds": 45.304309099999955,
+      "tokens_per_train_second": 509.715129962982,
+      "peak_vram_bytes": 105186816,
+      "corpus_sha256": "7c7116a17f5c2daff591e0809bf908c3cf595cabeee4e264c86978b063e57baf",
+      "tokenizer_sha256": "9672b0880a8679a98ef7e6a30a1c07dd12844103c44e928bfeca1b1f0f0f81a0"
+    },
+    {
+      "config": {
+        "kind": "mim_pair",
+        "vocab_size": 512,
+        "width": 192,
+        "layers": 2,
+        "dropout": 0.0,
+        "context": 128,
+        "state_classes": 0,
+        "mim_memory": true,
+        "difference_mode": "direct"
+      },
+      "parameters": 2155392,
+      "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+      "torch": "2.10.0+cu128",
+      "train_tokens_actual": 20306,
+      "train_seconds": 36.24001759997918,
+      "seconds": 40.89316680000047,
+      "tokens_per_train_second": 560.3198161805436,
+      "peak_vram_bytes": 107931136,
+      "corpus_sha256": "7c7116a17f5c2daff591e0809bf908c3cf595cabeee4e264c86978b063e57baf",
+      "tokenizer_sha256": "9672b0880a8679a98ef7e6a30a1c07dd12844103c44e928bfeca1b1f0f0f81a0"
+    }
+  ]
+}
