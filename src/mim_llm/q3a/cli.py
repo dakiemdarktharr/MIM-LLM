@@ -61,6 +61,8 @@ def main():
     q.add_argument("--plan", required=True)
     q.add_argument("--checkpoint", required=True)
     q.add_argument("--device", default="cpu")
+    q.add_argument("--split", choices=["validation", "test"], default="validation")
+    q.add_argument("--selection")
     q = sub.add_parser("blind-packet")
     q.add_argument("--generations", nargs="+", required=True)
     q.add_argument("--output", required=True)
@@ -136,7 +138,9 @@ def main():
     elif command == "perplexity":
         from .evaluate import perplexity
 
-        result = perplexity(a.plan, a.checkpoint, device=a.device)
+        result = perplexity(
+            a.plan, a.checkpoint, device=a.device, split=a.split, selection=a.selection
+        )
     elif command == "blind-packet":
         from .evaluate import blind_packet
 

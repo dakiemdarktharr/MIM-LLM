@@ -9,12 +9,12 @@ appears in the scientific manuscripts. No result-bearing draft or publication ex
 |---|---|
 | `q3_a_temporal_benchmark` | Semantic no-op training versus matched lexical controls |
 | `q3_b_state_supervision` | Token delay versus intervening semantic updates |
-| `q3_c_memory_mechanisms` | Frozen self-origin versus peer-origin history provenance |
+| `q3_c_memory_mechanisms` | Controlled initialization-coupled versus peer roll-in distributions |
 | `q1_branch_residual_memory` | Shared-fork residual states versus strong memory-budget controls |
 
 Older directory slugs are retained as stable paths; revision 3 supersedes their
-old scopes. Each directory has main.tex, references.tex and design-only
-study_plan.json. Keep the papers/ tree together for shared source inputs.
+old scopes. Each directory has main.tex, references.tex and a
+study_plan.json tracking design and operational preparation separately. Keep the papers/ tree together for shared source inputs.
 
 See [current design](../docs/PORTFOLIO_V3.vi.md),
 [novelty audit](../docs/NOVELTY_AUDIT_V3.vi.md) and
@@ -31,14 +31,15 @@ Adopt a verified journal template only when ready to submit.
 
 ## Completion gates
 
-Q3-A has preparation code and a [pretraining handoff](../docs/Q3_A_PRETRAIN_RUNBOOK.vi.md).
-Its [Colab notebook](../notebooks/Q3_A_Prepare_Colab.ipynb) contains no executable
-training cell. The current permission policy blocks model and tokenizer training.
-Other revised study procedures remain implementation work.
+All three Q3 studies have preparation code and a [joint handoff](../docs/THREE_Q3_PRETRAIN_RUNBOOK.vi.md).
+The [Colab notebook](../notebooks/Three_Q3_Prepare_Colab.ipynb) contains no
+executable training or bank-collection cell. Permission blocks model/tokenizer
+training. C needs genuine shared warm-up checkpoints and sufficient matched
+history overlap before post-training; Q1 remains an architectural design.
 
-Implement and test the new data/objective/history/architecture procedures; audit
-licenses, source splits and labels; establish writing feasibility; preregister
-contrasts and budgets; lock tests; train declared seeds; collect genuine blinded
-human judgments; report negatives/unclear cases; and populate results from actual
-logs. Disclose shared artifacts and prior results without republishing them as
-new. Drafted/submitted/accepted/published are tracked separately.
+Next: authorize bounded optimizer/overfit/resume validation, establish writing
+feasibility and actual GPU/CU cost, fix selection/resource limits, train only
+declared runs, obtain real blinded judgments and populate actual results.
+Naturalistic transfer and novelty remain scientific gates. Disclose shared
+artifacts and prior results without republishing them as new. Drafted-with-results,
+submitted, accepted and published are tracked separately.

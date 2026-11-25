@@ -1,0 +1,103 @@
+{
+  "status": "prepared_training_locked",
+  "study": "b",
+  "plan_path": "artifacts/three-q3-final-20261126/b/plan.json",
+  "plan_id": "3d1397207e4b494e805d78647c35b8dfa97047e5170eb994299c2f73b4018ed2",
+  "dataset_manifest": {
+    "study": "b",
+    "counts": {
+      "train": 6000,
+      "validation": 400,
+      "test": 400
+    },
+    "seed": 2026,
+    "sha256": {
+      "train.jsonl": "400479e2cde2c0b4d31c8f3dfa4f3cc132cc1b08e0d9d537d289533914f1564d",
+      "validation.jsonl": "7253c5f79dc7f0f86bf4b9fdadd30cc8bb883dbc5098d383af3dac1b9c811d4f",
+      "test.jsonl": "f83f4740ed879c887e9a0dc324f93d632892cab4613c0d2be8f48770523acc9d"
+    },
+    "duplicate_draws_rejected": 0,
+    "generator_sha256": "617cd69cbd013108301b39b62506675dfb05b89dd35c2abb2a8defac78c9dfb0",
+    "origin": "controlled synthetic, not human-authored",
+    "model_history_bank_created": false,
+    "b_lag_tokens": 256,
+    "c_bank_mode": null,
+    "dataset_id": "10116d970c3d8be40151b505aaf10d4d33e2dd53d6334e3fbacc880ad784e2b7"
+  },
+  "models": {
+    "mingru": {
+      "config": {
+        "kind": "mingru",
+        "vocab_size": 259,
+        "width": 662,
+        "layers": 2,
+        "dropout": 0.0,
+        "context": 2048,
+        "state_classes": 0,
+        "mim_memory": true,
+        "difference_mode": "direct"
+      },
+      "target_parameters": 2100000,
+      "actual_parameters": 2099864,
+      "relative_parameter_gap": -6.476190476190476e-05
+    },
+    "transformer": {
+      "config": {
+        "kind": "transformer",
+        "vocab_size": 259,
+        "width": 248,
+        "layers": 2,
+        "dropout": 0.0,
+        "context": 2048,
+        "state_classes": 0,
+        "mim_memory": true,
+        "difference_mode": "direct"
+      },
+      "target_parameters": 2100000,
+      "actual_parameters": 2119408,
+      "relative_parameter_gap": 0.009241904761904762
+    }
+  },
+  "maximum_task_context": 1728,
+  "budget": {
+    "post_runs": 24,
+    "post_targets": 48000000,
+    "selection_reserve_targets": 7200000,
+    "warmup_physical_targets_new": 0,
+    "shared_initialization_dependency_targets": 30000000
+  },
+  "shared_warmup_plan": "artifacts/three-q3-final-20261126/a/plan.json",
+  "shared_warmup_manifest": {
+    "dataset": "roneneldan/TinyStories + mechanically derived general format examples",
+    "revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+    "license": "cdla-sharing-1.0",
+    "source": "https://huggingface.co/datasets/roneneldan/TinyStories",
+    "counts": {
+      "train": 5792,
+      "validation": 577,
+      "test": 580
+    },
+    "format_rows": {
+      "train": 2792,
+      "validation": 277,
+      "test": 280
+    },
+    "underlying_source_counts": {
+      "train": 3000,
+      "validation": 300,
+      "test": 300
+    },
+    "original_corpus": "data/raw/q3a-tinystories.jsonl",
+    "original_corpus_sha256": "8001e21a0e11f0cb10f3ca3133f6696640b000cd5ebfdd76d389b8380676f466",
+    "original_manifest_signature": "850b7757e2d00e500dd51283127e58329cfe43a0a9dc597595a881bedfe56b17",
+    "sha256": "ede1402630eea8c237f794b1bfe3dba5fc3b3a8ff3f6dc8ba30b608138b858b0",
+    "transformation_code_sha256": "8e22697c8559b4e0381a7cc0e32124b559a109e65173cc35920d9f8094b15c9e",
+    "benchmark_state_labels_added": false,
+    "tokenizer_fitted": false,
+    "model_training_performed": false
+  },
+  "production_model_history_bank_created": false,
+  "optimizer_steps": 0,
+  "model_training_authorized": false,
+  "tokenizer_fitted": false
+}

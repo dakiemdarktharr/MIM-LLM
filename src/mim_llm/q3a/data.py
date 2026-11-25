@@ -16,11 +16,11 @@ from .io import (
     write_rows,
 )
 
-ROLES = ("base", "effective", "noop", "paraphrase")
+ROLES = ("base", "effective", "noop", "surface")
 ARM_ROLES = {
     "A0": ("base", "effective", "base", "effective"),
     "A1": ("base", "effective", "base", "noop"),
-    "A2": ("base", "effective", "base", "paraphrase"),
+    "A2": ("base", "effective", "base", "surface"),
     "A3": ("base", "effective", "base", "noop"),
 }
 NAMES = ("Lan", "Huy", "Mai", "An", "Binh", "Chi", "Dao", "Giang", "Linh", "Minh")
@@ -71,7 +71,7 @@ def render(world, style, paraphrase=False):
         )
     parts.append(f"{world['distractor']} read a book nearby and never touched the key.")
     parts.append(
-        f"All transfers succeeded before {d}. Everyone follows this one-time rule: at exactly {d}, the key holder must open the cabinet if power is available and permission has been granted; otherwise the holder must wait. The cabinet remains locked until that decision; no other opening occurs before it."
+        f"Every completed handover occurred before {d}; cancelled plans were not executed. Everyone follows this one-time rule: at exactly {d}, the key holder must open the cabinet if power is available and permission has been granted; otherwise the holder must wait. The cabinet remains locked until that decision; no other opening occurs before it."
     )
     parts.append(
         "Permission had been granted."
@@ -82,7 +82,7 @@ def render(world, style, paraphrase=False):
         f"Electricity was restored at {p}." if paraphrase else f"Power returned at {p}."
     )
     parts.append(
-        "Continue the scene in three to five natural sentences. State who holds the key at the decision, what that person does then, whether the cabinet is open or locked then, and why. Additional coherent details are allowed."
+        f"The given handovers, permission and power timeline are complete up to {d}. Describe that decision first, without adding earlier changes, then continue in three to five natural sentences. State who holds the key at the decision, what that person does then, whether the cabinet is open or locked then, and why. Additional coherent events are allowed after that decision."
     )
     return " ".join(parts) + "\nContinuation:\n"
 
@@ -146,7 +146,7 @@ def make_bundle(source_id, split, seed, index):
         ("base", base),
         ("effective", effective),
         ("noop", noop),
-        ("paraphrase", base),
+        ("surface", base),
     ]:
         s = state(w)
         reason = (
@@ -161,7 +161,7 @@ def make_bundle(source_id, split, seed, index):
         scenarios[role] = {
             "id": f"{source_id}/{role}",
             "world": w,
-            "prompt": render(w, style, role == "paraphrase"),
+            "prompt": render(w, style),
             "reference": reference(w),
             "facts": s,
             "mandatory": {
@@ -171,6 +171,25 @@ def make_bundle(source_id, split, seed, index):
                 "reason": reason,
             },
         }
+        if role == "surface":
+            a = scenarios["base"]["prompt"]
+            b = scenarios["noop"]["prompt"]
+            if len(a) != len(b):
+                raise ValueError("Matched byte-length contract failed")
+            edits = sum(x != y for x, y in zip(a, b))
+            chars = list(a)
+            positions = [i for i, c in enumerate(chars) if c == "."][:edits]
+            if len(positions) != edits:
+                raise ValueError(
+                    "Not enough natural sentence boundaries for matched control"
+                )
+            for i in positions:
+                chars[i] = "!"
+            scenarios[role]["prompt"] = "".join(chars)
+            scenarios[role]["control_type"] = (
+                "meaning-preserving punctuation, not full semantic paraphrase"
+            )
+            scenarios[role]["character_edits"] = edits
     pairs = []
     for kind in ("effective", "noop"):
         before = state(base)

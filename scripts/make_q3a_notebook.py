@@ -10,25 +10,25 @@ def main():
     md = nbf.v4.new_markdown_cell
     code = nbf.v4.new_code_cell
     nb.cells = [
-        md("""# Q3-A — preparation only (no training)
+        md("""# Q3-A â€” preparation only (no training)
 
 This notebook prepares/checks **Learning When a Premise Change Should Not Change a Story**.
 It contains **no executable training cell**. Keep the runtime on CPU during preparation.
 The user has purchased a $50 Colab plan; the exact SKU, remaining CU and GPU/CU rate
 have not been verified. Buying a plan does not authorize training.
 
-Upload the local `q3a-pretrain.zip` bundle to `/content/` in Colab, or run from
+Upload the local `three-q3-pretrain.zip` bundle to `/content/` in Colab, or run from
 the existing Windows repository. The bundle contains source, fixed data and the
 content-addressed plan. It is local; do not publish raw datasets/annotation keys.
 """),
         code("""import os, sys, json, hashlib, zipfile
 from pathlib import Path
-IS_COLAB = "google.colab" in sys.modules
+IS_COLAB = __import__("importlib.util").util.find_spec("google.colab") is not None if __import__("importlib.util").util.find_spec("google") else False
 WORKSPACE = Path(os.environ.get("MIM_WORKSPACE", "/content/MIM-LLM" if IS_COLAB else str(Path.cwd())))
-BUNDLE = Path("/content/q3a-pretrain.zip")
+BUNDLE = Path("/content/three-q3-pretrain.zip")
 if IS_COLAB and not WORKSPACE.exists():
     if not BUNDLE.is_file():
-        raise FileNotFoundError("Upload q3a-pretrain.zip first. No GPU is needed.")
+        raise FileNotFoundError("Upload three-q3-pretrain.zip first. No GPU is needed.")
     WORKSPACE.mkdir(parents=True)
     with zipfile.ZipFile(BUNDLE) as archive:
         for info in archive.infolist():
@@ -60,7 +60,7 @@ source groups, 400 validation groups and 400 locked test groups, plus a pinned
 TinyStories subset. This check verifies test integrity, not model test outcomes.
 """),
         code("""from mim_llm.q3a.plan import load_plan
-PLAN = Path("artifacts/q3a-pretrain-20261126/plan.json")
+PLAN = Path("artifacts/three-q3-final-20261126/a/plan.json")
 plan = load_plan(PLAN)
 print({"plan_id": plan["plan_id"], "budget": plan["budget"],
        "parameters": {k: v["actual_parameters"] for k,v in plan["models"].items()},
@@ -89,7 +89,7 @@ After explicit authorization, the next phase is a bounded optimizer/overfit/resu
 validation, hardware/CU calibration and one declared pilot contrast before a full
 matrix. Exact run IDs and the measured spending/time limits must be authorized.
 Checkpoint outputs should be placed on user-selected persistent storage for Colab;
-the VM filesystem is temporary. See `docs/Q3_A_PRETRAIN_RUNBOOK.vi.md`.
+the VM filesystem is temporary. See `docs/THREE_Q3_PRETRAIN_RUNBOOK.vi.md`.
 
 Results, human labels, naturalistic transfer validation and publication outcomes
 have not been produced by these checks.

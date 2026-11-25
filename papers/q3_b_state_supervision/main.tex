@@ -1,103 +1,131 @@
 \documentclass[11pt,a4paper]{article}
 \input{../shared/preamble}
+\renewcommand{\projectstatus}{\begin{quote}\small\textbf{Methods draft,
+26 November 2026.} Code and non-optimizing checks are preparation only.
+Training is on hold; no trained result, human annotation or editorial outcome
+is implied.\end{quote}}
 \title{Tokens or State Changes? A Controlled Study of Delayed Supervision for Compact Language Models}
 \author{}
-\date{Research design: 25 November 2026}
-\begin{document}
-\maketitle
-\projectstatus
+\date{Methods preparation: 26 November 2026}
+\begin{document}\maketitle\projectstatus
 \begin{abstract}
-This planned study separates token delay from semantic-update interference in
-training compact language models. Four supervision schedules share event-language
-data and matched answer-label budgets: immediate probes, delayed probes with few
-intervening state changes, matched token delays with many state changes, and a
-fixed mixture. Evaluation asks whether any benefit transfers from short probe
-answers to coherent multi-sentence continuation. Additional prefix processing,
-answer formatting and token exposure are accounted for explicitly.
-\pending{Insert actual datasets, model counts, effects, intervals and limits
-after validation and registered experiments. No supervision benefit is claimed.}
+This proposed controlled study separates token distance from intervening semantic
+writes in language-model supervision. Four schedules use the same event corpus
+and source-matched answer targets: immediate probes, token-delayed low-write
+probes, equal-delay high-write probes, and a fixed mixture. Disposable question
+branches prevent answers from entering the event stream. The primary outcome
+tests transfer to three-to-five-sentence continuation rather than short-label
+accuracy. Prefix processing, gradient span and optimization cost are reported
+instead of treating equal delay as equal compute.
+\pending{Populate effects, uncertainty and limitations from actual runs. No
+benefit or novel empirical finding is established.}
 \end{abstract}
 
-\section{Question and related work}
-Delayed supervision already trains later access to simulator-grounded
-facts~\cite{delayed}. Its reported comparisons do not isolate delay from QA,
-termination supervision and extra computation. State-reveal code traces~\cite{code},
-latent-situation supervision~\cite{latent}, permutation mechanisms~\cite{stateicml}
-and data-efficiency comparisons across supervision regimes~\cite{bias} further
-limit broad novelty claims. We investigate a controlled distinction between
-token distance and intervening semantic writes, and whether it matters for
-generation rather than only component probes. More seeds or a new backbone
-alone would not establish an independent contribution.
-SchemaMem also studies selective updates and delayed retrieval in a
-schema-indexed recurrent architecture~\cite{schemamem}; our question concerns
-the supervision schedule, not a first solution to delayed state access.
+\section{Question and prior work}
+Delayed Supervision already asks simulator-grounded questions after unrelated
+events, jointly with event next-token prediction, on disposable branches
+\cite{delayed}. That study leaves delay-versus-QA/termination contributions open.
+State-revealed code training\cite{code}, supervision-regime comparisons
+\cite{bias}, permutation-state mechanisms\cite{stateicml}, latent situations
+\cite{latent} and delayed memory access\cite{schemamem} further restrict novelty.
+We do not claim a new delayed-supervision algorithm or memory architecture.
+The narrower question is whether training under semantic-write interference
+has a distinct consequence for open continuation after label, timing and
+processing controls. More seeds or a smaller backbone alone is insufficient.
 
-\section{Training schedules and label validity}
-For each relevant fact, record the last supporting update, token delay
-\(D_{\rm tok}\), and number of intervening successful state-changing events
-\(D_{\rm write}\). A retention answer must remain valid through the delay;
-a revised answer is the latest value, with delay measured from its last relevant
-revision. Balance question types and answer classes across conditions.
+\section{Controlled events, labels and schedules}
+Each source starts with known locations for a target key and other objects.
+Two windows each begin with a target revision to an intermediate location and
+then its correct latest location. The low-write block contains neutral prose;
+the high-write block changes other objects' locations six times. Every counted
+write differs from that object's previous location. Neither block changes the
+target after its evidence. Byte length from evidence to delayed query is exactly
+256 in both windows, using complete filler sentences and declared whitespace
+padding. This controls distance, not all lexical characteristics.
+
+Low/high order is counterbalanced across sources. The full underlying event
+text and target-answer string are identical across the four training conditions
+for each source. Query prefixes differ; their total length and gradient spans
+are logged. Target names, locations and irrelevant movements vary; source
+groups and exact texts are disjoint across splits. The prepared controlled
+pool has 6,000 training, 400 validation and 400 test sources. Evaluation crosses
+lag 256/384 with write load 0/3/6; these are controlled-template tests, not
+human-authored or general-domain evidence.
 
 \begin{table}[ht]\centering\small
-\caption{Schedules on a shared event corpus.}
+\caption{Four schedules on the same event-language corpus.}
 \begin{tabularx}{\linewidth}{lYY}\toprule
-Arm & Probe placement & Main control\\\midrule
-B0 & Immediately after relevant evidence & QA/answer-format reference\\
-B1 & Long token delay, few intervening writes & Distance with low semantic interference\\
-B2 & Matched token-delay bands, many other-entity writes & Semantic interference in supervision\\
-B3 & Preregistered B1/B2 mixture & Training-schedule diversity\\
+Arm & Probe schedule & Role\\\midrule
+B0 & Immediately after latest evidence & QA/answer-format control\\
+B1 & 256-token delay, zero writes & Distance without semantic interference\\
+B2 & Same delay, six other-object writes & Main interference comparison\\
+B3 & Fixed B1/B2 mixture & Schedule-diversity control\\
 \bottomrule\end{tabularx}\end{table}
 
-The event LM corpus remains the same; only probe placement/selection differs.
-Question-answer probes run on disposable branches so their answers never enter
-the continuing event stream. Use ordinary LM-head answer targets, including a
-matched EOS policy, with no gold state table at deployment. The objective is
+Queries are evaluated on disposable prefix branches. The answer is the latest
+valid location, never an obsolete label retained for convenience. Event forward
+uses ordinary causal next-token prediction; QA forward sees only the prefix
+ending at its probe and the query. Editing a later event cannot change that QA
+input. Answers/EOS from the branch are not appended to the continuing event text.
+
+\section{Objective and accounting}
+The prepared objective is
 \[
-\mathcal L=\mathcal L_{\rm event}+\lambda\mathcal L_{\rm answer},\qquad
-\mathcal L_{\rm answer}= -|\mathcal I|^{-1}\sum_{j\in\mathcal I}
- |a_j|^{-1}\log p_\theta(a_j\mid x_{\le t_j},q_j).
+\mathcal L=\mathcal L_{\mathrm{event}}+0.25\mathcal L_{\mathrm{answer}},
+\qquad \mathcal L_j=|I_j|^{-1}\sum_{i\in I_j}-\log p_\theta(z_{i+1}\mid z_{\le i}).
 \]
-State schema, question inventory and answer targets are controlled, not invented
-from a model's prediction. Match answer-target counts and report event-token
-exposure. Longer auxiliary prefixes change processed tokens and gradient spans:
-they are measured confounds, not free supervision. A measured-compute replication
-needs its own predeclared cap. Specify detach/resume behavior; do not silently
-truncate the evidence-to-probe gradient and still claim training distant writes.
+Each term is a mean over its own unmasked targets. This is not the same as
+uniformly weighting every event and answer token in one mean. All arms use
+the same loss weights. Event targets plus answer targets count against the
+same declared cap. Answers have five byte characters plus EOS, identically
+matched by source. The final partial batch allocates available answer targets
+and then remaining event targets, masking surplus labels in both branches.
+Report these counts separately and retain the partial-batch rule.
 
-\input{../shared/standalone_common}
+The full prefix is replayed for QA without an undeclared evidence-to-query
+detach. Extra prefixes and gradient spans are a cost of the schedule. Counter-
+balancing reduces absolute-position confounding but does not remove all
+lexical/content or compute differences. A compute-matched replication must
+have a separately declared budget; do not call a token-matched comparison a
+pure causal effect of time.
 
-\section{Primary contrast and transfer}
-The primary contrast is B2 minus B1 on continuation success at held-out
-delay/write-density conditions. Immediate versus delayed and the mixture are
-secondary. Cross token delay with semantic-write load at evaluation, controlling
-length and recency. Questions about current states remain component tests;
-they do not replace three-to-five-sentence generation.
+\input{../shared/compact_training_contract}
 
-Report whether improvements survive answer-format controls, naturalistic source
-transfer and compute accounting. A separate plot relates probe success to
-continuation success without treating correlation as proof of internal storage.
-Report optimization failures and confidence intervals, including cases where
-probe accuracy improves while writing or semantic coverage does not.
+\section{Generation, analysis and falsification}
+At the declared end of the held-out high-write window, before any later target revision, request three to five natural sentences
+stating the target's location at the cut point, its latest relevant update and
+why other deliveries did not move it. Additional coherent details are allowed.
+The shared generation cap is 384 new byte tokens. Strict success requires all
+mandatory propositions, requested format and no applicable contradiction.
+The primary contrast is B2 minus B1; immediate and mixture comparisons are
+secondary. The validation probe exact-match score is a component metric only.
+
+Decisive displays cross token lag and write load, compare probe versus prose
+outcomes, and show coverage/fluency with processed-token/time cost. Score
+naturalistic transfer separately after licensed sources and real labels are
+available. If only short answers improve, report that access--generation gap.
+If a lexical shortcut or extra compute explains the result, narrow the claim.
 
 \begin{table}[ht]\centering\small
-\caption{Planned evidence table, currently empty.}
+\caption{Pending evidence; dashes are missing data, not zero effects.}
 \begin{tabularx}{\linewidth}{lYYYY}\toprule
-Arm & Continuation / CI & Probe / format & Processed / target tokens & Time / VRAM\\\midrule
+Arm & Prose success/CI & Probe score & Event/QA targets & Time/VRAM\\\midrule
 B0 & -- & -- & -- & --\\B1 & -- & -- & -- & --\\
 B2 & -- & -- & -- & --\\B3 & -- & -- & -- & --\\
 \bottomrule\end{tabularx}\end{table}
+\IfFileExists{tables/results_generated.tex}{\begin{table}[ht]\centering
+\caption{Primary test contrast from supplied human-label analysis.}
+\input{tables/results_generated}\end{table}}{}
 
 \section{Limitations and completion criteria}
-An effect cannot be called the pure causal effect of time if semantic content,
-label validity or processing cost differs. A useful study resolves a named
-confound with transfer evidence or a sufficiently precise negative result;
-simply adding an auxiliary head is insufficient. Model limitations, supervision
-noise, window resets and English-only data restrict conclusions. No new labels,
-reliability measurement or trained result exists for this design. Audit probe
-branches, source splits, byte/BPE alignment and future-token causality before
-final training. Add genuine authorship, data licenses, consent and disclosures,
-and rewrite claims from completed evidence.
-
-\input{references}
-\end{document}
+The pilot has one controlled delivery domain and a small model scale. It does
+not establish general chat, internal storage causality or a new recurrence.
+Whitespace padding, lexical-event differences, prefix position and finite
+source pools constrain interpretation. A useful study must resolve a named
+confound with continuation transfer or a sufficiently precise failure principle,
+not merely optimize a trained QA metric. Stop or revise if labels are invalid,
+write counts are wrong, shortcut performance dominates, or prose transfer fails.
+No new training, human reliability, final-test result or funding approval has
+occurred. Publish actual data licenses, authorship, reuse and tool disclosures;
+rewrite claims after evidence rather than filling a positive-result narrative.
+\input{references}\end{document}

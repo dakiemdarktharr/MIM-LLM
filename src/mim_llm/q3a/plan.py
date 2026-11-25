@@ -16,7 +16,13 @@ def implementation_fingerprints():
     root = Path(__file__).resolve().parents[1]
     files = list((root / "q3a").glob("*.py")) + [
         root / n
-        for n in ("models.py", "tokenizer.py", "generate.py", "training_gate.py")
+        for n in (
+            "models.py",
+            "tokenizer.py",
+            "generate.py",
+            "training_gate.py",
+            "shared_data.py",
+        )
     ]
     return {p.relative_to(root).as_posix(): source_sha256(p) for p in sorted(files)}
 
@@ -53,6 +59,9 @@ def make_plan(config_path, data_dir, warmup, output):
     m = verify_dataset(data_dir)
     warmup = Path(warmup)
     rows = read_rows(warmup)
+    from ..shared_data import validate_source_groups
+
+    validate_source_groups(rows)
     provenance = read_json(str(warmup) + ".manifest.json")
     if (
         provenance.get("sha256") != sha256(warmup)
@@ -187,6 +196,9 @@ def load_plan(path):
         raise ValueError("Changed warmup provenance")
     if plan["implementation_fingerprints"] != implementation_fingerprints():
         raise ValueError("Implementation changed; prepare a new plan before training")
+    from ..shared_data import general_rows
+
+    general_rows(plan["warmup"])
     return plan
 
 

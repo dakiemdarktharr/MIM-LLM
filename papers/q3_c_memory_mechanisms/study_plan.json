@@ -1,7 +1,7 @@
 {
   "revision": 3,
-  "status": "planning_not_implemented_not_preregistered",
-  "title": "Whose History Should a Language Model Learn From? State-Consistent Continuation from Model-Written Events",
+  "status": "methods_prepared_training_locked_not_preregistered",
+  "title": "Controlled Roll-In Distributions for State-Consistent Story Continuation",
   "arms": [
     "teacher_history",
     "frozen_peer_history",
@@ -18,8 +18,8 @@
   "confirmatory_targets_per_run": 10000000,
   "post_training_runs": 24,
   "actual_candidate_parameters": {
-    "mingru": 2081384,
-    "transformer": 2074320
+    "mingru": 2099864,
+    "transformer": 2119408
   },
   "milestones": {
     "drafted_with_results": false,
@@ -32,5 +32,18 @@
     "history quality and event type",
     "overlap and rejection yield"
   ],
-  "self_origin_is_on_policy_after_training": false
+  "self_origin_is_on_policy_after_training": false,
+  "operational_update_2026_11_26": {
+    "config": "configs/q3c/pilot.json",
+    "snapshot": "configs/q3c/prepared_snapshot.json",
+    "plan_id": "0f5397e0264be1e270ec4b78c88a8e6a851701d1b9bad62b7598ec5185037b0d",
+    "tokenizer": "fixed_utf8_byte_259",
+    "context": 2048,
+    "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",
+    "optimizer_updates_this_preparation": 0,
+    "production_history_bank_created": false
+  },
+  "estimand": "matched controlled input-distribution coupling, not intrinsic provenance identity",
+  "training_rollins": "token-wise grammar-constrained generation using known-holder support; requires genuine shared initialization",
+  "main_evaluation": "unconstrained two-stage continuation retaining every initial output"
 }

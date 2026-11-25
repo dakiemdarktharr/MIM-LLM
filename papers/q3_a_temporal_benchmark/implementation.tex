@@ -1,7 +1,7 @@
 \section{Operational data and model specification}
 The prepared controlled corpus contains 6,000 training source groups, 400
 validation groups and 400 test groups, each with base, effective, no-op and
-paraphrase variants. These are project-generated templates, not human-authored
+surface-control variants. These are project-generated templates, not human-authored
 stories. Exact duplicate base prompts are rejected during generation. Test
 integrity is hashed before model selection; this is not a preregistration claim.
 Two surface renderers are used in training and distinct renderers in validation
@@ -15,7 +15,10 @@ exactly at the decision satisfies the condition; missing permission still
 requires waiting. An effective variant changes either power timing or permission
 so the required action changes. A no-op shifts power timing within the same
 decision region. The return time changes even when the required action does not.
-No later opening is uniquely entailed by the one-time rule.
+No later opening is uniquely entailed by the one-time rule. Prompts close the
+relevant handover, permission and power timeline through the decision and ask
+for that decision before optional later events; invented earlier changes do
+not invalidate a mandatory fact by changing the stipulated premise.
 
 Each required continuation has three to five sentences expressing the key
 holder, decision action, cabinet state at that time and a sufficient valid
@@ -32,6 +35,12 @@ Do not call this externally sourced synthetic corpus human-authored prose.
 A separately licensed and audited naturalistic intervention set remains a
 required transfer gate before a broad scientific claim.
 
+The common initialization corpus additionally includes 2,792/277/280
+mechanically derived three-sentence instruction examples in the corresponding
+train/validation/test source groups (5,792/577/580 total rows). These are not new
+independent stories and introduce no benchmark state labels. The 5M target cap
+is unchanged. General perplexity uses only the original held-out stories.
+
 \begin{table}[ht]\centering\small
 \caption{Instantiated preparation configurations; no trained quality is implied.}
 \begin{tabular}{lrrrr}\toprule
@@ -43,7 +52,7 @@ Causal Transformer & 259 & 2 & 248 & 2,119,408\\
 Both use the same fixed UTF-8 byte tokenizer, context 2,048 and dropout zero.
 Special IDs are PAD=0, BOS=1 and EOS=2; bytes map to IDs 3--258. No tokenizer
 fitting is needed. The parameter difference is approximately 0.93\%; the longest
-prepared prompt plus reserved generation length is 1,476 tokens. This operational
+prepared prompt plus reserved generation length is 1,664 tokens. This operational
 configuration replaces preliminary vocabulary-512/context-256 counting examples.
 It is a preparation choice, not evidence that either model can write well.
 

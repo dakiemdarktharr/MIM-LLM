@@ -453,15 +453,19 @@ def analyze(labels_a, labels_b, key_path, *, adjudicated=None, draws=2000):
     }
 
 
-def perplexity(plan_path, checkpoint, *, split="validation", device="cpu"):
-    if split != "validation":
-        raise ValueError(
-            "General-text test use requires separate preregistered release"
-        )
+def perplexity(
+    plan_path, checkpoint, *, split="validation", device="cpu", selection=None
+):
+    if split not in ("validation", "test"):
+        raise ValueError("Held-out split required")
     plan = load_plan(plan_path)
+    if split == "test":
+        check_test_release(plan, checkpoint, selection)
+    from ..shared_data import general_rows
+
     model, _ = load_q3a_checkpoint(checkpoint, plan, device)
     examples = language_examples(
-        read_rows(plan["warmup"]), split, plan["config"]["context"]
+        general_rows(plan["warmup"]), split, plan["config"]["context"]
     )
     return validation_loss(
         model, examples, plan["config"]["context"], plan["config"]["batch_size"], device

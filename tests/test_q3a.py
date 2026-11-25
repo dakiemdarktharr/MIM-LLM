@@ -65,8 +65,17 @@ def test_counterfactual_contract(i):
     noop = b["scenarios"]["noop"]
     assert base["facts"] == noop["facts"]
     assert base["facts"]["action"] != effective["facts"]["action"]
-    assert base["facts"] == b["scenarios"]["paraphrase"]["facts"]
-    assert base["prompt"] != b["scenarios"]["paraphrase"]["prompt"]
+    assert base["facts"] == b["scenarios"]["surface"]["facts"]
+    assert base["prompt"] != b["scenarios"]["surface"]["prompt"]
+    assert (
+        len(base["prompt"])
+        == len(noop["prompt"])
+        == len(b["scenarios"]["surface"]["prompt"])
+    )
+    assert (
+        sum(x != y for x, y in zip(base["prompt"], noop["prompt"]))
+        == b["scenarios"]["surface"]["character_edits"]
+    )
     assert all(len(s["reference"].split(". ")) == 3 for s in b["scenarios"].values())
 
 

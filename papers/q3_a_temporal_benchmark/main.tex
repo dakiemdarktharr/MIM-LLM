@@ -14,7 +14,7 @@ annotations, submission or editorial outcome is implied.\end{quote}}
 This proposed study tests whether semantic no-op interventions teach compact
 autoregressive language models when a changed premise should leave required
 story consequences unchanged. We compare effective-only pairs, effective/no-op
-pairs, matched paraphrase controls, and an invariance-objective adaptation.
+pairs, matched surface-form controls, and an invariance-objective adaptation.
 The primary outcome is joint success on changed and preserved propositions in
 held-out multi-sentence continuations. The design separates useful selectivity
 from lexical augmentation, copying and generic avoidance.
@@ -47,7 +47,7 @@ Preserved propositions are time/world indexed, not permanent facts.
 Arm & Training distribution/objective & Interpretation\\\midrule
 A0 & Effective intervention pairs, CE & Change-focused reference\\
 A1 & Effective plus semantic no-op pairs, CE & Consequence-level selectivity\\
-A2 & Effective plus matched paraphrase controls, CE & Lexical-diversity control\\
+A2 & Effective plus matched punctuation changes, CE & Surface-form augmentation control\\
 A3 & A1 plus probe-span response matching & Published-invariance adaptation\\
 \bottomrule\end{tabularx}\end{table}
 
@@ -58,6 +58,12 @@ resample within a fixed source pool rather than giving A1 more training targets.
 Include named shortcuts (last-recipient, clock-only, always-change and no-change)
 to audit the development data. Keep complete template/paraphrase families and
 source stories outside training.
+
+The operational surface control replaces sentence-ending periods with
+exclamation marks, preserving propositional content. Its byte length and number
+of edited characters equal those of the paired numeric no-op. It is not a full
+semantic paraphrase control: edit location and character class differ. Report
+those remaining limitations and require transfer beyond punctuation/clock templates.
 
 For A3, match next-token distributions only on canonical factual-probe answers
 known to be invariant, with a fixed continuation prefix. A schematic penalty is

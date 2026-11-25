@@ -1,9 +1,21 @@
 {
   "schema_version": 1,
   "study": "q3a-selective-v1",
-  "arms": ["A0", "A1", "A2", "A3"],
-  "backbones": ["mingru", "transformer"],
-  "seeds": [0, 1, 2],
+  "arms": [
+    "A0",
+    "A1",
+    "A2",
+    "A3"
+  ],
+  "backbones": [
+    "mingru",
+    "transformer"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
   "tokenizer": "fixed_utf8_byte_259",
   "target_parameters": 2100000,
   "layers": 2,
@@ -19,9 +31,20 @@
   "js_weight": 0.1,
   "checkpoint_every_updates": 100,
   "gpu_hours_cap_per_study": null,
-  "decoding": {"max_new_tokens": 512, "temperature": 0.8, "top_k": 40, "seeds": [17]},
-  "primary_contrast": ["A1", "A2"],
+  "decoding": {
+    "max_new_tokens": 512,
+    "temperature": 0.8,
+    "top_k": 40,
+    "seeds": [
+      17
+    ]
+  },
+  "primary_contrast": [
+    "A1",
+    "A2"
+  ],
   "primary_metric": "source-paired joint success on base/effective and base/noop, stratified by pair kind",
   "smallest_useful_effect": null,
-  "status": "prepared_not_preregistered_not_authorized"
+  "status": "prepared_not_preregistered_not_authorized",
+  "surface_control": "meaning-preserving punctuation with matched byte length and character edits; not full paraphrase"
 }

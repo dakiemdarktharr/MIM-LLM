@@ -1,10 +1,118 @@
 {
   "revision": 3,
   "date": "2026-11-25",
-  "status": "design_only",
+  "status": "three_training_studies_prepared_training_locked_q1_design_only",
   "standalone_manuscripts": true,
   "program_name_in_authors": false,
   "common_backbones": {
+    "mingru": {
+      "config": {
+        "kind": "mingru",
+        "vocab_size": 259,
+        "width": 662,
+        "layers": 2,
+        "dropout": 0.0,
+        "context": 2048,
+        "state_classes": 0,
+        "mim_memory": true,
+        "difference_mode": "direct"
+      },
+      "target_parameters": 2100000,
+      "actual_parameters": 2099864,
+      "relative_parameter_gap": -6.476190476190476e-05
+    },
+    "transformer": {
+      "config": {
+        "kind": "transformer",
+        "vocab_size": 259,
+        "width": 248,
+        "layers": 2,
+        "dropout": 0.0,
+        "context": 2048,
+        "state_classes": 0,
+        "mim_memory": true,
+        "difference_mode": "direct"
+      },
+      "target_parameters": 2100000,
+      "actual_parameters": 2119408,
+      "relative_parameter_gap": 0.009241904761904762
+    }
+  },
+  "pilot": {
+    "backbones": 2,
+    "arms_per_study": 4,
+    "seeds": 3,
+    "post_targets_per_run": 2000000,
+    "post_targets_per_study": 48000000,
+    "selection_fraction": 0.15,
+    "warmup_targets_per_seed_backbone": 5000000,
+    "unique_warmup_targets": 30000000,
+    "warmup_credit_per_study": 10000000,
+    "credited_targets_per_study_including_full_reserve": 65200000,
+    "unique_targets_all_three_with_full_reserve": 195600000
+  },
+  "confirmation": {
+    "post_targets_per_run": 10000000,
+    "post_targets_per_study": 240000000,
+    "unique_warmup_targets": 120000000,
+    "credited_targets_per_study_including_full_reserve": 316000000,
+    "unique_targets_all_three_with_full_reserve": 948000000
+  },
+  "measured_throughput_gpu_hours_colab_cost": null,
+  "equal_gpu_hour_caps": "choose common cap after profiling; distinct token- and compute-matched analyses",
+  "studies": {
+    "a": {
+      "directory": "q3_a_temporal_benchmark",
+      "title": "Learning When a Premise Change Should Not Change a Story",
+      "primary_contrast": "effective_plus_semantic_noop minus effective_plus_byte_edit_matched_punctuation",
+      "operational_update_2026_11_26": {
+        "config": "configs/q3a/pilot.json",
+        "snapshot": "configs/q3a/prepared_snapshot.json",
+        "plan_id": "77e05540bdef194a755c10219e6c9a1858d4b9b0e124a81c02ab834ef409283a",
+        "tokenizer": "fixed_utf8_byte_259",
+        "context": 2048,
+        "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",
+        "optimizer_updates_this_preparation": 0,
+        "production_history_bank_created": false
+      }
+    },
+    "b": {
+      "directory": "q3_b_state_supervision",
+      "title": "Tokens or State Changes? A Controlled Study of Delayed Supervision for Compact Language Models",
+      "primary_contrast": "matched_token_delay_high_write minus token_delay_low_write",
+      "operational_update_2026_11_26": {
+        "config": "configs/q3b/pilot.json",
+        "snapshot": "configs/q3b/prepared_snapshot.json",
+        "plan_id": "3d1397207e4b494e805d78647c35b8dfa97047e5170eb994299c2f73b4018ed2",
+        "tokenizer": "fixed_utf8_byte_259",
+        "context": 2048,
+        "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",
+        "optimizer_updates_this_preparation": 0,
+        "production_history_bank_created": false
+      }
+    },
+    "c": {
+      "directory": "q3_c_memory_mechanisms",
+      "title": "Controlled Roll-In Distributions for State-Consistent Story Continuation",
+      "primary_contrast": "frozen_self_history minus frozen_peer_history",
+      "operational_update_2026_11_26": {
+        "config": "configs/q3c/pilot.json",
+        "snapshot": "configs/q3c/prepared_snapshot.json",
+        "plan_id": "0f5397e0264be1e270ec4b78c88a8e6a851701d1b9bad62b7598ec5185037b0d",
+        "tokenizer": "fixed_utf8_byte_259",
+        "context": 2048,
+        "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",
+        "optimizer_updates_this_preparation": 0,
+        "production_history_bank_created": false
+      }
+    },
+    "main": {
+      "directory": "q1_branch_residual_memory",
+      "title": "Branch-Residual Nested Memory for Multi-World Language Modeling",
+      "primary_contrast": "memory-quality frontier against full copies and same-byte controls; explicit-difference benefit tested factorially"
+    }
+  },
+  "historical_common_backbones_counting_example": {
     "mingru": {
       "config": {
         "kind": "mingru",
@@ -38,60 +146,5 @@
       "relative_parameter_gap": -0.003436029886541832
     }
   },
-  "pilot": {
-    "backbones": 2,
-    "arms_per_study": 4,
-    "seeds": 3,
-    "post_targets_per_run": 2000000,
-    "post_targets_per_study": 48000000,
-    "selection_fraction": 0.15,
-    "warmup_targets_per_seed_backbone": 5000000,
-    "unique_warmup_targets": 30000000,
-    "warmup_credit_per_study": 10000000,
-    "credited_targets_per_study_including_full_reserve": 65200000,
-    "unique_targets_all_three_with_full_reserve": 195600000
-  },
-  "confirmation": {
-    "post_targets_per_run": 10000000,
-    "post_targets_per_study": 240000000,
-    "unique_warmup_targets": 120000000,
-    "credited_targets_per_study_including_full_reserve": 316000000,
-    "unique_targets_all_three_with_full_reserve": 948000000
-  },
-  "measured_throughput_gpu_hours_colab_cost": null,
-  "equal_gpu_hour_caps": "choose common cap after profiling; distinct token- and compute-matched analyses",
-  "studies": {
-    "a": {
-      "directory": "q3_a_temporal_benchmark",
-      "title": "Learning When a Premise Change Should Not Change a Story",
-      "primary_contrast": "effective_plus_semantic_noop minus effective_plus_paraphrase",
-      "operational_update_2026_11_26": {
-        "config": "configs/q3a/pilot.json",
-        "snapshot": "configs/q3a/prepared_snapshot.json",
-        "status": "prepared_training_locked",
-        "tokenizer": "fixed_utf8_byte_259",
-        "context": 2048,
-        "actual_parameters": {
-          "mingru": 2099864,
-          "transformer": 2119408
-        },
-        "warmup_reuse": "Only credit shared initialization when actual B/C config/corpus/tokenizer/checkpoint matches; earlier BPE counting configs are historical for A."
-      }
-    },
-    "b": {
-      "directory": "q3_b_state_supervision",
-      "title": "Tokens or State Changes? A Controlled Study of Delayed Supervision for Compact Language Models",
-      "primary_contrast": "matched_token_delay_high_write minus token_delay_low_write"
-    },
-    "c": {
-      "directory": "q3_c_memory_mechanisms",
-      "title": "Whose History Should a Language Model Learn From? State-Consistent Continuation from Model-Written Events",
-      "primary_contrast": "frozen_self_history minus frozen_peer_history"
-    },
-    "main": {
-      "directory": "q1_branch_residual_memory",
-      "title": "Branch-Residual Nested Memory for Multi-World Language Modeling",
-      "primary_contrast": "memory-quality frontier against full copies and same-byte controls; explicit-difference benefit tested factorially"
-    }
-  }
+  "operational_date": "2026-11-26"
 }

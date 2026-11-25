@@ -3,5 +3,5 @@
   "tokenizer_fitting_authorized": false,
   "authorized_run_ids": [],
   "authorized_plan_ids": [],
-  "reason": "User instruction on 2026-11-26: prepare Q3-A and wait for a new explicit instruction before any training. Colab purchase is not training authorization."
+  "reason": "User instruction: prepare all three Q3 studies and wait for a new explicit instruction before any training, including optimizer smoke tests or tokenizer fitting. A Colab subscription is not training authorization."
 }

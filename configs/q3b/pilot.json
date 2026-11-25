@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "study": "b",
+  "arms": [
+    "B0",
+    "B1",
+    "B2",
+    "B3"
+  ],
+  "backbones": [
+    "mingru",
+    "transformer"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "tokenizer": "fixed_utf8_byte_259",
+  "target_parameters": 2100000,
+  "layers": 2,
+  "context": 2048,
+  "dropout": 0.0,
+  "batch_size": 2,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "warmup_targets": 5000000,
+  "post_targets": 2000000,
+  "selection_reserve_fraction": 0.15,
+  "checkpoint_every_updates": 100,
+  "gpu_hours_cap_per_study": null,
+  "decoding": {
+    "max_new_tokens": 384,
+    "temperature": 0.8,
+    "top_k": 40,
+    "seeds": [
+      17
+    ]
+  },
+  "primary_contrast": [
+    "B2",
+    "B1"
+  ],
+  "primary_metric": "strict multi-sentence continuation success",
+  "smallest_useful_effect": null,
+  "status": "prepared_training_locked",
+  "answer_loss_weight": 0.25
+}

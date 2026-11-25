@@ -168,3 +168,53 @@ and this conversation; the Obsidian vault contains the fuller research notebook.
   and 73 wikilinks. Details are in Q3_A_REVISION2_QA.vi.md.
 - No new model weights, training, human labels, paid compute, scientific findings,
   submission, acceptance or publication occurred in this revision.
+
+
+### Three-study preparation: B/C implementation and A review — 26 November 2026
+
+- Completed separate B/C data, objectives, guarded post-training/resume engines,
+  inference, blind-label analysis and result-table export. B uses disposable QA
+  prefixes and exact lag/write checks; C includes genuine frozen-checkpoint
+  grammar sampling, provenance verification, matching/sealing and raw-ID
+  unconstrained two-stage evaluation. No production C bank or new weights exist.
+- Corrected A2 to a byte/edit-count-matched punctuation control, not a full
+  paraphrase. Closed A's decision timeline, counterbalanced B0 window selection,
+  and cut B evaluation at the high window before later target revisions. C's
+  updated title/claim concern controlled roll-in distributions, not intrinsic
+  origin identity; known-holder grammar scaffolding is explicitly train-time.
+- All three use byte259/context2048: minGRU 2,099,864 and Transformer 2,119,408
+  parameters. Shared warm-up keeps 3,000/300/300 TinyStories source groups and
+  adds 2,792/277/280 same-split general-format examples; no benchmark state labels.
+  General perplexity uses original held-out stories only. Dataset modification
+  and upstream CDLA-Sharing-1.0 notices are retained in DATA_NOTICES.md/manifests.
+- Prepared equal 48M post-target and 7.2M selection caps per study, six shared
+  5M-target initializations counted once, and a 78-job dependency graph. Total
+  with full selection reserve: 195.6M targets, zero executed. Equal targets are
+  not equal compute. Actual training throughput, Colab GPU/CU burn and spending
+  limits are unmeasured. C collection/matching requires real completed warm-ups.
+- Ran 131 tests successfully; 10 optimizer/fitting tests deliberately deselected.
+  CPU/CUDA preflights and dense [2,2048,259] CE graphs had finite gradients and
+  unchanged parameters. Local hardware: RTX 5050 Laptop, not RTX 3060. These
+  forward/backward checks are not training throughput or optimizer validation.
+- Executed both preparation-only notebooks locally: four code cells each, no
+  errors/optimizer updates. Colab remote runtime has not been tested. Created a
+  portable local hash-manifest bundle; raw data, ZIP, PDFs, weights and private
+  vault notes stay outside Git. Production permission flags/ID lists stay closed.
+- Compiled all four LaTeX methods/planning drafts. Fixed a citation key and a
+  shared-methods overflow; final builds have no undefined citations/references,
+  overfull or underfull boxes. Rendered and visually reviewed all 14 A/B/C pages
+  (5/4/5). Authors and result fields remain empty; generated PDFs remain local.
+- Wrote independent Vietnamese task/method briefs with ten advisor questions
+  and proposed answers per Q3. Updated Obsidian's shared/paper overviews, plans,
+  milestones, decisions and development logs, preserving earlier entries.
+- Checked relevant primary preprints Delayed Supervision (2609.32312), StateWise
+  (2610.33766) and Enaction (2605.25459); this is not an exhaustive new novelty
+  clearance. No new quartile/funding/fee check, human labels, result-bearing
+  manuscript, submission, acceptance or publication occurred. Transfer beyond
+  templates and finite C support, writing feasibility and novelty remain gates.
+- Source baseline: 36eaa65bedb7d6474784c7e12f6c53a8bf271cc7. Current plan IDs and
+  receipts are recorded in THREE_Q3_PRETRAIN_QA.vi.md and prepared snapshots.
+  Policy requires a new user training instruction before optimizer/overfit/resume
+  tests or training. Long-term complete MIM-based chat remains unestablished.
+
+- Added a B/C annotation rubric and beginner terminology guide; it requires real validation readers before freezing, and contains no collected human judgments.

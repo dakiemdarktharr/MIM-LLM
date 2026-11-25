@@ -1,6 +1,6 @@
 {
   "revision": 3,
-  "status": "planning_not_implemented_not_preregistered",
+  "status": "methods_prepared_training_locked_not_preregistered",
   "title": "Tokens or State Changes? A Controlled Study of Delayed Supervision for Compact Language Models",
   "arms": [
     "immediate",
@@ -18,13 +18,23 @@
   "confirmatory_targets_per_run": 10000000,
   "post_training_runs": 24,
   "actual_candidate_parameters": {
-    "mingru": 2081384,
-    "transformer": 2074320
+    "mingru": 2099864,
+    "transformer": 2119408
   },
   "milestones": {
     "drafted_with_results": false,
     "submitted": false,
     "accepted": false,
     "published": false
+  },
+  "operational_update_2026_11_26": {
+    "config": "configs/q3b/pilot.json",
+    "snapshot": "configs/q3b/prepared_snapshot.json",
+    "plan_id": "3d1397207e4b494e805d78647c35b8dfa97047e5170eb994299c2f73b4018ed2",
+    "tokenizer": "fixed_utf8_byte_259",
+    "context": 2048,
+    "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",
+    "optimizer_updates_this_preparation": 0,
+    "production_history_bank_created": false
   }
 }

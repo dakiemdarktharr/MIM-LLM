@@ -2,9 +2,10 @@
 
 **Status: research planning with a tested legacy code prototype.** This software-only
 project studies autoregressive story continuation and recurrent language-model
-memory. Q3-A now has preparation code and non-optimizing checks; training is
-locked pending a new user instruction. The other revised procedures and the
-branch-residual architecture remain research designs. No manuscript has been
+memory. All three standalone Q3 studies now have preparation code, pinned data
+plans, evaluation pipelines and non-optimizing checks. Training is locked pending
+a new user instruction. C's genuine model-history bank requires completed shared
+warm-up checkpoints; the branch-residual architecture remains a research design. No manuscript has been
 submitted, accepted or published.
 
 ## Long-term objective
@@ -60,11 +61,12 @@ does change. The one-time rule does not uniquely require opening at 9:05.
 ## Four standalone study designs
 
 1. **Learning When a Premise Change Should Not Change a Story:** semantic no-op
-   training versus matched lexical controls and an invariance adaptation.
+   training versus byte/edit-matched punctuation controls and an invariance adaptation.
 2. **Tokens or State Changes?** token delay versus semantic-write interference
    under matched supervision and explicit processing-cost controls.
-3. **Whose History Should a Language Model Learn From?** frozen self-origin
-   versus peer-origin/teacher histories with event-quality and selection controls.
+3. **Controlled Roll-In Distributions for State-Consistent Story Continuation:**
+   frozen initialization-coupled versus peer histories in a controlled grammar
+   bank, with unconstrained main evaluation and explicit overlap limits.
 4. **Branch-Residual Nested Memory for Multi-World Language Modeling:** a candidate
    shared-fork state and compressed per-world residual architecture, tested against
    full copies, same-byte controls, learned-pair and modern recurrent alternatives.
@@ -72,7 +74,7 @@ does change. The one-time rule does not uniquely require opening at 9:05.
 These are conditional hypotheses, not established novelty or publication claims.
 The three training studies each plan four arms, two backbones and three seeds,
 with equal token/selection caps and equal GPU-hour caps chosen after profiling.
-Earlier BPE-512/context-256 counting examples are historical for Q3-A. Its
+Earlier BPE-512/context-256 counting examples are historical. All three studies'
 prepared fixed-byte/context-2048 minGRU has **2,099,864** parameters (width 662);
 the Transformer has **2,119,408** (width 248). New-configuration throughput and writing
 quality are unmeasured. A pilot allocates 48M post-training targets per study,
@@ -92,10 +94,12 @@ a small causal Transformer and a token-shift GRU. Token-shift GRU is **not** ful
 RWKV. Tokenization, training/resume and a synthetic smoke benchmark exist.
 Q3-A's separate pipeline now implements paired response training, invariant-probe
 JS, checkpointing, generation, blank blind annotation and source-paired analysis.
-Its optimizer integration and overfit tests await authorization; no new weights
-have been trained. Delayed-supervision, history-bank and branch-residual
-procedures remain future implementation. See the [Q3-A preparation handoff](docs/Q3_A_PRETRAIN_RUNBOOK.vi.md),
-[preparation-only Colab notebook](notebooks/Q3_A_Prepare_Colab.ipynb), [legacy runbook](docs/RUNBOOK.md) and
+B/C add delayed QA branches, genuine frozen-history collection/matching,
+unconstrained two-stage evaluation, blank blind annotation and clustered analysis.
+Optimizer integration and overfit tests await authorization; no new weights
+have been trained. A production C bank cannot yet exist. See the
+[three-study handoff](docs/THREE_Q3_PRETRAIN_RUNBOOK.vi.md),
+[preparation-only Colab notebook](notebooks/Three_Q3_Prepare_Colab.ipynb), [legacy runbook](docs/RUNBOOK.md) and
 [original mechanism map](docs/RESEARCH.md) for their verified scope.
 
 Keep tokenizers, source splits, input information, training exposure and decoding
@@ -108,7 +112,7 @@ before final configuration selection and report every seed and negative result.
 ## Next evidence gates
 
 Audit novelty, data rights and semantics; establish writing and annotation
-feasibility; profile the actual GPU; implement and test each new procedure;
+feasibility; profile the actual GPU and validate optimizer/overfit/resume behavior;
 preregister contrasts and resource caps; then run the balanced pilots. Scale the
 architecture only if strong controls and memory-quality trade-offs justify it.
 Directions may be revised, merged or stopped. Reused artifacts and prior findings
@@ -126,3 +130,18 @@ Drafted, submitted, accepted and published remain separate milestones.
 - No scientific or editorial outcome has been established.
 
 Generated PDFs remain local and ignored by Git; version source and QA records.
+
+### Three-study preparation — 26 November 2026
+
+The common warm-up retains 3,000/300/300 underlying TinyStories source groups
+and adds 2,792/277/280 mechanically derived, same-split three-sentence
+instruction examples. No benchmark state labels are added; the 5M-target
+cap per initialization is unchanged. General perplexity uses original
+held-out stories only. No writing quality or training throughput is known.
+
+Each study has a Vietnamese briefing with ten difficult advisor questions
+and proposed evidence-based answers: [A](docs/Q3_A_BRIEF_AND_ADVISOR_QA.vi.md),
+[B](docs/Q3_B_BRIEF_AND_ADVISOR_QA.vi.md),
+[C](docs/Q3_C_BRIEF_AND_ADVISOR_QA.vi.md). The current
+[verification record](docs/THREE_Q3_PRETRAIN_QA.vi.md) distinguishes completed
+engineering checks from deferred optimization and scientific validation.

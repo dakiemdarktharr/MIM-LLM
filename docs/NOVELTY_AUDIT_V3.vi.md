@@ -1,3 +1,5 @@
+> **Cập nhật 26/11/2026:** đặc tả vận hành mới ở [joint handoff](THREE_Q3_PRETRAIN_RUNBOOK.vi.md) và [QA hiện hành](THREE_Q3_PRETRAIN_QA.vi.md). A2 dùng punctuation control khớp byte/edit; C dùng controlled roll-in distributions. Các cấu hình, artifact IDs và kết quả kiểm tra cũ dưới đây là lịch sử; không dùng để resume plan mới.
+
 # Novelty audit — revision 3, 25/11/2026
 
 ## Phạm vi và cách dùng

@@ -10,7 +10,7 @@ from .models import ModelConfig, build_model, parameter_count
 PAPER_TRACKS: dict[str, dict[str, Any]] = {'q3_counterfactual_training': {'question': 'Do semantic no-op pairs improve selective '
                                             'continuation beyond matched lexical controls?',
                                 'required': ['effective/no-op pairs',
-                                             'matched paraphrase control',
+                                             'byte/edit-matched punctuation surface control',
                                              'published invariance adaptation',
                                              'held-out source transfer',
                                              'blind labels and evasion audit'],
@@ -32,9 +32,9 @@ PAPER_TRACKS: dict[str, dict[str, Any]] = {'q3_counterfactual_training': {'quest
                             'pilot_post_targets': 48000000,
                             'stop_or_merge': 'Stop or redesign if only probe accuracy changes '
                                              'or timing/compute confounds remain.'},
- 'q3_history_provenance': {'question': 'Does frozen self-origin history outperform matched '
-                                       'peer-origin history for actual-event consistency?',
-                           'required': ['frozen provenance banks',
+ 'q3_history_provenance': {'question': 'Do initialization-coupled controlled roll-ins differ from matched '
+                                       'peer roll-ins for free actual-event continuation?',
+                           'required': ['genuine grammar-constrained frozen banks with known-holder train scaffolding',
                                         'teacher/peer/self/mixed arms',
                                         'quality, event and frozen-learner surprisal matching',
                                         'parse/rejection yield',

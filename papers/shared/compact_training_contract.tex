@@ -1,0 +1,65 @@
+\section{Compact model and evaluation contract}
+The operational pilot uses a fixed UTF-8 byte tokenizer with 259 IDs and no
+tokenizer fitting: PAD=0, BOS=1, EOS=2, and bytes at IDs 3--258. Both backbones
+have two layers, context 2,048 and dropout zero. The instantiated minGRU at width
+662 has \textbf{2,099,864} parameters and the causal Transformer at width 248 has
+\textbf{2,119,408}; the gap is approximately 0.93\%, not exact equality.
+These are measured configuration sizes, not trained quality results.
+
+Six warm-up initializations, one for each backbone and seed 0/1/2, each have a
+5M-target planning cap. Every condition starts from the matching identical
+initialization with a fresh optimizer. The prepared TinyStories~\cite{tiny}
+subset has 3,000/300/300 train/validation/test sources, pinned to revision
+\texttt{f54c09fd23315a6f9c86f9dc80f725de7d8f9c64}; its dataset card records
+CDLA-Sharing-1.0. Reused checkpoints must be counted once in physical compute,
+with source, tokenizer, configuration and checkpoint hashes disclosed.
+
+The common initialization corpus additionally includes 2,792/277/280
+mechanically derived three-sentence instruction examples in the corresponding
+train/validation/test source groups (5,792/577/580 total rows). These are not new
+independent stories and introduce no benchmark state labels. The 5M target cap
+is unchanged. General perplexity uses only the original held-out stories.
+
+Four conditions, two backbones and three seeds give 24 post-training runs,
+each capped at 2M supervised target positions (48M total). Selection has a
+separate 7.2M-target reserve, not yet spent. Prepared settings are AdamW,
+learning rate \(3\cdot10^{-4}\), weight decay 0.01, gradient norm cap 1, float32
+and microbatch two. Partial final batches mask surplus labels to respect the
+target budget. Target matching does not imply equal input processing or compute.
+
+Log event, answer and response targets; processed input and probe tokens;
+time; allocated and reserved VRAM; GPU model; and selection cost. A \(6P\)-per-input-token
+FLOP proxy excludes quadratic attention, optimizer and evaluation and must be
+labeled accordingly. The observed host is an RTX 5050 Laptop. Training throughput,
+Colab GPU/CU rate and total cost have not been measured; a purchased subscription
+does not establish any of these. No optimizer update was authorized in preparation.
+
+Every independent story/branch forward starts with fresh state; padding is masked
+and does not advance recurrent state. Logits \([B,T,259]\) predict labels shifted
+one token. Post-training response prompts are masked with ignore-index -100;
+EOS is supervised. Do not silently truncate a complete task. Check future-token
+causality, full/step agreement, reset, padding and finite CE gradients without
+weight updates. Atomic checkpoints store optimizer, cursor, RNG and input/code
+identities. Optimizer/overfit/interrupted-training integration tests are written
+but deliberately unexecuted until training permission is granted.
+
+At inference, all systems receive the same visible information and decoding
+policy: temperature 0.8, top-k 40 and seed 17 in the preparation plan. Suppress
+PAD/BOS sampling; use EOS termination and a common token cap. Transformer eval
+uses KV caching checked against full/chunked/padded forward; cache storage grows
+with context. No gold state table is supplied to the generator.
+
+Hash test sources before selection. Final test release requires all declared
+checkpoints, fixed decoding, a validation rationale, a source sample, a smallest
+useful effect and a resource cap in an immutable registration record. This is
+an internal integrity gate, not a claim of public preregistration. Independent
+blinded readers label prose, evidence and ambiguity; empty labels are rejected,
+disagreements retained and adjudicated before primary analysis. Unclear outputs
+remain conservative failures. No actual human labels have been collected.
+
+Resample complete source clusters paired across conditions, retaining all
+observed training/decoding seeds. Report 95\% source intervals conditional on
+those seeds, plus each seed separately. Sentences are not independent samples.
+Report semantic coverage, contradiction type, fluency and held-out perplexity
+alongside strict success. Naturalistic licensed transfer and reader reliability
+remain scientific gates, not established facts of this preparation.
