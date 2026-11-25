@@ -1,0 +1,93 @@
+{
+  "retrieved_on": "2026-11-25",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "scope": "17 retrieved PDFs; targeted reading, not an exhaustive systematic review",
+  "source_ledger": "Q3_A_SOURCE_LEDGER.vi.md",
+  "pdfs": [
+    {
+      "key": "agreement",
+      "pages": 42,
+      "sha256": "1729af43712921de3857555972c6a3376d66bcba2474f81a32cddf4f98aef058"
+    },
+    {
+      "key": "causal2024",
+      "pages": 14,
+      "sha256": "f1ec7303288fbb479dd37e6bd3a8e119bcfcd8819bc30429886ba8ea8236f178"
+    },
+    {
+      "key": "checklist",
+      "pages": 11,
+      "sha256": "98d15d259acf15136feed5cd5d4921b60cf313704a629901d115fe910fdb00e1"
+    },
+    {
+      "key": "cip",
+      "pages": 12,
+      "sha256": "6167844846705f919e704b4655f1d62a0b977e19a31b4f244d7c4d44a5ec0f84"
+    },
+    {
+      "key": "constory",
+      "pages": 29,
+      "sha256": "24cb6e59ea3cf790af8a42612e3ef9b7895e1ed690101957ca095b870efc2284"
+    },
+    {
+      "key": "conwriter",
+      "pages": 18,
+      "sha256": "fc5cb0594b69469852ea61fdddeb53dfc7e7338c1be1c9c2e708290766651763"
+    },
+    {
+      "key": "entity2023",
+      "pages": 21,
+      "sha256": "11a734ac95d63f951ce3fcba86140aa506bac537f831f39faf3d62d464fca3d5"
+    },
+    {
+      "key": "facttrack",
+      "pages": 24,
+      "sha256": "4fb641be18fac75b4b8f2eca1b7cf66735ff948c9243abe3e7c2eeba749a8e6b"
+    },
+    {
+      "key": "naturaltracking",
+      "pages": 14,
+      "sha256": "6180f11a306189ad9876256b3a5eb38e9ac11e550af7900912e32f6c4e767a2e"
+    },
+    {
+      "key": "openmeva",
+      "pages": 14,
+      "sha256": "87a52a2b535aff6179c23e94e302c8eeaec07f682ef706b48a067c8d4cc88ee7"
+    },
+    {
+      "key": "pasta",
+      "pages": 18,
+      "sha256": "e7ddc34b0b784b0f8361715f3a56ba562d54257c5e87f1d92d4c02e52b6b5331"
+    },
+    {
+      "key": "propara",
+      "pages": 10,
+      "sha256": "58e38ad61a9b5a595a44688318f8ad4bd9453a7c03f5de80511247a9c0052f27"
+    },
+    {
+      "key": "scratchworld",
+      "pages": 12,
+      "sha256": "1071bb22c87a8694c6a645acd30c7e12d488678c44e79fa1c7ef53ffb73f5bf9"
+    },
+    {
+      "key": "stats",
+      "pages": 10,
+      "sha256": "e3b6e07cf7e404443e4b516db9b2a72c5d24a38285a9a6691ed2e3b01b02235b"
+    },
+    {
+      "key": "temporalscope",
+      "pages": 19,
+      "sha256": "d4d9bfaf024b7be72bd069f2ee6d04614dc1e4b04b00d500f748d31bdb533513"
+    },
+    {
+      "key": "timetravel",
+      "pages": 11,
+      "sha256": "125e551ae2b8e9f0d01d1982b9fc682ade4e659009f3f8a0bd5212ff05c23d64"
+    },
+    {
+      "key": "trip",
+      "pages": 17,
+      "sha256": "de7eb03001f0219dd0a971d89e3c6ee05a166b98e140aa43f6499dde239cceaa"
+    }
+  ]
+}

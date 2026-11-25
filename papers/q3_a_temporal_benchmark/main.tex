@@ -10,7 +10,7 @@ in Autoregressive Story Continuation}
 \begin{abstract}
 This planned study asks whether temporal scope and repeated state changes expose
 different failures in short story continuation. We specify premise pairs that change
-one event time while preserving ownership history, and allow several coherent
+one event time while preserving key-possession history, and allow several coherent
 continuations. An executable state model supplies necessary propositions; human
 readers assess their expression, contradictions and writing quality. The study will
 contrast required changes with retained invariants, include events written by the
@@ -26,33 +26,58 @@ The proposed contribution is a controlled measurement method and an empirical
 account of this interaction. Releasing a cabinet dataset alone is insufficient.
 
 \textbf{Primary contrast:} the paired change in required action at a fixed decision
-time, accompanied by retention of ownership and transfer history. \textbf{Planned
+time, accompanied by retention of possession and transfer history. \textbf{Planned
 hypothesis:} greater overwrite depth will increase state errors, and success on
 one-name entity probes will not imply consistent multi-sentence continuation.
 A null interaction or a reversed relationship is a publishable observation only
 if the test is reliable and the analysis gives independent insight.
 
-Counterfactual generation already exists in TIME TRAVEL~\cite{timetravel};
-PASTA models participant states~\cite{pasta}; entity tracking
-probes~\cite{entity} and OpenMEVA~\cite{openmeva} motivate evaluating state,
-discourse and writing separately. We do not claim these broad tasks are new.
-\pending{Complete the citation-forward novelty audit and document overlap with
-newer state-tracking datasets before data collection.}
+Counterfactual generation and causal invariance already appear in
+TIME TRAVEL~\cite{timetravel}; Counterfactual Invariance Prediction explicitly
+classifies retained events~\cite{cip}. PASTA studies participant-state
+perturbation and story revision~\cite{pasta}. Entity tracking
+probes~\cite{entity,naturaltracking} and OpenMEVA~\cite{openmeva} motivate
+evaluating state, discourse and writing separately. ConStory-Bench already
+examines consistency with self-generated narrative history~\cite{constory};
+ChronoScope studies temporal scope stability across dialogue turns~\cite{chronoscope}.
+Neither invariance, self-history consistency, nor a general gap between single
+answers and sequential coherence is a new claim of this project.
+
+The proposed contribution must instead demonstrate additional diagnostic value
+for open continuation under controlled temporal rules and state updates.
+Effective and no-op interventions inherit behavioral testing principles from
+CheckList~\cite{checklist}. FactTrack's time-aware facts~\cite{facttrack} and
+ConWriter's external state/repair controller~\cite{conwriter} must be distinguished
+from a backbone-only inference condition. ScratchWorld~\cite{scratchworld},
+currently a preprint, also motivates separating changed-field performance from
+dominant unchanged facts.
+\pending{Demonstrate the incremental diagnostic value; the 25 November source
+audit narrows the claim but does not establish that the proposed study is novel.}
 
 \section{Task, semantics, and design}
-Let a state be \(s_t=(\text{holder},\text{power},\text{lock},\text{location},\text{world})\).
-A transfer overwrites holder; an opening at time \(t^\ast\) is obligatory exactly when
-the rule's conditions hold in that world. A conditional is evaluated at its stated
-time, rather than at the time the reader finishes the text.
+Let \(s^w_{t,k}\) denote state in world \(w\), at time \(t\), with micro-event index
+\(k\). It records possession, power, lock status and object locations. A successful
+transfer updates possession. A conditional is evaluated at its stated time.
+For the controlled task, agents obey the rule, all prefix transfers precede the
+decision, the cabinet remains locked immediately before that decision, and no
+alternative opening action occurs. An obligation alone would not entail execution
+without the compliance assumption. Exclude simultaneous power-return/decision
+events initially, or explicitly declare their order.
 
 \begin{quote}\small
 Illustration, not model output: Lan passes the key to Huy; Huy passes it to Mai.
 At exactly 9:00 the holder must open the cabinet if power has returned.
+All agents obey the rule, which is evaluated once at 9:00.
 Change only \texttt{8:55} to \texttt{9:05} for the power return.
 Mai remains holder in both premises; opening at 9:00 changes to waiting.
 If a generated continuation puts the key in a drawer, later text must respect
 that choice. A different coherent location is equally acceptable.
 \end{quote}
+
+Late power entails waiting and a locked cabinet \emph{at 9:00}; it does not
+uniquely entail opening at 9:05 without an additional persistent-trigger rule.
+Possession before an action is distinct from possession after a freely generated
+storage event. For a 9:05 prefix, ``ten minutes later'' refers to 9:15.
 
 Cross overwrite depth, distractor distance, temporal relation and conditional scope.
 Separate direct consequences, invariant facts and optional narrative choices.
@@ -60,6 +85,10 @@ The current cabinet generator covers depth 2--5 and one time rule.
 Additional rule forms and multiple objects are \textbf{planned extensions}, not
 implemented benchmark coverage. Counterfactual text must be attributed to the
 hypothetical world before contradiction scoring.
+The current pilot uses only 8:55/9:05 and distinct recipients, leaving a
+last-recipient plus clock-threshold shortcut. It is a smoke benchmark, not yet
+evidence of structural generalization. Add no-op interventions, held-out template
+families and shortcut anchors before freezing a research test.
 
 \begin{table}[ht]
 \centering\small
@@ -89,8 +118,13 @@ Use TinyStories~\cite{tiny} for general language training and a source-disjoint
 continuation training set if instruction learning is needed. Declare the mixture
 and hold it constant. The synthetic smoke corpus is not adequate pretraining.
 One-name probes are auxiliary diagnostics.
+Consider a separately reported open pretrained model as a capability reference
+to detect a writing/instruction floor; it is not a resource-matched architecture
+control. Report semantic-only success and format compliance beside the primary
+strict metric. Self-event assessment with visible full history establishes
+behavioral consistency, not the storage mechanism of hidden recurrent memory.
 
-\textbf{Critical linguistic analysis:} classify scope mistakes, stale ownership,
+\textbf{Critical linguistic analysis:} classify scope mistakes, stale possession,
 world mixing, invalid temporal ordering and inconsistent self-written locations.
 Compare effect versus depth at matched length, and effect versus length at fixed
 depth, to distinguish overwritten state from generic context difficulty.

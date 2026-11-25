@@ -14,11 +14,11 @@ The prototype is called **MIM-LM**. The reference byte-token model with width 19
 
 The input is a story prefix plus an instruction to continue it. The target output is **three to five natural sentences** that may express temporal, causal, conditional, or counterfactual relations. Single-name answers are useful component probes, but they are not the target task.
 
-> **Illustrative input, not a model result.** A cabinet is locked. Lan gives the key to Huy, and Huy passes it to Mai. At exactly 9:00, whoever holds the key must open the cabinet if electricity has returned; otherwise they must wait. Electricity returns at 8:55. Continue the scene and explain what would differ if it returned ten minutes later.
+> **Illustrative input, not a model result.** A cabinet is locked. Lan gives the key to Huy, and Huy passes it to Mai before 9:00. At exactly 9:00, whoever holds the key must open the cabinet if electricity has returned; otherwise they must wait. Everyone obeys this rule, which is evaluated once at 9:00, and the cabinet stays locked until then. Electricity returns at 8:55. Continue the scene and explain what would differ if it returned ten minutes later.
 >
 > **One valid illustrative continuation, not a model result.** At 9:00, Mai opens the cabinet because she holds the key and power has returned. She puts the key in a drawer. When Lan asks for it, Mai points her to that drawer. If power had returned at 9:05, the cabinet would still have been locked at 9:00; Mai would have had to wait.
 
-The model may choose another coherent place for the key. Evaluation must respect facts the model itself adds. A paired test changes only `8:55` to `9:05`: the cabinet-opening event at 9:00 must change, while the key transfers and Mai's ownership at 9:00 remain true.
+The model may choose another coherent place for the key. Evaluation must respect facts the model itself adds. A paired test changes only `8:55` to `9:05`: the cabinet-opening event at 9:00 must change, while the transfer history and Mai's possession immediately before the required action remain true. The one-time rule does not by itself require opening at 9:05. In the 9:05 premise, “ten minutes later” refers to 9:15.
 
 ## Planned model
 
@@ -34,6 +34,8 @@ The original MIM uses convolutional ST-LSTM cells and an additional zigzag spati
 The package implements MIM-LM, MIM-N/MIM-S/M ablations, a two-state learned-projection control, LSTM, Nested LSTM, GRU, minGRU, Delta-RNN, a small causal Transformer and a token-shift GRU control. The last control is **not** full RWKV. A byte tokenizer and train-only-fitted SentencePiece BPE are available. Synthetic overwrite-depth pairs have an executable oracle and content lock; TinyStories can be streamed as a bounded, pinned subset. Story-level split checks, next-token training, checkpoint resume, generation, held-out perplexity, blinded two-reader packets and source-pair bootstrap scoring are included.
 
 See the [Windows runbook](docs/RUNBOOK.md), [technical protocol](docs/METHODS.md), [research and novelty map](docs/RESEARCH.md), and [manuscript status](docs/STATUS.md). `mimlm paper-tracks` prints the conditional experiment gates. The synthetic pilot and small smoke runs are **not** evidence of scientific superiority.
+
+The Q3-A preparation package includes a [research dossier](docs/Q3_A_RESEARCH_DOSSIER.vi.md), [ten advisor questions and proposed answers](docs/Q3_A_ADVISOR_QA.vi.md), and an [auditable source ledger](docs/Q3_A_SOURCE_LEDGER.vi.md), written in Vietnamese. The 25 November 2026 review narrows its intended contribution to incremental diagnostic value; counterfactual invariance and self-generated narrative consistency already have close precedents. The current cabinet pilot needs stronger shortcut controls and human validation before it can support research claims.
 
 The [publication and compute plan](docs/PUBLICATION_PLAN.vi.md) records the journal/UEH funding checks and conditional laptop/Colab budgets as of 25 November 2026. Three [English LaTeX research shells](papers/README.md) include methods, empty result tables and evidence gates, and generate local PDF planning documents. The [development log](docs/DEVELOPMENT_LOG.md) records public project changes.
 

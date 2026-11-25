@@ -35,3 +35,32 @@ and this conversation; the Obsidian vault contains the fuller research notebook.
 - Added project instructions to continue updating the notebook after substantive
   work. All result-bearing manuscript/submission/acceptance/publication
   milestones remain unachieved.
+
+### Q3-A preparation and source audit — 25 November 2026
+
+- Retrieved 17 primary-source PDFs and documented targeted reading depth,
+  publication/preprint status, URLs, search boundaries and SHA-256 hashes in
+  `Q3_A_SOURCE_LEDGER.vi.md` and `Q3_A_SOURCES.json`. The new Undermind deep
+  search did not launch because the free allowance was exhausted.
+- Added a Vietnamese research dossier and ten advisor questions with proposed
+  answers, required evidence and claims that are not yet justified.
+- Narrowed Q3-A to incremental diagnostic value. Counterfactual invariance,
+  participant-state revision, self-generated story consistency and sequential
+  temporal scope have close precedents; novelty remains to be demonstrated.
+- Audited the pilot on base commit
+  `68e8344afeca39f339b30c404b4618bca12e9c0c`: fixed time tokens,
+  distinct-recipient chains and shared template structure leave shortcuts.
+  This session changes documentation/manuscript sources, not benchmark code.
+- Clarified rule compliance, one-time temporal evaluation, world/time indices,
+  possession versus ownership, self-event evasion and visible-history limitations.
+  Proposed no-op controls, writing-capability references and paired-difference
+  uncertainty; these extensions have not been implemented or measured here.
+- Updated the English README and Q3-A LaTeX shell; expanded shared references.
+  `python scripts/build_papers.py` passed for all three manuscripts. Final build:
+  6/5/5 pages; no undefined citations/references or overfull/underfull boxes;
+  rendered and visually inspected all 16 pages. An initial Fontconfig warning
+  was resolved for the verification invocation using the bundled fonts.conf;
+  no machine-wide settings changed. Generated PDFs remain ignored and local.
+- Created four Q3-A Obsidian notes and updated the overview, experiment plan,
+  decisions and dated development records. No human labels, scientific training
+  results, submission, acceptance or publication were added.
