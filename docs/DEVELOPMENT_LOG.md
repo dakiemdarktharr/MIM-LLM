@@ -3,6 +3,19 @@
 Dates use Asia/Ho_Chi_Minh. Entries below summarize verified repository events
 and this conversation; the Obsidian vault contains the fuller research notebook.
 
+## 2026-11-26 — Clarified the conversational model objective
+
+- Recorded the user's explicit long-term target: a MIM-based autoregressive
+  model capable of complete multi-turn chat, with early ChatGPT-style interaction
+  as an aspiration rather than a demonstrated equivalence.
+- Persisted the objective in AGENTS.md, README and a capability roadmap covering
+  general language pretraining, instruction/chat SFT and multi-turn evaluation.
+  Story/logic benchmarks and manuscript milestones remain intermediate evidence.
+- Kept the four manuscripts standalone and the three equal training caps intact.
+  Updated the Obsidian objective, project overview/roadmap and all four paper logs.
+- Documentation only: no model code, training, data, labels or editorial status
+  changed. No chat capability or scaling feasibility was established by this update.
+
 ## 2026-11-26 — Revision 3: independent studies with equal training caps
 
 - Superseded revision 2's evaluator-only A and architecture-heavy C split.

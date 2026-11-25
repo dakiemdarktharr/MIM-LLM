@@ -1,5 +1,22 @@
 # MIM-LLM project workflow
 
+## Long-term model objective
+
+The user's explicit objective, clarified on 2026-11-26, is a MIM-based
+autoregressive language model capable of complete, natural multi-turn chat,
+with early ChatGPT-style conversation as an aspirational reference. Story
+continuation and state-tracking tasks are early research instruments, not the
+final capability target. Do not substitute benchmark success or four papers
+for building and evaluating a conversational model.
+
+Keep general language learning, instruction/chat fine-tuning and multi-turn
+evaluation in the technical roadmap. Track conversational usefulness separately
+from memory/logic and publication milestones. Do not claim ChatGPT equivalence,
+general chat readiness or feasible scaling from small-model smoke tests.
+The four manuscripts remain standalone; put their internal relationship in
+project planning, not statements that one manuscript serves another.
+See `docs/PROJECT_OBJECTIVE.vi.md` for the capability and evidence gates.
+
 ## Development record
 
 The user requested a continuing Obsidian record of this project's development.

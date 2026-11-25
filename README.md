@@ -6,6 +6,21 @@ memory. The revision-3 training studies and branch-residual architecture are
 research designs, not implemented or validated results. No manuscript has been
 submitted, accepted or published.
 
+## Long-term objective
+
+Build a MIM-based autoregressive language model capable of complete, natural
+multi-turn conversation: following instructions, answering follow-up questions,
+using earlier dialogue, respecting corrections and generating coherent responses
+across topics. Early ChatGPT-style conversation is an aspirational reference,
+not a measured capability or an equivalence claim.
+
+The roadmap includes general language pretraining, supervised instruction/chat
+fine-tuning, and separate evaluations of conversational usefulness, memory,
+logic and factual reliability. Story continuation is an initial research task;
+passing it or publishing papers does not establish a capable chat model. The
+small prototypes are feasibility tools, with scaling dependent on measured
+quality and resources. See the [capability objective and gates](docs/PROJECT_OBJECTIVE.vi.md).
+
 ## Methodological starting point
 
 Memory In Memory (MIM), introduced by Yunbo Wang and colleagues at CVPR 2019,

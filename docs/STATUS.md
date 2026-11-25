@@ -3,6 +3,11 @@
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile
 labels are internal planning targets, not editorial outcomes.
 
+The long-term model goal is complete multi-turn conversation; see the
+[capability objective](PROJECT_OBJECTIVE.vi.md). General chat capability and
+early-ChatGPT-level performance have not been established. Model-capability
+milestones are separate from the publication milestones below.
+
 | Track | Drafted with results | Submitted | Accepted | Published | Next gate |
 |---|---|---|---|---|---|
 | A: selective counterfactual training | No | No | No | No | No-op versus matched lexical controls, with nontrivial transfer |

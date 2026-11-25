@@ -4,6 +4,11 @@ Ngày 25/11/2026. **Research planning; chưa có kết quả khoa học mới.**
 thế định hướng hiện hành của cả bốn bài. Các revision trước là lịch sử. Q3/Q1
 chỉ là nhãn mục tiêu nội bộ, không phải hạng của một bài đã được nhận.
 
+**Làm rõ mục tiêu ngày 26/11:** đích dài hạn là mô hình MIM-LLM hội thoại nhiều
+lượt hoàn chỉnh, không dừng ở benchmark truyện hoặc bốn bài báo. Các thiết kế
+dưới đây là nghiên cứu thành phần; xem [mục tiêu khả năng và lộ trình chat](PROJECT_OBJECTIVE.vi.md).
+Việc làm rõ này không tăng ngân sách hay thay câu hỏi/đối chứng đã định.
+
 Yêu cầu áp dụng: ba nghiên cứu Q3 đều có huấn luyện và cùng trần ngân sách;
 mỗi bản thảo tự trình bày vấn đề, tài liệu, phương pháp và bằng chứng của mình.
 Không đặt tên chương trình, nhãn quartile, mục tiêu hỗ trợ bài khác hoặc kế hoạch
