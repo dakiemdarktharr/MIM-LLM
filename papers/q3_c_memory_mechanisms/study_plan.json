@@ -1,0 +1,36 @@
+{
+  "revision": 3,
+  "status": "planning_not_implemented_not_preregistered",
+  "title": "Whose History Should a Language Model Learn From? State-Consistent Continuation from Model-Written Events",
+  "arms": [
+    "teacher_history",
+    "frozen_peer_history",
+    "frozen_self_history",
+    "teacher_self_mixture"
+  ],
+  "primary_contrast": "frozen_self_history minus frozen_peer_history",
+  "backbones": [
+    "mingru",
+    "transformer"
+  ],
+  "training_seeds": 3,
+  "pilot_targets_per_run": 2000000,
+  "confirmatory_targets_per_run": 10000000,
+  "post_training_runs": 24,
+  "actual_candidate_parameters": {
+    "mingru": 2081384,
+    "transformer": 2074320
+  },
+  "milestones": {
+    "drafted_with_results": false,
+    "submitted": false,
+    "accepted": false,
+    "published": false
+  },
+  "additional_matching_controls": [
+    "frozen-learner surprisal",
+    "history quality and event type",
+    "overlap and rejection yield"
+  ],
+  "self_origin_is_on_policy_after_training": false
+}

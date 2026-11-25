@@ -1,0 +1,57 @@
+\section{Common training and evaluation contract}
+The output is a three-to-five-sentence autoregressive continuation, not a state
+label: \(p_\theta(y\mid x)=\prod_t p_\theta(y_t\mid x,y_{<t})\). Gold event states
+are used for scoring and declared training supervision, never as an inference-time
+table supplied to the generator. A controlled prefix specifies successful updates,
+rule compliance and time/world scope. A point-in-time obligation is evaluated once;
+``must act'' entails execution only under the stated compliance assumption.
+Possession is distinct from ownership. Multiple coherent narrative choices are valid.
+
+The proposed pilot uses minGRU and a causal Transformer, each with a 512-piece
+vocabulary, two layers and three training seeds. The instantiated minGRU at width
+604 has \textbf{2,081,384} parameters; the Transformer at width 268 has
+\textbf{2,074,320}. These are measured backbone counts, not trained quality results.
+The parameter gap is approximately 0.34\%. Count any added heads separately.
+The current context of 256 was used for instantiation only; choose a common
+context that contains the complete task before training and recount any changes.
+Fit the tokenizer on training data only. TinyStories~\cite{tiny} is a candidate
+general-English warm-up corpus, subject to version/license and source checks.
+
+Four conditions, two backbones and three seeds give 24 post-training runs. The
+planning pilot caps each at two million CE targets (48M total); confirmation at
+ten million targets/run (240M) requires prior feasibility. Selection receives a
+separate 15\% cap. Six warm-up checkpoints would consume 30M targets at 5M each
+in the pilot; report immutable provenance and reuse rather than calling a reused
+checkpoint a new run. No token budget guarantees adequate writing. Freeze
+data/order/decoding/selection policy within each controlled comparison. Different
+auxiliary prefix replays or rollouts require separate processed-token and cost logs.
+Parameter matching, target-token matching and measured-compute matching are
+different conditions, not interchangeable claims.
+
+For a continuation, let A mean all mandatory propositions are correctly expressed,
+F the requested sentence format, and C a contradiction with the applicable prefix
+or generated history. Generator success is \(Y=\mathbf1[A\land F\land\neg C]\).
+Also report semantic-only success, proposition coverage, changed/preserved facts,
+omission/evasion, fluency and held-out perplexity under the same tokenizer.
+Silence is not memory success. An unmentioned fact is not automatically false.
+
+Use source-disjoint test stories with a human-authored or appropriately licensed
+subset; do not call template-generated naturalistic text human-authored. Freeze
+the primary contrast, test hashes, sampling and decoding before final selection.
+Two readers label a representative sample independently, blinded to system and
+condition; retain evidence spans, unclear cases and pre-adjudication disagreement.
+No human labels exist yet for this design. Audit automatic judgments against
+real labels rather than presuming an oracle parses free text correctly.
+Pair source-cluster resampling across conditions for 95\% intervals, retaining
+premise variants and repeated outputs together; report every training seed and
+seed variability. Sentences are not independent samples. Report naturalistic
+transfer separately, not only an aggregate dominated by controlled templates.
+
+Log actual parameters, corpus/tokenizer/model hashes, target and processed tokens,
+auxiliary targets, FLOP proxy, peak allocated/reserved VRAM, train/generation time
+and selection budget. The observed host is an RTX 5050 Laptop (8,151 MiB).
+Throughput for these new configurations, Colab credit burn and total GPU-hours
+are unmeasured. No paid API/cloud is assumed. Required implementation checks
+include causal masking, story reset, padding, tiny-batch memorization, step/full
+eval equivalence and checkpoint resume. The revised objectives/data procedures
+are proposals, not implemented by this document.

@@ -1,5 +1,8 @@
 # Q3-A — Hồ sơ nghiên cứu để chuẩn bị viết
 
+> **Historical scope:** revision 3 supersedes this design. Use [current portfolio](PORTFOLIO_V3.vi.md). Earlier reasoning and source records are retained below.
+
+
 > **Cập nhật định hướng, revision 2:** phạm vi, primary outcome và core budget bên
 > dưới là hồ sơ nghiên cứu trước lần sửa. Đề cương hiện hành nằm ở
 > [Q3-A study plan](Q3_A_STUDY_PLAN.vi.md): kiểm chứng evaluator, đối chứng checklist

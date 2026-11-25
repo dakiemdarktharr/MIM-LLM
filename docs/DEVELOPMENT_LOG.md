@@ -3,6 +3,40 @@
 Dates use Asia/Ho_Chi_Minh. Entries below summarize verified repository events
 and this conversation; the Obsidian vault contains the fuller research notebook.
 
+## 2026-11-26 — Revision 3: independent studies with equal training caps
+
+- Superseded revision 2's evaluator-only A and architecture-heavy C split.
+  All three smaller studies now train four conditions on two backbones with
+  three seeds and equal target/selection caps. Pilot post-training is 48M targets
+  per study; unique shared warm-up is counted once. Equal GPU-hour caps remain
+  unchosen until profiling; rollout/replay costs must be logged separately.
+- Rewrote four independent English manuscript shells, including a new candidate
+  branch-residual architecture shell. Removed program authorship and statements
+  that one paper supports another. Scientific bodies contain no quartile labels
+  or target-journal planning. Private integration mapping is kept in Obsidian.
+- Completed a new Undermind search: 168 candidate records, not full-text verified
+  papers. Retrieved 24 source PDFs and recorded hashes and targeted reading scope;
+  one PDF timed out and was screened through its primary metadata/abstract.
+  Crossref/OpenAlex screening was small and noisy, not an exhaustive novelty test.
+- Added strong threats and corresponding design controls: DTO/CFI, Delayed
+  Supervision, StateWise, frozen-learner surprisal/history effects, SEED,
+  TreeWY/Flide and NarraWorld. Architectural novelty remains unresolved; simple
+  low-rank state, prefix sharing, self-training or gates cannot be claimed as new.
+- Instantiated planning backbones: minGRU 2,081,384 and Transformer 2,074,320
+  parameters. These configurations were not trained/profiled. The new residual
+  architecture is unimplemented with unknown actual parameter count.
+- Updated protocol metadata only; `match_width` and model/training/evaluator
+  implementations are unchanged. The paper-tracks CLI passed. Four LaTeX builds
+  passed without warnings/undefined references/overflow; rendered and inspected
+  all 16 pages. Verified 24 source hashes, budget arithmetic and standalone content.
+- Updated the Obsidian project to 50 notes/141 resolved wikilinks, preserving
+  historical entries and adding explicit corrections, four study plans, novelty
+  audit and a private integration map. Journals remain conditional candidates;
+  no fresh full fee/quartile/funding approval was established.
+- No new model training, human labels, scientific result, paid compute, submission,
+  acceptance or publication occurred. New procedures are not train-ready.
+  See [revision-3 QA](PORTFOLIO_V3_QA.vi.md) for verification and limits.
+
 ## 2026-11-24
 
 - Initialized the public project and English research-plan README.

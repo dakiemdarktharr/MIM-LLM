@@ -1,3 +1,20 @@
+# Publication planning — revision 3 current, earlier survey archived below
+
+**25/11/2026:** Dùng [portfolio v3](PORTFOLIO_V3.vi.md) và
+[novelty audit](NOVELTY_AUDIT_V3.vi.md) cho câu hỏi và ngân sách hiện hành.
+Ba Q3 đều có 4 arms×2 backbones×3 seeds, pilot 48M post targets/bài;
+warm-up vật lý chỉ chạy một lần, reserve 15% như nhau. Không còn core A chỉ
+inference hay C chỉ là N/S/M ablation. Bốn bản thảo có nội dung độc lập,
+không gắn tên chương trình vào author và không kể mục tiêu hỗ trợ bài khác.
+Định hướng kiến trúc mới chưa được triển khai hoặc xác nhận novelty.
+
+Tuyến xuất bản 0 VND và kiểm tra SJR/JCR/active index/phí/UEH vẫn có hiệu lực.
+Những bảng budget, tên đề tài và role từ revision cũ bên dưới là **lịch sử**,
+không thay thế v3. Dữ liệu phí/hạng là bằng chứng của ngày/phạm vi tra đã ghi,
+không phải approval cá nhân hay fresh submission verification.
+
+## Khảo sát và các quyết định trước revision 3 — giữ để truy vết
+
 # MIM-LLM: đề tài, journal, tài trợ UEH và dự toán
 Ngày khảo sát: **25/11/2026**, múi giờ Việt Nam. Đây là thiết kế dự kiến; không phải bốn bài đã có kết quả. Bạn xác nhận là **sinh viên UEH, chưa có giảng viên đồng tác giả**.
 

@@ -1,0 +1,36 @@
+{
+  "revision": 3,
+  "status": "planning_not_implemented_not_preregistered",
+  "title": "Branch-Residual Nested Memory for Multi-World Language Modeling",
+  "arms": [
+    "flat_memory",
+    "full_world_copies",
+    "same_byte_unstructured",
+    "low_rank_without_anchor",
+    "branch_residual",
+    "pair_difference_control",
+    "no_nested_memory",
+    "modern_recurrence"
+  ],
+  "primary_contrast": "memory-quality frontier against full copies and same-byte controls; explicit-difference benefit tested factorially",
+  "backbones": "candidate architecture and required strong controls",
+  "training_seeds": "at least 3 pilot; confirmation chosen from validation precision",
+  "pilot_targets_per_run": null,
+  "confirmatory_targets_per_run": null,
+  "post_training_runs": null,
+  "actual_candidate_parameters": "not measured; architecture not implemented",
+  "milestones": {
+    "drafted_with_results": false,
+    "submitted": false,
+    "accepted": false,
+    "published": false
+  },
+  "novelty_gate_status": "open; requires direct SEED/TreeWY/Flide/DASC/MoDr comparisons; not established high novelty",
+  "inference_state_oracle": false,
+  "additional_required_controls": [
+    "sink/low-rank with legitimate prefix forking",
+    "text-predicted routing versus oracle diagnostic",
+    "low-rank without fork anchor",
+    "cross-world leakage with update sensitivity"
+  ]
+}

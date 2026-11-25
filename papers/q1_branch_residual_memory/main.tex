@@ -1,0 +1,157 @@
+\documentclass[11pt,a4paper]{article}
+\input{../shared/preamble}
+\title{Branch-Residual Nested Memory for Multi-World Language Modeling}
+\author{}
+\date{Research design: 25 November 2026}
+\begin{document}
+\maketitle
+\projectstatus
+\begin{abstract}
+This proposed architecture study investigates compact recurrent states for
+language generation over factual and hypothetical worlds sharing a prefix.
+A shared fork snapshot anchors learned per-world residual states, which are
+updated and read under predicted routing. The candidate instantiates the recurrent
+transition with consecutive-state differences and nested memory, while testing
+learned-pair, full-copy, unstructured-state and modern recurrent alternatives.
+The central outcome is a measured memory--quality frontier across world count,
+divergence, horizon and task domain, not a parameter-count-only advantage.
+\pending{This is an architectural research design, not an implemented model.
+Establish novelty, actual sizes, scaling evidence and limitations before making
+claims of improvement. No benchmark result or impact claim is made.}
+\end{abstract}
+
+\section{Problem and prior mechanisms}
+Multi-world continuations must preserve shared facts while separating subsequent
+state updates. Full recurrent-state copies are a strong baseline; sharing a
+prefix alone is not new. Memory in Memory~\cite{mim} supplies a change-sensitive
+nested transition and Nested LSTMs~\cite{nested} are an earlier nesting precedent.
+Neither adopting those mechanisms nor replacing image convolutions with vector
+maps establishes a new language architecture.
+
+Gated DeltaNet~\cite{gdn}, RWKV-7~\cite{rwkv7}, Kalman Delta Networks~\cite{kdn}
+and Erase-then-Delta~\cite{eda} provide strong update-rule precedents. A hidden
+state difference is not the same object as an associative prediction-error delta
+or an independently addressed erase operation. Nested Learning~\cite{hope} concerns
+nested optimization and continuum memory, not the same meaning of nesting.
+Multi-state associative memories also exist~\cite{deltamem}.
+
+DASC compresses checkpoints for prefix reuse~\cite{dasc}; MoDr uses low-rank
+parameter adapters and hard routing in depth-recurrent reasoning~\cite{modr}.
+Our candidate would instead maintain compact \emph{persistent state residuals}
+through subsequent token updates. That distinction must produce independent
+evidence, not merely rename the object being compressed. Low-rank intervention
+entry does not imply closed low-dimensional dynamics~\cite{lowrank}.
+Counterfactual token generation through a structural sampling model~\cite{cftokens}
+is distinct from reliable semantic-state separation; neither is novel by itself.
+SEED already stores recurrent state as a sink plus low-rank working
+factors~\cite{seed}. TreeWY reduces per-node state snapshots in speculative
+verification~\cite{treewy}, and Flide implements exact state forking~\cite{flide}.
+NarraWorld maintains explicit factual, belief and hypothetical graph views
+for writing~\cite{narraworld}. These are direct novelty threats: low-rank
+state, branching, and possible-world memory cannot be claimed as new separately.
+The candidate's novelty remains unresolved until its learned, text-routed
+persistent residual dynamics show value beyond these strong constructions.
+
+\section{Candidate state parameterization}
+Let s contain every recurrent component needed to resume a trajectory: hidden,
+temporal, nested, additional memory, previous lower-layer states and any routing
+scratch state. After a common prefix, retain snapshot \(s_f\). For world w, a
+schematic compressed representation is
+\[
+\hat s_{t,w}=s_f+Ur_{t,w},\qquad
+r_{t,w}=E\left(F_\theta(\hat s_{t-1,w},x_t)-s_f\right).
+\]
+U and E are shared slow parameters, and r is the complete branch residual.
+The transition F may instantiate a vector MIM-N to MIM-S cascade. Its inherited
+signal is \(\delta_t=h_t^{\ell-1}-h_{t-1}^{\ell-1}\); a learned projection of the
+same two states is information matched and can implement subtraction exactly.
+All branch-specific previous states must be included in the resumed state.
+
+Routing is predicted causally from observed tokens and generated history.
+No gold event/state table or oracle branch label is supplied at main inference.
+A fully specified implementation must define hard/soft routing, gradient estimator,
+world allocation, switch timing and decoder readout. A router-oracle experiment
+is a separately labeled diagnostic. Any world labels used for training need
+information- and cost-matched controls. These details remain implementation work;
+the equations are a research abstraction, not a train-ready module.
+
+For K worlds from a common fork, full copies use KS state values. The intended
+representation uses \(S+KR+G\), including shared snapshot S, complete residual R
+per world and routing/scratch overhead G. Measure actual precision, peak VRAM
+and temporary decompression, not only persistent tensor counts. Parameters U/E
+also count toward model size. State storage is not constant in K. Nested forks
+add snapshots; high divergence or long horizons may require large R and erase
+the advantage. Storage algebra is not a theorem about reasoning correctness.
+
+\section{Comparisons that can falsify the architecture}
+\begin{table}[ht]\centering\small
+\caption{Required baseline families before any architecture claim.}
+\begin{tabularx}{\linewidth}{lYY}\toprule
+Control & Main comparison & Confound to avoid\\\midrule
+Flat memory & Single recurrent summary & Extra state versus mechanism\\
+Full world copies & Exact branch resume, allowed prefix sharing & Weak copy baseline without caching\\
+Same-byte unstructured bank & Equal state capacity & Memory size alone\\
+Low-rank state without anchor & Shared fork contribution & Generic bottleneck regularization\\
+Random/fixed projection & Learned residual geometry & Additional trainable parameters\\
+Pair/no-N/no-S/no-M & Difference and nesting roles & Information/capacity gaps\\
+Modern recurrence/Transformer & Competitive general baselines & Calling token shift full RWKV\\
+Checkpoint compression/replay & DASC-style reference when applicable & Hiding replay compute\\
+Sink/low-rank plus forking & SEED and TreeWY/Flide-style references & Ignoring a composable strong baseline\\
+\bottomrule\end{tabularx}\end{table}
+
+Cross explicit difference versus learned-pair with factored versus flat/copy state,
+using the same training recipe first. Supervision/recipe changes are separate
+factors so an architecture gain is not an information gain. Include at least
+one correctly implemented modern recurrent family (Gated DeltaNet or RWKV-7),
+a causal Transformer and unmodified vector MIM. An existing BPE-512 vector
+MIM-LM reference has 2,081,472 measured parameters; this is \emph{not} the size
+of the unimplemented residual candidate, whose actual count is unknown.
+
+Report parameter-matched and state-byte-matched conditions separately, and a
+measured-cost comparison where feasible. Evaluate world count, branch divergence,
+horizon and rank. Main inference uses the same visible information for every
+system; no hidden extra state table or unequal context truncation is allowed.
+Router errors and state-retention errors are separate outcomes. Conditional
+bank isolation does not guarantee that routing or generated prose is correct.
+Report semantic cross-world leakage together with required-change sensitivity
+and event coverage; a state that never updates can have low leakage trivially.
+External graph memory is a separately labeled system comparison, not an
+information-matched intrinsic recurrent control.
+
+\section{Evidence and scope}
+Target at least three substantive task families: narrative continuation,
+evolving dialogue constraints, and descriptions of executable program states.
+Include newly held-out sources, human-audited prose and self-generated events
+fixed verbatim before continuation. Report required changes, retained invariants,
+world leakage, event creation, fluency, coverage and held-out perplexity.
+Use source-clustered paired intervals and every seed; select rank/router settings
+on validation and freeze budgets/test before final comparisons. A larger measured
+scale is required before broad generalization claims, subject to actual hardware
+and data feasibility. Tiny synthetic effects alone do not establish a general
+language-model advance.
+
+\begin{table}[ht]\centering\small
+\caption{Results to be populated from real runs.}
+\begin{tabularx}{\linewidth}{lYYYY}\toprule
+System & Actual parameters & State bytes / K & Quality / CI & Time / VRAM\\\midrule
+Full copies & -- & -- & -- & --\\Same-byte bank & -- & -- & -- & --\\
+Residual candidate & -- & -- & -- & --\\Pair control & -- & -- & -- & --\\
+Modern recurrent & -- & -- & -- & --\\\bottomrule\end{tabularx}\end{table}
+
+\section{Limitations, falsification and reproducibility}
+The candidate is high risk. Redesign or stop if it duplicates prior mechanisms,
+only changes cache engineering, needs oracle routing, loses useful dynamics under
+compression, or fails strong same-byte/copy controls. If learned-pair matches or
+wins, reject the claim that explicit subtraction supplies value. If compression
+helps only short low-divergence branches, report that bounded result.
+
+Before training, implement tensor/state contracts, causal full/step equivalence,
+story resets, padding, branch-switch tests, inactive-bank isolation, checkpoint
+resume and tiny-batch memorization. Document every persistent state and slow
+parameter, source/license/tokenizer hashes, measured resource budgets and run IDs.
+No paid cloud/API or unmeasured performance assumption is built into this plan.
+There is no new human annotation or architecture experiment yet. Real author,
+funding, availability, consent and tool disclosures must follow verified records.
+
+\input{references}
+\end{document}

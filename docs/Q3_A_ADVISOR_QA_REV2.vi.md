@@ -1,5 +1,8 @@
 # Q3-A — 10 câu hỏi bảo vệ đề cương revision 2
 
+> **Historical scope:** revision 3 supersedes this design. Use [current portfolio](PORTFOLIO_V3.vi.md). Earlier reasoning and source records are retained below.
+
+
 25/11/2026. Theo [đề cương hiện hành](Q3_A_STUDY_PLAN.vi.md). Đây là câu trả lời
 mẫu cho planning, không phải kết quả đã thu. Lập luận của phiên bản trước còn
 trong Git lịch sử và note Advisor-QA của Obsidian.

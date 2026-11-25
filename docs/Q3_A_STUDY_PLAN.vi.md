@@ -1,5 +1,8 @@
 # Q3-A — Đề cương điều chỉnh để chuẩn bị nộp bài
 
+> **Historical scope:** revision 3 supersedes this design. Use [current portfolio](PORTFOLIO_V3.vi.md). Earlier reasoning and source records are retained below.
+
+
 **Bản định hướng hiện hành, revision 2 — 25/11/2026.** Research planning, chưa đăng
 ký trước, chưa có dữ liệu/nhãn/kết quả mới. Bản này thay thế phạm vi và core matrix
 Q3-A trong kế hoạch đầu; các hồ sơ trước được giữ để truy vết. Không có cơ sở định

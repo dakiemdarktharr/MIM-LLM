@@ -1,245 +1,103 @@
 \documentclass[11pt,a4paper]{article}
 \input{../shared/preamble}
-\title{Evaluating Temporal State Consistency in Story Continuation:\\
-A Controlled Study of Updates, Invariance, and Omission}
-\author{MIM-LLM research program\\Author list and affiliations to be confirmed}
-\date{Research plan, revision 2: 25 November 2026}
+\title{Learning When a Premise Change Should Not Change a Story}
+\author{}
+\date{Research design: 25 November 2026}
 \begin{document}
 \maketitle
 \projectstatus
 \begin{abstract}
-This planned study evaluates how automatic evaluators distinguish legitimate
-state updates, stale-state contradictions, invariant violations, and omitted
-required consequences in short autoregressive story continuations. We compare
-a world/time grouped checklist with a strong flat checklist using the same
-proposition information and judge backbone. Controlled edits diagnose specific
-failure modes; unmodified generated prose with independent human labels supplies
-the primary evaluation. The intended outcome is validated scoring infrastructure
-for the later MIM architecture study, not a claim that MIM outperforms other models.
-\pending{Insert actual source/model counts, reliability, paired estimates,
-uncertainty and limitations after the locked analysis. No result is claimed.}
+This proposed study tests whether semantic no-op interventions teach compact
+autoregressive language models when a changed premise should leave required
+story consequences unchanged. We compare effective-only pairs, effective/no-op
+pairs, matched paraphrase controls, and an invariance-objective adaptation.
+The primary outcome is joint success on changed and preserved propositions in
+held-out multi-sentence continuations. The design separates useful selectivity
+from lexical augmentation, copying and generic avoidance.
+\pending{Replace this planning abstract with actual data, effects, uncertainty
+and conclusions after registered evaluation. No improvement is claimed.}
 \end{abstract}
 
-\section{Question, contribution, and relationship to Q1}
-The primary question is whether grouping obligations by narrative world and time
-improves semantic task-success judgments beyond a strong flat checklist, at
-matched proposition information and within the same evaluator backbone.
-The contribution must be an independently useful empirical account of evaluator
-validity, not merely a dataset or a renamed all-requirements metric.
+\section{Question and prior work}
+Counterfactual story generation and invariance are established in
+TIME TRAVEL~\cite{timetravel} and participant-state revision~\cite{pasta}.
+DTO optimizes counterfactual rewriting through a differentiable
+objective~\cite{dto}; counterfactual-invariance alignment also trains
+cross-prompt response/reward agreement~\cite{cfi}. We do not claim these ideas
+as new. The narrower question is whether training on semantic no-op changes
+improves consequence selectivity beyond matched lexical augmentation, including
+transfer outside the training templates. Invariance tests inherit behavioral
+testing principles~\cite{checklist}.
 
-The three conditional Q3 studies support the main Q1 paper. Q3-A supplies a
-validated task contract, rubric and frozen evaluator; Q3-B studies train-only
-state supervision; Q3-C studies memory mechanisms and resource-matched controls.
-Q1 tests the general value of explicit consecutive-state differencing through
-MIM-N and MIM-S. Shared data, methods and earlier findings must be disclosed and
-cited. Q1 needs new source stories after Q3-driven model selection. It need not
-wait for the Q3 manuscripts to be accepted or published.
+\section{Interventions and training conditions}
+An effective intervention changes a required consequence; a semantic no-op
+changes a premise without changing that consequence. It need not preserve every
+fact in the world. Changing power return from 8:50 to 8:55 before a 9:00 decision
+preserves the required action, whereas 8:55 to 9:05 changes it. The return time
+itself changes in both cases and may be correctly mentioned in the prose.
+Preserved propositions are time/world indexed, not permanent facts.
 
-\section{Prior work and the bounded novelty claim}
-TIME TRAVEL already studies counterfactual generation and causal
-invariance~\cite{timetravel}; Counterfactual Invariance Prediction classifies
-retained events~\cite{cip}. PASTA studies participant-state perturbations and
-story revision~\cite{pasta}. Entity tracking~\cite{entity,naturaltracking},
-ConStory-Bench~\cite{constory} and ChronoScope~\cite{chronoscope} preclude broad
-novelty claims about tracking, self-history consistency or sequential temporal
-scope. OpenMEVA already evaluates story metrics using human judgments and
-perturbations~\cite{openmeva}. CheckEval decomposes evaluation into Boolean
-checklists~\cite{checkeval}; it motivates the strong comparison arm rather than
-a weak generic judge alone. FactTrack already models validity over
-time~\cite{facttrack}. We must demonstrate incremental findings on the specific
-controlled task and transfer to unmodified outputs.
+\begin{table}[ht]\centering\small
+\caption{Four proposed training conditions, with equal target budgets.}
+\begin{tabularx}{\linewidth}{lYY}\toprule
+Arm & Training distribution/objective & Interpretation\\\midrule
+A0 & Effective intervention pairs, CE & Change-focused reference\\
+A1 & Effective plus semantic no-op pairs, CE & Consequence-level selectivity\\
+A2 & Effective plus matched paraphrase controls, CE & Lexical-diversity control\\
+A3 & A1 plus probe-span response matching & Published-invariance adaptation\\
+\bottomrule\end{tabularx}\end{table}
 
-Omission is not automatically contradiction. A contradiction detector may correctly
-find no contradiction in an incomplete answer; our question is whether using it
-alone as a proxy for complete task success is sufficient. External state and
-repair methods such as ConWriter~\cite{conwriter} are distinct from backbone-only
-generation. ScratchWorld~\cite{scratchworld}, currently a preprint, also cautions
-against allowing persistent fields to dominate changed-state evaluation.
-\pending{Complete the targeted novelty comparison and revise claims from the
-actual findings; this plan does not establish novelty.}
+The primary contrast is A1 minus A2; A0 and A3 are secondary comparisons.
+Match token exposure, source/event complexity, length and edit-distance
+distributions where possible, and report residual differences. Reweight or
+resample within a fixed source pool rather than giving A1 more training targets.
+Include named shortcuts (last-recipient, clock-only, always-change and no-change)
+to audit the development data. Keep complete template/paraphrase families and
+source stories outside training.
 
-\section{Task contract and data provenance}
-An input contains a narrative prefix and a request for a three-to-five-sentence
-continuation, generated autoregressively as
-\(p_\theta(y\mid x)=\prod_t p_\theta(y_t\mid x,y_{<t})\).
-State \(s^w_{t,k}\) is indexed by world \(w\), time \(t\) and micro-event order \(k\).
-Successful transfers update possession. Agents obey the stated rule, all prefix
-transfers precede the decision, and no alternative action defeats its premise.
-A point-in-time rule is evaluated once; exclude exact-boundary events initially
-or specify their order. An obligation alone does not imply execution without
-the compliance assumption.
+For A3, match next-token distributions only on canonical factual-probe answers
+known to be invariant, with a fixed continuation prefix. A schematic penalty is
+\(\lambda |U|^{-1}\sum_{j\in U}\operatorname{JS}(q_j,q'_j)\), where U contains
+audited unchanged obligations. Do not force an entire open-ended continuation
+to be identical: wording, timing mentions and optional plot choices can differ.
+This is a limited response-matching adaptation, not a reproduction of every
+component of the prior method. Declare extra auxiliary labels/passes and cost;
+the primary A1--A2 contrast does not depend on them.
 
-\begin{quote}\small
-Illustration, not model output: Lan passes the key to Huy, who passes it to Mai
-before 9:00. Everyone obeys the rule: at exactly 9:00 the holder opens the locked
-cabinet if power has returned, otherwise waits. Power returns at 8:55. Changing
-only 8:55 to 9:05 changes the required action and lock status at 9:00, but not
-the earlier transfer history or possession immediately before the action.
-The one-time rule does not uniquely require opening at 9:05. A ten-minute delay
-relative to the 9:05 premise means 9:15.
-\end{quote}
+\input{../shared/standalone_common}
 
-Core scope is one point-in-time trigger schema across three proposed contexts:
-access to storage, parcel handover, and equipment preparation. These are not
-three independent logical mechanisms. Include effective and no-op interventions,
-depth and recency controls, irrelevant mentions and shortcut anchors. The existing
-cabinet v0 has fixed times and distinct recipients; it is a smoke benchmark and
-does not implement the revised protocol.
+\section{Primary outcome and decisive analyses}
+For each source pair, joint success is \(Y_{\rm pair}=Y(x)Y(x')\), with mandatory
+changed and preserved propositions specified before generation. Report the
+A1--A2 paired difference, source-clustered uncertainty per seed, and separate
+changed-fact accuracy, invariant retention and no-op accuracy. Do not let many
+unchanged predicates hide failed updates. Use the same decoding policy; keep
+all failures in the denominator.
 
-\begin{table}[ht]
-\centering\small
-\caption{Provisional source plan. No item or human label has been collected for this revision.}
-\begin{tabularx}{\linewidth}{lYY}
-\toprule
-Partition & Planning size and role & Completion evidence\\
-\midrule
-Development & 24 sources; semantics, prompts and rubric & Ambiguity and shortcut audit\\
-Validation & 24 sources; feasibility and sample-size simulation & Reader time, evaluator floor, frozen selection rules\\
-Locked test & Target 96 sources, including at least 48 human-authored naturalistic sources & Licenses, source/author split, frozen hashes\\
-Controlled edits & Separate anchor-grouped diagnostic set & Independent confirmation of edit meaning\\
-\bottomrule
-\end{tabularx}
-\end{table}
+The decisive displays are selectivity trade-offs, effective/no-op confusion,
+transfer to unseen paraphrases and human-authored sources, and results against
+edit distance at controlled state-update depth. Report fluency and coverage
+alongside contradiction counts; a model that says less must not appear to
+remember more. Automatic metric validity requires human comparison~\cite{openmeva}.
 
-Two premises per test source and two generators yield 384 unmodified outputs
-at the planning target. The final source count is selected using validation-only
-precision/power and annotation cost before test lock, with a proposed cap of 192.
-This target is not evidence of adequate power. Human-authored naturalistic stories
-are distinct from uncontrolled literary text; report provenance honestly.
-Self-generated state persistence remains a conditional extension and a Q1
-requirement, rather than a claimed completed Q3-A experiment.
+\begin{table}[ht]\centering\small
+\caption{Result shell; dashes indicate missing evidence.}
+\begin{tabularx}{\linewidth}{lYYYY}\toprule
+Arm & Pair success / CI & Changed / preserved & Fluency / evasion & GPU-hours\\\midrule
+A0 & -- & -- & -- & --\\A1 & -- & -- & -- & --\\
+A2 & -- & -- & -- & --\\A3 & -- & -- & -- & --\\
+\bottomrule\end{tabularx}\end{table}
 
-\section{Evaluator comparisons and information control}
-Let \(R\) be an obligation manifest derived from the task/prefix, not the output
-under evaluation. Generators never receive gold state tables. Human gold labels
-are withheld from all automatic evaluators. The scoring use of \(R\) is separate
-from generation and does not establish intrinsic memory.
+\section{Limitations and completion criteria}
+The contribution must go beyond the tautology that no-op training improves
+no-op test items. It needs selective transfer or a generalizable failure
+principle after lexical and data-quality controls. If the effect is confined to
+a single template or explained by extra exposure, narrow the conclusion.
+No new invariance algorithm or causal-discovery ability is established by this
+design. Discuss annotation ambiguity, small-model writing limits, English-only
+scope and corpus licensing. No test sample or human reliability statistic is yet
+available. Freeze the primary analysis before opening the final test, report
+negative outcomes and publish actual author, consent and data/code declarations.
 
-\begin{table}[ht]
-\centering\small
-\caption{Planned evaluator arms; none is implemented by this document.}
-\begin{tabularx}{\linewidth}{lYY}
-\toprule
-Arm & Input and method & Interpretation\\
-\midrule
-E0 & Prefix/output, direct task-success judgment with evidence & Context-only pipeline reference\\
-E1 & Prefix/output/\(R\), strong flat Boolean checklist with evidence & CheckEval-style adaptation; primary control\\
-E2 & Same information and backbone as E1, world/time grouped checklist & Primary contrast E2 minus E1\\
-Narrow metrics & Contradiction-only or overlap diagnostics & Evaluate their stated construct, not an invented completeness objective\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-E1 must include temporal requirements and omission; do not weaken it to create
-an E2 advantage. Both arms receive the same proposition content and evidence
-requirement. Freeze prompts, parsing and selection budgets before test. Report
-actual input/output tokens and calls; a common token cap is not measured compute
-equivalence. E0 versus E1 includes extra structured information and cannot isolate
-grouping alone. Any adaptation of published code is labeled as such.
-
-Two open model families are proposed for generation and evaluator replication.
-Candidate model cards are Qwen3-1.7B and SmolLM2-1.7B-Instruct; feasibility, actual
-parameter counts, licenses, exact revisions and performance require measurement.
-The model-name sizes are nominal, not measured counts. Compare E1/E2 within each
-judge backbone and break results down by generator family to expose self-preference.
-Small evaluators do not justify conclusions about frontier models.
-
-\section{Human gold, primary outcome, and uncertainty}
-Two blinded readers independently mark required propositions, contradictions,
-unclear cases and evidence spans. Keep pre-adjudication labels, disagreements,
-prevalence and reader time. Train the rubric only on development. Neither an
-oracle nor agreement alone establishes free-text validity. Audit controlled edits
-for unintended second errors; the primary sample remains unmodified generated
-prose, not hand-selected mistakes.
-Adjudicate unclear human cases before viewing evaluator results. Report unresolved
-cases and sensitivity bounds rather than silently dropping them; withhold the
-primary claim if gold cannot be established reliably.
-
-Gold semantic success is \(y_i=1\) when all mandatory propositions are correctly
-expressed without contradiction in the applicable world/time. Fluency and sentence
-format are separate secondary outcomes. The proposed primary estimand is
-\[
- \Delta_{BA}=BA(E2)-BA(E1),\qquad
- BA(E)=\frac12\left(\frac{TP}{n_{y=1}}+\frac{TN}{n_{y=0}}\right).
-\]
-Abstentions and parse failures remain in their gold-class denominator and receive
-no true-positive/true-negative credit. If a class is absent, report BA as undefined;
-do not fill the class by selecting favorable test outputs. Report source-provenance
-strata and generator families separately as well as the declared aggregate.
-
-Resample source clusters jointly for E1/E2, retaining both premises and all
-generator outputs, and compute a 95\% interval for the paired difference.
-Judge backbones and decoding replications are reported separately; sentences
-are not independent samples. Register secondary comparisons and distinguish
-exploratory analyses. A proposed smallest effect of interest is five BA percentage
-points, to be confirmed from feasibility before registration; it is not a journal
-requirement. Failure to reject a difference does not establish equivalence.
-
-Mandatory diagnostics include false acceptance/rejection, valid-update false
-alarms, stale-state and world-mixing detection, omission, changed/invariant facts,
-format, fluency, abstention and annotation agreement. A new aggregate that rewards
-coverage by construction is not independent evidence of validity.
-\pending{Register the final sample, judge backbone, one primary contrast,
-analysis code, threshold rules and test hashes before final evaluation.}
-
-\section{Resources and deliverables}
-No new architecture training is required for the revised core. The previous
-120M-target matrix becomes a conditional Q1/Q3-C extension. MIM-LM results may
-be secondary once it can write; its reference BPE model has 2,081,472 measured
-parameters, but this count is not the size of the proposed pretrained evaluators.
-On the observed RTX 5050 Laptop (8,151 MiB), smoke-test one model at a time;
-inference throughput and Colab compute-unit burn are unmeasured. No paid API or
-cloud purchase is assumed. Report tokenizer, revisions, decoding, raw token IDs,
-VRAM, calls, time and any quantization.
-
-At 384 outputs, two readers taking two to four minutes each require a hypothetical
-25.6--51.2 person-hours, excluding controlled edits, writing, training and
-adjudication. Measure this before freezing scope. Three evaluator arms, two judge
-backbones and one call per output would require 2,304 judge calls at this target,
-before development and diagnostic runs. Measure actual calls rather than assuming
-every checklist implementation uses one. Plan eight to twelve research weeks,
-with review time separate and unknown.
-
-The result shell below describes evaluator validity, not generator superiority.
-\begin{table}[ht]
-\centering\small
-\caption{Results pending. Dashes mean missing evidence, not zero performance.}
-\begin{tabularx}{\linewidth}{lYYYY}
-\toprule
-Evaluator & Actual judge parameters & BA / 95\% CI & False accept/reject & Calls / time\\
-\midrule
-E0 direct & -- & -- & -- & --\\
-E1 flat checklist & -- & -- & -- & --\\
-E2 world/time & -- & -- & -- & --\\
-\bottomrule
-\end{tabularx}
-\end{table}
-Report the paired E2--E1 interval, error-type confusion tables, controlled versus
-unmodified output performance, provenance transfer, independent reader agreement
-and evaluator costs. The revised protocol and evaluator implementation are still
-work to perform, not completed artifacts of this plan.
-
-\section{Journal fit, stop rules, and Q1 transfer}
-The primary candidate remains \emph{Journal of Universal Computer Science},
-whose official profile states broad CS scope and a free-for-authors/readers policy.
-This is not an acceptance prediction. Fresh SCImago and full submission-guideline
-checks returned HTTP 403 during this revision; fee details, category/year, index
-and page/template requirements remain submission gates. Do not substitute the
-journal's displayed JCR categories for direct Clarivate verification.
-\emph{Journal of Language Modelling} is not an automatic fallback: it requires
-deeper linguistic insight. No UEH funding is approved.
-
-Merge or stop if labels are unstable, affordable judges remain at floor, findings
-exist only on hand-edited errors, grouping gains reflect extra information/compute,
-or there is no independent insight beyond prior evaluation work. Preserve useful
-tools for Q1 even if Q3-A is merged. A null study needs adequate precision and
-explanation; it does not automatically merit a separate publication.
-
-After validation, freeze/version the scoring protocol for Q1. Use gold state only
-at scoring in the intrinsic generation condition. Reserve new Q1 source stories
-after any Q3-driven selection; cite shared methods and earlier findings rather
-than reusing them as new results. Track drafted, submitted, accepted and published
-separately. Add genuine contributions, consent, licenses and tool disclosures;
-leave results and funding unclaimed until verified.
-\input{../shared/references}
+\input{references}
 \end{document}

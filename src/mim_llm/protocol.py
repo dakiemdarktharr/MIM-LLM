@@ -1,4 +1,4 @@
-"""Parameter matching and a fixed four-manuscript experiment map."""
+"""Parameter matching and a conditional four-study experiment map."""
 
 from __future__ import annotations
 
@@ -7,59 +7,57 @@ from typing import Any
 
 from .models import ModelConfig, build_model, parameter_count
 
-PAPER_TRACKS: dict[str, dict[str, Any]] = {
-    "q3_benchmark": {
-        "question": "Does world/time grouping improve evaluator validity beyond a strong information-matched checklist on held-out story continuations?",
-        "supports": "q1_architecture: validated task contract, frozen scoring protocol and fresh-source test design",
-        "plan_status": "revision 2; evaluator study design, not an implemented evaluator",
-        "required": [
-            "validated executable obligations",
-            "held-out source stories",
-            "two blind human readers",
-            "inter-rater agreement",
-            "generic-evasion audit",
-            "strong flat checklist with identical proposition information",
-            "primary evaluator delta on unmodified generated prose",
-            "paired source-clustered uncertainty and evaluator cost",
-        ],
-        "stop_or_merge": "Merge into Q1 evaluation if labels, evaluator capability or incremental findings cannot support an independent validity study.",
-    },
-    "q3_supervision": {
-        "supports": "q1_architecture: train-only state-label schema and supervision ablation",
-        "question": "Does training-only state supervision improve continuation consistency beyond the same backbone without it?",
-        "required": [
-            "identical corpus and tokens",
-            "state-labelled train split",
-            "no gold states during intrinsic inference",
-            "multiple seeds",
-        ],
-        "stop_or_merge": "Merge if supervision effect is too small or depends only on synthetic templates.",
-    },
-    "q3_mechanisms": {
-        "supports": "q1_architecture: N/S/M mechanisms, failure scope and resource-matched controls",
-        "question": "Which parts of vector MIM matter per parameter and per unit of compute?",
-        "required": [
-            "MIM-N/S/M ablations",
-            "pair-projection control",
-            "Delta-RNN/Nested LSTM",
-            "parameter and compute matching",
-            "failure analysis",
-        ],
-        "stop_or_merge": "Merge if the mechanism analysis is only a subset of the architecture paper.",
-    },
-    "q1_architecture": {
-        "question": "Does explicit hidden-state differencing through nested memory generalize to natural story continuation?",
-        "required": [
-            "natural licensed test stories",
-            "strong baselines",
-            "multiple seeds",
-            "blind human evaluation",
-            "resource disclosure",
-            "transfer across domains",
-        ],
-        "stop_or_merge": "Do not submit an architecture claim if the learned-pair control matches or beats it within uncertainty.",
-    },
-}
+PAPER_TRACKS: dict[str, dict[str, Any]] = {'q3_counterfactual_training': {'question': 'Do semantic no-op pairs improve selective '
+                                            'continuation beyond matched lexical controls?',
+                                'required': ['effective/no-op pairs',
+                                             'matched paraphrase control',
+                                             'published invariance adaptation',
+                                             'held-out source transfer',
+                                             'blind labels and evasion audit'],
+                                'primary_contrast': 'A1 minus A2',
+                                'post_training_runs': 24,
+                                'pilot_post_targets': 48000000,
+                                'stop_or_merge': 'Stop or redesign if gains are template-only '
+                                                 'or explained by exposure/quality.'},
+ 'q3_delayed_supervision': {'question': 'Does semantic-write interference in delayed '
+                                        'supervision transfer to generation beyond token '
+                                        'delay and QA format?',
+                            'required': ['immediate/low-write/high-write/mixed schedules',
+                                         'matched answer labels',
+                                         'disposable probes',
+                                         'measured prefix replay cost',
+                                         'continuation transfer'],
+                            'primary_contrast': 'B2 minus B1',
+                            'post_training_runs': 24,
+                            'pilot_post_targets': 48000000,
+                            'stop_or_merge': 'Stop or redesign if only probe accuracy changes '
+                                             'or timing/compute confounds remain.'},
+ 'q3_history_provenance': {'question': 'Does frozen self-origin history outperform matched '
+                                       'peer-origin history for actual-event consistency?',
+                           'required': ['frozen provenance banks',
+                                        'teacher/peer/self/mixed arms',
+                                        'quality, event and frozen-learner surprisal matching',
+                                        'parse/rejection yield',
+                                        'free-run and fixed-history panels'],
+                           'primary_contrast': 'C2 minus C1',
+                           'post_training_runs': 24,
+                           'pilot_post_targets': 48000000,
+                           'stop_or_merge': 'Stop or redesign if history quality/selection '
+                                            'explains the effect.'},
+ 'q1_branch_residual_memory': {'question': 'Do shared-fork persistent residual states improve '
+                                           'the multi-world memory-quality frontier beyond '
+                                           'full copies and strong controls?',
+                               'required': ['novelty versus SEED/TreeWY/Flide/DASC/MoDr',
+                                            'full causal state/router contract',
+                                            'full-copy and same-byte baselines',
+                                            'pair and N/S controls',
+                                            'modern recurrence',
+                                            'fresh multi-domain/scaling evidence'],
+                               'plan_status': 'candidate architecture, not implemented; '
+                                              'actual candidate parameters unknown',
+                               'stop_or_merge': 'Do not claim architectural novelty if only '
+                                                'cache reuse, oracle routing or a combination '
+                                                'of prior components explains it.'}}
 
 
 def match_width(

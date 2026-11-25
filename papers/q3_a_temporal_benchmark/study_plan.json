@@ -1,37 +1,30 @@
 {
-  "revision": 2,
-  "date": "2026-11-25",
-  "status": "design_only_not_preregistered_or_implemented",
-  "title": "Evaluating Temporal State Consistency in Story Continuation: A Controlled Study of Updates, Invariance, and Omission",
-  "canonical_plan": "docs/Q3_A_STUDY_PLAN.vi.md",
-  "supports": "q1_architecture",
-  "q1_deliverables": ["validated rubric", "frozen evaluator", "task contract", "source-clustered analysis", "new-source Q1 test protocol"],
-  "primary_question": "Does world/time grouping improve evaluator balanced accuracy over a strong flat checklist with identical proposition information and judge backbone?",
-  "primary_outcome": "paired_source_clustered_delta_balanced_accuracy_E2_minus_E1",
-  "primary_data": "unmodified generated continuations on held-out source stories",
-  "gold": "two independent blinded human readers, with disagreement retained before adjudication",
-  "gold_semantic_success": "all mandatory propositions expressed correctly and no contradiction in the relevant world and time",
-  "format_and_fluency": "separate secondary outcomes",
-  "evaluators": {
-    "E0": "direct task-success judge on prefix and output",
-    "E1": "CheckEval-style strong flat checklist with prefix, output and obligation manifest",
-    "E2": "world/time grouped checklist with the same prefix, output, propositions, judge backbone and evidence requirement as E1"
+  "revision": 3,
+  "status": "planning_not_implemented_not_preregistered",
+  "title": "Learning When a Premise Change Should Not Change a Story",
+  "arms": [
+    "effective_only",
+    "effective_plus_semantic_noop",
+    "effective_plus_paraphrase",
+    "semantic_noop_response_matching"
+  ],
+  "primary_contrast": "effective_plus_semantic_noop minus effective_plus_paraphrase",
+  "backbones": [
+    "mingru",
+    "transformer"
+  ],
+  "training_seeds": 3,
+  "pilot_targets_per_run": 2000000,
+  "confirmatory_targets_per_run": 10000000,
+  "post_training_runs": 24,
+  "actual_candidate_parameters": {
+    "mingru": 2081384,
+    "transformer": 2074320
   },
-  "abstention_policy": "retain in gold-class denominator; no true-positive or true-negative credit",
-  "undefined_class_policy": "balanced accuracy is N/A when a gold class is absent; no test-dependent class filling",
-  "planning_sources": {"development": 24, "validation": 24, "test_target": 96, "test_cap_before_lock": 192, "minimum_human_authored_at_target": 48},
-  "sample_size_status": "provisional; select using validation-based precision/power and annotation budget before test lock",
-  "planning_generators": 2,
-  "premises_per_source": 2,
-  "planning_core_outputs_at_target": 384,
-  "candidate_models_not_measured": ["Qwen/Qwen3-1.7B", "HuggingFaceTB/SmolLM2-1.7B-Instruct"],
-  "actual_parameter_counts": "not measured for candidate models; model-name size is nominal",
-  "training_required_for_core": false,
-  "old_120M_target_matrix": "optional architecture extension for Q1/Q3-C, not a Q3-A completion gate",
-  "self_event": "conditional extension after core validity; not claimed as implemented",
-  "rule_families": "one point-in-time trigger schema across three proposed narrative contexts; not three independent logic mechanisms",
-  "no_paid_api_or_cloud_by_default": true,
-  "journal_primary_candidate": "Journal of Universal Computer Science",
-  "journal_readiness": "fee statement and scope checked; fresh SCImago and full submission-page checks blocked by HTTP 403; not submission-verified",
-  "milestones": {"result_bearing_draft": false, "submitted": false, "accepted": false, "published": false}
+  "milestones": {
+    "drafted_with_results": false,
+    "submitted": false,
+    "accepted": false,
+    "published": false
+  }
 }

@@ -1,142 +1,111 @@
 \documentclass[11pt,a4paper]{article}
 \input{../shared/preamble}
-\title{Which Recurrent Memories Matter?\\A Controlled Study of Vector MIM for Story Continuation}
-\author{MIM-LLM research program\\Author list and affiliations to be confirmed}
-\date{Research plan: 25 November 2026}
+\title{Whose History Should a Language Model Learn From? State-Consistent Continuation from Model-Written Events}
+\author{}
+\date{Research design: 25 November 2026}
 \begin{document}
 \maketitle
 \projectstatus
 \begin{abstract}
-This planned study isolates the roles of the non-stationary, stationary and
-additional memory paths in a vector adaptation of Memory in Memory for language
-modeling. It compares ablations with a control that sees both consecutive hidden
-states and can learn their difference. The study will quantify consistency,
-writing quality and measured resource costs rather than infer architectural
-value from parameter count alone.
-\pending{Populate actual models, counts, corpus, seeds, effects and uncertainty;
-report the conclusion even if simpler controls win.}
+This planned study tests the provenance of histories used to train state-consistent
+continuation. We compare teacher histories, frozen peer-model histories,
+histories from the learner's own frozen initialization, and a fixed teacher/self
+mixture. Training targets respect events actually written in the prefix.
+The primary comparison isolates self-origin versus peer-origin histories after
+source, event type, difficulty and validity controls. Evaluation includes both
+fixed-history continuation and free-running generation with verbatim frozen
+first segments, with explicit accounting for generic avoidance and parser failure.
+\pending{Insert actual history-bank provenance, acceptance yield, human labels,
+effects and uncertainty. No self-training benefit is yet established.}
 \end{abstract}
 
-\section{Question and distinct scope}
-Which of MIM-N, MIM-S and the additional zigzag memory \(M\) contributes useful
-continuation behavior under a small-model budget? Are observed differences due
-to transition bias, capacity or extra compute? The independent contribution
-must be a mechanistic or efficiency finding, not a second publication of the
-Q1 study's main system ranking.
+\section{Question and prior work}
+Distribution shift under model-produced histories is established in imitation
+learning~\cite{dagger}, scheduled sampling~\cite{scheduled} and training/sampling
+dynamics~\cite{professor}. StateWise already combines typed-state supervision,
+filtered self-training and preferences against relapse~\cite{statewise}.
+FactTrack addresses time-aware facts~\cite{facttrack}, while ConStory-Bench
+evaluates self-generated narrative consistency~\cite{constory}.
+We do not claim these tasks or recipes as new. The question is whether the
+source of a frozen history bank matters beyond its quality and difficulty,
+when training and scoring honor the actual event the model chose.
+Recognition of model-origin histories and surprise-dependent output entropy
+already have direct evidence~\cite{enaction}; assistant-history interventions
+also change later behavior~\cite{historyeffects}. Neither an entropy decrease
+nor origin recognition alone establishes improved semantic memory.
 
-MIM originated in video prediction~\cite{mim}; nesting already exists in
-Nested LSTMs~\cite{nested}. Delta-RNN~\cite{delta} uses gated recurrent updates,
-and minGRU~\cite{mingru} provides an input-gated recurrent control.
-Adapting these cells to token vectors does not by itself demonstrate a new
-language capability.
+\section{History banks and four training conditions}
+Freeze initialization checkpoints and history banks before post-training.
+``Self-origin'' refers to the learner's initial checkpoint, not its changing
+policy after updates. This experiment is not an on-policy or DAgger algorithm.
+An online-refresh extension would require separate identification and cost controls.
 
-\section{Vector mechanism and ablation definition}
-Let \(u_t=h_t^{\ell-1}\), \(v_t=h_{t-1}^{\ell-1}\). The explicit MIM signal is
-\(\delta_t=u_t-v_t\), followed by MIM-N and MIM-S:
-\[
- D_t=\operatorname{MIMN}(\delta_t,N_{t-1}),\qquad
- T_t=\operatorname{MIMS}(D_t,C_{t-1},S_{t-1}),\qquad
- C_t=T_t+i_t\odot g_t .
-\]
-The outer hidden output combines \(C_t\) with the optional zigzag \(M_t\).
-The first layer is the vector ST-LSTM analogue. All states have shape
-\([B,d]\), and the first difference signal is zero.
-This is a vector language-model variant of the original convolutional model;
-it is not an exact replication of video experiments.
+\begin{table}[ht]\centering\small
+\caption{Proposed roll-in sources; all use consistent suffix targets.}
+\begin{tabularx}{\linewidth}{lYY}\toprule
+Arm & History bank & Contrast purpose\\\midrule
+C0 & Teacher-authored/controlled prose & Clean reference\\
+C1 & Frozen peer checkpoint & Model-generated but other-origin\\
+C2 & Learner's frozen initialization & Self-origin history\\
+C3 & Fixed teacher/self mixture & Diversity/stability trade-off\\
+\bottomrule\end{tabularx}\end{table}
 
-The information-matched control uses
-\[
- \delta_t^{\rm pair}=W[u_t;v_t]+b.
-\]
-Setting \(W=[I,-I]\) and \(b=0\) represents subtraction exactly.
-Therefore any benefit of explicit differencing concerns inductive bias or
-optimization under the specified budget, not access to more input information.
+For example, a first segment may put a key in a drawer or a bag. The suffix
+target must honor that actual choice, rather than substitute a teacher's old
+intention. In controlled training data, only unambiguous audited events receive
+oracle/parser labels. Record rejection, parse and validity rates by source;
+never select only attractive self outputs while retaining all peer outputs.
+Match source stories, event types, update counts, length, semantic difficulty
+and coverage before comparing provenance. If matching fails, report the
+confound and do not claim a causal provenance effect.
+Also match or stratify frozen-learner history surprisal, with overlap and
+acceptance yield reported. Lack of overlap limits identification rather than
+licensing selective removal of unfavorable histories. Separate logical
+consistency changes from entropy or style shifts.
 
-\begin{table}[ht]
-\centering\small
-\caption{Core mechanism matrix and the function changed in each arm.}
-\begin{tabularx}{\linewidth}{lYY}
-\toprule
-Arm & What is retained or replaced & Interpretation constraint\\
-\midrule
-MIM-LM & N, S, C, vector M & Reference variant\\
-Without N & Direct projection of difference & Capacity/cost rematched\\
-Without S & Direct projection of D and old C & Capacity/cost rematched\\
-Without M & Remove vector zigzag memory & Tests image-memory adaptation\\
-Learned pair & Affine projection of both states & Can learn subtraction\\
-Delta-RNN & Gated recurrent interpolation & Different use of delta\\
-Nested LSTM & Inner recurrent memory & Nesting control\\
-minGRU & Input-only gates and scan & Modern recurrent efficiency\\
-\bottomrule
-\end{tabularx}
-\end{table}
+Use identical target-token and selection caps across arms. All generation,
+filtering and suffix-label construction costs are logged separately. A checker
+that produces labels cannot validate itself: audit its reading against independent
+human judgments, including naturally generated errors, negation and ambiguity.
+The eventual free-text evaluation must retain items the training parser cannot
+read, with unclear-case handling rather than a favorable restricted denominator.
 
-The core matrix has eight arms and three seeds at ten million targets per run,
-or 240 million targets before selection and compute-matched follow-ups.
-A direct/cascade comparison needs at least three layers; two layers make those
-higher-layer paths equivalent. Treat that comparison as a separate registered
-extension. The token-shift GRU, if added, is not a full RWKV model.
+\input{../shared/standalone_common}
 
-\section{Experiments that discriminate explanations}
-Use parameter-adjusted widths and a separate measured-time experiment. Profile
-each arm on the intended context and hardware before allocating a cost budget.
-Include an overwrite-depth stress test and a fixed-depth length test.
-Compare named failure types, state-probe dynamics and gradient/optimization
-diagnostics. Hidden-state plots are descriptive; causal claims need interventions.
-A planned state reset or memory erasure intervention must preserve the input
-sequence, identify the affected state and include a matched control intervention.
-\pending{Implement and test any intervention before calling it an available result.}
+\section{Primary outcome and two evaluation panels}
+In the free-run panel, the model writes a first segment, which is fixed as raw
+text and token IDs before a further continuation. Let E mean that the first
+segment introduces a clear new persistent state-changing event. The primary
+unconditional outcome is success on the required continuation with E, valid
+prefix behavior and no contradiction. No-event and generic outputs receive no
+memory-success credit. An initially incorrect event is not repaired merely by
+remaining consistent with it later. The primary contrast is C2 minus C1.
 
-Keep state supervision off in the core intrinsic-memory comparison.
-If retained as a separate factorial extension, label its additional information
-and compute. Do not introduce an inference-time gold state table.
+A shared, frozen-history panel gives every arm the same source-specific first
+segment and separates continuation errors from differences in initial writing.
+Report event-creation rate, conditional consistency among valid new events,
+unconditional pipeline success, fluency, ambiguity and coverage. Reading the
+whole visible history establishes behavioral use of context, not a proof that
+a particular hidden recurrent state stores the fact.
 
-\input{../shared/evaluation}
+\begin{table}[ht]\centering\small
+\caption{Pending evidence; report history matching and yield alongside scores.}
+\begin{tabularx}{\linewidth}{lYYYY}\toprule
+Arm & Unconditional / CI & New-event / conditional & Fixed-history panel & Train / rollout time\\\midrule
+C0 & -- & -- & -- & --\\C1 & -- & -- & -- & --\\
+C2 & -- & -- & -- & --\\C3 & -- & -- & -- & --\\
+\bottomrule\end{tabularx}\end{table}
 
-\section{Results and decision figures}
-\begin{table}[ht]
-\centering\small
-\caption{Main ablation shell. Populate from immutable run and annotation records.}
-\begin{tabularx}{\linewidth}{lYYYY}
-\toprule
-Arm & Actual P/gap & Primary/CI & Fluency/PPL & Time/VRAM\\
-\midrule
-MIM-LM & -- & -- & -- & --\\
-Without N / S / M & -- & -- & -- & --\\
-Learned pair & -- & -- & -- & --\\
-Delta-RNN & -- & -- & -- & --\\
-Nested LSTM & -- & -- & -- & --\\
-minGRU & -- & -- & -- & --\\
-\bottomrule
-\end{tabularx}
-\end{table}
-The decisive figure is consistency against measured GPU-hours, accompanied by
-coverage and fluency; it must not hide an advantage obtained by writing generic
-text. A second figure shows the effect of each memory path versus overwrite
-depth. Report every seed and residual parameter/compute gaps.
-\pending{Replace the combined no-N/no-S/no-M row with three real rows, include
-cost-matched outcomes, and discuss stable versus seed-sensitive effects.}
+\section{Limitations and completion criteria}
+Self-generated data alone is not a new method. A contribution requires a
+provenance-specific finding or failure principle beyond data quality, parser
+selection and format effects. If warm-up models cannot produce clear events,
+stop at feasibility rather than relabel teacher prose as self-generated.
+Discuss changes in learner distribution after the frozen bank, limited model
+families, selection bias, English-only scope and human annotation cost. No
+history bank, labels or new training outcome has been collected for this design.
+Report negative results and incomplete matching; publish genuine authorship,
+licenses, consent and tool disclosures from actual records.
 
-If the pair control ties or wins, report that explicit subtraction is not beneficial
-under the tested conditions. If \(M\) can be removed without loss, discuss the
-limited transfer of image-oriented memory. If benefits vanish after matching
-compute, narrow the claim to that budget-dependent observation.
-
-\section{Venue, limitations, and completion gate}
-The primary candidate is \emph{Journal of Universal Computer Science}, with
-\emph{Inteligencia Artificial} conditional on a fresh index/rank check.
-Both have official free-author publication statements; submission format and
-article type must be rechecked. Journal acceptance and UEH funding are separate.
-
-A Q1 architecture paper would need broader natural-story replication, scale and
-strong baseline evidence. This Q3 study may stand alone if it explains which
-memory paths matter and why. Merge it if it contains only the Q1 ablation table.
-Small synthetic effects, missing cost measurements, weak fluency, or unstable
-reader judgments are reasons to repair or stop, not to repeat searches for a
-favorable seed.
-
-\pending{Insert actual authorship, approved funding, licenses, reader protocol,
-conflicts and AI-assistance declaration. Rewrite abstract, discussion and
-conclusion from the completed evidence and adopt the final journal template.}
-\input{../shared/references}
+\input{references}
 \end{document}

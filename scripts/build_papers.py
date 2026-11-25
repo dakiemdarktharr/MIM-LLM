@@ -1,4 +1,4 @@
-"""Compile the three planned manuscripts and reject broken references/overflow."""
+"""Compile four standalone planning manuscripts and reject broken references/overflow."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ PROJECTS = {
     "q3-a": "q3_a_temporal_benchmark",
     "q3-b": "q3_b_state_supervision",
     "q3-c": "q3_c_memory_mechanisms",
+    "q1": "q1_branch_residual_memory",
 }
 
 

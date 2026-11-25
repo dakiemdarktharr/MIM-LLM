@@ -45,3 +45,7 @@ SCImago và full submission page trả HTTP 403, nên fresh quartile, phí phụ
 độ dài/template chưa đủ xác minh. Không có funding hay editorial approval mới.
 Không có bảo đảm xác suất chấp nhận cao nhất. PDF chỉ lưu cục bộ; không rewrite
 Git history. SHA sau push ghi trong nhật ký Obsidian.
+# Historical verification — superseded scope
+
+Revision 3 is current; see [the current plan](PORTFOLIO_V3.vi.md) and
+[current QA](PORTFOLIO_V3_QA.vi.md). Assertions below describe revision 2 only.

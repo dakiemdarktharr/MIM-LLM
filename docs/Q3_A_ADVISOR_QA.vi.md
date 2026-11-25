@@ -1,5 +1,8 @@
 # Q3-A — 10 câu hỏi khó và câu trả lời để bảo vệ đề cương
 
+> **Historical scope:** revision 3 supersedes this design. Use [current portfolio](PORTFOLIO_V3.vi.md). Earlier reasoning and source records are retained below.
+
+
 > **Sau revision 2:** xem [đề cương hiện hành](Q3_A_STUDY_PLAN.vi.md). Q3-A hiện là
 > nghiên cứu kiểm chứng evaluator để phục vụ Q1; primary là E2−E1 balanced accuracy
 > đối chiếu nhãn người, không phải điểm của generator. Các câu trả lời dưới đây

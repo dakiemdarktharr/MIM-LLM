@@ -1,51 +1,39 @@
-# Planned Q3 manuscript shells
+# Standalone manuscript designs
 
-The three English manuscripts are research plans with explicit missing-evidence fields.
-Their aims, experiments, primary metric, empty result tables, interpretation branches,
-ethics and independent-contribution gates are drafted. They are not result-bearing drafts
-or submissions. The Q1 question and all four budgets are in
-[the Vietnamese publication plan](../docs/PUBLICATION_PLAN.vi.md).
+Four English planning drafts contain independent questions, related work,
+methods, result shells and falsification criteria. Author fields are empty.
+No program attribution, quartile goal or statement of supporting a future paper
+appears in the scientific manuscripts. No result-bearing draft or publication exists.
 
-- q3_a_temporal_benchmark/main.tex: temporal scope, overwrites and counterfactual invariance.
-- q3_b_state_supervision/main.tex: training-only state supervision.
-- q3_c_memory_mechanisms/main.tex: N/S/M ablations and resource efficiency.
+| Source directory | Current question |
+|---|---|
+| `q3_a_temporal_benchmark` | Semantic no-op training versus matched lexical controls |
+| `q3_b_state_supervision` | Token delay versus intervening semantic updates |
+| `q3_c_memory_mechanisms` | Frozen self-origin versus peer-origin history provenance |
+| `q1_branch_residual_memory` | Shared-fork residual states versus strong memory-budget controls |
 
-The projects use shared files in shared/. Keep the entire papers/ tree together.
-The neutral article style is deliberate while the target journal remains conditional.
-Switch to the verified current journal style at submission. Do not insert an unapproved
-funding statement or authors who have not contributed.
+Older directory slugs are retained as stable paths; revision 3 supersedes their
+old scopes. Each directory has main.tex, references.tex and design-only
+study_plan.json. Keep the papers/ tree together for shared source inputs.
 
-## Compile
+See [current design](../docs/PORTFOLIO_V3.vi.md),
+[novelty audit](../docs/NOVELTY_AUDIT_V3.vi.md) and
+[resource manifest](portfolio_v3.json). Shared initialization reuse is disclosed
+and counted once in physical compute, rather than fabricated as extra training.
 
-From D:\MIM:
+## Build
 
-~~~powershell
-python scripts/build_papers.py
-~~~
+Run `python scripts/build_papers.py` with Tectonic available. Four PDFs and the
+diagnostic JSON are produced in output/pdf/; successful PDFs are copied to local
+draft.pdf files. All generated PDFs are Git-ignored. Commit LaTeX/Markdown/JSON
+and QA, not generated PDFs. Rendering and claim verification remain separate.
+Adopt a verified journal template only when ready to submit.
 
-This uses Tectonic, emits the three PDFs and a diagnostic JSON under output/pdf/,
-and copies each successful PDF to draft.pdf beside its main.tex source.
-PDF build outputs are kept locally and excluded from Git. Commit the LaTeX sources
-and verification notes when updating a manuscript shell.
-The script rejects compile errors, undefined citations/references and overfull boxes.
-It does not verify scientific claims or visual layout. Inspect the rendered pages too.
-The Codex app editor can open each main.tex for editing; the terminal build is the
-verified export path for this version.
+## Completion gates
 
-## Before calling a paper complete
-
-1. Finalize and license the source-story data; audit labels and source disjointness.
-2. Register the primary contrast, sample precision, selection budget and decoding.
-3. Verify the needed benchmark/model extensions; current code is a prototype.
-4. Train the declared seeds; preserve immutable run IDs, tokenizer/corpus hashes and costs.
-5. Collect real independent human labels in Vietnam if pursuing UEH support, adjudicate
-   disagreements, and report agreement before adjudication.
-6. Populate the empty tables from checked evidence; rewrite abstract, discussion and
-   conclusion to match actual findings, including negative findings.
-7. Check distinct contribution, overlap with other MIM-LLM manuscripts, journal policy,
-   active indexing, fees, quartile/year/category, authorship and institutional eligibility.
-8. Compile and inspect again in the final journal template.
-
-Data and numerical results do not automatically complete the scientific interpretation.
-No existing shared test can be repeatedly treated as unseen while choosing a later
-architecture. Use a new held-out source tranche or freeze all choices before opening it.
+Implement and test the new data/objective/history/architecture procedures; audit
+licenses, source splits and labels; establish writing feasibility; preregister
+contrasts and budgets; lock tests; train declared seeds; collect genuine blinded
+human judgments; report negatives/unclear cases; and populate results from actual
+logs. Disclose shared artifacts and prior results without republishing them as
+new. Drafted/submitted/accepted/published are tracked separately.

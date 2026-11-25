@@ -1,0 +1,30 @@
+{
+  "revision": 3,
+  "status": "planning_not_implemented_not_preregistered",
+  "title": "Tokens or State Changes? A Controlled Study of Delayed Supervision for Compact Language Models",
+  "arms": [
+    "immediate",
+    "token_delay_low_write",
+    "matched_token_delay_high_write",
+    "fixed_mixture"
+  ],
+  "primary_contrast": "matched_token_delay_high_write minus token_delay_low_write",
+  "backbones": [
+    "mingru",
+    "transformer"
+  ],
+  "training_seeds": 3,
+  "pilot_targets_per_run": 2000000,
+  "confirmatory_targets_per_run": 10000000,
+  "post_training_runs": 24,
+  "actual_candidate_parameters": {
+    "mingru": 2081384,
+    "transformer": 2074320
+  },
+  "milestones": {
+    "drafted_with_results": false,
+    "submitted": false,
+    "accepted": false,
+    "published": false
+  }
+}

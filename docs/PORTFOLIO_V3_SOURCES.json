@@ -1,0 +1,350 @@
+{
+  "retrieved_on": "2026-11-25",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "successful_pdfs": 24,
+  "failed_pdf_attempts": [
+    "enaction"
+  ],
+  "reading_scope": "targeted; no exhaustive novelty guarantee",
+  "pdfs": [
+    {
+      "key": "bias",
+      "title": "On the Induction Bias in Sequence Models",
+      "url": "https://arxiv.org/pdf/2602.18333v2",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 19,
+      "ok": true,
+      "sha256": "82ae0533c7fc618be06cd3e9f3e995231ef4fea27d5a463121fa66e78ea12fe7"
+    },
+    {
+      "key": "cfi",
+      "title": "Aligning Language Models Towards Counterfactual Invariance",
+      "url": "https://arxiv.org/pdf/2610.22942v1",
+      "retrieved": "2026-11-25",
+      "reading": "Targeted Section 3 formulation/objectives",
+      "pages": 32,
+      "ok": true,
+      "sha256": "7d6612f33e76d0f5e920970b19709c89132bfe27abf98471c9335c05174597ad"
+    },
+    {
+      "key": "code",
+      "title": "Learning State-Tracking from Code Using Linear RNNs",
+      "url": "https://arxiv.org/pdf/2602.14814v3",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 18,
+      "ok": true,
+      "sha256": "a3358cc0a71b500caac3773c05650556481c6bc0e8f4f265079b1d1c101e03b2"
+    },
+    {
+      "key": "commitment",
+      "title": "State commitment learning",
+      "url": "https://arxiv.org/pdf/2606.05201v1",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 17,
+      "ok": true,
+      "sha256": "8612fa17a60264a49f9b0c43b0efe93e805516c07637f827a36c97f696eb9eca"
+    },
+    {
+      "key": "dagger",
+      "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+      "url": "https://proceedings.mlr.press/v15/ross11a/ross11a.pdf",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 9,
+      "ok": true,
+      "sha256": "17bdd6e049e64f09010b322f9e2d4fb5c744c33ff7ac99b4c4561e39bd9082a7"
+    },
+    {
+      "key": "dasc",
+      "title": "DASC",
+      "url": "https://arxiv.org/pdf/2608.30386v2",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 23,
+      "ok": true,
+      "sha256": "168f498d5ceea386d89c58b04ae9a073367db466c137b6c444791990d3fa3f80"
+    },
+    {
+      "key": "delayed",
+      "title": "Delayed Supervision for Test-Time Language Models",
+      "url": "https://arxiv.org/pdf/2609.32312v1",
+      "retrieved": "2026-11-25",
+      "reading": "Targeted Sections 2-3 and limitations",
+      "pages": 11,
+      "ok": true,
+      "sha256": "ff0445a8ea2809cfe6d26169d298ecb31e82937c03c3b9e17fe40d67482f8758"
+    },
+    {
+      "key": "dto",
+      "title": "DTO",
+      "url": "https://arxiv.org/pdf/2605.24885v1",
+      "retrieved": "2026-11-25",
+      "reading": "Targeted Method III and objective",
+      "pages": 11,
+      "ok": true,
+      "sha256": "0a0624bbd51926ce72a69fb3c0b1396e44ccd8aca3c2939c71073420b32717f6"
+    },
+    {
+      "key": "eda",
+      "title": "Erase-then-Delta Attention",
+      "url": "https://arxiv.org/pdf/2606.26560v1",
+      "retrieved": "2026-11-25",
+      "reading": "Targeted Sections 3.2-3.3 update rules",
+      "pages": 14,
+      "ok": true,
+      "sha256": "da3b979c3dff711a6dffb5edd659e443887205fe279efc28b46f2e2f124cf087"
+    },
+    {
+      "key": "enaction",
+      "title": "From Simulation to Enaction",
+      "url": "https://arxiv.org/pdf/2605.25459v1",
+      "retrieved": "2026-11-25",
+      "reading": "Primary arXiv metadata/abstract; PDF timeout, no full-text reading",
+      "ok": false,
+      "error": "HTTPSConnectionPool(host='arxiv.org', port=443): Read timed out."
+    },
+    {
+      "key": "flide",
+      "title": "Flide",
+      "url": "https://arxiv.org/pdf/2610.42148v1",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 20,
+      "ok": true,
+      "sha256": "f38d29a43734c0b93600609c794c345efc3db7fc0453dceefa6ec77cf49a87e1"
+    },
+    {
+      "key": "gdn",
+      "title": "Gated Delta Networks",
+      "url": "https://arxiv.org/pdf/2412.06464v3",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 22,
+      "ok": true,
+      "sha256": "55f84f2ae9c4e52ff494bfa699499867f5e9e17514994ac71de43888363a5fb9"
+    },
+    {
+      "key": "historyeffects",
+      "title": "What if LLMs Ate Their Words",
+      "url": "https://arxiv.org/pdf/2609.05882v1",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 11,
+      "ok": true,
+      "sha256": "59076b41c962477d01d17d759335f9322df47dc0842886ce80c139c240ce4f92"
+    },
+    {
+      "key": "kdn",
+      "title": "Kalman Delta Networks",
+      "url": "https://arxiv.org/pdf/2609.07816v2",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 26,
+      "ok": true,
+      "sha256": "a19a7f2ccb6d0317d982cf9063ad0bda8e19ca96b8e1a5a89c164fb972bd3047"
+    },
+    {
+      "key": "lowrank",
+      "title": "Low-Rank Dynamics-Effective Latent Carriers",
+      "url": "https://arxiv.org/pdf/2608.15156v4",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 54,
+      "ok": true,
+      "sha256": "1872812cb9f104e24f9fcfef1e61724829f6e9ae5eff7c16b457f707bd45f8e7"
+    },
+    {
+      "key": "modr",
+      "title": "MoDr: Mixture-of-Depth-Recurrent Transformers for Test-Time Reasoning",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8a81180649011d1690e05c68bfeaa57c-Paper-Conference.pdf",
+      "retrieved": "2026-11-25",
+      "reading": "Official abstract and Section 3 parameter-branch overview",
+      "pages": 24,
+      "ok": true,
+      "sha256": "31b33e298fc9e4635db85342e3262083e5aa0e41839f66fd25681ee0dbc49419"
+    },
+    {
+      "key": "narraworld",
+      "title": "Shared Worlds, Private Minds",
+      "url": "https://arxiv.org/pdf/2609.32401v1",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 34,
+      "ok": true,
+      "sha256": "99d487a97ac59d732a10e035f373d4b9fe1a29a73238d46c893c4459ecce71f5"
+    },
+    {
+      "key": "nestedlearning",
+      "title": "Nested Learning",
+      "url": "https://arxiv.org/pdf/2512.24695v1",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 52,
+      "ok": true,
+      "sha256": "e87a9ce82ff24e96f55b83fb9713a5d6fc9e4a1a232c12d42da49c10022ed891"
+    },
+    {
+      "key": "rwkv7",
+      "title": "RWKV-7",
+      "url": "https://arxiv.org/pdf/2503.14456v1",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 56,
+      "ok": true,
+      "sha256": "ef37143843f0fa7c556bceb93847337cf31b0f3edff4e229e8813302f115fa60"
+    },
+    {
+      "key": "scheduled",
+      "title": "Scheduled Sampling",
+      "url": "https://arxiv.org/pdf/1506.03099v3",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 9,
+      "ok": true,
+      "sha256": "9769df7150c7686237a2e709fa4fc004bfa03636a8329c9c1fd5c60163cfb00c"
+    },
+    {
+      "key": "schemamem",
+      "title": "SchemaMem",
+      "url": "https://arxiv.org/pdf/2609.33436v1",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 24,
+      "ok": true,
+      "sha256": "b59f3b37933b608d4a3e0f981b58a7ee0084a464bea2d5b1293fdefe90c11187"
+    },
+    {
+      "key": "seed",
+      "title": "Shallow Encoding Emits Deep Memories",
+      "url": "https://arxiv.org/pdf/2611.06084v1",
+      "retrieved": "2026-11-25",
+      "reading": "Pinned PDF abstract and sink/factor update overview; no proof verification",
+      "pages": 47,
+      "ok": true,
+      "sha256": "4c3e9c29db2acbfa2218bfd957b093cacb2037114988f19c85b2ac46709d786e"
+    },
+    {
+      "key": "stateicml",
+      "title": "(How) Do Language Models Track State?",
+      "url": "https://raw.githubusercontent.com/mlresearch/v267/main/assets/li25r/li25r.pdf",
+      "retrieved": "2026-11-25",
+      "reading": "Metadata, abstract/introduction or overview; not a full-text audit",
+      "pages": 24,
+      "ok": true,
+      "sha256": "2d9865e72de0ef9af34d4bfaef9f0aa717e177625b7f5d343d91ae0ea58c8dd2"
+    },
+    {
+      "key": "statewise",
+      "title": "StateWise",
+      "url": "https://arxiv.org/pdf/2610.33766v1",
+      "retrieved": "2026-11-25",
+      "reading": "Targeted task and Sections 3-4",
+      "pages": 13,
+      "ok": true,
+      "sha256": "f52a13ac25fc30986456930ebf904fe2ba4fbc14a373562bef9ede9926cae540"
+    },
+    {
+      "key": "treewy",
+      "title": "TreeWY",
+      "url": "https://arxiv.org/pdf/2608.20961v2",
+      "retrieved": "2026-11-25",
+      "reading": "Pinned PDF abstract and background/update form",
+      "pages": 10,
+      "ok": true,
+      "sha256": "5abb4a37ded0d90223f48b6c179c69b9c9200ed9eb91a9d803e3a3c25c0ce80a"
+    }
+  ],
+  "undermind": {
+    "name": "Selective recurrent memory and state-consistent generation",
+    "status": "completed",
+    "finished_on": "2026-11-25",
+    "candidate_records": 168,
+    "summary_basis": "abstracts and metadata; not full-text verification",
+    "url": "https://app.undermind.ai/projects/ac70a7c0-70cf-4069-ad90-eb7860bbad1c?path=/Selective%20recurrent%20memory%20and%20state-consistent%20generation",
+    "initial_limit": "Launch blocked before 14:00 UTC, succeeded after reset at 21:00 Vietnam"
+  },
+  "metadata_screening": [
+    {
+      "source": "Crossref",
+      "query": "counterfactual recurrent state memory language models",
+      "url": "https://api.crossref.org/works?query=counterfactual+recurrent+state+memory+language+models&rows=3&select=DOI%2Ctitle%2Ctype%2Cpublished",
+      "status": "ok",
+      "items": [
+        {
+          "DOI": "10.2139/ssrn.6210024",
+          "title": [
+            "Counterfactual Divergence Singularity: A Theoretical Model of High-Similarity Instability and Micro-Counterfactual Drift in Large Language Models"
+          ],
+          "type": "posted-content",
+          "published": {
+            "date-parts": [
+              [
+                2026
+              ]
+            ]
+          }
+        },
+        {
+          "DOI": "10.21203/rs.3.rs-8368276/v1",
+          "title": [
+            "Counterfactual Divergence Singularity: A Theoretical Model of High-Similarity Instability and Micro-Counterfactual Drift in Large Language Models"
+          ],
+          "type": "posted-content",
+          "published": {
+            "date-parts": [
+              [
+                2025,
+                12,
+                17
+              ]
+            ]
+          }
+        },
+        {
+          "DOI": "10.2139/ssrn.5286005",
+          "title": [
+            "Interpreting Public Sentiment in Diplomacy Events: A Counterfactual Analysis Framework Using Large Language Models"
+          ],
+          "type": "posted-content",
+          "published": {
+            "date-parts": [
+              [
+                2025
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "source": "OpenAlex",
+      "query": "counterfactual recurrent state memory language models",
+      "url": "https://api.openalex.org/works?search=counterfactual+recurrent+state+memory+language+models&per-page=3&select=id%2Ctitle%2Cdoi%2Cpublication_year",
+      "status": "ok",
+      "items": [
+        {
+          "id": "https://openalex.org/W7239394497",
+          "title": "GlanceNav: Efficient Vision-and-Language Navigation with Streaming Memory and Counterfactual Rewind",
+          "doi": "https://doi.org/10.48550/arxiv.2611.30900",
+          "publication_year": 2026
+        },
+        {
+          "id": "https://openalex.org/W4402671677",
+          "title": "Competition of Mechanisms: Tracing How Language Models Handle Facts and Counterfactuals",
+          "doi": "https://doi.org/10.18653/v1/2024.acl-long.458",
+          "publication_year": 2024
+        },
+        {
+          "id": "https://openalex.org/W4213374550",
+          "title": "Counterfactual Thought",
+          "doi": "https://doi.org/10.1146/annurev-psych-122414-033249",
+          "publication_year": 2015
+        }
+      ]
+    }
+  ],
+  "verification_completed_on": "2026-11-26"
+}

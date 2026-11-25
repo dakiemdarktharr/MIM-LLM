@@ -1,76 +1,107 @@
 # MIM-LLM
 
-**Status: research planning and tested code prototype.** This repository is a software-only research program on autoregressive story continuation. It contains executable model, data, evaluation and annotation code. It contains no validated benchmark result, submitted manuscript, accepted paper, or publication.
+**Status: research planning with a tested legacy code prototype.** This software-only
+project studies autoregressive story continuation and recurrent language-model
+memory. The revision-3 training studies and branch-residual architecture are
+research designs, not implemented or validated results. No manuscript has been
+submitted, accepted or published.
 
-## Research question
+## Methodological starting point
 
-MIM-LLM investigates whether the **Memory In Memory (MIM)** mechanism introduced by Yunbo Wang and colleagues for video prediction at CVPR 2019 can improve the logical consistency of a small next-token language model. The original [paper](https://arxiv.org/abs/1811.07490) and [author code](https://github.com/Yunbo426/MIM) are the methodological starting points, not contributions of this project.
+Memory In Memory (MIM), introduced by Yunbo Wang and colleagues at CVPR 2019,
+uses consecutive lower-layer state differences and nested memories for video
+prediction. The original [paper](https://arxiv.org/abs/1811.07490) and
+[author code](https://github.com/Yunbo426/MIM) are prior work. A vector adaptation
+alone does not establish a novel language architecture.
 
-The prototype is called **MIM-LM**. The reference byte-token model with width 192 and two layers has **1,984,320 trainable parameters**; the tested 512-piece BPE configuration at that width has **2,081,472**. These are actual counts for those configurations, not claims about accuracy. Each run records its own count, tokenizer and corpus hashes, training tokens, rough FLOP proxy, allocated/reserved VRAM, throughput and GPU-hours.
-
-**Hypothesis.** Under matched input information and training resources, explicitly differencing consecutive lower-layer hidden states and passing that signal through MIM-N and MIM-S will reduce contradictions in generated continuations, particularly after repeated state changes and when actual and counterfactual situations must remain separate. A strong alternative is that a learned projection of the *pair* of consecutive hidden states, or a simpler recurrent model, will do as well or better. The experiments will test both possibilities and report negative results.
+The implemented prototype is called **MIM-LM**. Its width-192, two-layer byte
+configuration has **1,984,320** trainable parameters; the tested BPE-512 version
+has **2,081,472**. These are actual counts for the legacy prototype. The proposed
+branch-residual model is not implemented and has no measured parameter count.
 
 ## Task and illustrative example
 
-The input is a story prefix plus an instruction to continue it. The target output is **three to five natural sentences** that may express temporal, causal, conditional, or counterfactual relations. Single-name answers are useful component probes, but they are not the target task.
+The target is a **three-to-five-sentence natural continuation**, with writing
+quality assessed separately from logical consistency. Single-name/state answers
+are component probes only. Preserve multiple valid narrative choices and facts
+the model itself introduces.
 
-> **Illustrative input, not a model result.** A cabinet is locked. Lan gives the key to Huy, and Huy passes it to Mai before 9:00. At exactly 9:00, whoever holds the key must open the cabinet if electricity has returned; otherwise they must wait. Everyone obeys this rule, which is evaluated once at 9:00, and the cabinet stays locked until then. Electricity returns at 8:55. Continue the scene and explain what would differ if it returned ten minutes later.
+> **Illustration, not a model result.** A cabinet is locked. Lan gives its key to
+> Huy, who passes it to Mai before 9:00. Everyone obeys the one-time rule: at
+> exactly 9:00 the holder opens the cabinet if power has returned, otherwise waits.
+> The cabinet stays locked until then. Power returns at 8:55.
 >
-> **One valid illustrative continuation, not a model result.** At 9:00, Mai opens the cabinet because she holds the key and power has returned. She puts the key in a drawer. When Lan asks for it, Mai points her to that drawer. If power had returned at 9:05, the cabinet would still have been locked at 9:00; Mai would have had to wait.
+> **One valid continuation, not a model result.** At 9:00 Mai opens the cabinet
+> because power has returned. She puts the key in a drawer. When Lan asks for it,
+> Mai points to that drawer. If power had returned at 9:05, Mai would have waited
+> and the cabinet would still have been locked at 9:00.
 
-The model may choose another coherent place for the key. Evaluation must respect facts the model itself adds. A paired test changes only `8:55` to `9:05`: the cabinet-opening event at 9:00 must change, while the transfer history and Mai's possession immediately before the required action remain true. The one-time rule does not by itself require opening at 9:05. In the 9:05 premise, “ten minutes later” refers to 9:15.
+Changing only 8:55 to 9:05 changes the required 9:00 action, while the earlier
+transfers and possession immediately before the action remain true. Changing
+8:50 to 8:55 is a no-op for that action, although the observed power-return time
+does change. The one-time rule does not uniquely require opening at 9:05.
 
-## Planned model
+## Four standalone study designs
 
-```text
-tokens → embedding → base recurrent layer → MIM-N(Δ hidden state)
-       → MIM-S(temporal memory) → recurrent output → LM head → next-token logits
-```
+1. **Learning When a Premise Change Should Not Change a Story:** semantic no-op
+   training versus matched lexical controls and an invariance adaptation.
+2. **Tokens or State Changes?** token delay versus semantic-write interference
+   under matched supervision and explicit processing-cost controls.
+3. **Whose History Should a Language Model Learn From?** frozen self-origin
+   versus peer-origin/teacher histories with event-quality and selection controls.
+4. **Branch-Residual Nested Memory for Multi-World Language Modeling:** a candidate
+   shared-fork state and compressed per-world residual architecture, tested against
+   full copies, same-byte controls, learned-pair and modern recurrent alternatives.
 
-The original MIM uses convolutional ST-LSTM cells and an additional zigzag spatiotemporal memory for image sequences. Replacing image convolutions with vector projections is **our language-model variant**. The implemented `mim_no_m` ablation removes the vector analogue of the zigzag memory; `difference_mode=direct` and `cascade` test two higher-layer difference paths. This is not a faithful reproduction of the video model. The [equation-to-code map](docs/RESEARCH.md) identifies what was inherited and changed.
+These are conditional hypotheses, not established novelty or publication claims.
+The three training studies each plan four arms, two backbones and three seeds,
+with equal token/selection caps and equal GPU-hour caps chosen after profiling.
+The instantiated BPE-512 minGRU has **2,081,384** parameters (width 604); the
+Transformer has **2,074,320** (width 268). New-configuration throughput and writing
+quality are unmeasured. A pilot allocates 48M post-training targets per study,
+with shared warm-up counted once and a separate 15% selection reserve.
 
-## Code and reproducibility
+See the [current design and budgets](docs/PORTFOLIO_V3.vi.md),
+[adversarial novelty audit](docs/NOVELTY_AUDIT_V3.vi.md),
+[planning manifest](papers/portfolio_v3.json),
+[manuscript source guide](papers/README.md), and [status](docs/STATUS.md).
+The planning notes are in Vietnamese; the four manuscript shells are in English.
 
-The package implements MIM-LM, MIM-N/MIM-S/M ablations, a two-state learned-projection control, LSTM, Nested LSTM, GRU, minGRU, Delta-RNN, a small causal Transformer and a token-shift GRU control. The last control is **not** full RWKV. A byte tokenizer and train-only-fitted SentencePiece BPE are available. Synthetic overwrite-depth pairs have an executable oracle and content lock; TinyStories can be streamed as a bounded, pinned subset. Story-level split checks, next-token training, checkpoint resume, generation, held-out perplexity, blinded two-reader packets and source-pair bootstrap scoring are included.
+## Existing code and verification
 
-See the [Windows runbook](docs/RUNBOOK.md), [technical protocol](docs/METHODS.md), [research and novelty map](docs/RESEARCH.md), and [manuscript status](docs/STATUS.md). `mimlm paper-tracks` prints the conditional experiment gates. The synthetic pilot and small smoke runs are **not** evidence of scientific superiority.
+The earlier PyTorch prototype implements vector MIM, N/S/M ablations, a learned
+projection of both consecutive states, LSTM, Nested LSTM, GRU, minGRU, Delta-RNN,
+a small causal Transformer and a token-shift GRU. Token-shift GRU is **not** full
+RWKV. Tokenization, training/resume and a synthetic smoke benchmark exist.
+They do not implement the new paired-training, delayed-probe, history-bank or
+branch-residual procedures. See the [runbook](docs/RUNBOOK.md) and
+[original mechanism map](docs/RESEARCH.md) for their verified scope.
 
-The Q3-A preparation package includes an earlier [research dossier](docs/Q3_A_RESEARCH_DOSSIER.vi.md), [ten current advisor questions and proposed answers](docs/Q3_A_ADVISOR_QA_REV2.vi.md), and an [auditable source ledger](docs/Q3_A_SOURCE_LEDGER.vi.md), written in Vietnamese. The 25 November 2026 review narrows its intended contribution to incremental diagnostic value; counterfactual invariance and self-generated narrative consistency already have close precedents. The current cabinet pilot needs stronger shortcut controls and human validation before it can support research claims.
+Keep tokenizers, source splits, input information, training exposure and decoding
+controlled. Report actual parameters, state bytes, FLOP estimates, measured time,
+VRAM and selection budget. Validate free-text scoring with real blinded labels;
+score coverage/evasion as well as contradictions. Gold state tables are for
+scoring at intrinsic-memory inference, not extra generator input. Freeze tests
+before final configuration selection and report every seed and negative result.
 
-The current [Q3-A study plan, revision 2](docs/Q3_A_STUDY_PLAN.vi.md) focuses on evaluator validation. It compares a world/time grouped evaluator with a strong flat checklist using the same proposition information and judge backbone. The core is inference-first; the earlier 120M-target training matrix is an optional architecture extension. This is a proposed study, not an implemented or validated evaluator.
+## Next evidence gates
 
-The [publication and compute plan](docs/PUBLICATION_PLAN.vi.md) records the journal/UEH funding checks and conditional laptop/Colab budgets as of 25 November 2026. Three [English LaTeX research shells](papers/README.md) include methods, empty result tables and evidence gates, and generate local PDF planning documents. The [development log](docs/DEVELOPMENT_LOG.md) records public project changes.
+Audit novelty, data rights and semantics; establish writing and annotation
+feasibility; profile the actual GPU; implement and test each new procedure;
+preregister contrasts and resource caps; then run the balanced pilots. Scale the
+architecture only if strong controls and memory-quality trade-offs justify it.
+Directions may be revised, merged or stopped. Reused artifacts and prior findings
+must be disclosed and cited, without presenting an old result table as new.
 
-## Evaluation plan
+The publication budget is 0 VND; paid cloud or API use is not assumed. Journal
+fees, active indexing and subject/year-specific quartiles need fresh verification.
+Drafted, submitted, accepted and published remain separate milestones.
 
-- Compare LSTM, Nested LSTM, a small Transformer, a suitable modern recurrent baseline, full MIM-LM, MIM-N/MIM-S ablations, and a key control that receives both consecutive hidden states and learns a mixing or projection function. A token-shift-only control will be named as such, rather than called a full RWKV model.
-- Match tokenizer, corpus, train/validation split, training-token budget, and decoding policy. Report both near-parameter-matched and near-compute-matched comparisons where they differ.
-- Pre-register the primary measure: the fraction of continuations satisfying all required propositions without contradicting their actual generated history. Also report coverage, contradiction type, fluency, held-out perplexity, per-seed results, and uncertainty grouped by source story or paired story.
-- Evaluate self-generated events by fixing the model's first continuation verbatim, then asking it to continue again. Record whether it avoids concrete events or writes only generic text. Use blinded human review on a representative sample; human labels will never be fabricated.
-- Keep gold state tables for scoring intrinsic-memory experiments at inference. State supervision during training will be a separately labeled ablation.
+## Verified engineering outputs
 
-## Conditional publication roadmap
+- Public repository and research plans exist.
+- The legacy prototype was smoke-tested on the actual **RTX 5050 Laptop GPU
+  (8,151 MiB reported by nvidia-smi)**; this machine has no RTX 3060 installed.
+- No scientific or editorial outcome has been established.
 
-These are **working manuscript directions**, not publication claims. Each requires an independent question and sufficient evidence; directions may be revised, merged, or stopped.
-
-1. **Q3-A — Temporal state evaluation:** validate scoring of legitimate updates, stale states, invariant violations and omitted consequences; supply a frozen rubric/evaluator and task contract for Q1.
-2. **Q3-B — State supervision versus intrinsic memory:** test whether explicit state supervision at training changes consistency and generalization compared with unassisted recurrent memory.
-3. **Q3-C — Recurrent memory mechanisms under local compute limits:** analyze MIM-N/MIM-S ablations, learned-pair controls, efficiency, and failure modes.
-4. **Q1 — MIM-LM architecture study:** submit only if rigorous, resource-matched evidence demonstrates a broadly relevant contribution beyond the component studies. It need not wait for the other manuscripts.
-
-For every manuscript, track **drafted**, **submitted**, **accepted**, and **published** as separate, evidence-backed milestones. Journal fit, fees, indexing, and subject-specific quartiles must be checked again at submission. The publication budget is 0 VND; no paid API or cloud GPU is assumed.
-
-The three Q3 studies support the Q1 architecture paper through validated evaluation (A), train-only supervision evidence (B), and mechanism/compute evidence (C). Shared artifacts and prior findings must be disclosed and cited. Q1 needs new held-out source stories after any Q3-driven model selection; Q3 results cannot be repackaged as new Q1 results.
-
-## Next steps
-
-1. Expand the synthetic pilot into a licensed human-authored story subset and validate the annotation protocol with two blind readers.
-2. Use the actual laptop GPU to measure sustained throughput and memory at the intended corpus size, then set a feasible token and seed budget.
-3. Run the strongest matched comparison first: MIM-LM versus the learned projection of two consecutive hidden states. Freeze the test set before final configuration selection.
-4. Add wider baselines and ablations only if the first comparison and evaluation protocol warrant them. Report negative or inconclusive effects.
-
-## Achievements
-
-- Public repository and research plan initialized.
-- A PyTorch prototype and reproducibility pipeline were implemented and smoke-tested on Windows with the machine's **RTX 5050 Laptop GPU (8,151 MiB reported by `nvidia-smi`)**. This machine does not have an RTX 3060 installed.
-- No scientific or editorial outcome has yet been established.
+Generated PDFs remain local and ignored by Git; version source and QA records.

@@ -1,143 +1,103 @@
 \documentclass[11pt,a4paper]{article}
 \input{../shared/preamble}
-\title{Training-Only State Supervision for Consistent\\Short Story Continuation}
-\author{MIM-LLM research program\\Author list and affiliations to be confirmed}
-\date{Research plan: 25 November 2026}
+\title{Tokens or State Changes? A Controlled Study of Delayed Supervision for Compact Language Models}
+\author{}
+\date{Research design: 25 November 2026}
 \begin{document}
 \maketitle
 \projectstatus
 \begin{abstract}
-This study is designed to measure whether supervising a small language model's
-internal state during training improves multi-sentence continuation without gold
-states at inference. We compare identical backbones with and without an auxiliary
-state loss, test transfer beyond the labeled templates, and evaluate logical
-consistency separately from writing quality. The design distinguishes gains from
-additional labels, capacity and training compute.
-\pending{Insert actual data sources, parameters, seeds, effect estimates and
-intervals. No benefit is claimed before experiments.}
+This planned study separates token delay from semantic-update interference in
+training compact language models. Four supervision schedules share event-language
+data and matched answer-label budgets: immediate probes, delayed probes with few
+intervening state changes, matched token delays with many state changes, and a
+fixed mixture. Evaluation asks whether any benefit transfers from short probe
+answers to coherent multi-sentence continuation. Additional prefix processing,
+answer formatting and token exposure are accounted for explicitly.
+\pending{Insert actual datasets, model counts, effects, intervals and limits
+after validation and registered experiments. No supervision benefit is claimed.}
 \end{abstract}
 
-\section{Question, prior work, and contribution boundary}
-Does a training-only state objective improve continuation consistency on unseen
-source stories and rule forms? Is any gain specific to MIM-LM or also present in
-a simpler backbone? This is a supervision question; it is not the architecture
-claim of the planned Q1 study.
+\section{Question and related work}
+Delayed supervision already trains later access to simulator-grounded
+facts~\cite{delayed}. Its reported comparisons do not isolate delay from QA,
+termination supervision and extra computation. State-reveal code traces~\cite{code},
+latent-situation supervision~\cite{latent}, permutation mechanisms~\cite{stateicml}
+and data-efficiency comparisons across supervision regimes~\cite{bias} further
+limit broad novelty claims. We investigate a controlled distinction between
+token distance and intervening semantic writes, and whether it matters for
+generation rather than only component probes. More seeds or a new backbone
+alone would not establish an independent contribution.
+SchemaMem also studies selective updates and delayed retrieval in a
+schema-indexed recurrent architecture~\cite{schemamem}; our question concerns
+the supervision schedule, not a first solution to delayed state access.
 
-Latent-situation language modeling~\cite{latent}, participant-state
-inference~\cite{pasta}, and entity tracking~\cite{entity} are prior art.
-The proposed new evidence concerns repeated overwrites, actual/counterfactual
-separation and preservation of self-written events under a controlled small-model
-training budget. Merely adding a state head is not enough novelty.
+\section{Training schedules and label validity}
+For each relevant fact, record the last supporting update, token delay
+\(D_{\rm tok}\), and number of intervening successful state-changing events
+\(D_{\rm write}\). A retention answer must remain valid through the delay;
+a revised answer is the latest value, with delay measured from its last relevant
+revision. Balance question types and answer classes across conditions.
 
-\section{Training objective and state representation}
-With token sequence \(w\) and training-only state targets \(z_t\), optimize
+\begin{table}[ht]\centering\small
+\caption{Schedules on a shared event corpus.}
+\begin{tabularx}{\linewidth}{lYY}\toprule
+Arm & Probe placement & Main control\\\midrule
+B0 & Immediately after relevant evidence & QA/answer-format reference\\
+B1 & Long token delay, few intervening writes & Distance with low semantic interference\\
+B2 & Matched token-delay bands, many other-entity writes & Semantic interference in supervision\\
+B3 & Preregistered B1/B2 mixture & Training-schedule diversity\\
+\bottomrule\end{tabularx}\end{table}
+
+The event LM corpus remains the same; only probe placement/selection differs.
+Question-answer probes run on disposable branches so their answers never enter
+the continuing event stream. Use ordinary LM-head answer targets, including a
+matched EOS policy, with no gold state table at deployment. The objective is
 \[
- \mathcal{L}(\theta,\phi)=
- -\frac{1}{N}\sum_t\log p_\theta(w_{t+1}\mid w_{\leq t})
- +\lambda\left[-\frac{1}{|\mathcal{I}|}
- \sum_{t\in\mathcal{I}}\log q_\phi(z_t\mid h_t)\right].
+\mathcal L=\mathcal L_{\rm event}+\lambda\mathcal L_{\rm answer},\qquad
+\mathcal L_{\rm answer}= -|\mathcal I|^{-1}\sum_{j\in\mathcal I}
+ |a_j|^{-1}\log p_\theta(a_j\mid x_{\le t_j},q_j).
 \]
-Here \(\mathcal{I}\) contains labeled input positions; an unlabeled or padded
-position is excluded from the second sum. Labels describe state after consuming
-the current input token. State tables are never supplied to the model at inference.
-A scorer may use gold tables after generation.
+State schema, question inventory and answer targets are controlled, not invented
+from a model's prediction. Match answer-target counts and report event-token
+exposure. Longer auxiliary prefixes change processed tokens and gradient spans:
+they are measured confounds, not free supervision. A measured-compute replication
+needs its own predeclared cap. Specify detach/resume behavior; do not silently
+truncate the evidence-to-probe gradient and still claim training distant writes.
 
-The existing repository supports one categorical state label per token. Its smoke
-labels encode the current key-holder role. Multiple predicates, time-scoped values
-and separate actual/hypothetical worlds require an audited label schema and,
-if needed, an explicitly tested extension to several heads. That extension is not
-an already completed experiment.
-\pending{Define schema, ambiguity rules, annotation provenance, source-disjoint
-splits and exact alignment from UTF-8 byte boundaries to BPE token ends.}
+\input{../shared/standalone_common}
 
-\section{Factorial design and controls}
-The initial matrix is two backbones (MIM-LM and LSTM), two arms
-(\(\lambda=0\) and a validation-selected \(\lambda>0\)), and three seeds.
-With ten million target tokens per run, the core total is
-\(2\times2\times3\times10^7=120\) million tokens.
-The LM-only arm retains an identical-sized unused head when reporting the
-same-backbone comparison; report both total and actively updated parameters.
-The data, token order, initialization policy and stopping rule are shared.
+\section{Primary contrast and transfer}
+The primary contrast is B2 minus B1 on continuation success at held-out
+delay/write-density conditions. Immediate versus delayed and the mixture are
+secondary. Cross token delay with semantic-write load at evaluation, controlling
+length and recency. Questions about current states remain component tests;
+they do not replace three-to-five-sentence generation.
 
-\begin{table}[ht]
-\centering\small
-\caption{Required controls and what each comparison can establish.}
-\begin{tabularx}{\linewidth}{lYY}
-\toprule
-Comparison & Purpose & Remaining confound to report\\
-\midrule
-Same backbone, loss off/on & Added state information & Extra backward work\\
-Fixed token budget & Equal language exposure & Unequal GPU time\\
-Fixed measured compute & Efficiency & Unequal token exposure\\
-Train-only shuffled-label diagnostic & Semantic information versus auxiliary loss &
-Additional runs need a declared budget\\
-Natural and unseen-rule transfer & Beyond annotation grammar &
-Domain and label distribution changes\\
-\bottomrule
-\end{tabularx}
-\end{table}
+Report whether improvements survive answer-format controls, naturalistic source
+transfer and compute accounting. A separate plot relates probe success to
+continuation success without treating correlation as proof of internal storage.
+Report optimization failures and confidence intervals, including cases where
+probe accuracy improves while writing or semantic coverage does not.
 
-Choose \(\lambda\) and a small selection budget on validation before locking test.
-Do not tune a large grid separately for the supervised arm. A shuffled-label
-control, if run, must not replace the real main comparison. Do not count higher
-probe accuracy as better writing without continuation evidence.
-\pending{Specify lambda candidates, selection tokens, loss normalization,
-state-class frequencies and a compute-matched replication budget.}
+\begin{table}[ht]\centering\small
+\caption{Planned evidence table, currently empty.}
+\begin{tabularx}{\linewidth}{lYYYY}\toprule
+Arm & Continuation / CI & Probe / format & Processed / target tokens & Time / VRAM\\\midrule
+B0 & -- & -- & -- & --\\B1 & -- & -- & -- & --\\
+B2 & -- & -- & -- & --\\B3 & -- & -- & -- & --\\
+\bottomrule\end{tabularx}\end{table}
 
-\input{../shared/evaluation}
+\section{Limitations and completion criteria}
+An effect cannot be called the pure causal effect of time if semantic content,
+label validity or processing cost differs. A useful study resolves a named
+confound with transfer evidence or a sufficiently precise negative result;
+simply adding an auxiliary head is insufficient. Model limitations, supervision
+noise, window resets and English-only data restrict conclusions. No new labels,
+reliability measurement or trained result exists for this design. Audit probe
+branches, source splits, byte/BPE alignment and future-token causality before
+final training. Add genuine authorship, data licenses, consent and disclosures,
+and rewrite claims from completed evidence.
 
-\section{Results, interpretation, and decisive displays}
-\begin{table}[ht]
-\centering\small
-\caption{Result shell. Each row must identify actual parameters and all seeds.}
-\begin{tabularx}{\linewidth}{lYYYY}
-\toprule
-Backbone/arm & Primary/CI & Coverage/evasion & Fluency/PPL & GPU-hours\\
-\midrule
-LSTM, LM only & -- & -- & -- & --\\
-LSTM, state loss & -- & -- & -- & --\\
-MIM-LM, LM only & -- & -- & -- & --\\
-MIM-LM, state loss & -- & -- & -- & --\\
-\bottomrule
-\end{tabularx}
-\end{table}
-The main figure will show the paired supervised-minus-unsupervised difference
-by overwrite depth and source type. A second figure will relate state-probe
-accuracy to consistency without asserting causation from correlation.
-Include an annotation-quality table and a supervised-label error audit.
-\pending{Insert real tables, source-clustered intervals per seed, seed variation,
-head parameter counts and cost.}
-
-A positive conclusion needs improved continuation consistency that survives
-coverage, fluency, cost disclosure and unseen sources. A null or negative result
-should distinguish unsuccessful optimization, noisy labels and genuine absence
-of a useful supervision effect. If every system fails to produce natural
-three-to-five-sentence output, first repair the language/instruction learning stage.
-
-\section{Journal fit and independent contribution}
-The empirical AI candidate is \emph{Inteligencia Artificial} (IBERAMIA),
-with \emph{Journal of Universal Computer Science} as an alternative.
-The former has an explicit no-fees policy, but its current SJR category and
-Scopus status must be checked directly before selecting it. Its displayed
-2025 JCR value is Q4 in ESCI, not an SCIE Q3 route.
-A journal's SJR category does not determine UEH's funding tier.
-
-Write this paper only if it contributes an independent finding about training
-information and transfer. Merge it into the architecture paper if the evidence
-is only one routine auxiliary-head ablation. Do not duplicate its central result
-table as a new contribution elsewhere; cite any earlier manuscript and disclose
-shared data, code and experiments.
-
-\section{Limitations and completion checklist}
-Discuss label cost, ambiguity, training-test mismatch, English-only scope and
-window resets. Natural stories and human judgments require checked licenses,
-consent as applicable, independent readers, and an appropriate ethics procedure.
-Collect primary judgments in Vietnam if seeking UEH support.
-\pending{Verify author contributions, institutional eligibility, approved funding,
-data availability, conflicts, and the venue's AI-assistance disclosure.}
-Completion requires audited train labels, a locked natural test, controlled
-same-backbone experiments, all seeds, actual compute and a conclusion supported
-by these results. Rewrite the abstract and discussion after seeing evidence;
-do not prewrite a claim of improvement.
-\input{../shared/references}
+\input{references}
 \end{document}

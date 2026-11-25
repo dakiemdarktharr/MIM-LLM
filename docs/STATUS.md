@@ -1,19 +1,25 @@
 # Evidence-backed manuscript status
 
-As of 2026-11-25 (Asia/Ho_Chi_Minh), all four items are **conditional research directions**. A draft, submission, acceptance and publication are distinct milestones and require separate evidence.
+As of 2026-11-26, revision 3 defines four standalone research directions. Quartile
+labels are internal planning targets, not editorial outcomes.
 
-| Track | Drafted | Submitted | Accepted | Published | Next evidence gate |
-| --- | --- | --- | --- | --- | --- |
-| Q3-A evaluator validation | No | No | No | No | Strong information-matched checklist comparison, held-out generated prose and independent human labels |
-| Q3-B state supervision | No | No | No | No | Train-only state labels and multi-seed matched ablation |
-| Q3-C mechanisms | No | No | No | No | N/S/M/pair/Delta-RNN comparisons with parameter and compute budgets |
-| Q1 architecture | No | No | No | No | Replicated natural-story benefit beyond the learned-pair control |
+| Track | Drafted with results | Submitted | Accepted | Published | Next gate |
+|---|---|---|---|---|---|
+| A: selective counterfactual training | No | No | No | No | No-op versus matched lexical controls, with nontrivial transfer |
+| B: delayed supervision | No | No | No | No | Isolate token/write interference and label/compute confounds |
+| C: history provenance | No | No | No | No | Matched frozen histories and actual-event continuation labels |
+| Branch-residual architecture | No | No | No | No | Novelty versus SEED/TreeWY/Flide/DASC/MoDr; full-state implementation and memory-quality evidence |
 
-Code, synthetic examples, tiny smoke runs and a public repository are engineering outputs, not paper results. A direction can be merged or stopped if its independent contribution fails. Journal quartile, mandatory author fees, indexing and acceptance must be rechecked with primary sources at submission; none is claimed here.
+Four standalone English planning shells exist with empty authors and independent
+questions. New revision-3 procedures are not implemented by those documents.
+Historical prototype tests cover only the older implementation.
+See [current portfolio](PORTFOLIO_V3.vi.md) and [novelty audit](NOVELTY_AUDIT_V3.vi.md).
+The evaluator-only A and mechanism-only C scopes from earlier revisions are
+historical. Three training studies now have equal pilot/confirmation caps.
+Actual backbone counts were instantiated; throughput, writing quality, Colab
+cost and human reliability for the new design remain unmeasured.
 
-On 25 November 2026, English LaTeX research shells for Q3-A/B/C were created and compiled. These planning shells do not change the result-bearing manuscript milestones above. The journal, UEH eligibility and compute survey is in PUBLICATION_PLAN.vi.md; the student currently has no UEH staff coauthor, so funding eligibility has not been established.
-
-Revision 2 narrows Q3-A to evaluator validation supporting Q1; see Q3_A_STUDY_PLAN.vi.md.
-Its inference-first core replaces the earlier mandatory 120M-target training matrix.
-Q3-B and Q3-C continue to support Q1 through supervision and mechanism evidence.
-No proposed evaluator extension, new human label or scientific result is implied.
+No paid compute, labels, new scientific results or funding approval occurred.
+Journal scope, active indexing, fee details and subject/year-specific quartiles
+remain submission gates. Shared tests cannot repeatedly be called unseen after
+configuration selection. Preserve immutable artifact provenance and disclose reuse.
