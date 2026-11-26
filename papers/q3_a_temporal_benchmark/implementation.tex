@@ -1,154 +1,236 @@
 \section{Operational data and model specification}
-The prepared controlled corpus contains 6,000 training source groups, 400
-validation groups and 400 test groups, each with base, effective, no-op and
-surface-control variants. These are project-generated templates, not human-authored
-stories. Exact duplicate base prompts are rejected during generation. Test
-integrity is hashed before model selection; this is not a preregistration claim.
-Two surface renderers are used in training and distinct renderers in validation
-and test. Surface separation does not establish transfer to new semantic domains.
+The controlled corpus contains 6,000 training source groups, 400 validation
+and 400 test groups. Each has a base world, an effective intervention, a
+semantic no-op and a numeric nuisance variant. The corpus consists of
+project-generated templates, not human-authored stories. Exact duplicate base
+prompts are rejected. Training uses two surface renderers; validation and test
+use distinct renderers. Different renderers do not establish semantic-domain
+transfer or freedom from learned lexical shortcuts.
 
-Each source has one to six successful key transfers, a decision time, a power
-return time and an opening-permission condition. Some sources also contain
-explicitly cancelled transfer plans, which do not change possession. The
-decision is evaluated once, assuming stated rule compliance. Power available
-exactly at the decision satisfies the condition; missing permission still
-requires waiting. An effective variant changes either power timing or permission
-so the required action changes. A no-op shifts power timing within the same
-decision region. The return time changes even when the required action does not.
-No later opening is uniquely entailed by the one-time rule. Prompts close the
-relevant handover, permission and power timeline through the decision and ask
-for that decision before optional later events; invented earlier changes do
-not invalidate a mandatory fact by changing the stipulated premise.
+Each source contains one to six completed key transfers, optionally a cancelled
+transfer plan, and a one-time decision governed by power and permission. All
+handover and prerequisite information is stipulated complete through the
+decision. The continuation must describe that decision before adding later
+events. It must state the current holder, required action, cabinet state and
+a sufficient reason in three to five natural sentences. A valid waiting reason
+need not enumerate every satisfied prerequisite. Optional later events may vary;
+no unique reference wording or later opening is required.
 
-Each required continuation has three to five sentences expressing the key
-holder, decision action, cabinet state at that time and a sufficient valid
-reason. Applicable state facts are distinct from mandatory mentions: a waiting
-explanation need not enumerate every satisfied prerequisite. Multiple coherent
-optional details are permitted. Generation sees the prose prefix and instruction;
-gold tables and probe answers are not supplied at inference.
+The oracle defines power returning exactly at the decision as available.
+However, the current generator does not sample equality at that boundary:
+base return times are four to fifteen minutes before or after the decision,
+and no-ops add one minute. Sources without permission have early power;
+simultaneous power and permission failures are absent. Thus this version does
+not test general conjunction reasoning or every form of semantic no-op.
+\pending{Before primary post-training, either limit claims to this support or
+register a separate boundary/multiple-blocker challenge with a rubric accepting
+all sufficient reasons. Preserve the existing locked test.}
 
-The prepared warm-up subset contains 3,000 training, 300 validation and 300
-test TinyStories sources~\cite{tiny}, pinned to dataset revision
-\texttt{f54c09fd23315a6f9c86\allowbreak f9dc80f725de7d8f9c64} and recorded under its
-CDLA-Sharing-1.0 dataset-card license. Warm-up data are deduplicated across splits.
-Do not call this externally sourced synthetic corpus human-authored prose.
-A separately licensed and audited naturalistic intervention set remains a
-required transfer gate before a broad scientific claim.
+The nuisance condition shifts an explicitly unrelated museum clock. Its
+starting value is selected to match the no-op's numeric character edits.
+A frozen-tokenizer audit of all 6,000 training groups additionally verified
+matching BPE input lengths, token edit distances, Hamming distances,
+prompt--response boundaries and invariant reference tokens. The edit's location
+and causal relevance remain different. This contrast therefore tests the
+specified augmentation distributions, not an isolated causal effect of
+semantics under every possible control.
 
-The common initialization corpus additionally includes 2,792/277/280
-mechanically derived three-sentence instruction examples in the corresponding
-train/validation/test source groups (5,792/577/580 total rows). These are not new
-independent stories and introduce no benchmark state labels. The 5M target cap
-is unchanged. General perplexity uses only the original held-out stories.
+\subsection{General-language foundation and frozen tokenizer}
+The current foundation corpus uses 300,000 TinyStories training sources and
+retains the original 300 validation and 300 test sources~\cite{tiny}. The dataset
+revision is \texttt{f54c09fd23315a6f9c86\allowbreak f9dc80f725de7d8f9c64}; its
+recorded license is CDLA-Sharing-1.0. Exact normalized-story deduplication uses
+NFKC, casefolding and collapsed whitespace; 37,282 duplicate candidates were
+excluded. This does not certify absence of near duplicates or familiar plots.
+TinyStories is externally sourced synthetic text, not human-authored transfer.
+Earlier byte-tokenized attempts were rejected on qualitative assistant
+inspection, without human scores. They remain separate negative feasibility
+evidence. This replacement changes
+multiple factors and is not a tokenizer-only ablation.
+
+The frozen GPT-Neo tokenizer has 50,257 entries and is neither fitted nor
+pruned. BOS, EOS and padding share ID 50,256; token zero remains valid text.
+Masks use sequence lengths and ignore-index $-100$, not equality with the
+padding ID. EOS is supervised and may terminate generation. A newline boundary
+separates prompt and response; whole-string encoding must equal the checked
+concatenation. No pretrained language-model weights are loaded.
+
+For general next-token learning, context-1,024 windows retain each target once
+per corpus pass, with state reset at each window. The encoded training corpus
+has 300,169 windows and 66,859,228 targets per pass. Mechanically derived
+three-sentence instruction/continuation examples provide 271,170 training rows
+and 10,708,980 response targets per pass. These are transformations of existing
+stories, not new independent sources or state annotations. Validation has
+61,573 general-language targets and 12,192 response targets in 312 SFT rows.
+Held-out source identities and test-performance restrictions are retained.
 
 \begin{table}[ht]\centering\small
-\caption{Instantiated preparation configurations; no trained quality is implied.}
+\caption{Current foundation backbones. Counts include tied lexical parameters
+once; the frozen tokenizer is used with randomly initialized model weights.}
 \begin{tabular}{lrrrr}\toprule
-Backbone & Vocabulary & Layers & Width & Actual parameters\\\midrule
-minGRU & 259 & 2 & 662 & 2,099,864\\
-Causal Transformer & 259 & 2 & 248 & 2,119,408\\
+Backbone & Vocabulary & Layers & Core width & Actual parameters\\\midrule
+Factorized minGRU variant & 50,257 & 2 & 325 & 3,682,887\\
+Causal Transformer & 50,257 & 8 & 64 & 3,681,984\\
 \bottomrule\end{tabular}\end{table}
 
-Both use the same fixed UTF-8 byte tokenizer, context 2,048 and dropout zero.
-Special IDs are PAD=0, BOS=1 and EOS=2; bytes map to IDs 3--258. No tokenizer
-fitting is needed. The parameter difference is approximately 0.93\%; the longest
-prepared prompt plus reserved generation length is 1,748 tokens. This operational
-configuration replaces preliminary vocabulary-512/context-256 counting examples.
-It is a preparation choice, not evidence that either model can write well.
+Both use a 64-dimensional embedding and tied lexical head (3,216,448
+parameters), dropout zero and context 1,024. The Transformer has four heads,
+pre-normalized GELU blocks and 65,536 positional parameters. The recurrent
+variant projects the embedding to width 325, applies two linear-candidate
+minGRU cells, and projects normalized features back to the lexical width.
+It is a project factorization, not the complete original minGRU stack~\cite{mingru}.
+The parameter gap is 903 (about 0.0245\%); this does not equate functional
+capacity, positional representation or computational cost.
+
+For input IDs $[B,T]$, lexical features are $[B,T,64]$ and dense logits are
+$[B,T,50{,}257]$. Each recurrent cell maintains a vector $[B,325]$; Transformer
+key/value caches have per-layer head dimension 16 and grow with visible context.
+The training head is evaluated only at supervised positions, with equivalence
+to the dense objective checked separately. Padding does not advance recurrent
+state. Inputs shift by one token: a logit at position $i$ predicts $z_{i+1}$;
+for response start $p$, prompt positions $i<p-1$ are ignored. Response tokens
+and EOS, including the final budget-limited label, are counted explicitly.
 
 \section{Training contract and accounting}
-Warm-up uses ordinary next-token cross-entropy. Long stories are divided into
-context-sized windows without mixing sources; state resets at each window.
-Post-training uses complete prompt--response examples with a fresh state per
-example. For token sequence z and response start index p, logits at position
-i predict \(z_{i+1}\); prompt positions \(i<p-1\) and padding are masked with
-ignore-index -100. Response characters and EOS are supervised. No post-training
-example is silently truncated. Inputs and states have shapes \([B,T]\),
-\([B,T,H]\) and, for each recurrent hidden vector, \([B,H]\); logits are
-\([B,T,259]\). Padding does not advance recurrent state.
+The bounded seed-zero foundation schedule allocates 80M general-language target
+tokens followed by 20M response targets per backbone. It uses FP32 AdamW,
+microbatch four, clipping at norm one, and weight decay 0.1 for matrices and zero
+for biases and normalization vectors. The LM learning rate warms up over 0.5M
+targets to $10^{-3}$ and decays by a cosine schedule to $10^{-4}$.
+SFT starts with fresh optimizer moments, warms up over 0.1M targets to
+$3\cdot10^{-4}$ and decays to $3\cdot10^{-5}$. These budgets are exposure
+counts per model, not numbers of unique stories. Both seed-zero foundations
+must actually finish before the fixed writing review; they are not yet two
+complete parents at this draft's preparation stage.
 
-Four conditions, two backbones and three seeds give 24 post-training runs,
-capped at 2M response targets each: 48M total. Each backbone/seed first has a
-5M-target warm-up, giving six initialization checkpoints and 30M unique warm-up
-targets. Every condition forks the matching identical initialization with a fresh
-optimizer. Reuse must be counted once in physical compute. Selection has a
-separate 7.2M-target cap; it has not been spent. These are planning caps, not
-adequacy guarantees or completed training.
+The proposed post-training design has four conditions, two backbones and three
+training seeds: 24 exact-budget runs of 2M response targets, or 48M post targets.
+It requires six genuine seed-matched foundation parents with the same corpus,
+tokenizer and 80M-plus-20M schedule, counting shared physical pretraining once.
+Seed-zero weights cannot be relabelled as three independent initializations.
+Each arm forks its matching parent with a fresh optimizer. Additional parent
+plans, measured study resources, writing review and primary registration remain
+prerequisites; the post template is not an executed study.
 
-The prepared optimizer is AdamW with learning rate \(3\cdot10^{-4}\), weight
-decay 0.01 and gradient clipping at norm 1, using float32 and microbatch two.
-The final partial batch masks surplus response labels to obey the target cap
-exactly. Epochs, cursor, optimizer/RNG states and input/code fingerprints support
-atomic checkpoints. Resume rejects changed plans or inputs. Work after the last
-checkpoint may need replay and must be counted rather than hidden.
+The 2M setting is a pilot template. The earlier conditional confirmation
+ceiling of 10M targets per run remains unexecuted; pilot completion alone would
+not establish its replacement or scientific adequacy. Fix the confirmation
+budget, stopping rule and any continuation/replay accounting after development
+evidence and before final-test release. Repeating a pilot trajectory is not an
+independent replication, and optimization must not be repeated until a
+favorable contrast appears.
 
-A3 cycles holder, action, cabinet, power-availability and permission probes on
-base/no-op pairs. The JS penalty is evaluated only on aligned teacher-forced
-canonical answer-token positions, including EOS, with weight 0.1. Probe answer
-prefixes are train-only information. No probe CE is added; extra forward/backward
-passes, input tokens and probe positions are logged separately. This is a limited
-published-invariance adaptation, not a new invariance objective or full reproduction.
-The primary comparison A1--A2 does not rely on this extra information.
+The prepared post optimizer uses FP32 AdamW at $3\cdot10^{-4}$, microbatch two,
+weight decay 0.01 for matrices, and norm-one clipping. Prompt labels and surplus
+labels in the final partial batch are masked. Epoch/cursor, optimizer and RNG
+states, parent identity, code and input hashes are checkpointed; resume rejects
+changed inputs or plans. Replayed work after an interrupted uncommitted update
+must be disclosed and counted rather than hidden.
 
-Parameter matching, target-token matching and compute matching are separate.
-Measure training time, GPU name, allocated/reserved VRAM, processed tokens,
-probe cost and selection cost. A \(6P\) per processed-token proxy omits attention's
-quadratic term and probe/optimizer/validation costs and is not total FLOPs.
-The host is an RTX 5050 Laptop; Colab GPU, credit burn and training throughput
-have not been measured. The original preparation permitted no optimization;
-the later launch phase authorizes bounded training after engineering checks.
+A3 cycles holder, action, cabinet, power availability and permission probes on
+base/no-op pairs. Its Jensen--Shannon term, weighted by 0.1, compares aligned
+teacher-forced canonical answer-token positions including EOS. Probe prefixes
+and targets are train-only information; no probe CE is added. Extra input
+positions, supervised CE labels, probe positions and passes are separate
+counters. This component control does not reproduce an entire published
+alignment or trace-editing system; A1--A2 does not depend on the extra labels.
+
+Parameter matching, target matching and compute matching are distinct. Report
+GPU model, optimizer time, full wall time, allocated/reserved VRAM, input tokens,
+probe cost, selection budget and inference cost. A $6P$-per-token proxy omits
+attention, optimizer and other costs and is not total FLOPs. The local host has
+an RTX 5050 Laptop GPU, observed by PyTorch with 8,546,484,224 memory bytes,
+and an AMD Ryzen AI 5 340 CPU; no RTX 3060 is assumed. Foundation segments have
+actually run on Colab L4 and T4, with hardware/version records per segment.
+This mixed-hardware trajectory is not claimed bitwise identical or cost-matched.
+Local research-training throughput, complete-study credit debit and final
+post-training costs remain unmeasured.
 
 \section{Scoring, selection and inference protocol}
-Use EOS termination and shared sampling: temperature 0.8, top-k 40, up to 512
-new byte tokens, decoding seed 17 in the preparation plan. Suppress PAD/BOS
-sampling. Reserve the same complete visible context for both backbones.
-Test generation is blocked until checkpoint hashes, decoding and validation
-selection rationale are frozen; hashing data alone does not release the test.
-Fix the smallest useful effect and resource limits before final selection.
+All future writing/primary generation uses the same canonical CPU/FP64 backend:
+unchanged FP32 learned weights are promoted in a copy; forward logits and
+sampling remain FP64 with MHA inference fastpath disabled. Exact top-k ties
+use ascending token ID. The fixed policy is temperature 0.8, top-k 40,
+maximum 128 new BPE tokens and seed 17, with EOS termination. The shared
+BOS/PAD/EOS ID must remain generatable. No oracle state table is model input.
+Shared seeds are a reproducibility control, not identification of an exogenous
+counterfactual noise variable.
 
-Two independent blinded readers receive anonymous prose items and mandatory
-propositions, with a separate hidden system key. Labels include per-proposition
-correctness, joint correctness, contradiction/type, sentence format, coverage,
-fluency, ambiguity and evidence spans. Empty labels are rejected. Logical
-disagreements require adjudication before a primary effect is computed. Report
-pre-adjudication agreement and kappa (undefined in degenerate marginals).
-Unclear items remain in the denominator as conservative failures; disclose them.
+This backend was introduced after a documented FP32 top-k cutoff failure during
+foundation feasibility. The old failed receipts remain failed. Fixed
+same-weight full/cache/step checks use FP64 logit tolerance $10^{-10}$,
+zero argmax mismatches and probability $L_1\leq10^{-4}$; tested causality and
+reset checks are exact. The correction preceded primary outputs and did not
+change training math, data or target budgets. It does not prove equivalence of
+every generated sequence or portability across software versions. Its inference
+cost and actual production environment must be reported.
 
-The reviewed analysis averages coverage and fluency across both readers for
-each item unless an explicit, complete adjudication file supplies the final
-scores. It requires a complete source-by-role-by-seed panel for every included
-backbone and arm, checks the private key against original generated bytes and
-declared source facts, and records analysis/input hashes. Included test arms,
-source IDs and the analysis source hash must be frozen before final test.
-The fraction of outputs without a Unicode replacement character is a secondary
-writing diagnostic, not an extra machine condition silently added to the human
-primary judgment. Invalid or unclear text is not removed from the sample.
+Before the primary study, a fixed panel has 16 historical validation prefixes
+and one unconditional request per backbone. The prospective feasibility rule
+requires all 34 real samples rated, at least 12 of 16 conditional samples per
+backbone jointly satisfying format, fluency at least three out of five, prefix
+adherence, a concrete new event, consistency and no ambiguity, plus a passing
+unconditional sample. Large identical-output groups are screened separately.
+This is a descriptive engineering choice, not a validated population cutoff.
+It uses the one available author-reader with limited model-ID blinding;
+no independent human-validation claim follows from it. No new panel ratings
+exist at this preparation stage.
 
-Let Y denote all mandatory propositions correct, valid sentence format and no
-contradiction. For each source, average \(Y_{\rm base}Y_{\rm effective}\) and
-\(Y_{\rm base}Y_{\rm noop}\) with equal pair-kind weights. The primary effect is
-A1 minus A2. Report each kind separately, changed/preserved holder/action/state
-accuracy, coverage, contradiction type, fluency and held-out text perplexity.
-Resample source clusters paired across arms, retaining both pairs, all decoding
-outputs and all observed training seeds. The 95\% source bootstrap interval is
-conditional on those seeds; show every training seed separately rather than
-claiming a source-only interval captures optimization uncertainty.
+Final-test release requires all 24 complete post checkpoints, a fixed decoding
+policy, reviewed writing/validation evidence and a hash-bound local analysis
+registration. The smallest useful effect, resource cap, source cohort and
+included annotation arms must be fixed before generation. A predeclared A1/A2
+annotation cohort can reduce annotation effort while retaining the 24-run
+training requirement. Arms outside that cohort cannot supply a matched primary
+test comparison. Do not pool unmatched cohorts or call a data hash alone a
+completed preregistration.
 
-Before optimization, run causal future-token tests, padded/full/step/reset
-equivalence, label alignment, finite CE/JS gradients, permission-lock and
-data-integrity checks without optimizer updates. Authorized tiny-batch
-memorization and interrupted-training fixtures have subsequently passed for
-both backbones; these are engineering checks, not scientific findings.
-No human labels or controlled test effects exist for this revision.
-Prepared code and a compiled methods draft do not establish a
-successful experiment, novel finding or conversational assistant capability.
+Two genuine independent blinded readers are required by the primary analysis
+contract. They record proposition correctness, contradiction/type, format,
+coverage, fluency, ambiguity and evidence spans. Logical disagreements require
+adjudication; report pre-adjudication agreement, with kappa undefined for
+appropriate degenerate marginals. Coverage and fluency average both readers
+unless explicit complete adjudication supplies final scores. Invalid, empty,
+unclear or capped outputs remain in the denominator. A second reader has not
+been recruited; expert labels from a source dataset do not replace judgments
+of newly generated continuations.
+
+For source $s$, let $S_{s,r}=1$ when all four mandatory propositions hold,
+three-to-five-sentence form is valid, and no contradiction or unresolved
+ambiguity is judged for role $r$. Otherwise it is zero. The source outcome is
+\[
+Y_s=\tfrac12\bigl(S_{s,b}S_{s,e}+S_{s,b}S_{s,n}\bigr),
+\]
+where $b,e,n$ denote base, effective and no-op. The primary contrast is A1--A2
+for each backbone. Resample whole sources paired across arms, retaining roles
+and observed seeds. A source bootstrap interval is conditional on these seeds;
+report each training seed separately rather than implying it captures all
+initialization uncertainty. Report changed/preserved facts, both pair kinds,
+coverage, contradiction types, fluency and generic avoidance alongside it.
+
+General-language perplexity is $\exp(\sum_s L_s/\sum_s N_s)$, with unscaled
+full-vocabulary negative log-likelihood $L_s$ and target count $N_s$, including
+EOS. Multiple reset windows are summed within a story before 2,000 whole-source
+bootstrap draws (seed 2026). PPL is not compared across tokenizers and is not a
+logic or fluency judgment. General test text remains behind the registered
+selection; foundation feasibility uses validation only.
+
+Human-authored transfer remains unresolved. Natural Stories and FairytaleQA
+are candidate sources, not completed transfer datasets. FairytaleQA's pinned
+metadata covers 278 stories in 15 origin-book groups; per-edition rights,
+provenance, overlap, self-contained context, interventions and actual human
+review are still pending~\cite{fairytaleqa}. Original QA annotations do not label
+new free continuations. Any adapted prefix or intervention must be identified;
+uncertainty must respect story and source-book dependence. Transfer cannot be
+inferred from an unchanged synthetic template in a different surface style.
 
 \section{Research transparency}
-AI assistance supported literature discovery, protocol drafting, code and test
-development, and manuscript editing. The recorded application is OpenAI Codex
-26.1120.6357.0; the exact underlying model identifier has not been recorded and
-must not be inferred from that application version. An assistance ledger tracks
-these uses. No generated label is presented as a human judgment. Human authors
-must verify citations, source rights, code, claims and final declarations before
-submission. Reader recruitment, consent and any required institutional ethics
-determination remain unresolved at this methods-draft stage.
+AI assistance supported literature discovery, protocol drafting, code, tests
+and manuscript editing. An assistance ledger records those uses. The recorded
+Codex application version is distinct from the underlying model identifier;
+the latter must not be invented. No generated or fixture label is a human
+judgment. Human authors must verify source rights, citations, code, final claims
+and declarations. Reader recruitment, consent and any required institutional
+ethics determination remain unresolved. No controlled test effect or editorial
+outcome is available, and this draft has not been recompiled during the
+user-specified evidence hold.

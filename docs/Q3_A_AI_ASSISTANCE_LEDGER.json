@@ -23,5 +23,19 @@
   "human_final_review_completed": false,
   "human_annotation_consent_or_ethics_determination": null,
   "journal_policy": "https://lib.jucs.org/about#AuthorGuidelines",
-  "application_version_source": "Get-AppxPackage -Name *Codex*: OpenAI.Codex 26.1120.6357.0"
+  "application_version_source": "Get-AppxPackage -Name *Codex*: OpenAI.Codex 26.1120.6357.0",
+  "updated": "2026-11-27",
+  "recent_activity": {
+    "date": "2026-11-27",
+    "uses": [
+      "subword methods draft reconciled with actual code/config and source scope",
+      "evidence board corrected from stale byte preparation",
+      "hardware query and metadata audit"
+    ],
+    "human_labels_created": 0,
+    "primary_results_created": false,
+    "proprietary_Turnitout_engine_used": false,
+    "compilation_performed": false,
+    "model_identifier_still_unrecorded": true
+  }
 }

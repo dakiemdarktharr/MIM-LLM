@@ -1,0 +1,15 @@
+{
+  "as_of": "2026-11-27",
+  "source": "Windows CIM + local PyTorch hardware queries, no optimizer",
+  "cpu": "AMD Ryzen AI 5 340 w/ Radeon 840M",
+  "physical_cpu_cores": 6,
+  "logical_cpu_processors": 12,
+  "physical_RAM_bytes": 16418648064,
+  "CUDA_device_name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+  "CUDA_device_memory_bytes": 8546484224,
+  "torch": "2.10.0+cu128",
+  "cuda_available": true,
+  "RTX3060_assumed": false,
+  "optimizer_updates": 0,
+  "local_research_train_throughput_measured": false
+}

@@ -1,14 +1,15 @@
 {
-  "as_of": "2026-11-26",
+  "as_of": "2026-11-27",
   "study": "Q3-A",
-  "goal_status": "active_foundation_driver3_running_after_driver2_independent_cloud_audit",
-  "plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
-  "training_bundle_sha256": "2ad7e8d63189ffc84b5802cf31df01950d596bc2d57021a56f8f9e7240ac6f2b",
+  "goal_status": "active_foundation_driver8_live_after_driver7_independent_audit",
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "training_bundle_sha256": "b1c97087a3415fc4c1b65dc4fa5a8496917ded649087add55d40352bec55e5d9",
   "manual_handoff": {
-    "state": "resolved_mount_and_cloud_readback_verified",
-    "repolled_browser": true,
+    "state": "resolved_same_mount_reused_for_driver8",
     "training_permission_already_granted": true,
-    "consent_completion_reconfirmed": true
+    "another_Drive_grant_requested": false,
+    "evidence": "docs/Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md",
+    "permanent_mount_promised": false
   },
   "requirements": [
     {
@@ -17,156 +18,99 @@
       "evidence": [
         "docs/SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md",
         "docs/NOVELTY_AUDIT_V3.vi.md",
-        "docs/Q3_A_CSR_COMPARISON_20261126.vi.md"
+        "docs/Q3_A_CSR_COMPARISON_20261126.vi.md",
+        "docs/Q3_A_TARGETED_NOVELTY_UPDATE_20261127.vi.md",
+        "docs/Q3_A_SUBWORD_EVALUATION_20261127.vi.md"
       ],
-      "remaining": "CSR primary source selectively read; no first counterfactual-training claim. Writing feasibility, possible sensitivity component baseline and incremental insight/transfer must be assessed before post-training."
+      "remaining": "Incremental insight/transfer and sensitivity baseline decision still pending. Current generator excludes exact deadline equality and multiple blockers; limit claims or register a separate challenge before post training. No first story/invariance/JS claim."
     },
     {
       "id": "engineering_checks",
-      "status": "passed_recorded",
+      "status": "components_verified_not_end_to_end_scientific_completion",
       "evidence": [
-        "docs/DEVELOPMENT_LOG.md"
+        "docs/DEVELOPMENT_LOG.md",
+        "docs/Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md"
       ],
-      "observed_nontraining_tests": 166,
+      "observed_nontraining_tests": 233,
       "observed_Q3A_training_tests": 4,
       "not_scientific_findings": true,
       "calibration2_trained_CUDA_path_cases": 24,
       "calibration2_trained_CUDA_max_abs_error": 5.14984130859375e-05,
-      "read_only_conditioning_diagnostic_forward_cases": 96
+      "read_only_conditioning_diagnostic_forward_cases": 96,
+      "training_tests_deselected": 18,
+      "production_inference_backend": "CPU_FP64_MHA_off_stable_token_ID_topk_v1",
+      "old_FP32_failure_preserved": true
     },
     {
       "id": "training_matrix",
-      "status": "calibration2_seed0_complete_writing_gate_failed_no_post",
-      "expected_warmup_runs": 6,
+      "status": "subword_seed0_foundation_partial_post_and_confirmation_held",
+      "expected_foundation_parents": 6,
+      "verified_complete_foundation_parents": 0,
+      "current_audited_transformer_LM_targets": 80000000,
+      "current_audited_transformer_SFT_targets": 12741029,
+      "current_audited_mingru_targets": 0,
       "expected_post_runs": 24,
-      "expected_post_targets": 48000000,
-      "verified_complete_run_ids": [
-        "warmup-transformer-s0",
-        "warmup-mingru-s0"
-      ],
-      "completed_warmup_targets": 10000000,
+      "post_pilot_targets_per_run": 2000000,
+      "conditional_confirmation_targets_per_run": 10000000,
+      "confirmation_status": "unexecuted_budget_and_protocol_pending",
       "completed_post_runs": 0,
-      "new_calibration_started": true,
+      "other_seed_plans_implemented": false,
       "full_matrix_expansion_held": true,
-      "calibration2_targets": {
-        "warmup-mingru-s0": 50000000,
-        "warmup-transformer-s0": 50000000
-      },
-      "calibration2_complete_run_ids": [
-        "warmup-mingru-s0",
-        "warmup-transformer-s0"
-      ],
-      "calibration2_completed_post_runs": 0,
-      "calibration2_driver_invocations_reserved": 3,
-      "calibration2_current_session": "20261126T113004Z",
-      "calibration2_resume_verified_from_existing_checkpoint": true,
-      "calibration2_second_driver_finished": true,
-      "calibration2_all_three_drivers_finished": true
+      "evidence": [
+        "configs/q3a/foundation_invocation7_results.json",
+        "configs/q3a/subword_post.template.json"
+      ]
     },
     {
       "id": "drive_persistence",
-      "status": "calibration2_final_checkpoints_logs_and_archive_verified_after_release",
-      "verified_scientific_checkpoint_sha256": {
-        "warmup-transformer-s0/final.pt": "bff431959d4eeb17707d1b63c61b63fef14fd90a704349879aac75ed0990195a",
-        "warmup-mingru-s0/final.pt": "e366ae6e6a26e01af4ee79ba9cef1758c3d26793e5f3b19fd78a356a7e6e7c83"
-      },
-      "verified_cloud_metric_files": [
-        "warmup-transformer-s0/metrics.jsonl",
-        "warmup-transformer-s0/validation.jsonl",
-        "warmup-mingru-s0/metrics.jsonl",
-        "warmup-mingru-s0/validation.jsonl"
-      ],
-      "archive_sha256": "3e9a2631cd851d873fc9a4917c7fa7857fbe89922f92faf8fb32c38c7303b8fe",
-      "cloud_archive_bytes": 46329484,
-      "cloud_archive_files_verified": 27,
-      "total_verified_step_metric_rows": 8800,
-      "calibration2_first_archive": {
-        "sha256": "91c4c0ad8ce8e691fa35e388ef8504c66d984430688af4369d072501ca144903",
-        "bytes": 49863769,
-        "members_verified": 25,
-        "metric_rows_verified": 55213,
-        "transformer_final_sha256": "5db4e8d81ef58138a80268128c3414e45a354d7d1c3c2e80e8c5039a776316da",
-        "mingru_partial_latest_sha256": "58fd2d2ebc7c8956138a0eec83a3972be4fc2ff2a8e0daf378c263b8f9855527"
-      },
-      "calibration2_second_archive": {
-        "sha256": "b8031a931de58fb6a3b468e6e3a425fa6a6b982d11010df779e07b4d35fa7954",
-        "bytes": 52004859,
-        "members_verified": 38,
-        "metric_rows_verified": 81133,
-        "mingru_partial_latest_sha256": "8eb5332958b4c6fa6d9d9408df459ef699503753b8da1a9449e1a4f9d9540e68",
-        "cloud_fetch_after_zero_active_sessions_observed": true
-      },
-      "calibration2_final_archive": {
-        "archive_sha256": "db500f041531cc797362e43691bf0c696da227f458c591ddb0e8c4b5d0904db1",
-        "archive_bytes": 52053267,
-        "members_verified": 53,
-        "metric_rows_verified": 81262,
-        "cloud_fetch_after_zero_active_sessions_observed": true,
-        "final_checkpoint_sha256": {
-          "warmup-mingru-s0": "7b9c8feffd4c9acec590cf488de81695558b4f5e3e6e6c32caae49cea66c6788",
-          "warmup-transformer-s0": "5db4e8d81ef58138a80268128c3414e45a354d7d1c3c2e80e8c5039a776316da"
-        }
-      }
+      "status": "foundation_driver7_archive_independently_readback_while_same_mount_retained",
+      "archive_sha256": "1dd45d2858b7c91dc67b6459e225862d715a1bf3e22fdaa850d729655eda1bf8",
+      "archive_bytes": 120097299,
+      "members_verified": 78,
+      "total_verified_step_metric_rows": 170401,
+      "latest_sha256": "abc8ec834bae6aa54a9067206104ff312a5704206300c18fba564f3dfffaf835",
+      "readback_after_VM_release": false,
+      "evidence": [
+        "docs/Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md"
+      ]
     },
     {
       "id": "resource_budget",
-      "status": "bounded_language_calibration_measured_full_study_cap_pending",
-      "observed_colab_GPU": "Tesla T4",
-      "CU_balance": 599.25,
-      "CU_per_hour": 1.24,
+      "status": "foundation_cap_measured_partial_study_cap_pending",
+      "current_GPU": "Tesla T4",
+      "last_observed_UI_CU_balance": 589.94,
+      "last_observed_UI_CU_per_hour": 1.87,
+      "foundation_anchor_CU": 597.61,
+      "foundation_observed_drop_cap_CU": 16,
+      "foundation_max_driver_invocations": 16,
+      "foundation_driver_soft_seconds": 1100,
       "study_GPU_hours_cap": null,
-      "initial_invocation_soft_cap_seconds": 1200,
-      "purchase_extra_CU_authorized": false,
-      "last_observed_CU_before_disconnect": 599.25,
-      "rate_is_UI_approximation": true,
-      "total_actual_CU_debit": null,
-      "initial_driver_soft_cap_seconds": 600,
-      "warmup_driver_elapsed_seconds": 296.442831549,
-      "initial_GPU_runtime_disconnected": true,
-      "CU_before_GPU_work": 599.49,
-      "CU_balance_context": "Last UI observation before 2026-11-26T09:15:42Z disconnect; not a final bill or a live balance",
-      "calibration2_first_driver_observed_seconds": 1115.7208894310002,
-      "calibration2_inner_driver_elapsed_seconds": 1108.34128668,
-      "calibration2_UI_GPU": "NVIDIA L4",
-      "calibration2_UI_CU_per_hour": 2.33,
-      "calibration2_UI_CU_before_first": 599.14,
-      "calibration2_actual_total_debit": null,
-      "calibration2_second_GPU": "Tesla T4",
-      "calibration2_second_UI_CU_before": 598.17,
-      "calibration2_second_UI_CU_per_hour": 1.24,
-      "calibration2_second_resource_record_UTC": "2026-11-26T11:00:35.315643+00:00",
-      "calibration2_total_billed_CU": null,
-      "calibration2_second_driver_observed_seconds": 1120.8696770430001,
-      "calibration2_second_inner_driver_seconds": 1111.5386924210002,
-      "calibration2_last_UI_CU_after_second": 597.71,
-      "calibration2_runtime_released_after_second": true,
-      "calibration2_last_UI_CU_after_release": 597.61,
-      "calibration2_runtime_released_after_third": true,
-      "calibration2_maximum_invocations_exhausted": true
+      "actual_attributable_invoice": null,
+      "extra_CU_purchase_authorized": false,
+      "local_hardware": "configs/q3a/local_hardware_observation_20261127.json",
+      "T4_Transformer_SFT_targets_per_optimizer_second": 5081.542427637931,
+      "T4_mingru_training_throughput_measured": false,
+      "evidence": [
+        "configs/q3a/foundation_resource_annex.json",
+        "configs/q3a/foundation_invocation7_results.json"
+      ]
     },
     {
       "id": "writing_feasibility",
-      "status": "failed_calibration2_qualitative_review_all34_outputs_not_human_scores",
+      "status": "historical_byte_failure_preserved_new_subword_panel_not_generated",
       "must_precede_full_matrix": true,
-      "evidence": [
-        "docs/Q3_A_COLAB_PILOT_20261126.vi.md",
-        "docs/Q3_A_CALIBRATION2_RESULTS_20261126.vi.md"
-      ],
-      "inspected_outputs": 6,
-      "distinct_validation_sources": 2,
-      "mingru_three_prompts_identical": true,
-      "primary_human_labels_collected": false,
-      "posttraining_expansion_allowed": false,
-      "calibration2_inspected_outputs": 34,
-      "calibration2_distinct_validation_prefix_sources": 16,
-      "calibration2_mingru_largest_identical_group": 10,
-      "calibration2_mingru_distinct_prefix_outputs": 6
+      "manifest_receipt": "configs/q3a/foundation_writing_review_fp64_receipt.json",
+      "prospective_rule": "configs/q3a/foundation_writing_rule.json",
+      "real_subword_review_samples": 0,
+      "actual_human_labels": 0,
+      "author_only_feasibility_is_not_independent_validation": true,
+      "posttraining_expansion_allowed": false
     },
     {
       "id": "test_registration",
-      "status": "draft_only",
+      "status": "subword_template_only_not_frozen",
       "evidence": [
-        "configs/q3a/preregistration.template.json"
+        "configs/q3a/subword_preregistration.template.json"
       ],
       "test_released": false
     },
@@ -183,45 +127,54 @@
     },
     {
       "id": "licensed_naturalistic_transfer",
-      "status": "candidate_source_pinned_human_task_and_evaluation_pending",
+      "status": "candidate_sources_pinned_no_accepted_human_transfer_pairs",
       "manifest": null,
       "candidate_manifest": "configs/q3a/transfer_sources.candidates.json",
       "evidence": [
-        "docs/Q3_A_TRANSFER_SOURCE_AUDIT_20261126.vi.md"
+        "docs/Q3_A_TRANSFER_SOURCE_AUDIT_20261126.vi.md",
+        "docs/Q3_A_HUMAN_NARRATIVE_TRANSFER_CANDIDATE_20261127.vi.md"
       ],
-      "candidate_source_story_clusters": 10,
       "human_semantically_audited_pairs": 0,
       "accepted_transfer_pairs": 0,
-      "generic_obligation_schema_implemented": false
+      "generic_obligation_schema_implemented": false,
+      "fairytaleqa_metadata_stories": 278,
+      "fairytaleqa_origin_book_groups": 15,
+      "candidate_source_units": {
+        "NaturalStories_story_clusters": 10,
+        "FairytaleQA_metadata_story_ids": 278,
+        "FairytaleQA_origin_book_groups": 15
+      }
     },
     {
       "id": "quality_aggregation",
-      "status": "versioned_correction_tested_prospective_registration_pending",
+      "status": "subword_adapter_tested_prospective_registration_pending",
       "evidence": [
-        "docs/Q3_A_ANALYSIS_REVIEW.vi.md",
-        "src/mim_llm/q3a_reviewed_analysis.py",
-        "tests/test_q3a_reviewed_analysis.py"
+        "src/mim_llm/q3a_subword/analysis.py",
+        "src/mim_llm/q3a_subword/evaluate.py",
+        "tests/test_q3a_subword_evaluation.py",
+        "docs/Q3_A_SUBWORD_EVALUATION_20261127.vi.md"
       ],
-      "analysis_version": "q3a-reviewed-quality-1",
-      "normalized_source_sha256": "0d35e6789f64f99ebc355a4943d7697105f6761c777417740a33a0bff3bf380c",
+      "analysis_version": "q3a-subword-reviewed-quality-2",
+      "normalized_source_sha256": "75775dc9b2810d9488465d618a03334709ca0cd6bd1a775879ba380a2259ad0f",
       "new_nontraining_regression_tests_passed": 15,
       "primary_definition_changed": false,
       "remaining": "Register source SHA, included arms and complete sample before final test; no real human labels or scientific results exist yet."
     },
     {
       "id": "scientific_results_and_statistics",
-      "status": "calibration_metrics_available_no_primary_condition_results",
+      "status": "foundation_metrics_exist_no_primary_condition_results",
       "must_report": "Each seed, paired source uncertainty, coverage/evasion, contradictions, fluency/general PPL, costs and negative results.",
       "primary_results_available": false,
       "warmup_statistics_available": true
     },
     {
       "id": "manuscript",
-      "status": "methods_draft_only",
+      "status": "English_subword_methods_source_updated_uncompiled_no_primary_results",
       "drafted_with_results": false,
       "submitted": false,
       "accepted": false,
-      "published": false
+      "published": false,
+      "methods_source": "papers/q3_a_temporal_benchmark/main.tex"
     },
     {
       "id": "journal",
@@ -262,24 +215,8 @@
     }
   ],
   "completion_rule": "Every requirement needs authoritative evidence covering its scope; the board itself cannot prove completion.",
-  "blocked_audit": {
-    "date": "2026-11-26",
-    "same_manual_blocker_repeated_at_least_three_goal_turns": true,
-    "independent_preparation_work_completed_before_blocking": true,
-    "next_required_action": "User completes Google Drive notebook access and explicitly returns browser control; then verify mount before the authorized bounded Q3-A run.",
-    "no_verified_live_remote_training_job": true,
-    "objective_shrunk_or_marked_complete": false,
-    "latex_still_held_until_real_results": true,
-    "resolved_on": "2026-11-26",
-    "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
-  },
-  "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
-  "active_calibration_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b",
-  "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md",
-  "active_calibration_resource_amendment": "Portable T4/L4 resume after observed automatic fallback; per-segment hardware recorded, no bitwise or matched-compute trajectory claim; same three-driver cap. Unused fallback VM ended before optimizer.",
-  "current_next_action": "Prepare one prospectively bounded language-foundation replacement plan with a frozen published tokenizer, actual parameter counts, unchanged held-out groups, tokenized A1/A2 control audit and measured resource gates. No new optimizer until that implementation/plan is ready; keep calibration2 closed.",
+  "current_next_action": "Monitor live Cell33/driver8 and queued Cell34; audit its terminal archive and both new numerical receipts before driver9. Preserve exact foundation objective and caps. Both complete parents and actual writing review precede wider post/seed phases.",
   "backup_rotation_correction": "Old resumed local previous.pt could overwrite the just-rotated remote backup; latest.pt unaffected. Fixed for subsequent orchestration; keep old input bundle and disclose older-backup limitation.",
-  "conditional_next_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b",
   "language_foundation_next_work": "docs/Q3_A_LANGUAGE_FOUNDATION_NEXT.vi.md",
   "external_reference_diagnostic": {
     "status": "complete_read_only_not_matched_paper_comparison",
@@ -298,62 +235,222 @@
     "writing_gate": "not_yet_measured",
     "primary_runs": 0,
     "independent_readers_available": 1,
-    "human_labels": 0
+    "human_labels": 0,
+    "status": "historical_preoptimizer_receipt_not_current_update_count"
   },
   "foundation_current": {
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
-    "receipt": "configs/q3a/foundation_invocation1_results.json",
-    "transformer_targets": 6559500,
+    "receipt": "configs/q3a/foundation_invocation7_results.json",
+    "audited_driver_index": 7,
+    "transformer_LM_targets": 80000000,
+    "transformer_SFT_targets": 12741029,
+    "transformer_updates": 170401,
     "mingru_targets": 0,
-    "sft_targets": 0,
-    "driver_invocations_used": 1,
-    "driver_maximum_invocations": 8,
-    "writing_gate": "not_yet_measured_for_this_replacement",
+    "driver_invocations_reserved": 8,
+    "maximum_driver_invocations": 16,
+    "writing_gate": "unmeasured_for_subword_replacement",
     "primary_runs": 0,
     "human_labels": 0,
-    "next": "nonupdating resource profiles and review before next optimizer"
+    "active_driver_not_completed": true
   },
   "latest_nontraining_suite": {
-    "passed": 201,
-    "training_deselected": 16,
+    "passed": 233,
+    "training_deselected": 18,
     "scientific_results": false
   },
   "latest_remote_execution": {
-    "session": "20261126T150634Z",
-    "driver_index": 3,
-    "resource_annex_id": "1b22c463e3d8dab6831cb3c8183099504e0c5698bcc417d783f2bbe3251bb514",
-    "maximum_driver_invocations": 16,
-    "observed_balance_anchor_cu": 597.61,
-    "observed_balance_drop_cap_cu": 16,
-    "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
-    "gpu": "NVIDIA L4",
-    "UI_available_cu_at_driver_start": 595.58,
-    "UI_rate_at_driver_start": 2.33,
+    "session": "20261126T191245Z",
+    "driver_index": 8,
+    "state": "verified_live_not_terminal",
+    "UI_available_cu_at_driver_start": 590.25,
+    "UI_rate_at_driver_start": 1.87,
     "same_mounted_vm_reused": true,
     "source_and_initial_checkpoint_hashes_verified": true,
     "ledger_reservation_read_back_with_connector": true,
-    "completion_not_yet_verified": true,
-    "latest_independently_verified_targets": {
-      "foundation-transformer-s0": 28053669,
-      "foundation-mingru-s0": 0
-    },
-    "test_locked": true,
-    "human_labels": 0,
-    "starting_transformer_checkpoint_sha256": "c0d66aa6f84f725cc3690e59714f7a05aa8c6bbbcb4e27f9c35d2ebde8c67985"
+    "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+    "gpu": "Tesla T4",
+    "live_checkpoint_observed_UTC": "2026-11-26T19:23:15.501330+00:00",
+    "live_SFT_targets": 15593262,
+    "live_latest_sha256": "23f703772f80068c35361bc74f3aeacc973560e2bebb1e7b718af2e40bf0e604",
+    "live_is_not_independent_archive_audit": true,
+    "queued_read_only_cell": 34
   },
   "latest_verified_foundation_checkpoint": {
-    "session": "20261126T144537Z",
-    "driver_index": 2,
+    "session": "20261126T184845Z",
+    "driver_index": 7,
     "complete_foundation": false,
-    "archive_sha256": "e5a85041ed6b084d06bbdaccfbdb5cf990712dbb507f5df1bf4b865eb62583f7",
-    "members_verified": 32,
-    "metric_rows_verified": 31489,
-    "targets": {
-      "foundation-transformer-s0": 28053669,
-      "foundation-mingru-s0": 0
-    },
-    "transformer_latest_sha256": "c0d66aa6f84f725cc3690e59714f7a05aa8c6bbbcb4e27f9c35d2ebde8c67985",
-    "cloud_readback_while_VM_still_mounted": true,
-    "report": "docs/Q3_A_FOUNDATION_INVOCATION2_20261126.vi.md"
+    "report": "docs/Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md",
+    "results": "configs/q3a/foundation_invocation7_results.json",
+    "latest_sha256": "abc8ec834bae6aa54a9067206104ff312a5704206300c18fba564f3dfffaf835",
+    "archive_sha256": "1dd45d2858b7c91dc67b6459e225862d715a1bf3e22fdaa850d729655eda1bf8"
+  },
+  "historical_byte_calibration": {
+    "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
+    "active_calibration_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b",
+    "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md",
+    "active_calibration_resource_amendment": "Portable T4/L4 resume after observed automatic fallback; per-segment hardware recorded, no bitwise or matched-compute trajectory claim; same three-driver cap. Unused fallback VM ended before optimizer.",
+    "conditional_next_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b",
+    "prior_requirement_states": {
+      "training_matrix": {
+        "id": "training_matrix",
+        "status": "calibration2_seed0_complete_writing_gate_failed_no_post",
+        "expected_warmup_runs": 6,
+        "expected_post_runs": 24,
+        "expected_post_targets": 48000000,
+        "verified_complete_run_ids": [
+          "warmup-transformer-s0",
+          "warmup-mingru-s0"
+        ],
+        "completed_warmup_targets": 10000000,
+        "completed_post_runs": 0,
+        "new_calibration_started": true,
+        "full_matrix_expansion_held": true,
+        "calibration2_targets": {
+          "warmup-mingru-s0": 50000000,
+          "warmup-transformer-s0": 50000000
+        },
+        "calibration2_complete_run_ids": [
+          "warmup-mingru-s0",
+          "warmup-transformer-s0"
+        ],
+        "calibration2_completed_post_runs": 0,
+        "calibration2_driver_invocations_reserved": 3,
+        "calibration2_current_session": "20261126T113004Z",
+        "calibration2_resume_verified_from_existing_checkpoint": true,
+        "calibration2_second_driver_finished": true,
+        "calibration2_all_three_drivers_finished": true
+      },
+      "drive_persistence": {
+        "id": "drive_persistence",
+        "status": "calibration2_final_checkpoints_logs_and_archive_verified_after_release",
+        "verified_scientific_checkpoint_sha256": {
+          "warmup-transformer-s0/final.pt": "bff431959d4eeb17707d1b63c61b63fef14fd90a704349879aac75ed0990195a",
+          "warmup-mingru-s0/final.pt": "e366ae6e6a26e01af4ee79ba9cef1758c3d26793e5f3b19fd78a356a7e6e7c83"
+        },
+        "verified_cloud_metric_files": [
+          "warmup-transformer-s0/metrics.jsonl",
+          "warmup-transformer-s0/validation.jsonl",
+          "warmup-mingru-s0/metrics.jsonl",
+          "warmup-mingru-s0/validation.jsonl"
+        ],
+        "archive_sha256": "3e9a2631cd851d873fc9a4917c7fa7857fbe89922f92faf8fb32c38c7303b8fe",
+        "cloud_archive_bytes": 46329484,
+        "cloud_archive_files_verified": 27,
+        "total_verified_step_metric_rows": 8800,
+        "calibration2_first_archive": {
+          "sha256": "91c4c0ad8ce8e691fa35e388ef8504c66d984430688af4369d072501ca144903",
+          "bytes": 49863769,
+          "members_verified": 25,
+          "metric_rows_verified": 55213,
+          "transformer_final_sha256": "5db4e8d81ef58138a80268128c3414e45a354d7d1c3c2e80e8c5039a776316da",
+          "mingru_partial_latest_sha256": "58fd2d2ebc7c8956138a0eec83a3972be4fc2ff2a8e0daf378c263b8f9855527"
+        },
+        "calibration2_second_archive": {
+          "sha256": "b8031a931de58fb6a3b468e6e3a425fa6a6b982d11010df779e07b4d35fa7954",
+          "bytes": 52004859,
+          "members_verified": 38,
+          "metric_rows_verified": 81133,
+          "mingru_partial_latest_sha256": "8eb5332958b4c6fa6d9d9408df459ef699503753b8da1a9449e1a4f9d9540e68",
+          "cloud_fetch_after_zero_active_sessions_observed": true
+        },
+        "calibration2_final_archive": {
+          "archive_sha256": "db500f041531cc797362e43691bf0c696da227f458c591ddb0e8c4b5d0904db1",
+          "archive_bytes": 52053267,
+          "members_verified": 53,
+          "metric_rows_verified": 81262,
+          "cloud_fetch_after_zero_active_sessions_observed": true,
+          "final_checkpoint_sha256": {
+            "warmup-mingru-s0": "7b9c8feffd4c9acec590cf488de81695558b4f5e3e6e6c32caae49cea66c6788",
+            "warmup-transformer-s0": "5db4e8d81ef58138a80268128c3414e45a354d7d1c3c2e80e8c5039a776316da"
+          }
+        }
+      },
+      "resource_budget": {
+        "id": "resource_budget",
+        "status": "bounded_language_calibration_measured_full_study_cap_pending",
+        "observed_colab_GPU": "Tesla T4",
+        "CU_balance": 599.25,
+        "CU_per_hour": 1.24,
+        "study_GPU_hours_cap": null,
+        "initial_invocation_soft_cap_seconds": 1200,
+        "purchase_extra_CU_authorized": false,
+        "last_observed_CU_before_disconnect": 599.25,
+        "rate_is_UI_approximation": true,
+        "total_actual_CU_debit": null,
+        "initial_driver_soft_cap_seconds": 600,
+        "warmup_driver_elapsed_seconds": 296.442831549,
+        "initial_GPU_runtime_disconnected": true,
+        "CU_before_GPU_work": 599.49,
+        "CU_balance_context": "Last UI observation before 2026-11-26T09:15:42Z disconnect; not a final bill or a live balance",
+        "calibration2_first_driver_observed_seconds": 1115.7208894310002,
+        "calibration2_inner_driver_elapsed_seconds": 1108.34128668,
+        "calibration2_UI_GPU": "NVIDIA L4",
+        "calibration2_UI_CU_per_hour": 2.33,
+        "calibration2_UI_CU_before_first": 599.14,
+        "calibration2_actual_total_debit": null,
+        "calibration2_second_GPU": "Tesla T4",
+        "calibration2_second_UI_CU_before": 598.17,
+        "calibration2_second_UI_CU_per_hour": 1.24,
+        "calibration2_second_resource_record_UTC": "2026-11-26T11:00:35.315643+00:00",
+        "calibration2_total_billed_CU": null,
+        "calibration2_second_driver_observed_seconds": 1120.8696770430001,
+        "calibration2_second_inner_driver_seconds": 1111.5386924210002,
+        "calibration2_last_UI_CU_after_second": 597.71,
+        "calibration2_runtime_released_after_second": true,
+        "calibration2_last_UI_CU_after_release": 597.61,
+        "calibration2_runtime_released_after_third": true,
+        "calibration2_maximum_invocations_exhausted": true
+      },
+      "writing_feasibility": {
+        "id": "writing_feasibility",
+        "status": "failed_calibration2_qualitative_review_all34_outputs_not_human_scores",
+        "must_precede_full_matrix": true,
+        "evidence": [
+          "docs/Q3_A_COLAB_PILOT_20261126.vi.md",
+          "docs/Q3_A_CALIBRATION2_RESULTS_20261126.vi.md"
+        ],
+        "inspected_outputs": 6,
+        "distinct_validation_sources": 2,
+        "mingru_three_prompts_identical": true,
+        "primary_human_labels_collected": false,
+        "posttraining_expansion_allowed": false,
+        "calibration2_inspected_outputs": 34,
+        "calibration2_distinct_validation_prefix_sources": 16,
+        "calibration2_mingru_largest_identical_group": 10,
+        "calibration2_mingru_distinct_prefix_outputs": 6
+      },
+      "quality_aggregation": {
+        "id": "quality_aggregation",
+        "status": "versioned_correction_tested_prospective_registration_pending",
+        "evidence": [
+          "docs/Q3_A_ANALYSIS_REVIEW.vi.md",
+          "src/mim_llm/q3a_reviewed_analysis.py",
+          "tests/test_q3a_reviewed_analysis.py"
+        ],
+        "analysis_version": "q3a-reviewed-quality-1",
+        "normalized_source_sha256": "0d35e6789f64f99ebc355a4943d7697105f6761c777417740a33a0bff3bf380c",
+        "new_nontraining_regression_tests_passed": 15,
+        "primary_definition_changed": false,
+        "remaining": "Register source SHA, included arms and complete sample before final test; no real human labels or scientific results exist yet."
+      }
+    }
+  },
+  "schema_version": 2,
+  "historical_blocked_audit": {
+    "date": "2026-11-26",
+    "same_manual_blocker_repeated_at_least_three_goal_turns": true,
+    "independent_preparation_work_completed_before_blocking": true,
+    "next_required_action": "User completes Google Drive notebook access and explicitly returns browser control; then verify mount before the authorized bounded Q3-A run.",
+    "no_verified_live_remote_training_job": true,
+    "objective_shrunk_or_marked_complete": false,
+    "latex_still_held_until_real_results": true,
+    "resolved_on": "2026-11-26",
+    "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
+  },
+  "blocked_audit": {
+    "state": "not_blocked_verified_live_training",
+    "last_goal_turn": "progress",
+    "manual_access_blocker_resolved": true,
+    "objective_complete": false
   }
 }

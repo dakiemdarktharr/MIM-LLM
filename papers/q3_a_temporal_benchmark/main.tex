@@ -1,13 +1,13 @@
 \documentclass[11pt,a4paper]{article}
 \input{../shared/preamble}
-\renewcommand{\projectstatus}{\begin{quote}\small\textbf{Methods draft and
-launch record, 26 November 2026.} Non-optimizing checks and authorized
-optimizer, memorization and resume fixtures have passed. Empirical evaluation
-is pending; no controlled test effect, human annotation or editorial outcome
-is implied.\end{quote}}
-\title{Learning When a Premise Change Should Not Change a Story}
+\renewcommand{\projectstatus}{\begin{quote}\small\textbf{Methods draft,
+27 November 2026.} Bounded language-foundation training is in progress.
+Controlled post-training, real human annotation and primary evaluation remain
+pending. This source has not been compiled during the experimental evidence
+hold; no test effect or editorial outcome is implied.\end{quote}}
+\title{Learning When Premise Changes Preserve Narrative Consequences}
 \author{}
-\date{Methods draft and preparation: 26 November 2026}
+\date{Methods draft and preparation: 27 November 2026}
 \begin{document}
 \maketitle
 \projectstatus
@@ -15,7 +15,7 @@ is implied.\end{quote}}
 This proposed study tests whether semantic no-op interventions teach compact
 autoregressive language models when a changed premise should leave required
 story consequences unchanged. We compare effective-only pairs, effective/no-op
-pairs, matched surface-form controls, and an invariance-objective adaptation.
+pairs, matched numeric nuisance controls, and a train-only invariance component.
 The primary outcome is joint success on changed and preserved propositions in
 held-out multi-sentence continuations. The design separates useful selectivity
 from lexical augmentation, copying and generic avoidance.
@@ -24,12 +24,15 @@ and conclusions after registered evaluation. No improvement is claimed.}
 \end{abstract}
 
 \section{Question and prior work}
-Counterfactual story generation and invariance are established in
-TIME TRAVEL~\cite{timetravel} and participant-state revision~\cite{pasta}.
-DTO optimizes counterfactual rewriting through a differentiable
-objective~\cite{dto}; counterfactual-invariance alignment also trains
-cross-prompt response/reward agreement~\cite{cfi}. We do not claim these ideas
-as new. The narrower question is whether training on semantic no-op changes
+Counterfactual story rewriting is established in TIME TRAVEL~\cite{timetravel};
+PASTA includes story revision under counterfactual participant states~\cite{pasta}.
+DTO optimizes rewriting through a differentiable objective~\cite{dto}.
+Counterfactual-invariance alignment uses matched prompts and a group-level
+policy-gradient reward~\cite{cfi}. CSR studies verifier-approved trace edits and
+reports target accuracy, coverage and null-edit preservation alongside
+sensitivity~\cite{csr}. It also includes narrative evaluations, so narrative
+outputs or a JS term alone do not establish novelty here. The narrower question
+is whether training on semantic no-op changes
 improves consequence selectivity beyond matched lexical augmentation, including
 transfer outside the training templates. Invariance tests inherit behavioral
 testing principles~\cite{checklist}.
@@ -49,7 +52,7 @@ Arm & Training distribution/objective & Interpretation\\\midrule
 A0 & Effective intervention pairs, CE & Change-focused reference\\
 A1 & Effective plus semantic no-op pairs, CE & Consequence-level selectivity\\
 A2 & Effective plus irrelevant numeric-clock edits, CE & Matched nuisance augmentation control\\
-A3 & A1 plus probe-span response matching & Published-invariance adaptation\\
+A3 & A1 plus invariant-probe JS & Component regularizer\\
 \bottomrule\end{tabularx}\end{table}
 
 The primary contrast is A1 minus A2; A0 and A3 are secondary comparisons.
@@ -73,16 +76,16 @@ known to be invariant, with a fixed continuation prefix. A schematic penalty is
 \(\lambda |U|^{-1}\sum_{j\in U}\operatorname{JS}(q_j,q'_j)\), where U contains
 audited unchanged obligations. Do not force an entire open-ended continuation
 to be identical: wording, timing mentions and optional plot choices can differ.
-This is a limited response-matching adaptation, not a reproduction of every
-component of the prior method. Declare extra auxiliary labels/passes and cost;
+This is a limited component control. It does not reproduce the full alignment
+or trace-editing methods above. Declare extra auxiliary labels/passes and cost;
 the primary A1--A2 contrast does not depend on them.
 
 \input{implementation}
 
 \section{Primary outcome and decisive analyses}
-For each source pair, joint success is \(Y_{\rm pair}=Y(x)Y(x')\), with mandatory
-changed and preserved propositions specified before generation. Report the
-A1--A2 paired difference, source-clustered uncertainty per seed, and separate
+Use the source outcome $Y_s$ defined above, with mandatory changed and preserved
+propositions specified before generation. Report the A1--A2 paired difference,
+source-clustered uncertainty conditional on the observed seeds, and separate
 changed-fact accuracy, invariant retention and no-op accuracy. Do not let many
 unchanged predicates hide failed updates. Use the same decoding policy; keep
 all failures in the denominator.
@@ -107,7 +110,8 @@ no-op test items. It needs selective transfer or a generalizable failure
 principle after lexical and data-quality controls. If the effect is confined to
 a single template or explained by extra exposure, narrow the conclusion.
 No new invariance algorithm or causal-discovery ability is established by this
-design. Discuss annotation ambiguity, small-model writing limits, English-only
+design. The current generator also leaves exact deadline equality and multiple
+blocking conditions untested. Discuss annotation ambiguity, small-model writing limits, English-only
 scope and corpus licensing. No trained test outputs or human reliability statistic is yet
 available. Freeze the primary analysis before opening the final test, report
 negative outcomes and publish actual author, consent and data/code declarations.
