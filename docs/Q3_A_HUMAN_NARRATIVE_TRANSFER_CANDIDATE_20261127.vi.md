@@ -45,3 +45,40 @@ Hiện chỉ có tác giả sinh viên làm reader. Không dùng nhãn chuyên g
 gian gán nhãn thực trên packet mù rồi chốt sample/power/resource; chưa có đủ
 bằng chứng cho một lịch hoàn tất paper hoặc human validation. Nếu nguồn này
 không đáp ứng context/quyền/provenance, loại ứng viên theo tiêu chí đã ghi.
+
+## Kiểm kê metadata có pin, chưa nhập nội dung truyện
+
+Pin repo `uci-edu/FairytaleQAData` tại
+`a24ddc17364666b7c13a425b9970c87368b03417`, Git tree
+`93b6c8fc9fa312cc15baf26edcc5c4f3fd6c19f1` (không truncated).
+Đọc [story_meta.csv](https://github.com/uci-edu/FairytaleQAData/blob/a24ddc17364666b7c13a425b9970c87368b03417/story_meta.csv),
+[README](https://github.com/uci-edu/FairytaleQAData/blob/a24ddc17364666b7c13a425b9970c87368b03417/README.md)
+và toànLICENSE qua GitHub connector; chỉ lưu3files này và CSV tree inventory
+trong `data/raw/fairytaleqa-a24ddc173646/`, được Gitignore. Chưa tải corpus truyện
+hoặc QA, chưa token hóa, chọn đoạn hay tạo model output/nhãn.
+
+`scripts/audit_fairytaleqa_source_metadata.py` kiểm nguyên bytes với Git blob
+SHA1 có pin rồi ghi SHA256. Bản đầu materializeLICENSE đã mất whitespace cuối
+và bị kiểm hash từ chối; đã sửa bằng exact bytes, không bỏ kiểm tra. Manifest
+`configs/q3a/fairytaleqa_source_audit.json` là source audit, không final transfer.
+
+Kết quả từ metadata:278story IDs,15origin-book groups; upstream232train/23val/
+23test. Tổng declared4095sections/598613words/10580questions **chưa đếm lại từ
+nội dung**. `child-of-mary` và `farquhar-macneill` ghi0words; không dùng0làm
+độ dài thật để lựa chọn. Metadata đường dẫn `snow-man` khác case file `Snow-man`.
+`farquhar-macneill` có blob origin a5163829…/7343bytes, split c1c04032…/7332bytes;
+chưa đọc nội dung để giải thích khác biệt. Các bản trong folder `all` là view
+trùng chủ ý, không split độc lập; audit so với đúng split của từng dòng.
+
+Metadata chỉ có filename/origin/split/sections/words/questions; chưa giải quyết
+Gutenberg ID/edition/dịch giả/quyền từng sách. Không tự suy ra license mọi bản
+truyện từLICENSE repo. Trước transfer cần chọn một representation cụ thể, kiểm
+source rights/overlap/context và ngữ nghĩa bằng người thật; giữ provenance từng
+đoạn sửa.15book groups cũng cần được xét như cấu trúc phụ thuộc khi đăng ký
+ước lượng uncertainty; không coi hàng nghìn sections/QA là các nguồn độc lập.
+
+Lệnh audit đọc files đã được pin, không truy cập model hoặc train:
+
+```powershell
+.venv/Scripts/python.exe scripts/audit_fairytaleqa_source_metadata.py --directory data/raw/fairytaleqa-a24ddc173646 --output NEW_METADATA_RECEIPT.json
+```

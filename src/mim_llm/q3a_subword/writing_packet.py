@@ -8,7 +8,16 @@ import csv
 import random
 from pathlib import Path
 
-from ..q3a.io import read_json, read_rows, sha256, signature, write_json, write_rows
+from ..q3a.io import (
+    read_json,
+    read_rows,
+    sha256,
+    signature,
+    source_sha256,
+    write_json,
+    write_rows,
+)
+from . import inference
 
 FIELDS = (
     "item_id",
@@ -45,6 +54,10 @@ def checked_samples(directory, manifest):
         or started.get("review_id") != review["review_id"]
         or completed.get("review_id") != review["review_id"]
         or started.get("plan_id") != review["plan_id"]
+        or review.get("inference_backend") != inference.BACKEND
+        or review.get("inference_source_sha256") != source_sha256(inference.__file__)
+        or started.get("inference_backend") != inference.BACKEND
+        or started.get("inference_source_sha256") != source_sha256(inference.__file__)
     ):
         raise ValueError("Only a complete, unchanged real review may be packaged")
     parents = started["checkpoint_sha256"]
@@ -72,6 +85,7 @@ def checked_samples(directory, manifest):
             or row.get("human_label") is not None
             or row.get("primary_evaluation") is not False
             or not isinstance(row.get("continuation"), str)
+            or row.get("inference_backend") != inference.BACKEND
         ):
             raise ValueError("Review row differs from its declared provenance")
     if observed != {

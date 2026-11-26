@@ -1,0 +1,78 @@
+{
+  "as_of": "2026-11-27",
+  "status": "source_metadata_audit_not_final_transfer_dataset",
+  "repository": "https://github.com/uci-edu/FairytaleQAData",
+  "revision": "a24ddc17364666b7c13a425b9970c87368b03417",
+  "tree": "93b6c8fc9fa312cc15baf26edcc5c4f3fd6c19f1",
+  "tree_inventory_sha256": "53c83a1becf930a77019777df2da3284fb67637b922f15b54cdceb674841345c",
+  "repository_license": "Apache-2.0",
+  "license_scope": "repository; per-book edition/translator and source rights unresolved",
+  "files": {
+    "story_meta.csv": {
+      "bytes": 15603,
+      "sha256": "bd45290eb48a908829d50792fa465592f26bbe898ca16778e8576fbe2f1fdf76",
+      "git_blob": "2e2f45b3512611e5c8fa35383f28d5d744aba89f"
+    },
+    "LICENSE": {
+      "bytes": 10735,
+      "sha256": "335d2c093cbb191de9693d87c9935f832a2442a67615a6e47ac71f74ccb4bd5d",
+      "git_blob": "b6076b10d587404f9f73a523876eecc1deaa47e0"
+    },
+    "README.md": {
+      "bytes": 9017,
+      "sha256": "6787b4cdb8d70a2fc21c9daaf2ef5813037891d5ae3cf982de5aa5195b4dfd3e",
+      "git_blob": "09fcb6ce539b670414fffc7a9fb1413102ba9a83"
+    }
+  },
+  "metadata_stories": 278,
+  "unique_story_origin_filename_ids": 278,
+  "unique_filenames": 278,
+  "upstream_splits": {
+    "train": 232,
+    "val": 23,
+    "test": 23
+  },
+  "origin_book_groups": 15,
+  "metadata_declared_counts": {
+    "sections": 4095,
+    "words": 598613,
+    "questions": 10580
+  },
+  "nonpositive_metadata_count_story_ids": {
+    "sections": [],
+    "words": [
+      "child-of-mary",
+      "farquhar-macneill"
+    ],
+    "questions": []
+  },
+  "counts_are_metadata_not_independently_recounted_story_text": true,
+  "tree_CSV_files": 2228,
+  "story_content_downloaded": false,
+  "missing_section_story_paths": [],
+  "case_only_path_differences": [
+    {
+      "metadata_path": "data-by-origin/section-stories/andersen-fairybook/snow-man-story.csv",
+      "actual_path": "data-by-origin/section-stories/andersen-fairybook/Snow-man-story.csv"
+    }
+  ],
+  "origin_vs_split_section_blob_differences_or_nonunique": [
+    "data-by-origin/section-stories/scottish-fairybook/farquhar-macneill-story.csv"
+  ],
+  "metadata_fields": [
+    "filename",
+    "origin",
+    "split",
+    "sections",
+    "words",
+    "questions"
+  ],
+  "reviewed_transfer_pairs": 0,
+  "actual_human_labels": 0,
+  "training_use": false,
+  "model_outputs_generated": false,
+  "overlap_audit_completed": false,
+  "context_audit_completed": false,
+  "final_transfer_manifest": null,
+  "implementation_sha256": "9c99558134c3a6dc6fc996c04bec82c221d6543c52d4bbf092aef1aef3f56774"
+}

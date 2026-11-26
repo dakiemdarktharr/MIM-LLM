@@ -1,0 +1,30 @@
+{
+  "purpose": "fixed validation writing feasibility, not primary Q3-A evaluation",
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "corpus_sha256": "f1af895c66d7d689dfb794619cd6d91f658ce221ab29d0c27b71f9401556ffbc",
+  "recipe_sha256": "72741927f3d981cea45bdb3eddf635738c35a435f4f1a33aec78cb50b9fa4fe9",
+  "tokenizer_sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+  "decoding": {
+    "temperature": 0.8,
+    "top_k": 40,
+    "seed": 17,
+    "max_new_tokens": 128
+  },
+  "expected_samples": 34,
+  "human_labels": false,
+  "test_performance_measured": false,
+  "source_sha256": "d7036034987354c0b75899d8ff46d737b98101285557d1f903714581295684fb",
+  "inference_backend": "CPU_FP64_MHA_off_stable_token_ID_topk_v1",
+  "inference_source_sha256": "edf5c38042d01cb5c59a9b1c3256fefc88416bdde3333bf71c075cf6c700a551",
+  "review_id": "e8377d822b29f348c0794c5953a9e7d5e085bc80fc56a256582cb560556ad4bc",
+  "as_of": "2026-11-27",
+  "status": "prepared_only_no_real_generation",
+  "private_manifest_sha256": "cdd7a4300d594d3143faacea93398346638da248b2a991de45e5374ed524c0ca",
+  "previous_review_id": "5a0d0425dd44c68933fd1407d18558000802d2214be819deb2328932c1c056d2",
+  "same_seventeen_prompts_and_decoding": true,
+  "decision_rule_sha256": "590471e3dc722b083e95473c6b3648b18aab7abf0c5746ad1e5d6358d4da7910",
+  "real_model_samples_generated": 0,
+  "optimizer_updates": 0,
+  "human_labels_collected": 0,
+  "previous_FP32_manifest_preserved": true
+}

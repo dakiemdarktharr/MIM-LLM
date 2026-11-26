@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-26",
+  "as_of": "2026-11-27",
   "status": "candidate_source_audit_only",
   "training_use": false,
   "human_semantically_audited_pairs": 0,
@@ -17,7 +17,10 @@
       "source_story_clusters_observed": 10,
       "whole_units_observed": 10256,
       "whole_unit_count_is_lexical_word_count": false,
-      "reconstructed_story_UTF8_byte_range": [5209, 6538],
+      "reconstructed_story_UTF8_byte_range": [
+        5209,
+        6538
+      ],
       "full_stories_fit_current_context": false,
       "files": {
         "words.tsv": "0955415234babe7fe6890e447d96a2520175f5ea2b8eb130bd31e6aea94e4495",
@@ -44,6 +47,19 @@
       "official_card": "https://huggingface.co/datasets/sled-umich/TRIP/blob/main/README.md",
       "official_card_license": [],
       "status": "license_unresolved_no_corpus_import"
+    },
+    {
+      "id": "fairytaleqa",
+      "repository": "https://github.com/uci-edu/FairytaleQAData",
+      "revision": "a24ddc17364666b7c13a425b9970c87368b03417",
+      "paper": "https://aclanthology.org/2022.acl-long.34/",
+      "source_type": "human_narratives_with_reported_language_edits_and_expert_QA",
+      "repository_license": "Apache-2.0",
+      "individual_book_rights_verified": false,
+      "metadata_audit": "configs/q3a/fairytaleqa_source_audit.json",
+      "metadata_story_count": 278,
+      "origin_book_groups": 15,
+      "status": "pinned_metadata_only_rights_context_overlap_human_intervention_audits_pending"
     }
   ],
   "required_before_evaluation": [

@@ -9,9 +9,11 @@ from mim_llm.q3a.io import (
     read_rows,
     sha256,
     signature,
+    source_sha256,
     write_json,
     write_rows,
 )
+from mim_llm.q3a_subword import inference
 from mim_llm.q3a_subword.writing_packet import make_packet
 
 
@@ -33,6 +35,8 @@ def fixture_panel(tmp_path, *, corrupt=False):
         "plan_id": "synthetic-fixture",
         "prompts": prompts,
         "expected_samples": 34,
+        "inference_backend": inference.BACKEND,
+        "inference_source_sha256": source_sha256(inference.__file__),
     }
     manifest["review_id"] = signature(manifest)
     manifest_path = tmp_path / "manifest.json"
@@ -51,6 +55,7 @@ def fixture_panel(tmp_path, *, corrupt=False):
             "continuation": "" if i == 0 else f"Synthetic output {i}.",
             "human_label": None,
             "primary_evaluation": False,
+            "inference_backend": inference.BACKEND,
         }
         for run, digest in parents.items()
         for i, p in enumerate(prompts)
@@ -65,6 +70,8 @@ def fixture_panel(tmp_path, *, corrupt=False):
             "review_id": manifest["review_id"],
             "plan_id": manifest["plan_id"],
             "checkpoint_sha256": parents,
+            "inference_backend": inference.BACKEND,
+            "inference_source_sha256": source_sha256(inference.__file__),
         },
     )
     write_json(
@@ -114,4 +121,17 @@ def test_incomplete_review_cannot_be_presented_as_human_packet(tmp_path):
     receipt["complete"] = False
     write_json(directory / "completed.json", receipt, replace=True)
     with pytest.raises(ValueError, match="complete"):
+        make_packet(directory, manifest, tmp_path / "packet")
+
+
+def test_old_FP32_backend_is_not_packaged_as_reviewed_FP64(tmp_path):
+    directory, manifest = fixture_panel(tmp_path)
+    rows = read_rows(directory / "samples.jsonl")
+    rows[0]["inference_backend"] = "OLD_FP32_FIXTURE"
+    (directory / "samples.jsonl").unlink()
+    write_rows(directory / "samples.jsonl", rows)
+    receipt = read_json(directory / "completed.json")
+    receipt["samples_sha256"] = sha256(directory / "samples.jsonl")
+    write_json(directory / "completed.json", receipt, replace=True)
+    with pytest.raises(ValueError, match="provenance"):
         make_packet(directory, manifest, tmp_path / "packet")

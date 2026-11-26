@@ -77,3 +77,33 @@ xác nhận0active sessions/rate0/balance596,66 sau release. Quyền Drive hiệ
 hoạt động; yêu cầu xác minh danh tính trước đó là lịch sử. L4 yêu cầu sau đó
 được UI báo1session/rate2,33 vào khoảng21:31 giờ Việt Nam, kernel còn đang
 kết nối ở lần quan sát tiếp; không gọi đây là profile đã chạy hay train mới.
+
+## Cập nhật27/11: manifest FP64 và quy tắc feasibility trước output
+
+Manifest FP32 cũ giữ làm lịch sử. Đã chạy lại riêng `prepare` trên cùng corpus,
+recipe và **kiểm equality đủ17prompts/decoding**; không sinh output hoặc fit
+tokenizer. Dùng `artifacts/q3a-foundation-20261126/writing-review-fp64-v1.json`,
+reviewID `e8377d822b29f348c0794c5953a9e7d5e085bc80fc56a256582cb560556ad4bc`.
+Private manifestSHA `cdd7a4300d594d3143faacea93398346638da248b2a991de45e5374ed524c0ca`;
+public receipt `configs/q3a/foundation_writing_review_fp64_receipt.json`.
+Generator và blank-packet validator khóa backendCPU/FP64/source; không được
+đóng gói outputFP32 cũ như thể được sinh bằng backend mới. Chỉ chạyCPU; model
+checkpoint trên đĩa vẫnFP32. Hai complete100Mparents vẫn là điều kiện bắt buộc.
+
+Trước bất cứ output subword review nào, công bố local prospective rule trong
+`configs/q3a/foundation_writing_rule.json`, SHA
+`590471e3dc722b083e95473c6b3648b18aab7abf0c5746ad1e5d6358d4da7910`.
+Đọc đủ34mẫu thực, không bỏempty/cap. Với **mỗi backbone**, cần ít nhất12/16
+conditional samples đồng thời đạt3–5câu, fluency>=3/5, bám prefix, có sự kiện
+cụ thể, tự nhất quán và khôngunclear. Mẫu unconditional của mỗi backbone cũng
+phải đạt, gồm đúng yêu cầu3câu. Không nhóm output conditional giống hệt nào
+vượt4mẫu sau NFKC/casefold/gộp khoảng trắng; giữ raw output nguyên vẹn.
+
+Ngưỡng75% là quyết định sàng lọc kỹ thuật trước primary experiment, không cutoff
+đã được validated hay ước lượng chất lượng dân số. Cả hai model phải đạt; một
+model đạt không đủ mở matrix. Phiếu cần rater/evidence/thời gian thật. Thiếu
+nhãn làpending, không phải tự pass; không đổi threshold/seed sau khi xem mẫu.
+Ngay cả đạt vẫn cần review evidence và resource/novelty/primary-registration
+gates, không tự cấp quyền post. Hiện0model samples/0human labels của panel mới.
+Người đọc duy nhất là tác giả; không gọi là independent validation. Writing
+screen không chứng minh model chat hoặc giá trị MIM.
