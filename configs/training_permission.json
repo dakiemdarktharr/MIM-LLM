@@ -13,7 +13,9 @@
     "pytest:tests/test_foundation_training.py::test_foundation_tiny_batch_memorization[mingru]",
     "pytest:tests/test_foundation_training.py::test_foundation_tiny_batch_memorization[transformer]",
     "foundation-transformer-s0",
-    "foundation-mingru-s0"
+    "foundation-mingru-s0",
+    "pytest:tests/test_q3a_subword_training.py::test_subword_post_optimizer_and_exact_resume[mingru]",
+    "pytest:tests/test_q3a_subword_training.py::test_subword_post_optimizer_and_exact_resume[transformer]"
   ],
   "authorized_plan_ids": [
     "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
@@ -23,5 +25,8 @@
   "reason": "User-authorized Q3-A continuation; calibration2 cap exhausted and writing failed. One bounded subword foundation replacement per docs/Q3_A_FOUNDATION_PROTOCOL_20261126.vi.md: two seed-0 LM80M then SFT20M targets/model, maximum8x1100s soft drivers, real UI rate<=6 CU/h, balance>=20, observed balance-drop cap16CU, first-driver review mandatory. All post-matrix/other seeds/B/C/Q1/tokenizer fitting/purchases remain held. Preserve all negative runs.",
   "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md",
   "foundation_engineering_scope": "User-authorized Q3-A optimizer/overfit/resume checks: static synthetic fixtures only; no tokenizer fit and no real new foundation plan released yet.",
-  "foundation_protocol": "docs/Q3_A_FOUNDATION_PROTOCOL_20261126.vi.md"
+  "foundation_protocol": "docs/Q3_A_FOUNDATION_PROTOCOL_20261126.vi.md",
+  "subword_post_engineering_scope": "Existing user-authorized Q3-A optimizer/resume engineering checks: two static synthetic CPU tests only. No real subword post plan/run IDs or extra foundation seeds authorized by this preparation.",
+  "resource_annex": "configs/q3a/foundation_resource_annex.json",
+  "resource_note": "The original eight-driver wording in reason is historical; prospective resource-only annex before invocation2 sets sixteen slots with the same sixteen-CU observed-drop cap. Exact learning plan/run IDs and all other holds remain unchanged."
 }

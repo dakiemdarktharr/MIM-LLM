@@ -492,3 +492,19 @@ Drive archive83017079bytes/e5a85041ed6b084d06bbdaccfbdb5cf990712dbb507f5df1bf4b8
 ## 2026-11-26 — Driver3 started without another Drive mount
 
 After independently auditing driver2archive, resumed fromc0d66aa6f84f… on the same mounted L4. Session20261126T150634Z/driver3 reserved1100s; ledger read back through connector, browser confirms live execution. UI595.58CU/rate2.33. Source overlays and parent hash verified before launch. Last independent target count remains28053669TransformerLM/0SFT/0minGRU until new evidence is audited; do not equate a live reservation with completion. No duplicate process or extra purchase. GoalACTIVE/incomplete, no LaTeX.
+
+
+## 2026-11-27 — Drive connection restored; driver3 independently audited
+
+After user pause/resume, Colab had disconnected/0 active sessions. Drive connector still accessed the project without another grant. Downloaded driver3 archive (82,340,146 bytes, SHA ac147644f2955dabb75cbc40c50561f35c2a5a295e8f78d259eadb3f8ed9c52f); verifier checked35members/56,174contiguous finite metric rows and per-stage/counter/hash/annex accounting without pickle or updates. Transformer baseline3,681,984parameters:50,057,365LM targets,0SFT; minGRU0. Latest466eaf6d56d38b033718f3451c4d0c3a701e66d42d7809881ffabe5fd9f4bb64. Driver3returncode0,3/16slots consumed; no writing/test/primarypost/human result. Details docs/Q3_A_FOUNDATION_INVOCATION3_20261127.vi.md and configs/q3a/foundation_invocation3_results.json.
+
+L4 allocation stalled; T4 fallback allocated1active session/rate1.87CUh/594.02CU observed. Authorized same-account routine Google sign-in reused existing access, no new scopes; mount12 actually printed Mounted at /content/drive and project read/write verification. No user confirmation requested. Bootstrap verified73payload hashes onTeslaT4/Torch2.14.1+cu130. New cell20 requested boundeddriver4 only from466eaf... and all3finished ledger guard; latest launch still needs producer/ledger readback before claiming updates. Keep current mount for immediate eligible steps; no fake keepalive or permanent-mount promise.
+
+Prepared subword post plan/runner/template with6genuine seed-matched parent requirement, archive/writing evidence gates, response CE plusA3trainprobeJS, exact target accounting/rollback/resume. Only two synthetic CPU optimizer/resume testIDs added to permission; both passed,77targets each, bitwise model/optimizer/counters match. Default suite206passed/18trainingdeselected; Ruff passed4newfiles. No real subword-post plan/run or extra foundation seeds authorized. Whole-study budget/orchestration/evaluation adapters and real writing/human evidence remain pending. docs/Q3_A_SUBWORD_POST_ENGINEERING_20261127.vi.md.
+
+Correction: older overview/experiment top banners saying alltraininglocked are historical; user authorizedQ3-A on26Nov. Other seeds/post/B/C/Q1/tokenizerfit remain held. Resource annexbeforedriver2already16slots; corrected leftover8wording in Drive-session policy. GoalACTIVE/incomplete, no LaTeX or publication milestone advanced.
+
+
+### Drive restoration verified; fourth driver active
+
+Colab cell12 newly printed Mounted at /content/drive and project write/read verification. Same-account OAuth reused existing9services access; no new scope was requested or added. Cell13 verified73payloads onTeslaT4/Torch2.14.1+cu130/0optimizer. Driver4 session20261126T171154Z is reserved1100s in independently read cloud ledger; UIactualexecution active, rate1.87CUh/balance594.02. This is an active run, not a completed target result. Exactlatest466eaf... andall3finished entries guarded before launch. New cell20 keeps mount on success/releases on failure. No user confirmation requested. Synthetic optimizer checks rerun:2passed in2.90s; default206passed/18deselected remains valid.

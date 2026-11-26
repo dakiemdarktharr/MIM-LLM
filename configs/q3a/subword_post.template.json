@@ -1,0 +1,21 @@
+{
+  "status": "draft_preparation_not_an_authorized_training_plan",
+  "arms": ["A0", "A1", "A2", "A3"],
+  "backbones": ["mingru", "transformer"],
+  "seeds": [0, 1, 2],
+  "parent_initialization": "independent_foundation_seed_matched_to_post_seed",
+  "context": 1024,
+  "batch_size": 2,
+  "post_targets": 2000000,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "js_weight": 0.1,
+  "checkpoint_every_updates": 100,
+  "validation_every_updates": 500,
+  "decoding": {"max_new_tokens": 128, "temperature": 0.8, "top_k": 40, "seeds": [17]},
+  "primary_contrast": ["A1", "A2"],
+  "gpu_hours_cap_per_study": null,
+  "smallest_useful_effect": null,
+  "other_studies_authorized": false
+}

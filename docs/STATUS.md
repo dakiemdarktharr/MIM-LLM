@@ -2,18 +2,21 @@
 
 # Evidence-backed manuscript status
 
-> **Latest observed state, 26 November 2026:** Subword foundation driver2 is
-> running on the same mounted Colab L4/Drive session. The Transformer baseline
-> has 3,681,984 actual parameters; the factorized minGRU variant has 3,682,887.
-> Neither is MIM. Training remains partial; the declared80M LM+20M response-SFT
-> targets per model, writing review and the primary post matrix are incomplete.
-> The [resource profile and annex](Q3_A_FOUNDATION_RESOURCE_PROFILE_20261126.vi.md)
-> retain the16CU observed-drop cap, with no purchase. The older50M-byte calibration
-> completed but failed the34sample writing review; those negative results and
-> released VM are historical. No A0–A3 post-training, final-test results or real
-> human labels exist. Only the author is available as a reader; independent
-> agreement is unmeasured. The goal remains active. All manuscripts stay locked
-> against compilation until the actual scientific phases are complete.
+> **Latest observed state,27 November2026:** Foundation driver3 independently
+> verifies50,057,365Transformer LM targets/56,174updates,0SFT and0minGRU.
+> Its35-member Drive archive passed accounting/hash checks after the older
+> runtime had disconnected. Drive has now remounted successfully onT4 with
+> project read/write verification; driver4 is active under the same c18plan
+> and16CU observed-drop cap. Preserve this mount between immediate eligible
+> steps. The Transformer and factorized minGRU have3,681,984/3,682,887actual
+> parameters; neither isMIM. Both80M+20Mbudgets, writing review and primary
+> post-training remain incomplete. Prepared subword post plan/runner passed
+> synthetic checks but real runs are still held;6genuine parents, writing
+> evidence and measured whole-study orchestration are pending. No real human
+> labels/final-test results; only the author is available as reader. No
+> manuscript has results/submission/acceptance/publication or compilation.
+> See [driver3 audit](Q3_A_FOUNDATION_INVOCATION3_20261127.vi.md) and
+> [post engineering limits](Q3_A_SUBWORD_POST_ENGINEERING_20261127.vi.md).
 
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile
 labels are internal planning targets, not editorial outcomes.

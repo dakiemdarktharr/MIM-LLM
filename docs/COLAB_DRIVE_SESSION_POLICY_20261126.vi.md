@@ -17,7 +17,8 @@ Quy trình mỗi phiên:
    Khi persistence cần kiểm sau release, vẫn kiểm lại ở cuối phiên thật sự.
 4. Nếu lỗi không thể tiếp tục an toàn, hoàn tất phần được phép, hoặc chạm cap:
    lưu bằng chứng, flush/unmount rồi trả VM. Không giữ GPU idle vô thời hạn chỉ
-   để tránh xác thực. Không tăng8driver/1100s mỗi driver/16CU observed-drop hoặc
+   để tránh xác thực. Giữ cap của resource annex hiện hành:16driver tối đa,
+   1100s mỗi driver và16CU observed-drop; không tự mở
    mở test/B/C/Q1/tokenizer fit bằng thay đổi này.
 
 Google [FAQ chính thức](https://research.google.com/colaboratory/faq.html)
@@ -35,3 +36,21 @@ quyền connector không đồng nghĩa filesystem mount tự tồn tại trong 
 Lịch sử: v1/v2/v3 host cũ trả VM sau từng driver để giảm thời gian idle; giữ
 nguyên receipt/log nguồn cũ. Ô profiler hiện tại giữ mount khi thành công và
 trả VM khi lỗi; chưa gọi bước đó là hoàn tất trước khi có receipt thực.
+
+## Cập nhật 27/11/2026
+
+Drive connector vẫn đọc được archive lượt3 mà không yêu cầu người dùng cấp
+quyền lại. Sau lần tạm dừng, UI notebook báo runtime đã ngắt và0active sessions;
+mount filesystem cũ không còn được xem là đang hoạt động. Không dùng receipt
+mount lịch sử làm bằng chứng cho VM mới. Đã thử nối lại L4, nhưng UI giữ ở
+Allocating runtime; sau một lần làm mới đã chọn T4 được phép. T4 được cấp
+1active session/rate1,87CUh, kernel vẫn đang Connecting ở quan sát này.
+Yêu cầu chạy ô mount12 đã gửi đúng một lần; chưa xác nhận mount mới thành công.
+
+Người dùng đã cho phép dùng lại đúng tài khoản và phạm vi Drive cho dự án.
+Không hỏi lại cùng một quyền. Chỉ chuyển thao tác cho người dùng nếu Google
+bắt một bước xác thực cá nhân không thể thực hiện thay. Không tạo/service
+account, lưu credential hoặc mở public dữ liệu để né xác thực.
+
+Sửa câu cap8driver còn sót ở phần quy trình: annex được ghi trước lượt2 đã
+nâng thành16; thay đổi này chỉ sửa tài liệu, không tăng ngân sách hiện hành.
