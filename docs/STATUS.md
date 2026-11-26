@@ -7,7 +7,7 @@
 > zero. The default MHA inference fastpath discrepancy was isolated. With it
 > disabled, same-weight FP64, probability and nonupdating gradient checks
 > support the [disclosed backend decision](Q3_A_BACKEND_REVIEW_20261127.vi.md).
-> Original strict FP32 logit failures remain failed. Driver 5 is prepared using
+> Original strict FP32 logit failures remain failed. Driver 5 is running using
 > the same restored T4/Drive mount, immutable c18 learning plan and resource cap.
 > This is engineering feasibility, not a writing or primary-contrast result.
 > Both completed parents, writing review and all primary post runs are pending.
