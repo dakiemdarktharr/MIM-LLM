@@ -26,5 +26,7 @@
   "not_a_released_post_training_plan": true,
   "nonupdating_tests_passed": 4,
   "foundation_plan_still_verifies": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
-  "not_a_complete_post_pipeline": true
+  "not_a_complete_post_pipeline": true,
+  "full_default_suite_passed_after_addition": 189,
+  "training_tests_deselected": 16
 }
