@@ -2,21 +2,16 @@
 
 # Evidence-backed manuscript status
 
-> **Latest observed state,27 November2026:** Foundation driver3 independently
-> verifies50,057,365Transformer LM targets/56,174updates,0SFT and0minGRU.
-> Its35-member Drive archive passed accounting/hash checks after the older
-> runtime had disconnected. Drive has now remounted successfully onT4 with
-> project read/write verification; driver4 is active under the same c18plan
-> and16CU observed-drop cap. Preserve this mount between immediate eligible
-> steps. The Transformer and factorized minGRU have3,681,984/3,682,887actual
-> parameters; neither isMIM. Both80M+20Mbudgets, writing review and primary
-> post-training remain incomplete. Prepared subword post plan/runner passed
-> synthetic checks but real runs are still held;6genuine parents, writing
-> evidence and measured whole-study orchestration are pending. No real human
-> labels/final-test results; only the author is available as reader. No
-> manuscript has results/submission/acceptance/publication or compilation.
-> See [driver3 audit](Q3_A_FOUNDATION_INVOCATION3_20261127.vi.md) and
-> [post engineering limits](Q3_A_SUBWORD_POST_ENGINEERING_20261127.vi.md).
+> **Latest observed state, 27 November 2026:** Driver 4 independently verifies
+> 70,895,155 Transformer LM targets / 79,554 updates; SFT and minGRU remain at
+> zero. The default MHA inference fastpath discrepancy was isolated. With it
+> disabled, same-weight FP64, probability and nonupdating gradient checks
+> support the [disclosed backend decision](Q3_A_BACKEND_REVIEW_20261127.vi.md).
+> Original strict FP32 logit failures remain failed. Driver 5 is prepared using
+> the same restored T4/Drive mount, immutable c18 learning plan and resource cap.
+> This is engineering feasibility, not a writing or primary-contrast result.
+> Both completed parents, writing review and all primary post runs are pending.
+> No human labels, final-test results, LaTeX build or publication milestones.
 
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile
 labels are internal planning targets, not editorial outcomes.

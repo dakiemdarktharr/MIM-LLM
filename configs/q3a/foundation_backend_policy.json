@@ -1,0 +1,19 @@
+{
+  "purpose": "Reviewed inference backend and prospective numerical engineering contract; no scientific result or permission expansion",
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "effective_before_invocation": 5,
+  "mha_fastpath_enabled": false,
+  "diagnostic_script_sha256": "f9a40353f1a59e2cd01ac222b3d93c53c26a75b7f735cfaaa7d504f0756ef5df",
+  "probability_L1_limit": 0.0001,
+  "reference_tolerance_atol_rtol": 1e-10,
+  "argmax_mismatches_allowed": 0,
+  "original_strict_FP32_logits_receipts_remain_failed": true,
+  "initial_review_proof_sha256": "b970e26a7940a58f223796a6f5380679e5de92f06bd003b8253683e72c518e7b",
+  "initial_review_checkpoint_sha256": "3d0328df19087a6432823c69d65d0a49459b7175e7341088f70ddbcb9c5c6210",
+  "posthoc_initial_diagnosis_disclosed": true,
+  "rationale": "Retain strict failures. MHA-off aligns training/dense; same-weight FP64 paths agree; tested gradients/loss unchanged. Per-position L1 drift is an engineering diagnostic, not a whole-generation/sampler guarantee. Apply the fixed bound prospectively to later reviewed checkpoints; do not relax it after failure.",
+  "scientific_metrics_or_data_changed": false,
+  "training_permissions_changed": false,
+  "budgets_changed": false,
+  "policy_id": "4ee4ddd2fc93406eed8df2ae10eb08339b59ba8b8795ae169cf57ace9a48ddc9"
+}

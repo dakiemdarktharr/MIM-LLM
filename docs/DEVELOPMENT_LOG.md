@@ -522,3 +522,21 @@ CPU AMD Ryzen AI5 340/6cores/16,418,648,064RAMbytes measured; noCPUtrainthroughp
 ## 2026-11-27 — Primary-source candidate for human-narrative transfer
 
 Targeted ACL/GitHub search verified FairytaleQA ACL2022metadata and selectedPDF3.1-3.3:278Gutenberg stories,expertQA, minor language revisions. Officialrepo redirectuci-edu/LICENSEApache2.0checked; individualstory/translatorprovenance,revisionpin,overlap,context andinterventionreviewnotcomplete. No datasetdownload/testselection/modeloutput/humanlabels. HumEval2024replicationpaperverifiedmetadata/abstractonly. Two scholarlymetadatarecords +one officialrepo, not three full-read studies. Candidate may support adapted narrative transfer; originalQA not gold for continuation, newcounterfactual edits cannot be called whollyhumanwritten. Note docs/Q3_A_HUMAN_NARRATIVE_TRANSFER_CANDIDATE_20261127.vi.md. Currentfoundationc18 unchanged.
+
+
+## 2026-11-27 — Driver4 archived; learned T4 inference mismatch isolated
+
+Session20261126T171154Zreturn0;Transformer70,895,155LMtargets/79,554updates,0SFT/minGRU. Added20,837,790targets/23,380updates/979.044227320optimizerseconds;driver1083.923651715/1100s. Archive82,744,948bytes/SHA80340b9f834d19a5748b9197549f13dd74e7142cb2bb518e8549c0404b1ca63e downloaded/audited38members/79,554contiguousfinite rows/stages/counters/annex/checkpointchains. Latest3d0328df19087a6432823c69d65d0a49459b7175e7341088f70ddbcb9c5c6210;previousb7a2dd027b4e59723cf319adda6a12009f9e8f8d918957ec976e4111bb8ad27d. 4/16slots,UI593.52CU/rate1.87, noinvoiceattribution.
+
+DefaultT4learnedpathcheckFAIL: max0.036187917train/dense;causality/resetexact0. Cloudreceipt8c9488f11fc144db246f991ea979863b0fd46de90f52f0a2dedc1343bbe29c48 independently readback. Sameweights/tolerances with MHAfastpathFalsealigntraining/denseexact0, fullcachemax3.43323e-5; stepmax0.000299454stillstrictfail3longcases. Cloudreceipt a3250cc38e98c70f3bdab424e5ebd5f9c8d8fa8f47a01b62035a3ea082c7af3d checked. OfficialbackendAPIverified; notyetidentifiedupstreamkernelcause. No foundation source/weights/threshold changed. No driver5 launched.
+
+Prepared+uploaded hashf9a40353f1a59e2cd01ac222b3d93c53c26a75b7f735cfaaa7d504f0756ef5df precisiondiagnostic: sameFP32weights toFP64CPU, fullsoftmax andexactdeclaredT.8/topk40policy distributions, argmax/KL, nonupdating trainingloss/grad flagcomparison. Two synthetic metric tests pass/Ruffpass; remote cell24running finite420s cap, nooptimizer orautomaticnextdriver. Mountretainedonlyforimmediatediagnosis. Detailsdocs/Q3_A_FOUNDATION_INVOCATION4_20261127.vi.md. Nohuman/test/LaTeX/publicationmilestone. GoalACTIVE,incomplete.
+
+
+## 2026-11-27 — Backend review completed before driver5
+
+Independent cloud precision receipt b970e26a7940a58f223796a6f5380679e5de92f06bd003b8253683e72c518e7b verified. FP64CPU same weights at641/1024:allpathchecks pass1e-10,max4.369837824924616e-13. Across2,789positions/fourFP32productionpaths:0argmaxchanges,maxfullsoftmaxL1=6.217517905633884e-5,maxT.8/top40policyL1=8.604755116236001e-5. Same1,024targettrainbatch loss2.405290126800537 andallgradientsbitwiseequal forMHAflagTrue/False;0optimizer/weightsunchanged. Notwholegeneration/samplerguarantee.
+
+Documented posthocinitialengineeringreview, notpreregisteredscience or retroactivestrictlogitpass. Prospectivefixedcontract4ee4ddd2fc93406eed8df2ae10eb08339b59ba8b8795ae169cf57ace9a48ddc9 frominvocation5:FalseMHAinference,FP64agreement,0argmaxchanges,L1<=1e-4,matchedhashes/lossgrads; neverrelaxafterfuturefail. Reviewedlauncher callsunchangedV4driver, bindsproof/currentDrive+scratchhashes, source andterminalledger, recordsbackend receiptinsideactualchild. Data/optimizer/learningplan/runpermissions/budgets unchanged. Tests216passed/18trainingdeselected,Ruffpass; actualdownloadedproofmeetsgate.
+
+Prepared notebookcell25 fordriver5 withlatest3d0328.../4finishedledgerguard/UI593.05CU/rate1.87/samemount. Uploadedhashboundreviewedlauncher8d6b1141ba9197b3a36bcb589b2438d0bdd395e2e8848bee93629289b86a11fa/policyfiled9355ef9980c578262e12a4497581bff940d6bd2ab35cb6cc03e818067c99014. Notlaunchedatthisentry. docs/Q3_A_BACKEND_REVIEW_20261127.vi.md. GoalACTIVE,incomplete; nowriting/human/test/LaTeX/publicationoutcome.
