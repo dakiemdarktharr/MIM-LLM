@@ -2,7 +2,7 @@
 
 # Evidence-backed manuscript status
 
-> **Current execution, 27 November 2026:** Driver9 is independently audited: Transformer **3,681,984 parameters** completed80M LM+20M SFT targets; factorized minGRU **3,682,887 parameters** reached17,353,105 LM targets. Both numerical gates passed. **Driver10 is running** on the retained T4/Drive mount without another grant. Same-data CPU/FP64 replay found general-validation PPL worsened from9.41 before SFT to83.44 after SFT. Preserve this negative observation; writing quality remains unmeasured. See the [driver9 audit](Q3_A_FOUNDATION_INVOCATION9_20261127.vi.md). No new writing panel, real human labels, primary post/test results or publication milestone exists. Neither backbone is MIM; B/C/Q1 training and tokenizer fitting remain closed.
+> **Current execution, 27 November 2026:** Driver 10 is independently audited: minGRU **3,682,887 parameters** reached **50,849,604 LM targets**; Transformer **3,681,984 parameters** retains its completed80M LM+20M SFT parent. All113archive members/273,436step rows were verified. The new minGRU numerical contract passed; unchanged Transformer proof was verified and reused. **Driver11 is running**, session20261126T203337Z, with the same T4/Drive mount and caps. Negative Transformer general-validation retention (PPL9.41 to83.44 after SFT) remains recorded. See the [driver10 audit](Q3_A_FOUNDATION_INVOCATION10_20261127.vi.md). Writing/human/post/test/transfer/results manuscript and LaTeX remain incomplete. Neither baseline is MIM; B/C/Q1 training and tokenizer fitting remain closed.
 
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile
 labels are internal planning targets, not editorial outcomes.
