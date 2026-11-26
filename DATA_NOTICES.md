@@ -27,3 +27,25 @@ The A/B/C controlled sources are project-generated templates. Their exact-string
 semantic checks do not establish naturalistic coverage, human annotation validity
 or trained writing quality. No production self/peer history bank is included:
 it can be generated only from genuine, completed shared warm-up checkpoints.
+
+
+## Subsequent Q3-A language-foundation preparation (26 November 2026)
+
+`data/raw/q3a-foundation-20261126.jsonl` expands the same pinned upstream
+training split to 300,000 training source groups and retains the earlier
+300 validation and 300 test groups verbatim. New candidates are excluded by
+normalized full-story digest (NFKC, case folding, whitespace), not a claim of
+semantic deduplication. `data/processed/q3a-foundation-20261126` contains
+next-token windows and mechanical response-only instruction examples for
+train/validation, under CDLA-Sharing-1.0. The held-out test was not tokenized.
+The adjacent manifests disclose the changed files, transformations and hashes.
+Earlier subsets and byte-tokenized data remain historical versions.
+
+The frozen, unmodified tokenizer snapshot is from
+[EleutherAI/gpt-neo-125m, revision 21def0189f5705e2521767faed922f1f15e7d7db](https://huggingface.co/EleutherAI/gpt-neo-125m/tree/21def0189f5705e2521767faed922f1f15e7d7db).
+Its model card identifies MIT; see the checked provenance in
+`docs/Q3_A_REFERENCE_DIAGNOSTIC_20261126.vi.md`. No vocabulary fitting,
+pruning or merge modification was performed. The tokenizer's license does
+not establish a license for separate TinyStories model weights: those external
+weights were used only for private diagnostic inference and are not included
+in any foundation training parent or source bundle.
