@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "study": "q3a-calibration2-seed0-only",
+  "arms": [
+    "A0",
+    "A1",
+    "A2",
+    "A3"
+  ],
+  "backbones": [
+    "mingru",
+    "transformer"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "tokenizer": "fixed_utf8_byte_259",
+  "target_parameters": 2100000,
+  "layers": 2,
+  "context": 2048,
+  "dropout": 0.0,
+  "batch_size": 2,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "warmup_targets": 50000000,
+  "post_targets": 2000000,
+  "selection_reserve_fraction": 0.15,
+  "js_weight": 0.1,
+  "checkpoint_every_updates": 100,
+  "gpu_hours_cap_per_study": null,
+  "decoding": {
+    "max_new_tokens": 512,
+    "temperature": 0.8,
+    "top_k": 40,
+    "seeds": [
+      17
+    ]
+  },
+  "primary_contrast": [
+    "A1",
+    "A2"
+  ],
+  "primary_metric": "source-paired joint success on base/effective and base/noop, stratified by pair kind",
+  "smallest_useful_effect": null,
+  "status": "bounded_language_calibration_only_posttraining_not_released",
+  "surface_control": "decision-irrelevant numeric clock edit, matched byte length and character edits; no full paraphrase claim",
+  "validation_every_updates": 500,
+  "calibration_max_driver_invocations": 3,
+  "calibration_driver_seconds_per_invocation": 1100
+}

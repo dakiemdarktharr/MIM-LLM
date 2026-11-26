@@ -3,42 +3,16 @@
   "tokenizer_fitting_authorized": false,
   "authorized_run_ids": [
     "warmup-mingru-s0",
-    "A0-mingru-s0",
-    "A1-mingru-s0",
-    "A2-mingru-s0",
-    "A3-mingru-s0",
-    "warmup-mingru-s1",
-    "A0-mingru-s1",
-    "A1-mingru-s1",
-    "A2-mingru-s1",
-    "A3-mingru-s1",
-    "warmup-mingru-s2",
-    "A0-mingru-s2",
-    "A1-mingru-s2",
-    "A2-mingru-s2",
-    "A3-mingru-s2",
     "warmup-transformer-s0",
-    "A0-transformer-s0",
-    "A1-transformer-s0",
-    "A2-transformer-s0",
-    "A3-transformer-s0",
-    "warmup-transformer-s1",
-    "A0-transformer-s1",
-    "A1-transformer-s1",
-    "A2-transformer-s1",
-    "A3-transformer-s1",
-    "warmup-transformer-s2",
-    "A0-transformer-s2",
-    "A1-transformer-s2",
-    "A2-transformer-s2",
-    "A3-transformer-s2",
     "pytest:tests/test_q3a_training_integration.py::test_q3a_optimizer_js_and_interruption_resume[mingru]",
     "pytest:tests/test_q3a_training_integration.py::test_q3a_optimizer_js_and_interruption_resume[transformer]",
     "pytest:tests/test_q3a_overfit.py::test_q3a_tiny_batch_memorization[mingru]",
     "pytest:tests/test_q3a_overfit.py::test_q3a_tiny_batch_memorization[transformer]"
   ],
   "authorized_plan_ids": [
-    "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142"
+    "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
+    "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660"
   ],
-  "reason": "Explicit user instruction 2026-11-26: begin Q3-A on Colab Pro+ after scope review; save metrics/checkpoints to Drive. Initial remote session bounded to seed-0 warm-ups and feasibility before wider post-training. B/C and tokenizer fitting remain unauthorized."
+  "reason": "User-authorized Q3-A continuation. First writing feasibility failed; protocol docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md allows only two new seed-0 language warmups, 50M targets each, max3x1100s drivers, no extra purchases. Post-training and other seeds held until writing feasibility review; B/C/Q1 and tokenizer fitting remain unauthorized. Earlier broad IDs retained in Git history.",
+  "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md"
 }

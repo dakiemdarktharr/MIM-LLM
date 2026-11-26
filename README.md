@@ -1,12 +1,13 @@
-> **Scope/authorization update, 26 November 2026:** Q3-A now uses numeric irrelevant-clock edits as A2, replacing the historical punctuation control. Q3-A bounded Colab training is authorized; B/C/Q1 and tokenizer fitting remain closed. Current plan ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142. See [scope review](docs/SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md). Earlier zero-training receipts below describe their original preparation session.
+> **Execution update, 26 November 2026:** Two real seed-0 baseline warm-ups completed on Colab T4, 5 million supervised byte targets each. Validation writing inspection failed; no A0/A1/A2/A3 post-training or final-test evaluation has run. A single bounded language calibration is prepared under plan `ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660`; only its two seed-0 warm-ups are enabled. See the [pilot report](docs/Q3_A_COLAB_PILOT_20261126.vi.md) and [prospective calibration protocol](docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md). B/C/Q1 and tokenizer fitting remain closed. Earlier zero-training receipts describe their original preparation sessions.
 
 # MIM-LLM
 
-**Status: research planning with a tested legacy code prototype.** This software-only
+**Status: research planning and language feasibility calibration.** This software-only
 project studies autoregressive story continuation and recurrent language-model
 memory. All three standalone Q3 studies now have preparation code, pinned data
-plans, evaluation pipelines and non-optimizing checks. Training is locked pending
-a new user instruction. C's genuine model-history bank requires completed shared
+plans, evaluation pipelines and non-optimizing checks. Q3-A training is limited
+to its authorized calibration; further matrix expansion requires the writing
+feasibility review. C's genuine model-history bank requires compatible shared
 warm-up checkpoints; the branch-residual architecture remains a research design. No manuscript has been
 submitted, accepted or published.
 

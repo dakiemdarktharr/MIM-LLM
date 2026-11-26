@@ -41,7 +41,9 @@
         "warmup-mingru-s0"
       ],
       "completed_warmup_targets": 10000000,
-      "completed_post_runs": 0
+      "completed_post_runs": 0,
+      "new_calibration_started": false,
+      "full_matrix_expansion_held": true
     },
     {
       "id": "drive_persistence",
@@ -102,10 +104,12 @@
     },
     {
       "id": "real_human_evaluation",
-      "status": "not_collected",
+      "status": "not_collected_only_user_available_second_reader_missing",
       "reader_ids": [],
       "cost_estimate_evidence": "docs/Q3_A_ANNOTATION_FEASIBILITY.vi.md",
-      "estimates_are_measurements": false
+      "estimates_are_measurements": false,
+      "available_readers_reported_by_user": 1,
+      "second_reader_available": false
     },
     {
       "id": "licensed_naturalistic_transfer",
@@ -198,5 +202,8 @@
     "latex_still_held_until_real_results": true,
     "resolved_on": "2026-11-26",
     "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
-  }
+  },
+  "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
+  "active_calibration_bundle_sha256": "2a1628b6a778007a92179742884f6dfec2dba29641f47f5f63b5a92769711522",
+  "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md"
 }
