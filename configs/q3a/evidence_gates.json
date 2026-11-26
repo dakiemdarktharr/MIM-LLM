@@ -25,7 +25,7 @@
       "evidence": [
         "docs/DEVELOPMENT_LOG.md"
       ],
-      "observed_nontraining_tests": 148,
+      "observed_nontraining_tests": 153,
       "observed_Q3A_training_tests": 4,
       "not_scientific_findings": true
     },
@@ -137,8 +137,11 @@
     },
     {
       "id": "final_compilation_and_claim_review",
-      "status": "requires_result_bearing_manuscript",
-      "latest_methods_build": "passed; not completion evidence for final manuscript"
+      "status": "compile_held_by_user_until_real_experimental_phases_complete",
+      "latest_methods_build": "historical pre-instruction only; current source not recompiled after the hold",
+      "phase_order_policy": "docs/MANUSCRIPT_PHASE_ORDER.vi.md",
+      "build_gate": "src/mim_llm/manuscript_workflow.py",
+      "build_gate_nontraining_tests_passed": 5
     },
     {
       "id": "records_and_publication_controls",

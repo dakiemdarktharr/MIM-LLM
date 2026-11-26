@@ -1,0 +1,39 @@
+% Adapted from the official J.UCS V5 layout for an UNSUBMITTED research draft.
+% The original publisher style is loaded unchanged from a hash-verified ZIP.
+\documentclass[10pt,a4paper,oneside]{article}
+\usepackage[hidelinks]{hyperref}
+% V5's legacy enddocument replaces the modern kernel/hyperref end hooks and
+% reports changed labels even after repeated stable passes. Restore those hooks.
+\let\mimKernelEndDocument\enddocument
+\usepackage{jucs2e}
+\let\enddocument\mimKernelEndDocument
+\usepackage{graphicx,url,mathtools,scalerel,setspace}
+\usepackage[strict]{changepage}
+% V5's negative tracking option is rejected by the available microtype version;
+% this draft uses no tracking command, so omit that unused option.
+\usepackage{microtype}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{titlesec}
+\titleformat*{\section}{\Large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\renewcommand{\baselinestretch}{0.9}
+% Same effective V5 margins; omit its ignored, over-specified textwidth key.
+\usepackage[left=4.6cm,right=4.2cm,top=3.9cm,bottom=6.8cm,a4paper,headheight=0.5cm,headsep=0.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[format=plain,labelfont=it,textfont=it,justification=centering]{caption}
+\usepackage{breakcites}
+\usepackage{booktabs,tabularx,array,xcolor}
+\setlength{\tabcolsep}{6pt}
+\setlength{\emergencystretch}{2em}
+\urlstyle{same}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\pending}[1]{\textcolor{blue!55!black}{[TO COMPLETE: #1]}}
+\newcommand{\unmeasured}{\textit{not measured}}
+% No sample author, volume, DOI, acceptance date or publisher issue banner.
+% This project draft header is an explicit deviation from the production header.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\fontsize{8pt}{9pt}\selectfont Q3-A unsubmitted draft}
+\fancyhead[R]{\fontsize{9pt}{9pt}\selectfont\thepage}
+\renewcommand{\headrulewidth}{0pt}

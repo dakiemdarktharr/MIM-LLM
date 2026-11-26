@@ -52,3 +52,8 @@ Initial GPU invocation cap20phút phục vụ calibration/feasibility; không ph
 ## 2026-11-26 — Analysis correction verified
 
 [Versioned analysis review](Q3_A_ANALYSIS_REVIEW.vi.md): average both readers for coverage/fluency; require complete source/seed/role/arm panels, original generation checks and prospective analysis/source registration.15new regression tests; full suite148passed/12deselected. Training bundle/plan unchanged. No real human labels, scientific outputs or cloud progress established; Drive handoff remains pending.
+
+
+## 26/11 — Superseding phase order
+
+User explicitly requires actual data collection, training, test/evaluation and result analysis before any further LaTeX compilation. Both build scripts now stop before compiler access without real phase evidence. No TeX was run after this instruction. See [phase order](MANUSCRIPT_PHASE_ORDER.vi.md). Historical layout receipts do not release this hold. Goal still requires actual experiments and manuscript, and manual Drive consent remains pending.

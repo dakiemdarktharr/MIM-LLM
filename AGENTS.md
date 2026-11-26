@@ -1,4 +1,14 @@
 # MIM-LLM project workflow
+
+## LaTeX phase order — user instruction, 2026-11-26
+
+Do not compile any paper's LaTeX until its real data collection, training,
+evaluation/test and result analysis phases are complete and actual results exist.
+This supersedes earlier preparation-stage compilation instructions. Keep previous
+PDF/build receipts as historical local evidence; do not rerun them to polish a
+planning draft. Both build scripts enforce the evidence gate documented in
+`docs/MANUSCRIPT_PHASE_ORDER.vi.md`. No new permission request is required after
+the scientific prerequisites are genuinely complete; do not fabricate receipts.
 
 ## Q3-A training authorization — 2026-11-26
 

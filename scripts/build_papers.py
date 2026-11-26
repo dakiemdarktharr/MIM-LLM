@@ -1,12 +1,15 @@
-"""Compile four standalone planning manuscripts and reject broken references/overflow."""
+"""Compile manuscripts only after their real experiments/results are complete."""
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import shutil
 import subprocess
 from pathlib import Path
+
+from mim_llm.manuscript_workflow import require_results_before_build
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECTS = {
@@ -18,6 +21,13 @@ PROJECTS = {
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--paper", nargs="+", choices=list(PROJECTS), default=list(PROJECTS)
+    )
+    args = parser.parse_args()
+    for name in args.paper:
+        require_results_before_build(name, ROOT)
     compiler = shutil.which("tectonic")
     if compiler is None:
         raise SystemExit(
@@ -25,6 +35,8 @@ def main() -> None:
         )
     report = []
     for short_name, directory in PROJECTS.items():
+        if short_name not in args.paper:
+            continue
         project = ROOT / "papers" / directory
         destination = ROOT / "output" / "pdf" / short_name
         destination.mkdir(parents=True, exist_ok=True)
