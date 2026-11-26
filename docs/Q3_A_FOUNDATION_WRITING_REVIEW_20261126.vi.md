@@ -45,6 +45,30 @@ không phải kết quả khoa học, không thay panel thực trên checkpoint 
 Phần primary subword post-training runner/plan/đánh giá và phép phân tích đăng
 ký vẫn còn phải hoàn tất. Không mở A0–A3/test/B/C/Q1/LaTeX nhờ receipt này.
 
+## Phiếu đọc của tác giả, chuẩn bị theo nguồn lực thực
+
+`scripts/prepare_q3a_writing_packet.py` chỉ nhận một panel đủ34samples, có
+completed receipt/hash/manifest/parent/prompt khớp. Nó trộn thứ tự cố định,
+ẩn tên model và hash khỏi `packet.jsonl`, giữ nguyên mọi output trống/lặp/
+truncated, xuất `reader-author.csv` với **chỉ item_id được điền** và private key
+riêng. Người dùng hiện là reader duy nhất. Đây là author evaluation với mức
+ẩn danh có giới hạn, không gọi là independent validation hoặc inter-rater
+agreement. Script không thu nhãn, tính điểm hoặc tự cho qua writing gate.
+
+Sau khi panel thật tồn tại:
+
+```powershell
+.venv/Scripts/python.exe scripts/prepare_q3a_writing_packet.py --review-directory PRIVATE_COMPLETED_REVIEW --manifest artifacts/q3a-foundation-20261126/writing-review-v1.json --output PRIVATE_NEW_READER_PACKET
+```
+
+Các trường format, fluency, bám prefix, sự kiện mới, nhất quán, unclear,
+evidence và thời gian thực đều để trống cho người thật. Giữ key đóng trong
+khi chấm; giữ file rating gốc. Chốt quy tắc quyết định trước khi xem panel,
+phân biệt feasibility trên16validationstories với primary logic test. Không
+chạy lệnh trên dữ liệu hư cấu để tạo receipt kết quả thật. Ba unit checks dùng
+fixture tổng hợp kiểm đủ panel/ẩn model/nhãn trống/giữempty, từ chối sai prompt
+dù checksum hợp lệ, và chặn panel chưa hoàn tất. Chưa có phiếu hay nhãn thật.
+
 ## Cập nhật xác thực
 
 CPU-only Drive refresh thực tế hoàn tất lúc2026-11-26T14:25:09Z,0optimizer,

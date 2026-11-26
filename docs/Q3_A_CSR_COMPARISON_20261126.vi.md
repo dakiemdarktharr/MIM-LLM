@@ -67,3 +67,40 @@ Steer Their Next Ones](https://arxiv.org/abs/2611.03198) mới được xác min
 metadata/abstract trong lượt này; chưa xem như một full-text audit hoặc bằng
 chứng về tính mới của C/Q1. Query và phân loại là targeted search, không phải
 systematic review hay bằng chứng “chưa ai làm”.
+
+## Đọc bổ sung trong khi foundation chạy — 26/11
+
+Primary PDF checked additionally at §5.6–5.9, Appendices I/J/K/M (selected
+passages and tables, not an assertion of reading all33pages). Table41 includes
+ROCStories narrative; Table43 includes prompted narrative/dialogue. Thus “CSR
+only studied arithmetic, not stories” would be false. Fine-tuned and prompted
+settings must not be conflated. Tables48–50 already compare JS variants.
+Listing1 clips negative KL and stops gradients on the original distribution.
+Listing4's reward docstring states the reverse KL direction from the displayed
+`F.kl_div(p_pert.log(),p_orig)` call. This is a documentation/code discrepancy,
+not evidence that the published experiments used either implementation.
+No author repository or reproduction was verified here. Source: [PDF](https://aclanthology.org/2026.findings-emnlp.539.pdf).
+
+KL direction above follows the [official PyTorch definition](https://docs.pytorch.org/docs/2.15/generated/torch.nn.KLDivLoss.html):
+`F.kl_div(log(q),p,batchmean)` computes `KL(p||q)`. A local read-only numeric
+check with p=(.8,.2),q=(.3,.7) returned0.5341108087103077, matching that direction;
+the reverse is0.5826853020432394. This checks the formula, not the authors' runs.
+
+Correction to the earlier DOI uncertainty: [current ACL metadata](https://aclanthology.org/2026.findings-emnlp.539/)
+now explicitly lists `10.18653/2026.findings-emnlp.539`. This does not establish
+that a differently formatted DOI from an aggregator resolves.
+
+Diễn giải cho thiết kế của ta: hai truyện base/effective đều mô tả thế giới hợp
+lệ; chúng không phải trace đúng và trace bị phá. Vì thế không thể sao chép
+verifier gate “valid original/invalid edited trace” rồi gọi là so sánh CSR đầy
+đủ. Nếu thêm sensitivity baseline, phải ghi rõ **component adaptation**, answer
+space nào được chiếu, gold fact nào buộc đổi, dấu loss/stop-gradient/clipping,
+target/input/probe accounting và nguồn lực. Không ép toàn prose khác nhau hoặc
+dùng xác suất đổi nhãn thay tính đúng. Chưa thêm arm hay train post nào.
+
+Q3-A chỉ còn giả thuyết đóng góp thực nghiệm có điều kiện: so variation liên
+quan nhưng giữ hệ quả với numeric nuisance đã khớp, tìm failure boundary và
+transfer có kiểm chứng trên đoạn văn tự do. Khác dataset/backbone/quy mô hoặc
+thêm JS tự nó chưa đủ. Trước post cần chốt baseline/protocol sau writing gate;
+nếu chỉ đạt template exposure benefit thì gộp/dừng theo stop rule. Không sửa
+learning code/fingerprints c18 hoặc dữ liệu của foundation đang chạy.

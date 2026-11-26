@@ -463,3 +463,15 @@ Prospective resource-only annex1b22c463e3d8dab6831cb3c8183099504e0c5698bcc417d78
 ## 2026-11-26 — Driver2 running on the same Drive mount
 
 Started session20261126T144537Z/driver2 under c18plan+annex1b22c463e3d8…, V4source hashes/initial checkpoint9534ba29f99e… checked before subprocess. UIbalance596.35/rate2.33L4, same mounted VM reused without another Drive grant. Connector independently reads ledger reserved1100s/index2+annex hash2400eff3d55b…. Browser confirms active execution/GPUallocation. Completion/new target total not yet verified; last independent archive remains6559500TransformerLMtargets,0minGRU. Do not restart a live driver or present its reservation as completion. Code commit51a22d501885f77f9d80914aa43b3cd1611097c3 verified on origin/main;198tests passed. GoalACTIVE; no primarytest/humanlabels/LaTeX.
+
+
+## 2026-11-26 — CSR narrative prior art and live resume continuity
+
+Checked additional primary CSR PDF passages §5.6–5.9/I/J/K/M, not all33pages. Narrative tasks already appear in Tables41/43, so applying sensitivity to stories alone is not novelty. New note distinguishes valid premise-world edits from invalid trace corruption and potential component-only baseline adaptation; no arm/optimizer/foundation source change. DOI now verified in ACL metadata. Listing4 docstring/call KL-direction discrepancy noted without claiming which code generated results. docs/Q3_A_CSR_COMPARISON_20261126.vi.md updated.
+
+Live driver2 checkpoint observations: at14:47:52Z Transformer9018559targets/10111updates/latest3a57164d6a38…/previous9534ba29f99e…; at14:49:55Z11476203targets/12887updates/latest364de07128ac…/previous3a57164d6a38…. These are notebook/DriveFS receipts during a live job, not a final independent archive audit or writing result. Same L4/mount continues, UI596.16/rate2.33. GoalACTIVE; no primarytest/humanlabels/LaTeX.
+
+
+## 2026-11-26 — Blank author-reader writing packet implemented
+
+Added q3a_subword/writing_packet.py and scripts/prepare_q3a_writing_packet.py, separate from immutable foundation source. Requires completed34sample review with matching manifest/parent/hash/prompt; retains empty/repeated/truncated outputs, hides model IDs, writes PRIVATE-key separately, all rating/rater/timing fields blank. One available author-reader is disclosed; not independent/two-rater validation or an automatic writing pass. Three synthetic nontraining checks pass; full default suite201passed/16deselected and Ruff passed. No real generation/human labels from this tool yet. Original c18learning plan still verifies. Source protocol updated; no LaTeX.
