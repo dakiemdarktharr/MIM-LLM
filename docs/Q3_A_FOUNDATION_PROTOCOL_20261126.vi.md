@@ -92,3 +92,17 @@ assistant chỉ sàng lọc feasibility, không thay nhãn người. User hiện
 Chỉ sau writing gate có căn cứ mới mở contrasts/seeds với plan mới. Không mở
 test, train B/C/Q1, fit tokenizer hoặc compile LaTeX trong phương án này. Goal
 toàn Q3-A vẫn active; chưa có submission/acceptance/publication mới.
+
+## Resource amendment trước cập nhật đầu tiên
+
+Lượt upload/bootstrap L4 riêng đã lưu bundle92.702.119bytes/SHA
+`b1c97087a3415fc4c1b65dc4fa5a8496917ded649087add55d40352bec55e5d9`,
+73members+manifest,0optimizer,0driver reservations rồi trảGPU. UI597,61→597,34
+CU là hai quan sát balance, chưa phải hóa đơn quy thuộc. Không dùng thời gian
+tải92MBtừmáylocal làm throughputtrain. Lượt train đầu chọn `--wall-seconds 900`
+(ngắn hơn1100maximum) để dành chỗ mount/preflight/sync trong20phútsoftcap;
+vẫn tính1/8invocations, không bù200giây bằng lượt bổ sung. Các lượt sau tối đa1100.
+Driver ghi reserved cap thực trong ledger và bác số vượt1100. Sửa orchestration
+này không đổi scientific source fingerprints/plan/model/data/exposure. Giữ v1ZIP
+trênDrive; overlay script mới có SHA riêng, phải kiểm trước copy vào scratch,
+lưu versioned source trênDrive và chỉ sau đó mới chạy. Không âm thầm sửa bundle.

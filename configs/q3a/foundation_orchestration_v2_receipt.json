@@ -1,0 +1,17 @@
+{
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "overlay_script_sha256": "b3e0cdc6ffc711b1c11b18898187a64bd5336f8327c8923e76adce25d63b06a3",
+  "overlay_source_normalized_sha256": "b3e0cdc6ffc711b1c11b18898187a64bd5336f8327c8923e76adce25d63b06a3",
+  "protocol_sha256": "80f2d242c5f11e57f57caeb19d12e8b0acc004097291afef37b1d06d64821f81",
+  "original_bundle_sha256": "b1c97087a3415fc4c1b65dc4fa5a8496917ded649087add55d40352bec55e5d9",
+  "scientific_plan_unchanged": true,
+  "real_optimizer_updates": 0,
+  "first_driver_soft_seconds": 900,
+  "maximum_invocations_unchanged": 8,
+  "setup_only_GPU_released": true,
+  "setup_UI_balance_observations": [
+    597.61,
+    597.34
+  ],
+  "attributable_billed_CU": null
+}

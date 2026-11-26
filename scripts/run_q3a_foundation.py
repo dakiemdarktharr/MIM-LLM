@@ -117,10 +117,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--plan", required=True)
     parser.add_argument("--drive", required=True)
+    parser.add_argument("--wall-seconds", type=int, default=1100)
     args = parser.parse_args()
     torch.set_num_threads(2)
     plan = load_plan(args.plan)
     cap = plan["config"]["resource_cap"]
+    if not 1 <= args.wall_seconds <= cap["seconds_per_invocation"]:
+        raise ValueError("Shorter wall cap must stay within the plan maximum")
+    wall_seconds = args.wall_seconds
     if not torch.cuda.is_available() or not any(
         x in torch.cuda.get_device_name() for x in ("T4", "L4")
     ):
@@ -171,6 +175,7 @@ def main():
         "index": len(ledger["invocations"]) + 1,
         "utc": stamp,
         "status": "reserved",
+        "reserved_soft_driver_seconds": wall_seconds,
         "observation": observation,
     }
     ledger["invocations"].append(entry)
@@ -228,7 +233,7 @@ def main():
                     run=identifier,
                     hashes=sync_run_files(local, remote),
                 )
-            while time.perf_counter() - start < cap["seconds_per_invocation"] - 20:
+            while time.perf_counter() - start < wall_seconds - 20:
                 saved = torch.load(
                     local / "latest.pt", map_location="cpu", weights_only=True
                 )
@@ -241,9 +246,7 @@ def main():
                     output,
                     seconds_limit=min(
                         120,
-                        cap["seconds_per_invocation"]
-                        - 20
-                        - (time.perf_counter() - start),
+                        wall_seconds - 20 - (time.perf_counter() - start),
                     ),
                     device="cuda",
                     resume=True,
@@ -253,7 +256,7 @@ def main():
                 )
                 if result["complete"]:
                     break
-            if time.perf_counter() - start >= cap["seconds_per_invocation"] - 20:
+            if time.perf_counter() - start >= wall_seconds - 20:
                 break
         entry["status"] = "finished"
     except BaseException as error:
