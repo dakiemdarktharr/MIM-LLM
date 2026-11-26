@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-27",
   "study": "Q3-A",
-  "goal_status": "active_foundation_driver8_live_after_driver7_independent_audit",
+  "goal_status": "active_foundation_driver9_live_after_driver8_independent_archive_and_numerical_audit",
   "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
   "training_bundle_sha256": "b1c97087a3415fc4c1b65dc4fa5a8496917ded649087add55d40352bec55e5d9",
   "manual_handoff": {
@@ -47,7 +47,7 @@
       "expected_foundation_parents": 6,
       "verified_complete_foundation_parents": 0,
       "current_audited_transformer_LM_targets": 80000000,
-      "current_audited_transformer_SFT_targets": 12741029,
+      "current_audited_transformer_SFT_targets": 17658120,
       "current_audited_mingru_targets": 0,
       "expected_post_runs": 24,
       "post_pilot_targets_per_run": 2000000,
@@ -63,22 +63,22 @@
     },
     {
       "id": "drive_persistence",
-      "status": "foundation_driver7_archive_independently_readback_while_same_mount_retained",
-      "archive_sha256": "1dd45d2858b7c91dc67b6459e225862d715a1bf3e22fdaa850d729655eda1bf8",
-      "archive_bytes": 120097299,
-      "members_verified": 78,
-      "total_verified_step_metric_rows": 170401,
-      "latest_sha256": "abc8ec834bae6aa54a9067206104ff312a5704206300c18fba564f3dfffaf835",
+      "status": "foundation_driver8_archive_independently_readback_while_same_mount_retained",
+      "archive_sha256": "fe40343f8da67cac767f8c17f29f7b2564e962e155d9915eb40ada14ddcb2536",
+      "archive_bytes": 121549983,
+      "members_verified": 86,
+      "total_verified_step_metric_rows": 201513,
+      "latest_sha256": "050774cf8613ce8e880eb61f84737a4ddbf463743ed81be07a59b44516c4f2d9",
       "readback_after_VM_release": false,
       "evidence": [
-        "docs/Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md"
+        "docs/Q3_A_FOUNDATION_INVOCATION8_20261127.vi.md"
       ]
     },
     {
       "id": "resource_budget",
       "status": "foundation_cap_measured_partial_study_cap_pending",
       "current_GPU": "Tesla T4",
-      "last_observed_UI_CU_balance": 589.94,
+      "last_observed_UI_CU_balance": 589.47,
       "last_observed_UI_CU_per_hour": 1.87,
       "foundation_anchor_CU": 597.61,
       "foundation_observed_drop_cap_CU": 16,
@@ -88,7 +88,7 @@
       "actual_attributable_invoice": null,
       "extra_CU_purchase_authorized": false,
       "local_hardware": "configs/q3a/local_hardware_observation_20261127.json",
-      "T4_Transformer_SFT_targets_per_optimizer_second": 5081.542427637931,
+      "T4_Transformer_SFT_targets_per_optimizer_second": 5057.605106380019,
       "T4_mingru_training_throughput_measured": false,
       "evidence": [
         "configs/q3a/foundation_resource_annex.json",
@@ -215,7 +215,7 @@
     }
   ],
   "completion_rule": "Every requirement needs authoritative evidence covering its scope; the board itself cannot prove completion.",
-  "current_next_action": "Monitor live Cell33/driver8 and queued Cell34; audit its terminal archive and both new numerical receipts before driver9. Preserve exact foundation objective and caps. Both complete parents and actual writing review precede wider post/seed phases.",
+  "current_next_action": "Monitor Cell35/driver9 and queued Cell36. Audit terminal archive and numerical receipts for every actually learned backbone before next driver. Both complete100Mparents and real writing review precede wider seed/post/confirmation phases.",
   "backup_rotation_correction": "Old resumed local previous.pt could overwrite the just-rotated remote backup; latest.pt unaffected. Fixed for subsequent orchestration; keep old input bundle and disclose older-backup limitation.",
   "language_foundation_next_work": "docs/Q3_A_LANGUAGE_FOUNDATION_NEXT.vi.md",
   "external_reference_diagnostic": {
@@ -240,13 +240,13 @@
   },
   "foundation_current": {
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
-    "receipt": "configs/q3a/foundation_invocation7_results.json",
-    "audited_driver_index": 7,
+    "receipt": "configs/q3a/foundation_invocation8_results.json",
+    "audited_driver_index": 8,
     "transformer_LM_targets": 80000000,
-    "transformer_SFT_targets": 12741029,
-    "transformer_updates": 170401,
+    "transformer_SFT_targets": 17658120,
+    "transformer_updates": 201513,
     "mingru_targets": 0,
-    "driver_invocations_reserved": 8,
+    "driver_invocations_reserved": 9,
     "maximum_driver_invocations": 16,
     "writing_gate": "unmeasured_for_subword_replacement",
     "primary_runs": 0,
@@ -259,30 +259,30 @@
     "scientific_results": false
   },
   "latest_remote_execution": {
-    "session": "20261126T191245Z",
-    "driver_index": 8,
+    "session": "20261126T193700Z",
+    "driver_index": 9,
     "state": "verified_live_not_terminal",
-    "UI_available_cu_at_driver_start": 590.25,
+    "UI_available_cu_at_driver_start": 589.63,
     "UI_rate_at_driver_start": 1.87,
     "same_mounted_vm_reused": true,
     "source_and_initial_checkpoint_hashes_verified": true,
     "ledger_reservation_read_back_with_connector": true,
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
     "gpu": "Tesla T4",
-    "live_checkpoint_observed_UTC": "2026-11-26T19:23:15.501330+00:00",
-    "live_SFT_targets": 15593262,
-    "live_latest_sha256": "23f703772f80068c35361bc74f3aeacc973560e2bebb1e7b718af2e40bf0e604",
+    "live_checkpoint_observed_UTC": "2026-11-26T19:39:08.729897+00:00",
+    "live_SFT_targets": 18233615,
+    "live_latest_sha256": "b01aa7194bdba68b2908b3255deaeccf0e87e0373162ef13f2a0c7b3fd3949af",
     "live_is_not_independent_archive_audit": true,
-    "queued_read_only_cell": 34
+    "queued_read_only_cell": 36
   },
   "latest_verified_foundation_checkpoint": {
-    "session": "20261126T184845Z",
-    "driver_index": 7,
+    "session": "20261126T191245Z",
+    "driver_index": 8,
     "complete_foundation": false,
-    "report": "docs/Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md",
-    "results": "configs/q3a/foundation_invocation7_results.json",
-    "latest_sha256": "abc8ec834bae6aa54a9067206104ff312a5704206300c18fba564f3dfffaf835",
-    "archive_sha256": "1dd45d2858b7c91dc67b6459e225862d715a1bf3e22fdaa850d729655eda1bf8"
+    "report": "docs/Q3_A_FOUNDATION_INVOCATION8_20261127.vi.md",
+    "results": "configs/q3a/foundation_invocation8_results.json",
+    "latest_sha256": "050774cf8613ce8e880eb61f84737a4ddbf463743ed81be07a59b44516c4f2d9",
+    "archive_sha256": "fe40343f8da67cac767f8c17f29f7b2564e962e155d9915eb40ada14ddcb2536"
   },
   "historical_byte_calibration": {
     "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",

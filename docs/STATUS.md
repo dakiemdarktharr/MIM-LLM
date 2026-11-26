@@ -2,15 +2,15 @@
 
 # Evidence-backed manuscript status
 
-> **Latest observed state, 27 November 2026:** Driver7 independently verifies
-> the Transformer's80M LM+12,741,029SFTtargets/170,401updates. minGRU not started.
-> CPU/FP64 numerical gate met unchanged bounds on the new checkpoint; oldFP32
-> failure preserved. Driver8 active, session20261126T191245Z,1100ssoftcap, same
-> Drive mount/no additional grant. Subword writing manifest and prospective rule
-> prepared; source transfer metadata pinned.233defaulttests pass. Complete
-> parents, real writing/PPL/post/human/test results and transfer review pending.
-> No LaTeX or publication milestone. See the
-> [driver7 audit](Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md).
+> **Latest observed state, 27 November 2026:** Driver8 independently verifies
+> Transformer80M LM+17,658,120SFTtargets/201,513updates; minGRU0 at that audit.
+> Fixed CPU/FP64 gate passed; oldFP32 failures preserved. Driver9 is active,
+> session20261126T193700Z,1100ssoftcap, same Drive mount/no new grant. Cell36
+> is queued to check every actually learned backbone after9. English methods
+> source reconciled with subword config; no compiler invoked.233defaulttests
+> pass. Complete parents, actual writing/PPL/post/human/test/transfer and final
+> manuscript evidence remain pending. See the
+> [driver8 audit](Q3_A_FOUNDATION_INVOCATION8_20261127.vi.md).
 
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile
 labels are internal planning targets, not editorial outcomes.
