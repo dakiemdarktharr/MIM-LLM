@@ -314,7 +314,7 @@
     "next": "nonupdating resource profiles and review before next optimizer"
   },
   "latest_nontraining_suite": {
-    "passed": 198,
+    "passed": 201,
     "training_deselected": 16,
     "scientific_results": false
   },
@@ -339,5 +339,20 @@
     },
     "test_locked": true,
     "human_labels": 0
+  },
+  "latest_verified_foundation_checkpoint": {
+    "session": "20261126T144537Z",
+    "driver_index": 2,
+    "complete_foundation": false,
+    "archive_sha256": "e5a85041ed6b084d06bbdaccfbdb5cf990712dbb507f5df1bf4b865eb62583f7",
+    "members_verified": 32,
+    "metric_rows_verified": 31489,
+    "targets": {
+      "foundation-transformer-s0": 28053669,
+      "foundation-mingru-s0": 0
+    },
+    "transformer_latest_sha256": "c0d66aa6f84f725cc3690e59714f7a05aa8c6bbbcb4e27f9c35d2ebde8c67985",
+    "cloud_readback_while_VM_still_mounted": true,
+    "report": "docs/Q3_A_FOUNDATION_INVOCATION2_20261126.vi.md"
   }
 }

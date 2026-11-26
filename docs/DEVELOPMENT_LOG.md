@@ -480,3 +480,10 @@ Added q3a_subword/writing_packet.py and scripts/prepare_q3a_writing_packet.py, s
 ## 2026-11-26 — Public status corrected for active subword foundation
 
 README/STATUS now lead with the active c18subword foundation and actual3681984/3682887baseline parameter counts, same mounted L4session/Drive, pending80M+20M budgets/writing/primarypost. Previous byte50Mfailure/GPUrelease remain explicitly historical. Documented that jointly changing corpus/tokenizer/configuration does not isolate tokenization or prove architecture gains, and that B/C byte pipelines do not automatically accept subword parents. No paper milestone advanced; no positive/writing/human/test claim added.
+
+
+## 2026-11-26 — Foundation driver2 finished and independently audited
+
+Session20261126T144537Z returncode0/ledgerfinished. Transformer3681984params now28053669LMtargets/31489updates,0SFT; minGRU0targets. Added21494169targets/24123updates in978.122649556optimizerseconds; driver1083.28627213s/reserved1100. Train CE100newfirst/100last2.887675/2.581101 on different batches, not heldout or writing. Peak2091562496bytes. Latestc0d66aa6f84f…/previous1b8b8afe85ee….
+
+Drive archive83017079bytes/e5a85041ed6b084d06bbdaccfbdb5cf990712dbb507f5df1bf4b865eb62583f7 independently downloaded and checked32members/31489contiguous finite rows, exact target/input/stage accounting and event/checkpoint hashes; no pickle. Annex/ledger evidence checked. VM deliberately kept mounted for immediate continuation; this is not post-release readback. UI595.58CU/rate2.33, no attributable invoice.2/16slots consumed,16CUdropcap unchanged. Full report: docs/Q3_A_FOUNDATION_INVOCATION2_20261126.vi.md; JSONconfigs/q3a/foundation_invocation2_results.json. GoalACTIVE; no writing/humanlabels/postmatrix/test/LaTeX.
