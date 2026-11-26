@@ -2,19 +2,15 @@
 
 # Evidence-backed manuscript status
 
-> **Latest observed state, 27 November 2026:** Driver 6 independently verifies
-> the Transformer's 80M LM + 7,784,033 SFT targets / 139,032 updates. minGRU has
-> not started. Old FP32/top-40 gate FAIL is preserved. CPU/FP64 replacement
-> inference met the same bounds, with unchanged FP32 training/data/caps.
-> driver 7 is now active (session20261126T184845Z,1100ssoftcap); the latest
-> independently audited counters above still belong to driver6. Same Drive mount
-> retained, no new grant.
-> Subword generation/selection/blinding/analysis/general-text PPL code exists;
-> six genuine complete parents, writing review, measured study resources,
-> human labels, real post/PPL measurements and transfer evidence are pending.
-> No final test, LaTeX build or publication milestone. See the
-> [driver 6 audit](Q3_A_FOUNDATION_INVOCATION6_20261127.vi.md) and
-> [evaluation adapter](Q3_A_SUBWORD_EVALUATION_20261127.vi.md).
+> **Latest observed state, 27 November 2026:** Driver7 independently verifies
+> the Transformer's80M LM+12,741,029SFTtargets/170,401updates. minGRU not started.
+> CPU/FP64 numerical gate met unchanged bounds on the new checkpoint; oldFP32
+> failure preserved. Driver8 active, session20261126T191245Z,1100ssoftcap, same
+> Drive mount/no additional grant. Subword writing manifest and prospective rule
+> prepared; source transfer metadata pinned.233defaulttests pass. Complete
+> parents, real writing/PPL/post/human/test results and transfer review pending.
+> No LaTeX or publication milestone. See the
+> [driver7 audit](Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md).
 
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile
 labels are internal planning targets, not editorial outcomes.
