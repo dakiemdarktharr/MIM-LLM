@@ -66,3 +66,32 @@ File `configs/q3a/transfer_sources.candidates.json` chỉ ghi provenance và tr�
 thái ứng viên. Không dùng nó điền `naturalistic_transfer_manifest` như thể tập
 chuyển giao đã hoàn tất. Nếu không xây được phép đo đúng nghĩa/đủ precision,
 giữ limitation và thu hẹp claim, không đổi tiêu chí sau khi xem kết quả.
+
+## Đo lại với tokenizer BPE hiện hành — 27/11/2026
+
+Phép đo byte của ngày 26/11 ở trên vẫn là bằng chứng lịch sử cho mô hình byte;
+nó không tự chứng minh độ dài BPE. Đã chạy phép đo riêng trên đúng ba file
+có pin/hash, chỉ đọc các đơn vị `.whole`, kiểm vị trí liên tục và ghép bằng
+một dấu cách như phép kiểm kê trước. Không tải dữ liệu người tham gia/reading
+time, không tạo cặp can thiệp hoặc output model.
+
+Với tokenizer frozen GPT-Neo của plan c18, **10 truyện dài 1.172–1.414 BPE
+input tokens kể cả BOS**. Cả mười đều vượt context **1.024** trước khi thêm
+bất kỳ task instruction nào; nếu chừa 128 token sinh theo cấu hình foundation,
+không truyện nguyên vẹn nào vừa. Các số này thuộc bản ghép `.whole`, không
+phải tuyên bố đã khôi phục cách trình bày/dấu câu gốc. Chưa chọn đoạn hoặc
+chấp nhận cặp transfer; số cặp được người thật duyệt vẫn **0**.
+
+Lệnh tái lập, chỉ đọc nguồn/tokenizer, không load model hoặc chạy optimizer:
+
+```powershell
+.venv/Scripts/python.exe scripts/audit_naturalstories_context.py --directory data/raw/naturalstories-4700daad696e --plan configs/q3a/foundation_plan.json --candidates configs/q3a/transfer_sources.candidates.json --output NEW_CONTEXT_AUDIT.json
+```
+
+Receipt [`naturalstories_BPE_context_audit_20261127.json`](../configs/q3a/naturalstories_BPE_context_audit_20261127.json)
+ghi số đo từng truyện, reconstruction hash, source/tokenizer/plan/source-code
+hashes và phần budget còn lại trước task instruction. Không cắt truyện tự
+động để làm vừa. Đoạn tương lai vẫn cần đủ tiền đề/hồi chỉ, nghĩa can thiệp và
+mệnh đề bắt buộc được người thật xác nhận, cùng split/uncertainty theo truyện
+gốc. 128 token là reserve minh họa của foundation, chưa là transfer protocol
+đã đăng ký. Không đổi corpus hoặc fingerprint của lượt train đang chạy.

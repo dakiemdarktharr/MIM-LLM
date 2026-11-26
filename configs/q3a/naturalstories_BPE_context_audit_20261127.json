@@ -1,0 +1,124 @@
+{
+  "utc": "2026-11-26T21:31:23.880608+00:00",
+  "purpose": "candidate context measurement only, not transfer-set acceptance",
+  "repository": "https://github.com/languageMIT/naturalstories",
+  "revision": "4700daad696e942f5aba23c957a7423d0de66612",
+  "source_file_sha256": {
+    "words.tsv": "0955415234babe7fe6890e447d96a2520175f5ea2b8eb130bd31e6aea94e4495",
+    "LICENSE.txt": "58032a8173195237068ab02d429948bc3233d8e6858d1b9ddfdc47e3bbc3d847",
+    "README.md": "02fcc9104a8887c3f67e1be47d17a7253476628dbacde3fccec67a76deef285f"
+  },
+  "license": "CC-BY-NC-SA-4.0",
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "tokenizer_sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+  "context": 1024,
+  "illustrative_generation_reserve_from_foundation": 128,
+  "reconstruction": "join pinned .whole units with one ASCII space; not recovered original punctuation formatting",
+  "stories": [
+    {
+      "source_story_id": "1",
+      "whole_units": 1073,
+      "reconstructed_utf8_bytes": 5869,
+      "reconstructed_sha256": "f378b5681523558519fdc5e896b3f4003fff5ccf89eecb2981b26420dbee7a92",
+      "BPE_input_tokens_including_BOS": 1312,
+      "remaining_tokens_before_any_task_instructions": -416,
+      "fits_without_any_task_instructions": false
+    },
+    {
+      "source_story_id": "2",
+      "whole_units": 990,
+      "reconstructed_utf8_bytes": 5388,
+      "reconstructed_sha256": "af1ffa1fbfdd527e5f172a50b1107c877d474ceb99e695b4f728eb3baa46e1a6",
+      "BPE_input_tokens_including_BOS": 1172,
+      "remaining_tokens_before_any_task_instructions": -276,
+      "fits_without_any_task_instructions": false
+    },
+    {
+      "source_story_id": "3",
+      "whole_units": 1040,
+      "reconstructed_utf8_bytes": 5618,
+      "reconstructed_sha256": "4d139bac96f68e728fc28ef641691cdb11bf5b3a5fde4cb01c56cd3157efbd29",
+      "BPE_input_tokens_including_BOS": 1225,
+      "remaining_tokens_before_any_task_instructions": -329,
+      "fits_without_any_task_instructions": false
+    },
+    {
+      "source_story_id": "4",
+      "whole_units": 1085,
+      "reconstructed_utf8_bytes": 5772,
+      "reconstructed_sha256": "1c75b0038a87ad685729038b9179ec7ed2f53ee2d545b620171d9890cc3db638",
+      "BPE_input_tokens_including_BOS": 1304,
+      "remaining_tokens_before_any_task_instructions": -408,
+      "fits_without_any_task_instructions": false
+    },
+    {
+      "source_story_id": "5",
+      "whole_units": 1013,
+      "reconstructed_utf8_bytes": 5209,
+      "reconstructed_sha256": "689cdff3b75f84b7ee1f65f24e20b273c3de9b16b5ad0294116953277c066efa",
+      "BPE_input_tokens_including_BOS": 1205,
+      "remaining_tokens_before_any_task_instructions": -309,
+      "fits_without_any_task_instructions": false
+    },
+    {
+      "source_story_id": "6",
+      "whole_units": 1099,
+      "reconstructed_utf8_bytes": 6051,
+      "reconstructed_sha256": "8f3f5f196df26d2dc5d23961522dfb25565356ce9340b4d95df5561afd9ba5f3",
+      "BPE_input_tokens_including_BOS": 1414,
+      "remaining_tokens_before_any_task_instructions": -518,
+      "fits_without_any_task_instructions": false
+    },
+    {
+      "source_story_id": "7",
+      "whole_units": 999,
+      "reconstructed_utf8_bytes": 5482,
+      "reconstructed_sha256": "a0450d7000aa3a1ea17753734d601c9c19d631872c4464d2c05347913196e05f",
+      "BPE_input_tokens_including_BOS": 1176,
+      "remaining_tokens_before_any_task_instructions": -280,
+      "fits_without_any_task_instructions": false
+    },
+    {
+      "source_story_id": "8",
+      "whole_units": 980,
+      "reconstructed_utf8_bytes": 6515,
+      "reconstructed_sha256": "534654c937891c47e782e37d0cb7e919d2a3bbfbda29ad535354e89528a47855",
+      "BPE_input_tokens_including_BOS": 1205,
+      "remaining_tokens_before_any_task_instructions": -309,
+      "fits_without_any_task_instructions": false
+    },
+    {
+      "source_story_id": "9",
+      "whole_units": 1038,
+      "reconstructed_utf8_bytes": 6538,
+      "reconstructed_sha256": "114e6b35bd8723567153d385fbaf048470a95b2063258fba5686dfb8a9182f27",
+      "BPE_input_tokens_including_BOS": 1312,
+      "remaining_tokens_before_any_task_instructions": -416,
+      "fits_without_any_task_instructions": false
+    },
+    {
+      "source_story_id": "10",
+      "whole_units": 939,
+      "reconstructed_utf8_bytes": 6373,
+      "reconstructed_sha256": "1751d1785f6783cf2607b5e532f02180892c2026829383357cedee027bb4b072",
+      "BPE_input_tokens_including_BOS": 1224,
+      "remaining_tokens_before_any_task_instructions": -328,
+      "fits_without_any_task_instructions": false
+    }
+  ],
+  "any_full_story_fits_without_task_instructions": false,
+  "final_prompt_fits_verified": false,
+  "accepted_transfer_pairs": 0,
+  "human_semantic_labels": 0,
+  "model_loaded": false,
+  "optimizer_updates": 0,
+  "primary_test_access": false,
+  "final_transfer_manifest": null,
+  "candidate_inventory_sha256": "38dd60a5c6041c0bcdb47334896dcfea187318c068cfa08632be0bc69b38c433",
+  "implementation_sha256": "6d22e6efb9ab20bad29b06727ddea69f50bd28753669a46a1c527953f8644ffa",
+  "limitations": [
+    "Counts refer to declared reconstruction and current frozen tokenizer; task instructions and semantic obligations need additional context.",
+    "No truncation, window selection, intervention creation or model output; any future excerpts require a self-contained-context human audit.",
+    "Ten parent stories remain ten source clusters; token windows are not independent stories."
+  ]
+}
