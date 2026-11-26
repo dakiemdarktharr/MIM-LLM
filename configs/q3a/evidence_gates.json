@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-26",
   "study": "Q3-A",
-  "goal_status": "active_foundation_driver2_running_same_mounted_vm_resource_annex_applied",
+  "goal_status": "active_foundation_driver3_running_after_driver2_independent_cloud_audit",
   "plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
   "training_bundle_sha256": "2ad7e8d63189ffc84b5802cf31df01950d596bc2d57021a56f8f9e7240ac6f2b",
   "manual_handoff": {
@@ -319,26 +319,27 @@
     "scientific_results": false
   },
   "latest_remote_execution": {
-    "session": "20261126T144537Z",
-    "driver_index": 2,
+    "session": "20261126T150634Z",
+    "driver_index": 3,
     "resource_annex_id": "1b22c463e3d8dab6831cb3c8183099504e0c5698bcc417d783f2bbe3251bb514",
     "maximum_driver_invocations": 16,
     "observed_balance_anchor_cu": 597.61,
     "observed_balance_drop_cap_cu": 16,
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
     "gpu": "NVIDIA L4",
-    "UI_available_cu_at_driver_start": 596.35,
+    "UI_available_cu_at_driver_start": 595.58,
     "UI_rate_at_driver_start": 2.33,
     "same_mounted_vm_reused": true,
     "source_and_initial_checkpoint_hashes_verified": true,
     "ledger_reservation_read_back_with_connector": true,
     "completion_not_yet_verified": true,
     "latest_independently_verified_targets": {
-      "foundation-transformer-s0": 6559500,
+      "foundation-transformer-s0": 28053669,
       "foundation-mingru-s0": 0
     },
     "test_locked": true,
-    "human_labels": 0
+    "human_labels": 0,
+    "starting_transformer_checkpoint_sha256": "c0d66aa6f84f725cc3690e59714f7a05aa8c6bbbcb4e27f9c35d2ebde8c67985"
   },
   "latest_verified_foundation_checkpoint": {
     "session": "20261126T144537Z",

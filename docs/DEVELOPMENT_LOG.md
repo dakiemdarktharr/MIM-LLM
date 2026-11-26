@@ -487,3 +487,8 @@ README/STATUS now lead with the active c18subword foundation and actual3681984/3
 Session20261126T144537Z returncode0/ledgerfinished. Transformer3681984params now28053669LMtargets/31489updates,0SFT; minGRU0targets. Added21494169targets/24123updates in978.122649556optimizerseconds; driver1083.28627213s/reserved1100. Train CE100newfirst/100last2.887675/2.581101 on different batches, not heldout or writing. Peak2091562496bytes. Latestc0d66aa6f84f…/previous1b8b8afe85ee….
 
 Drive archive83017079bytes/e5a85041ed6b084d06bbdaccfbdb5cf990712dbb507f5df1bf4b865eb62583f7 independently downloaded and checked32members/31489contiguous finite rows, exact target/input/stage accounting and event/checkpoint hashes; no pickle. Annex/ledger evidence checked. VM deliberately kept mounted for immediate continuation; this is not post-release readback. UI595.58CU/rate2.33, no attributable invoice.2/16slots consumed,16CUdropcap unchanged. Full report: docs/Q3_A_FOUNDATION_INVOCATION2_20261126.vi.md; JSONconfigs/q3a/foundation_invocation2_results.json. GoalACTIVE; no writing/humanlabels/postmatrix/test/LaTeX.
+
+
+## 2026-11-26 — Driver3 started without another Drive mount
+
+After independently auditing driver2archive, resumed fromc0d66aa6f84f… on the same mounted L4. Session20261126T150634Z/driver3 reserved1100s; ledger read back through connector, browser confirms live execution. UI595.58CU/rate2.33. Source overlays and parent hash verified before launch. Last independent target count remains28053669TransformerLM/0SFT/0minGRU until new evidence is audited; do not equate a live reservation with completion. No duplicate process or extra purchase. GoalACTIVE/incomplete, no LaTeX.
