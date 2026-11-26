@@ -8,8 +8,10 @@ bị trong các runbook cũ. Có thể chỉnh source khi cần, nhưng chưa ch
 
 ## Hiện tại
 
-Q3-A chưa có training/metrics/checkpoint khoa học trên Drive được xác minh;
-chưa thu nhãn người thật hoặc có kết quả test. B/C/Q1 cũng chưa đủ điều kiện.
+Q3-A đã có baseline language pilots, metric và checkpoint trên Drive được
+xác minh; xem các báo cáo pilot/calibration và foundation. Đây chưa phải đầy
+đủ thí nghiệm chính của bài: chưa hoàn tất contrasts/seeds, nhãn người thật,
+test và phân tích kết quả. B/C/Q1 cũng chưa đủ điều kiện.
 **Cả bốn bài đang khóa compile.** Không dùng unit fixtures, planning draft,
 source manifest hay ô checkbox để nhận đã hoàn tất các pha khoa học.
 

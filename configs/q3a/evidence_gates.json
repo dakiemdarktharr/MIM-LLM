@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-26",
   "study": "Q3-A",
-  "goal_status": "active_bounded_subword_foundation_prepared_before_real_training",
+  "goal_status": "active_foundation_partial_first_driver_verified_profile_before_next_optimizer",
   "plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
   "training_bundle_sha256": "2ad7e8d63189ffc84b5802cf31df01950d596bc2d57021a56f8f9e7240ac6f2b",
   "manual_handoff": {
@@ -299,5 +299,18 @@
     "primary_runs": 0,
     "independent_readers_available": 1,
     "human_labels": 0
+  },
+  "foundation_current": {
+    "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+    "receipt": "configs/q3a/foundation_invocation1_results.json",
+    "transformer_targets": 6559500,
+    "mingru_targets": 0,
+    "sft_targets": 0,
+    "driver_invocations_used": 1,
+    "driver_maximum_invocations": 8,
+    "writing_gate": "not_yet_measured_for_this_replacement",
+    "primary_runs": 0,
+    "human_labels": 0,
+    "next": "nonupdating resource profiles and review before next optimizer"
   }
 }

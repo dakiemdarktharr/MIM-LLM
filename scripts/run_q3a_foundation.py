@@ -275,10 +275,8 @@ def main():
             seconds=entry["elapsed_seconds"],
             next="Review measured speed/VRAM/CU before another driver; no post-matrix/test",
         )
-        # Release only after verified Drive copies/archive; frontend may disconnect.
-        from google.colab import runtime
-
-        runtime.unassign()
+        # A subprocess has no IPython kernel. The notebook host owns Drive flush
+        # and runtime.unassign() in its finally block, including on child error.
 
 
 if __name__ == "__main__":

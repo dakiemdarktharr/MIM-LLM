@@ -1,0 +1,25 @@
+{
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "scientific_plan_unchanged": true,
+  "overlay_files": {
+    "run_q3a_foundation_v3.py": {
+      "target": "scripts/run_q3a_foundation.py",
+      "sha256": "81296457b690edecfa7a09b4639c3b6a7be8d1d62812415a403169a0ebae6747",
+      "bytes": 11383
+    },
+    "profile_q3a_foundation.py": {
+      "target": "scripts/profile_q3a_foundation.py",
+      "sha256": "ade239d0b1226560c36643e4189f9feb0350526a7ff1578ae67de332aa82217d",
+      "bytes": 5712
+    },
+    "foundation_protocol_v3.vi.md": {
+      "target": "docs/Q3_A_FOUNDATION_PROTOCOL_20261126.vi.md",
+      "sha256": "cc6dd5013d8bda6a686373404cd15d688474e8903379882438a40f083af2a5d0",
+      "bytes": 9857
+    }
+  },
+  "reason": "Correct subprocess-only Colab release hook; add nonupdating train-only forward/backward resource profile before next optimizer",
+  "training_driver_invocations_reserved": 1,
+  "next_optimizer_gate": "profile and review budget first",
+  "maximum_invocations_unchanged": 8
+}

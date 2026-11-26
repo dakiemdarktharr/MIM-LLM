@@ -106,3 +106,31 @@ Driver ghi reserved cap thực trong ledger và bác số vượt1100. Sửa orc
 này không đổi scientific source fingerprints/plan/model/data/exposure. Giữ v1ZIP
 trênDrive; overlay script mới có SHA riêng, phải kiểm trước copy vào scratch,
 lưu versioned source trênDrive và chỉ sau đó mới chạy. Không âm thầm sửa bundle.
+
+## Sau lượt đo đầu — sửa quản lý phiên và đo phần còn thiếu
+
+Do hai mount timeout, lượt đầu thực tế chọn360s, vẫn chiếm1/8slot (không bù slot).
+Đủ6.559.500LMtargets/7366updates Transformer,296,568s cập nhật và342,991s driver;
+chưa minGRU/SFT. Archive và metric accounting được đọc độc lập sau UI0sessions.
+Chi tiết tại [báo cáo lượt1](Q3_A_FOUNDATION_INVOCATION1_20261126.vi.md).
+
+Child `runtime.unassign()` ném lỗi khi gọi callback JavaScript ngoài IPython,
+sau khi export đã lưu. UI xác nhận0sessions; không quy chính xác tác nhân trảVM
+từ riêng traceback. V3 bỏ lời gọi này khỏi child; **notebook host** chịu trách
+nhiệm flush/unmount Drive rồi unassign trong finally, kể cả subprocess lỗi.
+Giữ source/bundle v1,v2 cùng log lỗi; V3 overlay phải có digest riêng.
+
+Trước optimizer kế tiếp, một probe không optimizer sẽ lấy32batch đầu theo thứ
+tự train seed0/epoch0 của từng stage cho mỗi backbone;2batch backward khởi động
+cũng không cập nhật. Kiểm mọi learned parameter bất biến, gradients finite,
+ghi batch/target/input counts/VRAM và forward+backward seconds. Đây chỉ là
+compute-only throughput ở random initialization: thiếu AdamW/host/log/validation/
+Drive và không phải chất lượng LM. Không profile validation/test hoặc sinh văn
+bản để chọn thay đổi. Probe thêm không tạo scientific training exposure.
+
+Sau probe, tính lower-bound thời gian còn lại theo stage/target chưa học, đối
+chiếu7700s maximum của7driver còn lại và balance thực. Nếu ngay lower bound đã
+vượt cap thì không mở driver2 dưới lời hứa rằng đủ ngân sách; phải báo resource
+infeasibility và quyết định tiếp theo trước mọi cập nhật. Nếu lower bound nằm
+dưới cap cũng chưa bảo đảm đủ, vẫn giữ giới hạn8slot/16CU observed drop và báo
+incomplete khi cần. Không dùng chẩn đoán này để mở test hoặc săn hiệu ứng A1−A2.

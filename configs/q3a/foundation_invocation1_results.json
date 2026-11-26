@@ -1,0 +1,61 @@
+{
+  "as_of": "2026-11-26",
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "invocation": 1,
+  "status": "bounded_driver_finished_partial_language_training",
+  "archive": {
+    "archive_sha256": "7bcf7c471ed90559cc1865d56072312c2292756936448ec69b0068d0bdeff243",
+    "archive_bytes": 82309391,
+    "members_verified": 16
+  },
+  "checkpoint": "9534ba29f99ee7d67b51e1265400bd14bc3ea63527aa40142cf20feed9b7df12",
+  "stats": {
+    "stage": 0,
+    "stage_targets": 6559500,
+    "targets": 6559500,
+    "input_tokens": 6559500,
+    "updates": 7366,
+    "epoch": 0,
+    "cursor": 29464,
+    "train_seconds": 296.5678355110026,
+    "validation_seconds": 0.0
+  },
+  "actual_parameters": 3681984,
+  "reserved_soft_seconds": 360,
+  "driver_seconds": 342.99053140499996,
+  "measured_targets_per_optimizer_training_second": 22118.042533835884,
+  "observed_maximum_peak_allocated_bytes": 2135539712,
+  "teacher_forcing_train_CE_first100_updates": 10.381065676575533,
+  "teacher_forcing_train_CE_last100_updates": 2.8769798695496642,
+  "cuda_path_cases": 8,
+  "cuda_maximum_path_error": 1.6391277313232422e-05,
+  "future_edit_past_logit_error": 0.0,
+  "cuda_checks_at_initialization_not_trained": true,
+  "other_backbone_started": false,
+  "sft_updates": 0,
+  "test_unlocked": false,
+  "human_labels": 0,
+  "writing_gate_measured": false,
+  "UI_after_runtime_release": {
+    "active_sessions": 0,
+    "approximate_CU_per_hour": 0,
+    "available_CU": 596.66
+  },
+  "UI_before_driver_available_CU": 597.05,
+  "UI_before_setup_only_available_CU": 597.61,
+  "attributable_billed_CU": null,
+  "release_hook_error": "After verified evidence export, child runtime.unassign raised missing-IPython error in JS disconnect callback. UI0sessions confirms release, without attributing it to parent/child from traceback alone. V3 moves flush/unassign responsibility to the notebook host.",
+  "environment": {
+    "gpu": "NVIDIA L4",
+    "torch": "2.14.1+cu130",
+    "precision": "float32,TF32 disabled"
+  },
+  "remaining_estimation": {
+    "transformer_LM_seconds_at_observed_rate": 3320.3887680228354,
+    "remaining_maximum_driver_seconds": 7700,
+    "mingru_LM_rate": null,
+    "SFT_rates": null,
+    "full_budget_feasibility": "not established; collect train-only non-updating forward/backward profiles before next optimizer"
+  },
+  "not_primary_scientific_results": true
+}
