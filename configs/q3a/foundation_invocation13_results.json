@@ -1,0 +1,380 @@
+{
+  "as_of": "2026-11-27",
+  "driver_index": 13,
+  "session": "20261126T212456Z",
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "gpu": "Tesla T4",
+  "runs": {
+    "foundation-transformer-s0": {
+      "complete": true,
+      "stats": {
+        "stage": 2,
+        "stage_targets": 0,
+        "targets": 100000000,
+        "input_tokens": 113197507,
+        "updates": 216366,
+        "epoch": 0,
+        "cursor": 0,
+        "train_seconds": 7604.648528861309,
+        "validation_seconds": 1.4214046729985057
+      },
+      "per_stage": {
+        "lm": 80000000,
+        "sft": 20000000
+      },
+      "metric_rows_verified": 216366,
+      "latest_sha256": "8d8a5a20de709b59fa2b1508e383dd582c0f9adf03cef61884e37573e0577beb",
+      "final_sha256": "30c5b6b8a8006f4ce1bc4a7d962adcbe0548b13eeb395daca1b8694647964c45",
+      "last_peak_allocated_bytes": 210883584,
+      "actual_parameters": 3681984,
+      "role": "baseline_not_MIM",
+      "producer_numerical_status": "reused_unchanged_checkpoint_proofs_no_new_diagnostic_claim",
+      "numerical_status": "reused_unchanged_checkpoint_proofs_no_new_diagnostic_claim",
+      "FP32_proof_sha256": "37d638c95dadd764c0f59d95433af09267eb1803e80880d9674fba596d739b0f",
+      "FP64_proof_sha256": "1ae97cabb0c64e04f88738db101cfbcdd5da286bb3ddb445653364e6292716ab",
+      "FP64_max_path_logit_error": 9.947598300641403e-14,
+      "FP64_max_decode_policy_L1": 1.866264304553611e-14,
+      "FP64_argmax_mismatches": 0,
+      "training_loss_and_gradients_bitwise_equal": true,
+      "reviewed_policy_contract_met": true,
+      "final_latest_tensor_equivalence_rechecked": true,
+      "LM_boundary_sha256": "84ce54dc104013da04e98100b2654fa5bb122a24dcac275116b2a6751644b81c"
+    },
+    "foundation-mingru-s0": {
+      "complete": true,
+      "stats": {
+        "stage": 2,
+        "stage_targets": 0,
+        "targets": 100000000,
+        "input_tokens": 113197507,
+        "updates": 216366,
+        "epoch": 0,
+        "cursor": 0,
+        "train_seconds": 4018.623714847585,
+        "validation_seconds": 0.9166454740006884
+      },
+      "per_stage": {
+        "lm": 80000000,
+        "sft": 20000000
+      },
+      "metric_rows_verified": 216366,
+      "latest_sha256": "ae544a4e1baee5dc2a136d9b63e04f0e7ed8234dadd37c6c696ecf072d5ead27",
+      "final_sha256": "756a07755ab25149b3574af0f008ccbebdad3981e15f521e962727ea4100e0d9",
+      "last_peak_allocated_bytes": 212265984,
+      "actual_parameters": 3682887,
+      "role": "baseline_not_MIM",
+      "producer_numerical_status": "diagnostics_emitted_pending_independent_review",
+      "numerical_status": "independently_read_back_and_reviewed_policy_passed",
+      "FP32_proof_sha256": "aa8778c0c26cebf7b871367881383945304bf8d400b2b578cffbc5a84ee55d6f",
+      "FP64_proof_sha256": "9b00a1c28934aaaddc960c4dd5153e25c260cca5884349dc5f953cb61b955a47",
+      "FP64_max_path_logit_error": 5.684341886080802e-14,
+      "FP64_max_decode_policy_L1": 1.6119375799428237e-14,
+      "FP64_argmax_mismatches": 0,
+      "training_loss_and_gradients_bitwise_equal": true,
+      "reviewed_policy_contract_met": true,
+      "final_latest_tensor_equivalence_rechecked": true,
+      "LM_boundary_sha256": "8dce2ef3500d04eda569d35caa02068891b324b1ecce1265a8896bd6fcf14338"
+    }
+  },
+  "verified_complete_seed0_parents": 2,
+  "expected_full_study_foundation_parents": 6,
+  "primary_post_runs": 0,
+  "archive_sha256": "c615b69666103af6be123cd46967e7a29a1d56f679dc2bc87883a7f2f933b069",
+  "archive_bytes": 359097282,
+  "members_verified": 149,
+  "metric_rows_verified": 432732,
+  "independent_cloud_readback": true,
+  "independent_verification_at_utc": "2026-11-26T21:44:54.941765+00:00",
+  "readback_method": "four independently downloaded hash-checked parts reassembled to exact producer ZIP",
+  "parts_manifest_sha256": "73fc7cf79020d0cbd22f20d3ac15872feabcc1b84c76127ff533cd8396039913",
+  "diagnostic_index_sha256": "e32a35c2b02403e385d3157cdce42e7ff9106c89e63efd84dbcea681b5663f71",
+  "driver_return_code": 0,
+  "ledger_finished": true,
+  "driver_seconds": 771.9626318619994,
+  "reserved_soft_driver_seconds": 1100,
+  "new_mingru_SFT_targets": 7751433,
+  "optimizer_seconds_this_driver": 648.4665442724618,
+  "pure_SFT_resource_sample": {
+    "response_targets": 7751433,
+    "updates": 49074,
+    "optimizer_seconds": 648.4665442724618,
+    "targets_per_optimizer_second": 11953.481746227348,
+    "last_chunk_includes_scheduled_final_validation": true
+  },
+  "highest_peak_allocated_bytes_this_driver": 236497408,
+  "scheduled_FP32_validation": {
+    "foundation-transformer-s0": [
+      {
+        "update": 89757,
+        "stage": "lm",
+        "trained_targets": 80000000,
+        "ce": 2.2417144972230285,
+        "perplexity": 9.409449941595582,
+        "targets": 61573,
+        "perplexity_clipped": false,
+        "seconds": 0.8409309349999603
+      },
+      {
+        "update": 216366,
+        "stage": "sft",
+        "trained_targets": 100000000,
+        "ce": 1.9756615377688815,
+        "perplexity": 7.211388682179701,
+        "targets": 12192,
+        "perplexity_clipped": false,
+        "seconds": 0.5804737379985454
+      }
+    ],
+    "foundation-mingru-s0": [
+      {
+        "update": 89757,
+        "stage": "lm",
+        "trained_targets": 80000000,
+        "ce": 2.4483182275672597,
+        "perplexity": 11.568874135986425,
+        "targets": 61573,
+        "perplexity_clipped": false,
+        "seconds": 0.6086172989998886
+      },
+      {
+        "update": 216366,
+        "stage": "sft",
+        "trained_targets": 100000000,
+        "ce": 2.1606304000408003,
+        "perplexity": 8.676605667332558,
+        "targets": 12192,
+        "perplexity_clipped": false,
+        "seconds": 0.3080281750007998
+      }
+    ]
+  },
+  "validation_response_PPL_is_not_general_PPL": true,
+  "local_CPU_FP64_reviews": {
+    "foundation-transformer-s0": {
+      "local_FP64_inference_review_passed": true,
+      "torch": "2.10.0+cu128",
+      "proof_sha256": "ac50f1b582127542b4b4438b813a40214bccd4802b4d51e58352fbafb6e05531",
+      "checkpoint_sha256": "8d8a5a20de709b59fa2b1508e383dd582c0f9adf03cef61884e37573e0577beb",
+      "local_optimizer_updates": 0,
+      "training_flag_check_provenance": "copied from exact-hash original Colab FP32 proof; no local FP32 training/gradient check claimed",
+      "test_access": false,
+      "max_path_error": 1.0658141036401503e-13,
+      "max_decode_L1": 2.3396323940716446e-14,
+      "argmax_mismatches": 0
+    },
+    "foundation-mingru-s0": {
+      "local_FP64_inference_review_passed": true,
+      "torch": "2.10.0+cu128",
+      "proof_sha256": "9aee99e5f07995ad82a742e4bb4e892a9cd1782fdbf45ab64959ef6d8711b132",
+      "checkpoint_sha256": "ae544a4e1baee5dc2a136d9b63e04f0e7ed8234dadd37c6c696ecf072d5ead27",
+      "local_optimizer_updates": 0,
+      "training_flag_check_provenance": "copied from exact-hash original Colab FP32 proof; no local FP32 training/gradient check claimed",
+      "test_access": false,
+      "max_path_error": 6.4698246760031e-14,
+      "max_decode_L1": 1.995777675067867e-14,
+      "argmax_mismatches": 0
+    }
+  },
+  "secondary_general_validation_retention": {
+    "foundation-transformer-s0": {
+      "raw_report_sha256": "53be85fe9b74d4d9cf46c8773b8d6933b4924f0baa7a3a0458af46059c3f1f0e",
+      "pre_SFT": {
+        "nll_nats_per_target": 2.241714569116179,
+        "perplexity": 9.409450618070608,
+        "perplexity_clipped": false,
+        "targets": 61573,
+        "windows": 300,
+        "sources": 300,
+        "uncertainty": {
+          "nll_ci95": [
+            2.195585268796058,
+            2.2864550227909604
+          ],
+          "perplexity_ci95": [
+            8.98525830952941,
+            9.839993227394025
+          ],
+          "perplexity_ci_clipped": false,
+          "source_clusters": 300,
+          "draws": 2000,
+          "seed": 2026,
+          "scope": "whole-source resampling conditional on this trained checkpoint; not across-training-seed uncertainty"
+        },
+        "evaluation_seconds": 17.972820099999808
+      },
+      "post_SFT": {
+        "nll_nats_per_target": 4.424111775018596,
+        "perplexity": 83.43866199409597,
+        "perplexity_clipped": false,
+        "targets": 61573,
+        "windows": 300,
+        "sources": 300,
+        "uncertainty": {
+          "nll_ci95": [
+            4.290391207146755,
+            4.5570364378771275
+          ],
+          "perplexity_ci95": [
+            72.9950190878163,
+            95.30063157587014
+          ],
+          "perplexity_ci_clipped": false,
+          "source_clusters": 300,
+          "draws": 2000,
+          "seed": 2026,
+          "scope": "whole-source resampling conditional on this trained checkpoint; not across-training-seed uncertainty"
+        },
+        "evaluation_seconds": 15.271971300000587
+      },
+      "post_minus_pre_nll_nats_per_target": 2.1823972059024146,
+      "paired_source_ci95": [
+        2.045994036211637,
+        2.31128173601491
+      ],
+      "uncertainty_scope": "source sampling conditional on this one initialization and its two observed stages; no matched continued-LM control or across-seed causal claim",
+      "not_a_primary_or_human_writing_score": true
+    },
+    "foundation-mingru-s0": {
+      "raw_report_sha256": "88ed45aca144d59653130e67e2961d08b939c844153f947e3f887e253c0c6bc6",
+      "pre_SFT": {
+        "nll_nats_per_target": 2.4483183370438195,
+        "perplexity": 11.568875402507034,
+        "perplexity_clipped": false,
+        "targets": 61573,
+        "windows": 300,
+        "sources": 300,
+        "uncertainty": {
+          "nll_ci95": [
+            2.399770040305089,
+            2.493621496200848
+          ],
+          "perplexity_ci95": [
+            11.020641785802654,
+            12.105035174891157
+          ],
+          "perplexity_ci_clipped": false,
+          "source_clusters": 300,
+          "draws": 2000,
+          "seed": 2026,
+          "scope": "whole-source resampling conditional on this trained checkpoint; not across-training-seed uncertainty"
+        },
+        "evaluation_seconds": 12.811181600001873
+      },
+      "post_SFT": {
+        "nll_nats_per_target": 4.830070471022005,
+        "perplexity": 125.21978471004516,
+        "perplexity_clipped": false,
+        "targets": 61573,
+        "windows": 300,
+        "sources": 300,
+        "uncertainty": {
+          "nll_ci95": [
+            4.685790985275196,
+            4.972966798731249
+          ],
+          "perplexity_ci95": [
+            108.39597803024563,
+            144.4548206396915
+          ],
+          "perplexity_ci_clipped": false,
+          "source_clusters": 300,
+          "draws": 2000,
+          "seed": 2026,
+          "scope": "whole-source resampling conditional on this trained checkpoint; not across-training-seed uncertainty"
+        },
+        "evaluation_seconds": 11.099918500000058
+      },
+      "post_minus_pre_nll_nats_per_target": 2.3817521339781806,
+      "paired_source_ci95": [
+        2.2269296879408267,
+        2.520194312150509
+      ],
+      "uncertainty_scope": "source sampling conditional on this one initialization and its two observed stages; no matched continued-LM control or across-seed causal claim",
+      "not_a_primary_or_human_writing_score": true
+    }
+  },
+  "retention_interpretation": "Both checkpoints assign worse next-token likelihood to identical bare-story validation after SFT. This does not identify a cause, establish generation fluency/logic, or estimate across-seed effects.",
+  "writing_generation": {
+    "complete": true,
+    "samples": 34,
+    "by_run": {
+      "foundation-transformer-s0": {
+        "samples": 17,
+        "distinct_conditional_outputs": 16,
+        "empty_outputs": 0,
+        "cap_reached": 0,
+        "eos_emitted": 17
+      },
+      "foundation-mingru-s0": {
+        "samples": 17,
+        "distinct_conditional_outputs": 16,
+        "empty_outputs": 0,
+        "cap_reached": 0,
+        "eos_emitted": 17
+      }
+    },
+    "samples_sha256": "ec4d303335edfc0745c91d141d180679035732b4d32430ed43773829b7f7f764",
+    "review_id": "e8377d822b29f348c0794c5953a9e7d5e085bc80fc56a256582cb560556ad4bc",
+    "human_labels": false,
+    "primary_evaluation": false,
+    "writing_gate_passed": null,
+    "note": "Counts are diagnostics, not fluency/logic or human ratings; retain every sample."
+  },
+  "writing_packet": {
+    "items": 34,
+    "shuffle_seed": 2026,
+    "review_id": "e8377d822b29f348c0794c5953a9e7d5e085bc80fc56a256582cb560556ad4bc",
+    "source_samples_sha256": "ec4d303335edfc0745c91d141d180679035732b4d32430ed43773829b7f7f764",
+    "packet_sha256": "030f580e9f250392f204b3d1c6875200ba062d0774c8b7fae1ee4e8cf54c04a3",
+    "presentation_version": 2,
+    "reader_markdown_sha256": "b64d36f0a07d333e81002887efee335a612289b707b0b4e3e0b06ffaec2d1944",
+    "real_labels_collected": 0,
+    "reader_count_available": 1,
+    "independent_reader_validation": false,
+    "writing_gate_passed": null
+  },
+  "writing_decision_at_blank_packet_creation": "pending",
+  "human_labels": 0,
+  "secondary_Drive_evidence": {
+    "file_name": "20261127-foundation-complete-secondary-f033002.zip",
+    "sha256": "9068307232371de99f8faa88561921adc3e07b06c9c8f6ddb54d15c50dfda1f2",
+    "bytes": 113194,
+    "members": 45,
+    "payload_members_verified": 44,
+    "code_snapshot_commit": "f033002bf42d91b019434cc2c20c33b4137f8abb",
+    "real_human_labels": 0,
+    "private_only": true,
+    "shared": false,
+    "independent_readback_verified_at_utc": "2026-11-26T21:53:03.960369+00:00"
+  },
+  "resource_observations": {
+    "first_driver_UI_available_CU": 597.05,
+    "before_release_UI_available_CU": 585.57,
+    "observed_balance_drop_from_first_driver": 11.48,
+    "annex_anchor_CU": 597.61,
+    "observed_balance_drop_from_annex_anchor": 12.04,
+    "annex_drop_cap_CU": 16,
+    "not_a_training_only_invoice": true,
+    "includes_review_and_idle_intervals": true,
+    "summed_optimizer_seconds_two_seed0_parents": 11623.272243708894,
+    "summed_recorded_driver_seconds": 13041.815878857999,
+    "mixed_parent_GPU_history": "Transformer used L4 then T4; minGRU used T4. Per-arm post training has not occurred."
+  },
+  "runtime_released_UI_zero_active_sessions": true,
+  "release_request_sha256": "abd5e7230e1298b3f1749332a95c7cae59f48b2d243a9a085571b50139acd117",
+  "release_request_independently_read_back": true,
+  "Drive_connector_write_readback_after_release": true,
+  "host_source_sha256": "e6b33e8eacc98a0d70c132f42feeb465f5a777694bcdaa170ee3d98f305d6e38",
+  "backend_policy_id": "ca5621d4d52d349ec22b7eabc4e35bf38984f9461016e7196f6e3c037d69ef48",
+  "training_precision": "float32",
+  "production_inference": "CPU/FP64",
+  "old_FP32_failures_preserved": true,
+  "driver_invocations_consumed": 13,
+  "maximum_driver_invocations": 16,
+  "test_evaluated": false,
+  "compiler_run": false,
+  "extra_CU_purchase": false,
+  "new_Drive_grant": false,
+  "post_training_authorized_by_writing_result": false,
+  "readiness": "seed0 foundation and writing packet complete; primary study, human evidence, transfer and results manuscript incomplete"
+}

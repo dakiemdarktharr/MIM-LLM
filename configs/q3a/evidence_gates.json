@@ -1,15 +1,17 @@
 {
   "as_of": "2026-11-27",
   "study": "Q3-A",
-  "goal_status": "active_driver13_after_independent_driver12_SFT_audit",
+  "goal_status": "active_seed0_foundation_complete_real34_panel_pending_author_ratings",
   "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
   "training_bundle_sha256": "b1c97087a3415fc4c1b65dc4fa5a8496917ded649087add55d40352bec55e5d9",
   "manual_handoff": {
-    "state": "resolved_same_mount_reused_through_driver13",
+    "state": "Drive_connector_read_write_verified_after_runtime_release",
     "training_permission_already_granted": true,
     "another_Drive_grant_requested": false,
-    "evidence": "docs/Q3_A_FOUNDATION_INVOCATION12_20261127.vi.md",
-    "permanent_mount_promised": false
+    "evidence": "docs/Q3_A_FOUNDATION_INVOCATION13_20261127.vi.md",
+    "permanent_mount_promised": false,
+    "same_Colab_mount_reused_through_driver13": true,
+    "current_Colab_runtime_active": false
   },
   "requirements": [
     {
@@ -32,7 +34,8 @@
         "docs/Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md",
         "docs/Q3_A_FOUNDATION_INVOCATION9_20261127.vi.md",
         "docs/Q3_A_FOUNDATION_INVOCATION10_20261127.vi.md",
-        "docs/Q3_A_FOUNDATION_INVOCATION11_20261127.vi.md"
+        "docs/Q3_A_FOUNDATION_INVOCATION11_20261127.vi.md",
+        "docs/Q3_A_FOUNDATION_INVOCATION13_20261127.vi.md"
       ],
       "observed_nontraining_tests": 233,
       "observed_Q3A_training_tests": 4,
@@ -44,18 +47,21 @@
       "production_inference_backend": "CPU_FP64_MHA_off_stable_token_ID_topk_v1",
       "old_FP32_failure_preserved": true,
       "real_checkpoint_reader_schema_bug_corrected": true,
-      "new_writing_decision_tests": 10,
-      "focused_writing_packet_tests": 14,
-      "focused_language_eval_related_tests": 15
+      "new_writing_decision_tests": 12,
+      "focused_writing_packet_tests": 17,
+      "focused_language_eval_related_tests": 15,
+      "local_actual_parent_FP64_path_proofs": 2,
+      "local_actual_parent_inference_environment": "Windows_CPU_Torch2.10.0+cu128",
+      "local_FP32_training_check_claimed": false
     },
     {
       "id": "training_matrix",
-      "status": "one_seed0_parent_complete_second_in_progress_post_held",
+      "status": "two_seed0_parents_complete_author_gate_pending_primary_held",
       "expected_foundation_parents": 6,
-      "verified_complete_foundation_parents": 1,
+      "verified_complete_foundation_parents": 2,
       "current_audited_transformer_LM_targets": 80000000,
       "current_audited_transformer_SFT_targets": 20000000,
-      "current_audited_mingru_targets": 92248567,
+      "current_audited_mingru_targets": 100000000,
       "expected_post_runs": 24,
       "post_pilot_targets_per_run": 2000000,
       "conditional_confirmation_targets_per_run": 10000000,
@@ -64,31 +70,38 @@
       "other_seed_plans_implemented": false,
       "full_matrix_expansion_held": true,
       "evidence": [
-        "configs/q3a/foundation_invocation12_results.json",
+        "configs/q3a/foundation_invocation13_results.json",
         "configs/q3a/subword_post.template.json"
       ],
       "current_audited_mingru_LM_targets": 80000000,
-      "current_audited_mingru_SFT_targets": 12248567
+      "current_audited_mingru_SFT_targets": 20000000
     },
     {
       "id": "drive_persistence",
-      "status": "driver12_three_parts_reassembled_exact_original_while_mount_retained",
-      "archive_sha256": "b2471c51817b265732627f1c21691120b236e981ebc16a8a8592112b7db1482b",
-      "archive_bytes": 296656536,
-      "members_verified": 137,
-      "total_verified_step_metric_rows": 383658,
-      "latest_sha256": "8d8a5a20de709b59fa2b1508e383dd582c0f9adf03cef61884e37573e0577beb",
+      "status": "foundation_archive_verified_before_release_secondary_verified_after_release",
+      "archive_sha256": "c615b69666103af6be123cd46967e7a29a1d56f679dc2bc87883a7f2f933b069",
+      "archive_bytes": 359097282,
+      "members_verified": 149,
+      "total_verified_step_metric_rows": 432732,
       "readback_after_VM_release": false,
       "evidence": [
-        "docs/Q3_A_FOUNDATION_INVOCATION12_20261127.vi.md"
+        "docs/Q3_A_FOUNDATION_INVOCATION13_20261127.vi.md"
       ],
-      "secondary_read_only_reports": "independent_connector_upload_and_exact_raw_readback_16_member_hashes"
+      "secondary_read_only_reports": "45_member_private_bundle_uploaded_and_raw_read_back_after_zero_active_sessions",
+      "secondary_archive_sha256": "9068307232371de99f8faa88561921adc3e07b06c9c8f6ddb54d15c50dfda1f2",
+      "release_request_read_back_after_VM_release": true,
+      "secondary_bundle_read_back_after_VM_release": true,
+      "latest_by_run": {
+        "foundation-transformer-s0": "8d8a5a20de709b59fa2b1508e383dd582c0f9adf03cef61884e37573e0577beb",
+        "foundation-mingru-s0": "ae544a4e1baee5dc2a136d9b63e04f0e7ed8234dadd37c6c696ecf072d5ead27"
+      },
+      "readback_after_VM_release_field_scope": "full foundation ZIP was read before release; secondary bundle and release receipt were read afterward"
     },
     {
       "id": "resource_budget",
       "status": "foundation_cap_measured_partial_study_cap_pending",
-      "current_GPU": "Tesla T4",
-      "last_observed_UI_CU_balance": 586.2,
+      "current_GPU": null,
+      "last_observed_UI_CU_balance": 585.57,
       "last_observed_UI_CU_per_hour": 1.87,
       "foundation_anchor_CU": 597.61,
       "foundation_observed_drop_cap_CU": 16,
@@ -102,22 +115,34 @@
       "T4_mingru_training_throughput_measured": true,
       "evidence": [
         "configs/q3a/foundation_resource_annex.json",
-        "configs/q3a/foundation_invocation12_results.json"
+        "configs/q3a/foundation_invocation13_results.json"
       ],
       "T4_mingru_LM_targets_per_optimizer_second": 34428.41360070471,
       "T4_mingru_SFT_throughput": "measured_nine_pure_SFT_chunks",
-      "T4_mingru_SFT_targets_per_optimizer_second": 11776.02864929586
+      "T4_mingru_SFT_targets_per_optimizer_second": 11776.02864929586,
+      "last_used_GPU": "Tesla T4",
+      "runtime_active": false,
+      "last_CU_observation_scope": "before runtime release, not a live balance or invoice",
+      "observed_drop_from_annex_anchor": 12.04
     },
     {
       "id": "writing_feasibility",
-      "status": "historical_byte_failure_preserved_new_subword_panel_not_generated",
+      "status": "real34_subword_generations_complete_blank_packet_human_decision_pending",
       "must_precede_full_matrix": true,
       "manifest_receipt": "configs/q3a/foundation_writing_review_fp64_receipt.json",
       "prospective_rule": "configs/q3a/foundation_writing_rule.json",
-      "real_subword_review_samples": 0,
+      "real_subword_review_samples": 34,
       "actual_human_labels": 0,
       "author_only_feasibility_is_not_independent_validation": true,
-      "posttraining_expansion_allowed": false
+      "posttraining_expansion_allowed": false,
+      "decision": "pending",
+      "samples_sha256": "ec4d303335edfc0745c91d141d180679035732b4d32430ed43773829b7f7f764",
+      "packet_markdown_sha256": "b64d36f0a07d333e81002887efee335a612289b707b0b4e3e0b06ffaec2d1944",
+      "packet_presentation_version": 2,
+      "evidence": [
+        "configs/q3a/foundation_invocation13_results.json",
+        "docs/Q3_A_WRITING_DECISION_20261127.vi.md"
+      ]
     },
     {
       "id": "test_registration",
@@ -145,7 +170,8 @@
       "candidate_manifest": "configs/q3a/transfer_sources.candidates.json",
       "evidence": [
         "docs/Q3_A_TRANSFER_SOURCE_AUDIT_20261126.vi.md",
-        "docs/Q3_A_HUMAN_NARRATIVE_TRANSFER_CANDIDATE_20261127.vi.md"
+        "docs/Q3_A_HUMAN_NARRATIVE_TRANSFER_CANDIDATE_20261127.vi.md",
+        "configs/q3a/naturalstories_BPE_context_audit_20261127.json"
       ],
       "human_semantically_audited_pairs": 0,
       "accepted_transfer_pairs": 0,
@@ -156,7 +182,9 @@
         "NaturalStories_story_clusters": 10,
         "FairytaleQA_metadata_story_ids": 278,
         "FairytaleQA_origin_book_groups": 15
-      }
+      },
+      "NaturalStories_BPE_context_measured": true,
+      "NaturalStories_full_stories_fitting_current_1024_context": 0
     },
     {
       "id": "quality_aggregation",
@@ -171,7 +199,7 @@
       "normalized_source_sha256": "75775dc9b2810d9488465d618a03334709ca0cd6bd1a775879ba380a2259ad0f",
       "new_nontraining_regression_tests_passed": 15,
       "primary_definition_changed": false,
-      "remaining": "Register source SHA, included arms and complete sample before final test; no real human labels or scientific results exist yet."
+      "remaining": "Register source SHA, included arms and complete sample before final test; no real human labels or primary scientific results yet."
     },
     {
       "id": "scientific_results_and_statistics",
@@ -181,7 +209,14 @@
       "warmup_statistics_available": true,
       "Transformer_pre_SFT_general_validation_PPL": 9.409450618070608,
       "Transformer_post_SFT_general_validation_PPL": 83.43866199409597,
-      "secondary_stage_comparison_training_seeds": 1
+      "secondary_stage_comparison_training_seeds": 1,
+      "mingru_pre_SFT_general_validation_PPL": 11.568875402507034,
+      "mingru_post_SFT_general_validation_PPL": 125.21978471004516,
+      "both_backbones_negative_secondary_retention_preserved": true,
+      "evidence": [
+        "configs/q3a/foundation_invocation13_results.json",
+        "docs/Q3_A_FOUNDATION_INVOCATION13_20261127.vi.md"
+      ]
     },
     {
       "id": "manuscript",
@@ -237,7 +272,7 @@
     }
   ],
   "completion_rule": "Every requirement needs authoritative evidence covering its scope; the board itself cannot prove completion.",
-  "current_next_action": "Monitor Cell42/driver13 and its inline read-only follow-up; audit terminal archive/proofs. After both100Mparents are genuinely complete and numerical-reviewed, generate the frozen34 writing samples on canonical CPU/FP64, obtain real author ratings without imputation, and run paired minGRU validation-retention diagnostic. No automatic post/seed/test/LaTeX release.",
+  "current_next_action": "Obtain genuine author ratings for the existing34 blinded samples and score the unchanged rule; no imputation or regeneration. Then review negative general-validation retention, novelty/transfer and a prospective measured resource/protocol plan before any expansion. No live Colab job, no automatic new seed/post/test/LaTeX release.",
   "backup_rotation_correction": "Old resumed local previous.pt could overwrite the just-rotated remote backup; latest.pt unaffected. Fixed for subsequent orchestration; keep old input bundle and disclose older-backup limitation.",
   "language_foundation_next_work": "docs/Q3_A_LANGUAGE_FOUNDATION_NEXT.vi.md",
   "external_reference_diagnostic": {
@@ -262,21 +297,21 @@
   },
   "foundation_current": {
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
-    "receipt": "configs/q3a/foundation_invocation12_results.json",
-    "audited_driver_index": 12,
+    "receipt": "configs/q3a/foundation_invocation13_results.json",
+    "audited_driver_index": 13,
     "transformer_LM_targets": 80000000,
     "transformer_SFT_targets": 20000000,
     "transformer_updates": 216366,
-    "mingru_targets": 92248567,
+    "mingru_targets": 100000000,
     "driver_invocations_reserved": 13,
     "maximum_driver_invocations": 16,
-    "writing_gate": "unmeasured_for_subword_replacement",
+    "writing_gate": "real34samples_complete_pending_genuine_author_ratings",
     "primary_runs": 0,
     "human_labels": 0,
-    "active_driver_not_completed": true,
-    "verified_complete_parents": 1,
+    "active_driver_not_completed": false,
+    "verified_complete_parents": 2,
     "mingru_LM_targets": 80000000,
-    "mingru_SFT_targets": 12248567
+    "mingru_SFT_targets": 20000000
   },
   "latest_nontraining_suite": {
     "passed": 233,
@@ -286,7 +321,7 @@
   "latest_remote_execution": {
     "session": "20261126T212456Z",
     "driver_index": 13,
-    "state": "verified_live_not_terminal",
+    "state": "terminal_independently_audited_runtime_released_zero_active_sessions",
     "UI_available_cu_at_driver_start": 586.2,
     "UI_rate_at_driver_start": 1.87,
     "same_mounted_vm_reused": true,
@@ -297,16 +332,19 @@
     "execution_cell": 42,
     "read_only_followup_in_same_script": true,
     "host_source_sha256": "e6b33e8eacc98a0d70c132f42feeb465f5a777694bcdaa170ee3d98f305d6e38",
-    "no_automatic_next_driver": true
+    "no_automatic_next_driver": true,
+    "runtime_release_cell": 43,
+    "runtime_active": false,
+    "runtime_release_request_sha256": "abd5e7230e1298b3f1749332a95c7cae59f48b2d243a9a085571b50139acd117"
   },
   "latest_verified_foundation_checkpoint": {
-    "session": "20261126T205946Z",
-    "driver_index": 12,
-    "complete_foundation": false,
-    "complete_seed0_parents": 1,
-    "report": "docs/Q3_A_FOUNDATION_INVOCATION12_20261127.vi.md",
-    "results": "configs/q3a/foundation_invocation12_results.json",
-    "archive_sha256": "b2471c51817b265732627f1c21691120b236e981ebc16a8a8592112b7db1482b",
+    "session": "20261126T212456Z",
+    "driver_index": 13,
+    "complete_foundation": true,
+    "complete_seed0_parents": 2,
+    "report": "docs/Q3_A_FOUNDATION_INVOCATION13_20261127.vi.md",
+    "results": "configs/q3a/foundation_invocation13_results.json",
+    "archive_sha256": "c615b69666103af6be123cd46967e7a29a1d56f679dc2bc87883a7f2f933b069",
     "runs": {
       "foundation-transformer-s0": {
         "complete": true,
@@ -314,11 +352,13 @@
         "final_sha256": "30c5b6b8a8006f4ce1bc4a7d962adcbe0548b13eeb395daca1b8694647964c45"
       },
       "foundation-mingru-s0": {
-        "complete": false,
-        "latest_sha256": "7ed081a7dc113528089858aa1d1409566f84a3cdc7266a264147b78c3291c9ee",
-        "final_sha256": null
+        "complete": true,
+        "latest_sha256": "ae544a4e1baee5dc2a136d9b63e04f0e7ed8234dadd37c6c696ecf072d5ead27",
+        "final_sha256": "756a07755ab25149b3574af0f008ccbebdad3981e15f521e962727ea4100e0d9"
       }
-    }
+    },
+    "scope": "c18 seed0 two-parent foundation only",
+    "full_study_foundation_complete": false
   },
   "historical_byte_calibration": {
     "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
@@ -484,9 +524,11 @@
     "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
   },
   "blocked_audit": {
-    "state": "not_blocked_verified_live_training",
+    "state": "progress_foundation_complete_human_feasibility_request_pending",
     "last_goal_turn": "progress",
     "manual_access_blocker_resolved": true,
-    "objective_complete": false
+    "objective_complete": false,
+    "human_rating_request_sent": true,
+    "real_human_labels": 0
   }
 }
