@@ -5,8 +5,10 @@
 > **Latest observed state, 27 November 2026:** Driver 6 independently verifies
 > the Transformer's 80M LM + 7,784,033 SFT targets / 139,032 updates. minGRU has
 > not started. Old FP32/top-40 gate FAIL is preserved. CPU/FP64 replacement
-> inference met the same bounds, with unchanged FP32 training/data/caps. No
-> driver 7 had started at this audit. Same Drive mount retained, no new grant.
+> inference met the same bounds, with unchanged FP32 training/data/caps.
+> driver 7 is now active (session20261126T184845Z,1100ssoftcap); the latest
+> independently audited counters above still belong to driver6. Same Drive mount
+> retained, no new grant.
 > Subword generation/selection/blinding/analysis/general-text PPL code exists;
 > six genuine complete parents, writing review, measured study resources,
 > human labels, real post/PPL measurements and transfer evidence are pending.
