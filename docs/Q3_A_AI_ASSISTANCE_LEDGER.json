@@ -28,16 +28,19 @@
   "recent_activity": {
     "date": "2026-11-27",
     "uses": [
-      "pinned author-code reading, source-hash verification and own scalar-clamp derivative check",
-      "comparison with accessible DTO sections and separately identified TALLIP metadata/abstract",
-      "methods source synchronized with completed seed-zero parents, availability of 34 real samples and negative validation retention"
+      "training-only support audit and finite mathematical development cases",
+      "real component probe encoding without model inference or optimization",
+      "Drive account/profile and scoped raw-byte write/readback verification",
+      "persistent authorization-reuse instructions and methods/support disclosure"
     ],
-    "audit_evidence": "configs/q3a/dto_author_code_audit_20261127.json",
+    "audit_evidence": [
+      "configs/q3a/rule_support_audit_20261127.json",
+      "configs/q3a/drive_connection_check_20261127.json"
+    ],
     "human_labels_created": 0,
     "primary_results_created": false,
     "proprietary_Turnitout_engine_used": false,
     "compilation_performed": false,
-    "upstream_software_imported_or_executed": false,
     "model_identifier_still_unrecorded": true
   },
   "activity_history": [
@@ -52,6 +55,21 @@
       "primary_results_created": false,
       "proprietary_Turnitout_engine_used": false,
       "compilation_performed": false,
+      "model_identifier_still_unrecorded": true
+    },
+    {
+      "date": "2026-11-27",
+      "uses": [
+        "pinned author-code reading, source-hash verification and own scalar-clamp derivative check",
+        "comparison with accessible DTO sections and separately identified TALLIP metadata/abstract",
+        "methods source synchronized with completed seed-zero parents, availability of 34 real samples and negative validation retention"
+      ],
+      "audit_evidence": "configs/q3a/dto_author_code_audit_20261127.json",
+      "human_labels_created": 0,
+      "primary_results_created": false,
+      "proprietary_Turnitout_engine_used": false,
+      "compilation_performed": false,
+      "upstream_software_imported_or_executed": false,
       "model_identifier_still_unrecorded": true
     }
   ],

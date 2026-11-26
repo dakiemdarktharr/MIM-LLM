@@ -62,3 +62,13 @@ Receipt: `configs/q3a/dto_author_code_audit_20261127.json`.
 thế transfer/primary/human evidence. Nguồn LaTeX đã cập nhật trạng thái thật
 của pilot và kết quả validation âm; không compile hoặc nhận là manuscript
 hoàn chỉnh có kết quả chính.
+
+## Phạm vi dữ liệu được xác nhận bằng audit train
+
+[Audit quy tắc](Q3_A_RULE_SUPPORT_AUDIT_20261127.vi.md) đã kiểm đúng 6.000 nhóm
+train: không có điện về đúng hạn hoặc hai blocker đồng thời ở cả bốn role.
+Các cặp no-op hiện tại giữ mọi fact được theo dõi. Ví dụ toán học giữ hành
+động chờ nhưng đổi tình trạng điện cho thấy phải tách invariance theo từng
+mệnh đề. Probe thật từ chối ép invariant lên target đã đổi; đây là kiểm
+contract, không phải model đã giải được bài. Không đọc controlled test hoặc
+đăng ký challenge mới. Mức rủi ro novelty và quyết định stop/merge vẫn giữ.

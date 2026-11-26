@@ -1,0 +1,16 @@
+{
+  "checked_utc": "2026-11-26T22:28:11.0763844Z",
+  "readback_verified_utc": "2026-11-26T22:32:23.068686+00:00",
+  "requested_account_matches_connected_profile": true,
+  "existing_project_artifact_read": true,
+  "project_scoped_upload_and_exact_raw_readback": true,
+  "probe_bytes": 459,
+  "probe_sha256": "ad299553db6e63e312ae82d802565f981d575235d5ef3e7bab975c3cd0cb03d5",
+  "new_grant_requested": false,
+  "connector_reset_or_sharing_change": false,
+  "new_colab_runtime_started": false,
+  "permanent_colab_mount_claimed": false,
+  "optimizer_updates": 0,
+  "private_identifiers_in_public_receipt": false,
+  "policy": "docs/COLAB_DRIVE_SESSION_POLICY_20261126.vi.md"
+}

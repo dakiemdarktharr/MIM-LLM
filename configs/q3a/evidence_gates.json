@@ -1,17 +1,20 @@
 {
   "as_of": "2026-11-27",
   "study": "Q3-A",
-  "goal_status": "active_seed0_foundation_complete_real34_panel_pending_author_ratings",
+  "goal_status": "waiting_for_genuine_author_ratings_no_drive_blocker",
   "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
   "training_bundle_sha256": "b1c97087a3415fc4c1b65dc4fa5a8496917ded649087add55d40352bec55e5d9",
   "manual_handoff": {
-    "state": "Drive_connector_read_write_verified_after_runtime_release",
+    "state": "authenticated_project_Drive_read_write_reverified_without_new_grant",
     "training_permission_already_granted": true,
     "another_Drive_grant_requested": false,
     "evidence": "docs/Q3_A_FOUNDATION_INVOCATION13_20261127.vi.md",
     "permanent_mount_promised": false,
     "same_Colab_mount_reused_through_driver13": true,
-    "current_Colab_runtime_active": false
+    "current_Colab_runtime_active": false,
+    "connection_check": "configs/q3a/drive_connection_check_20261127.json",
+    "checked_utc": "2026-11-26T22:32:23.068686+00:00",
+    "no_personal_authentication_step_pending": true
   },
   "requirements": [
     {
@@ -24,9 +27,19 @@
         "docs/Q3_A_TARGETED_NOVELTY_UPDATE_20261127.vi.md",
         "docs/Q3_A_SUBWORD_EVALUATION_20261127.vi.md",
         "docs/Q3_A_DTO_AUTHOR_CODE_AUDIT_20261127.vi.md",
-        "configs/q3a/dto_author_code_audit_20261127.json"
+        "configs/q3a/dto_author_code_audit_20261127.json",
+        "docs/Q3_A_RULE_SUPPORT_AUDIT_20261127.vi.md",
+        "configs/q3a/rule_support_audit_20261127.json"
       ],
-      "remaining": "Incremental insight, naturalistic transfer and final sensitivity-baseline decision remain pending. Pinned DTO source now inspected as score-only component; no full reproduction or new algorithm claim. TALLIP full methods unavailable. Existing generator boundary/multiple-blocker support remains limited; limit claims or prospectively register a separate challenge before post training."
+      "remaining": "Incremental insight, naturalistic transfer and final sensitivity-baseline decision remain pending. Pinned DTO source now inspected as score-only component; no full reproduction or new algorithm claim. TALLIP full methods unavailable. Existing generator boundary/multiple-blocker support remains limited; limit claims or prospectively register a separate challenge before post training.",
+      "support_audit": {
+        "train_source_groups": 6000,
+        "exact_deadline_worlds_all_roles": 0,
+        "dual_blocker_worlds_all_roles": 0,
+        "changed_target_probe_rejected": true,
+        "new_challenge_registered": false,
+        "model_result": false
+      }
     },
     {
       "id": "engineering_checks",
@@ -76,7 +89,8 @@
         "configs/q3a/subword_post.template.json"
       ],
       "current_audited_mingru_LM_targets": 80000000,
-      "current_audited_mingru_SFT_targets": 20000000
+      "current_audited_mingru_SFT_targets": 20000000,
+      "other_seed_plan_dependency": "Foundation writing decision and prospective learning/resource protocol first; do not fabricate seed plans or relabel seed-zero checkpoints. The two-seed-zero feasibility plan remains immutable."
     },
     {
       "id": "drive_persistence",
@@ -528,11 +542,15 @@
     "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
   },
   "blocked_audit": {
-    "state": "progress_primary_source_audit_and_manuscript_sync_human_ratings_still_pending",
-    "last_goal_turn": "progress",
+    "state": "genuine_author_ratings_pending_after_read_only_preparation",
     "manual_access_blocker_resolved": true,
-    "objective_complete": false,
     "human_rating_request_sent": true,
-    "real_human_labels": 0
+    "real_human_labels": 0,
+    "blank_CSV_sha256": "d93d4a0e78da03c836d0c5fcaac118e1a1c01e63c25ef8584fcbd75a4c25edc5",
+    "same_human_dependency_present_at_least_three_goal_turns": true,
+    "current_independent_preparation_completed": true,
+    "next_scientific_decision_requires_genuine_ratings": true,
+    "objective_complete": false,
+    "no_repeated_Drive_permission_request": true
   }
 }

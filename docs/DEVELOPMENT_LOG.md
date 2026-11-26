@@ -706,3 +706,43 @@ Full report docs/Q3_A_FOUNDATION_INVOCATION13_20261127.vi.md and configs/q3a/fou
 ### 2026-11-27 - pinned DTO author-code audit and uncompiled manuscript synchronization
 
 UndermindMIM workspace exactDOI10.1145/3785019 ->Gir26b, OA PDF unavailable. Official UTS coauthor profile confirms journal metadata/date6Mar2026; Undermind10Feb date recorded separately without invented reconciliation. Publisher PDF403; one ordinary hidden browser visit hit security verification and was closed without solving/bypassing; no full-journal-method claim. Only exact-title web query, primary author/institution/arXiv/GitHub sources used; no systematic-review count claim. DTO preprint2605.24885v1 footnote links authorrepo; pinned a8a6d049d1128d99f5cb1873bcee93ef1075d526, tree29a9be53f113eb46ec7f9a392024b446418b7dd2.12selectedfiles90956bytes verifiedGitblobSHA1+SHA256; MITroot and Apache2vendored notices kept in ignored private cache, no code imported/executed, weights/data download or training. Static loss-score-only matches known DTO-Score, not evidence of all paper variants; scorer clamp[-3,-.5] and allones mask recorded. Own three invented scalar derivative check[0,-1,0] is mathematical, not BART gradient/quality evidence. Audit configs/q3a/dto_author_code_audit_20261127.json SHA256 5e906244f26c429752134f588716319e91676e2eb33af2ea417835527c3fff1c. Design keeps A1-A2 primary; no automatic5th arm/fullDTO/CSR claim or vocabulary row reuse. Source main/implementation/references updated with bothcomplete100M seed0 parents, 34realoutputs/zero humanratings and negative PPL9.41->83.44/T and11.57->125.22/M, one-seed/no matched continuedLM limits. Added TALLIP citation with explicit full-methods TODO; 11citationkeys resolve via static check, no compiler. Retained historical queue with current status note. Appx recheck OpenAI.Codex26.1120.6357.0; runtime package versions not model ID. AI ledger retains prioractivityhistory and records no fake human labels. CSV hash still blank at turn entry; existing async annotation request not repeated. No model/rule/decoding/data/permission/test changes; goal active, not journal-ready.
+
+
+### 2026-11-27 — Drive authorization reuse and training-support audit
+
+Verified the existing connector profile matches the requested account, read the
+project release receipt, uploaded a project-scoped 459-byte JSON and independently
+raw-read it back: SHA256 ad299553db6e63e312ae82d802565f981d575235d5ef3e7bab975c3cd0cb03d5.
+No new sign-in/grant, reset/sharing change, VM start or optimizer update. Private
+account/IDs remain local/vault; public receipt configs/q3a/drive_connection_check_20261127.json.
+AGENTS.md and session policy require checking/reusing existing access before any
+new request. Official Colab FAQ rechecked27Nov: connector access is distinct from
+VM mount and cannot guarantee no personal prompt on a new runtime. Existing
+mount had been reused through driver13; released VM was not restarted just to
+test access. Corrected only inserted AGENTS paragraph line endings after diff
+caught CR-only lines; preserved prior instruction bytes and diff-check passed.
+
+Ran scripts/audit_q3a_rule_support.py on signed dataset623091c0178d train only:
+6000source groups, 1000per depth1–6, no exact-deadline or simultaneous-missing-power/
+permission worlds in any of4dependent roles. Six invented finite rule cases
+match the legacy inclusive oracle; they are not model answers. An invented
+power-change/permission-missing pair preserves waiting while changing the power
+fact; actual component encoder rejects changed power-invariance target. No new
+challenge registration or training/test/rubric change. Audit JSON SHA256
+2d4c2543a29e74edcf3ac8cc1660d3b4abc9852d5ab9c8bd261c17e6de4311d3;
+script00b7416440da4e6af6f0fe20e1e8d211d22ef44fa01a06565463fc8b563e9883.
+Actual CLI and Ruff check/format pass. Source-guard and no-overwrite guard added;
+initial receipts preserved local. Corrected audit metadata: controlled held-out
+rows not loaded; existing load_plan still integrity-hashes encoded foundation
+inputs including validation, without decoding/scoring those rows. Do not label
+all hashing as no file access or disable verification. Methods source discloses
+measured support without compiler; no general conjunction/novelty claim.
+
+Author CSV rechecked unchanged at d93d4a0e78da03c836d0c5fcaac118e1a1c01e63c25ef8584fcbd75a4c25edc5:
+0/34 genuine ratings. Existing human request not repeated. All necessary next
+scientific expansion depends on this decision and prospective protocol/budget;
+no relabelled seeds, primary-test release, invented labels or LaTeX compilation.
+Two100M seed0 baselines remain complete (Transformer3681984params, minGRU3682887,
+neither MIM); 2/6 planned parents,0/24post runs. Remaining full-study/transfer/
+independent-reader/novelty gates are unresolved. No results-manuscript,
+submitted, accepted or published milestone is inferred. Drive is not the blocker.

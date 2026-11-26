@@ -1,5 +1,10 @@
 # Giảm xác nhận Drive lặp lại — 26/11/2026
 
+> Trạng thái hiện hành, kiểm lại 27/11: connector đã xác minh đúng tài khoản
+> được người dùng chỉ định, đọc được artifact dự án và ghi/đọc lại một probe
+> riêng khớp SHA256. Không có yêu cầu grant mới. Các đoạn Connecting/Allocating
+> bên dưới là lịch sử; phiên GPU đã trả sau khi hai parent seed 0 hoàn tất.
+
 Người dùng yêu cầu giữ kết nối Drive, không bắt xác nhận qua mỗi bước. Từ yêu
 cầu này, notebook host giữ mount/VM giữa profiler và những driver đã được phép
 chạy tiếp ngay sau kiểm tra tài nguyên. Không `flush_and_unmount()` hoặc
@@ -63,3 +68,25 @@ Mount đã hoạt động và được giữ qua các lượt4–10; ghi chép k
 100MiB có hash rồi ghép đúng byte, không thay quyền chia sẻ hoặc thêm credential.
 Hiện không có bước xác thực cá nhân đang chờ. Giữ mount giữa công việc hợp lệ
 theo chính sách; không hứa filesystem mount tồn tại sau khi Google xóa VM.
+
+### Kiểm lại theo yêu cầu dùng kết nối đã cấp — 27/11/2026
+
+`get_profile` trả đúng tài khoản được chỉ định; `fetch` đọc được biên nhận
+release của dự án. Sau đó `upload_file` ghi một JSON 459 byte vào đúng thư mục
+sessions đã có và raw `fetch` tải lại. SHA256 cả hai bản:
+`ad299553db6e63e312ae82d802565f981d575235d5ef3e7bab975c3cd0cb03d5`.
+Không phát sinh sign-in/grant, thay sharing, VM mới hoặc optimizer update.
+ID, email và đường dẫn riêng ở receipt local/vault, không đưa vào Git.
+
+Ưu tiên connector đang hoạt động để đọc/lưu artifact mà công cụ hỗ trợ. Trước
+khi hỏi cấp quyền, phải kiểm trạng thái thực và artifact đúng dự án; không coi
+VM đã trả là connector đã mất quyền. Nếu phiên train kế tiếp cần filesystem
+mount, dùng lại mount còn hoạt động và không force-remount. Chỉ chuyển cho
+người dùng khi Google thực sự yêu cầu xác thực cá nhân; không yêu cầu xác nhận
+chỉ vì chuyển chunk, driver hoặc đọc file. `AGENTS.md` lưu quy tắc cho các lần
+làm tiếp theo. Không sửa notebook/plan lịch sử hoặc nối lại GPU chỉ để thử mount.
+
+Đã kiểm lại [FAQ Colab chính thức](https://research.google.com/colaboratory/faq.html)
+ngày 27/11, mục về Mount Drive: Google thường yêu cầu quyền cho runtime mới;
+tự mount về sau chỉ áp dụng khi notebook đạt các kiểm tra của họ. Vì vậy việc
+dùng connector không chứng minh có thể bỏ mọi prompt của một VM mới.

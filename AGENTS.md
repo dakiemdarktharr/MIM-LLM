@@ -1,5 +1,17 @@
 # MIM-LLM project workflow
 
+## Reuse Drive authorization - user instruction, 2026-11-27
+
+Use the existing Google Drive connector and the already authorized project
+folders. Check the connected account and an existing project artifact before
+requesting any new authorization. Do not ask the user to confirm the same Drive
+permission again while it works; do not reset the connection or force-remount.
+Reuse an active Colab mount between immediately consecutive authorized steps.
+Connector authorization and a Colab VM filesystem mount are separate: only
+ask for a manual step when Google actually requires personal authentication.
+Do not promise a permanent mount or keep an idle GPU allocated to avoid consent.
+See docs/COLAB_DRIVE_SESSION_POLICY_20261126.vi.md for verified observations.
+
 ## LaTeX phase order — user instruction, 2026-11-26
 
 Do not compile any paper's LaTeX until its real data collection, training,

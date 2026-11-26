@@ -1,0 +1,185 @@
+{
+  "utc": "2026-11-26T22:29:34.593930+00:00",
+  "purpose": "training-support and mathematical development audit, not a model result",
+  "dataset_id": "623091c0178df3208605757222b20ed18d17fc3f4576b3f63edeb53f4b61094d",
+  "training_sha256": "bb2fd3c8568ebb75c3c7fe1ae431a05ce0e6babb657db04db177d183886bc573",
+  "training_source_groups": 6000,
+  "derived_roles_per_group": 4,
+  "decision_condition_counts_by_role": {
+    "base": {
+      "power_0_permission_1": 2000,
+      "power_1_permission_0": 2000,
+      "power_1_permission_1": 2000
+    },
+    "effective": {
+      "power_0_permission_1": 2000,
+      "power_1_permission_1": 4000
+    },
+    "noop": {
+      "power_0_permission_1": 2000,
+      "power_1_permission_0": 2000,
+      "power_1_permission_1": 2000
+    },
+    "surface": {
+      "power_0_permission_1": 2000,
+      "power_1_permission_0": 2000,
+      "power_1_permission_1": 2000
+    }
+  },
+  "exact_deadline_worlds_by_role": {
+    "base": 0,
+    "effective": 0,
+    "noop": 0,
+    "surface": 0
+  },
+  "source_depth_counts": {
+    "1": 1000,
+    "2": 1000,
+    "3": 1000,
+    "4": 1000,
+    "5": 1000,
+    "6": 1000
+  },
+  "existing_noops_preserve_all_tracked_facts": true,
+  "legacy_inclusive_rule_development_truth_table": [
+    {
+      "restoration_offset_minutes": -1,
+      "permission": false,
+      "power_available": true,
+      "action": "wait",
+      "cabinet": "locked",
+      "sufficient_waiting_blocker_mentions": [
+        [
+          "permission_missing"
+        ]
+      ]
+    },
+    {
+      "restoration_offset_minutes": -1,
+      "permission": true,
+      "power_available": true,
+      "action": "open",
+      "cabinet": "open",
+      "sufficient_waiting_blocker_mentions": []
+    },
+    {
+      "restoration_offset_minutes": 0,
+      "permission": false,
+      "power_available": true,
+      "action": "wait",
+      "cabinet": "locked",
+      "sufficient_waiting_blocker_mentions": [
+        [
+          "permission_missing"
+        ]
+      ]
+    },
+    {
+      "restoration_offset_minutes": 0,
+      "permission": true,
+      "power_available": true,
+      "action": "open",
+      "cabinet": "open",
+      "sufficient_waiting_blocker_mentions": []
+    },
+    {
+      "restoration_offset_minutes": 1,
+      "permission": false,
+      "power_available": false,
+      "action": "wait",
+      "cabinet": "locked",
+      "sufficient_waiting_blocker_mentions": [
+        [
+          "power_unavailable"
+        ],
+        [
+          "permission_missing"
+        ],
+        [
+          "power_unavailable",
+          "permission_missing"
+        ]
+      ]
+    },
+    {
+      "restoration_offset_minutes": 1,
+      "permission": true,
+      "power_available": false,
+      "action": "wait",
+      "cabinet": "locked",
+      "sufficient_waiting_blocker_mentions": [
+        [
+          "power_unavailable"
+        ]
+      ]
+    }
+  ],
+  "tie_semantics": {
+    "legacy_power_condition": "power_return <= deadline",
+    "natural_language_requires_explicit_order_if_co_timed": true,
+    "illustrative_alternative_power_condition": "power_return < deadline",
+    "alternative_policy_implemented_or_added_to_data": false
+  },
+  "outcome_preserving_development_counterexample": {
+    "base_power_offset_minutes": 5,
+    "edited_power_offset_minutes": -5,
+    "permission_granted": false,
+    "single_changed_input_field": "power_return",
+    "changed_tracked_fact_keys": [
+      "power_available"
+    ],
+    "preserved_tracked_fact_keys": [
+      "holder",
+      "permission",
+      "action",
+      "cabinet"
+    ],
+    "action_before_and_after": "wait",
+    "cabinet_before_and_after": "locked",
+    "sufficient_waiting_reasons_before": [
+      [
+        "power_unavailable"
+      ],
+      [
+        "permission_missing"
+      ],
+      [
+        "power_unavailable",
+        "permission_missing"
+      ]
+    ],
+    "sufficient_waiting_reasons_after": [
+      [
+        "permission_missing"
+      ]
+    ],
+    "existing_probe_contract_observed": {
+      "holder": "invariant_target_accepted",
+      "action": "invariant_target_accepted",
+      "cabinet": "invariant_target_accepted",
+      "power_available": "rejected_changed_target_as_required",
+      "permission": "invariant_target_accepted"
+    },
+    "not_an_existing_valid_noop_bundle": true
+  },
+  "foundation_plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "tokenizer_sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+  "state_generator_source_sha256": "e9268709f81b0f5ddbc2041183b56414d62fbc8d5a11f19db9bb1f7f4dd9e33d",
+  "probe_source_sha256": "500f9486b6ff26d082795436367d86281de336d8d15b04a04be236f9b00f48be",
+  "implementation_sha256": "00b7416440da4e6af6f0fe20e1e8d211d22ef44fa01a06565463fc8b563e9883",
+  "model_loaded": false,
+  "optimizer_updates": 0,
+  "tokenizer_fit": false,
+  "controlled_validation_test_rows_loaded": false,
+  "foundation_plan_input_integrity_hashes_checked": true,
+  "foundation_validation_rows_decoded_or_scored": false,
+  "new_model_generations": 0,
+  "human_labels": 0,
+  "new_challenge_dataset_registered": false,
+  "current_dataset_or_training_plan_changed": false,
+  "limitations": [
+    "Finite truth tables do not establish language-model reasoning or human annotation validity.",
+    "Outcome preservation is not invariance of every prerequisite or every valid explanation.",
+    "Any broader challenge needs a versioned support/rubric/analysis plan before model evaluation; the existing locked test is unchanged."
+  ]
+}
