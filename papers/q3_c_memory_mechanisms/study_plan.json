@@ -45,5 +45,7 @@
   },
   "estimand": "matched controlled input-distribution coupling, not intrinsic provenance identity",
   "training_rollins": "token-wise grammar-constrained generation using known-holder support; requires genuine shared initialization",
-  "main_evaluation": "unconstrained two-stage continuation retaining every initial output"
+  "main_evaluation": "unconstrained two-stage continuation retaining every initial output",
+  "operational_scope_review": "docs/SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md",
+  "current_snapshot": "configs/q3c/prepared_snapshot.json"
 }

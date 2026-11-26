@@ -1,18 +1,17 @@
 # MIM-LLM project workflow
 
-## Training hold â€” 2026-11-26
+## Q3-A training authorization — 2026-11-26
 
-The user purchased a $50 Colab plan (self-reported; exact SKU/credits unverified)
-and requested Q3-A preparation up to training, then waiting for a new instruction.
-The subsequent request extends preparation to Q3-B/Q3-C and a three-study audit;
-it does not lift the training hold. C production histories must come from genuine
-shared initialization checkpoints. Its controlled grammar roll-ins must never be
-described as unconstrained model-authored prose; free-run evaluation is separate.
-Do not train any model or fit a tokenizer, including overfit/smoke/resume tests.
-Forward/backward checks without optimizer steps are permitted preparation.
-Keep `configs/training_permission.json` closed until the user explicitly orders
-training. Neither a Colab purchase nor a passing readiness check lifts this hold.
-Do not allocate a paid Colab runtime or start remote jobs during preparation.
+The user explicitly lifted the training hold for Q3-A on their Colab Pro+
+account, after reviewing all four scopes, with metrics/checkpoints saved to Drive.
+Authorized engineering optimizer/overfit/resume checks precede real runs.
+Keep exact plan/run IDs in configs/training_permission.json; no tokenizer fit,
+B/C/Q1 training, new paid subscription or extra-CU purchase is authorized.
+Initial remote GPU session has a 20-minute soft wall cap and seed-0 warm-up
+feasibility gate before wider post-training. Preserve shared initialization.
+C histories still require genuine shared checkpoints and its grammar-constrained
+bank must not be called free authorship. The earlier hold and zero-update
+preparation receipts remain historical evidence, not current authorization.
 
 ## Long-term model objective
 

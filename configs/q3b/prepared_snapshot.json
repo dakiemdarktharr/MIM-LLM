@@ -1,8 +1,8 @@
 {
   "status": "prepared_training_locked",
   "study": "b",
-  "plan_path": "artifacts/three-q3-final-20261126/b/plan.json",
-  "plan_id": "3d1397207e4b494e805d78647c35b8dfa97047e5170eb994299c2f73b4018ed2",
+  "plan_path": "artifacts/q3a-cloud-20261126/b/plan.json",
+  "plan_id": "48708775c7b3b3eea3b5f781af92a422f283a1e71922f88bf86b2b1943b7daf6",
   "dataset_manifest": {
     "study": "b",
     "counts": {
@@ -66,7 +66,7 @@
     "warmup_physical_targets_new": 0,
     "shared_initialization_dependency_targets": 30000000
   },
-  "shared_warmup_plan": "artifacts/three-q3-final-20261126/a/plan.json",
+  "shared_warmup_plan": "artifacts/q3a-cloud-20261126/a/plan.json",
   "shared_warmup_manifest": {
     "dataset": "roneneldan/TinyStories + mechanically derived general format examples",
     "revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",

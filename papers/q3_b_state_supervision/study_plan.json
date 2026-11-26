@@ -36,5 +36,7 @@
     "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",
     "optimizer_updates_this_preparation": 0,
     "production_history_bank_created": false
-  }
+  },
+  "operational_scope_review": "docs/SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md",
+  "current_snapshot": "configs/q3b/prepared_snapshot.json"
 }

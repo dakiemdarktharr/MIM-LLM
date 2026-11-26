@@ -1,7 +1,7 @@
 {
   "revision": 3,
   "date": "2026-11-25",
-  "status": "three_training_studies_prepared_training_locked_q1_design_only",
+  "status": "Q3A_bounded_cloud_training_authorized_BC_prepared_Q1_design",
   "standalone_manuscripts": true,
   "program_name_in_authors": false,
   "common_backbones": {
@@ -64,11 +64,11 @@
     "a": {
       "directory": "q3_a_temporal_benchmark",
       "title": "Learning When a Premise Change Should Not Change a Story",
-      "primary_contrast": "effective_plus_semantic_noop minus effective_plus_byte_edit_matched_punctuation",
+      "primary_contrast": "task-relevant decision-preserving power-time edits minus irrelevant numeric-clock edits",
       "operational_update_2026_11_26": {
         "config": "configs/q3a/pilot.json",
         "snapshot": "configs/q3a/prepared_snapshot.json",
-        "plan_id": "77e05540bdef194a755c10219e6c9a1858d4b9b0e124a81c02ab834ef409283a",
+        "plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
         "tokenizer": "fixed_utf8_byte_259",
         "context": 2048,
         "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",
@@ -83,7 +83,7 @@
       "operational_update_2026_11_26": {
         "config": "configs/q3b/pilot.json",
         "snapshot": "configs/q3b/prepared_snapshot.json",
-        "plan_id": "3d1397207e4b494e805d78647c35b8dfa97047e5170eb994299c2f73b4018ed2",
+        "plan_id": "48708775c7b3b3eea3b5f781af92a422f283a1e71922f88bf86b2b1943b7daf6",
         "tokenizer": "fixed_utf8_byte_259",
         "context": 2048,
         "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",
@@ -98,7 +98,7 @@
       "operational_update_2026_11_26": {
         "config": "configs/q3c/pilot.json",
         "snapshot": "configs/q3c/prepared_snapshot.json",
-        "plan_id": "0f5397e0264be1e270ec4b78c88a8e6a851701d1b9bad62b7598ec5185037b0d",
+        "plan_id": "59ba5d67503b638d799ab30e4326fd9a4a4fd29db57311435d03944ecd49fa3c",
         "tokenizer": "fixed_utf8_byte_259",
         "context": 2048,
         "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",

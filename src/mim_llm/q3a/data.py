@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import itertools
 import random
+from functools import lru_cache
 from pathlib import Path
 
 from .io import (
@@ -28,6 +29,15 @@ NAMES = ("Lan", "Huy", "Mai", "An", "Binh", "Chi", "Dao", "Giang", "Linh", "Minh
 
 def clock(minutes):
     return f"{minutes // 60:02d}:{minutes % 60:02d}"
+
+
+@lru_cache(maxsize=8)
+def nuisance_times(edit_count):
+    return tuple(
+        m
+        for m in range(24 * 60 - 1)
+        if sum(a != b for a, b in zip(clock(m), clock(m + 1))) == edit_count
+    )
 
 
 def state(world):
@@ -70,6 +80,9 @@ def render(world, style, paraphrase=False):
             f"{names[-1]} planned to hand the key to {world['attempted_receiver']}, but cancelled that plan; this transfer never happened."
         )
     parts.append(f"{world['distractor']} read a book nearby and never touched the key.")
+    parts.append(
+        f"An unrelated museum clock displayed {clock(world['background_clock'])}; its reading has no effect on this scene."
+    )
     parts.append(
         f"Every completed handover occurred before {d}; cancelled plans were not executed. Everyone follows this one-time rule: at exactly {d}, the key holder must open the cabinet if power is available and permission has been granted; otherwise the holder must wait. The cabinet remains locked until that decision; no other opening occurs before it."
     )
@@ -131,6 +144,8 @@ def make_bundle(source_id, split, seed, index):
     base["attempted_receiver"] = (
         rng.choice([n for n in NAMES if n != current]) if index % 2 == 0 else None
     )
+    edit_count = sum(a != b for a, b in zip(clock(arrival), clock(arrival + 1)))
+    base["background_clock"] = rng.choice(nuisance_times(edit_count))
     effective = dict(base)
     if permission:
         effective["power_return"] = deadline + 5 if early else deadline - 5
@@ -140,13 +155,15 @@ def make_bundle(source_id, split, seed, index):
         effective_field = "permission"
     noop = dict(base)
     noop["power_return"] = arrival + 1
+    surface = dict(base)
+    surface["background_clock"] += 1
     style = {"train": index % 2, "validation": 2, "test": 3}[split]
     scenarios = {}
     for role, w in [
         ("base", base),
         ("effective", effective),
         ("noop", noop),
-        ("surface", base),
+        ("surface", surface),
     ]:
         s = state(w)
         reason = (
@@ -177,17 +194,10 @@ def make_bundle(source_id, split, seed, index):
             if len(a) != len(b):
                 raise ValueError("Matched byte-length contract failed")
             edits = sum(x != y for x, y in zip(a, b))
-            chars = list(a)
-            positions = [i for i, c in enumerate(chars) if c == "."][:edits]
-            if len(positions) != edits:
-                raise ValueError(
-                    "Not enough natural sentence boundaries for matched control"
-                )
-            for i in positions:
-                chars[i] = "!"
-            scenarios[role]["prompt"] = "".join(chars)
+            if edits != sum(x != y for x, y in zip(a, scenarios[role]["prompt"])):
+                raise ValueError("Numeric nuisance control edit count mismatch")
             scenarios[role]["control_type"] = (
-                "meaning-preserving punctuation, not full semantic paraphrase"
+                "decision-irrelevant clock edit, numeric and byte/edit-count matched"
             )
             scenarios[role]["character_edits"] = edits
     pairs = []
@@ -239,6 +249,22 @@ def validate_bundle(bundle):
         edits = [k for k in a["world"] if a["world"][k] != b["world"][k]]
         if edits != [pair["intervention_field"]]:
             raise ValueError("Pair must change exactly one premise")
+    base, noop, control = [bundle["scenarios"][r] for r in ("base", "noop", "surface")]
+    if control["facts"] != base["facts"] or control["reference"] != base["reference"]:
+        raise ValueError("Nuisance control changed the decision target")
+    fields = [k for k in base["world"] if base["world"][k] != control["world"][k]]
+    if fields != ["background_clock"]:
+        raise ValueError("Nuisance control must change only the unrelated clock")
+    if (
+        not len(base["prompt"].encode())
+        == len(noop["prompt"].encode())
+        == len(control["prompt"].encode())
+    ):
+        raise ValueError("Unmatched byte lengths")
+    if sum(a != b for a, b in zip(base["prompt"], noop["prompt"])) != sum(
+        a != b for a, b in zip(base["prompt"], control["prompt"])
+    ):
+        raise ValueError("Unmatched numeric edit counts")
 
 
 def prepare(
@@ -288,7 +314,7 @@ def prepare(
         "sha256": hashes,
         "origin": "controlled synthetic, not human-authored",
         "surface_family_disjoint": True,
-        "template_revision": "selective-v3-deduplicated",
+        "template_revision": "selective-v4-numeric-nuisance-control",
         "duplicate_source_draws_rejected": duplicate_draws,
         "generator_code_sha256": source_sha256(__file__),
         "naturalistic_transfer": "requires separately registered licensed sources and real labels",

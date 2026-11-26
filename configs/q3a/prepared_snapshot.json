@@ -1,8 +1,8 @@
 {
   "status": "prepared_training_locked",
   "study": "a",
-  "plan_path": "artifacts/three-q3-final-20261126/a/plan.json",
-  "plan_id": "77e05540bdef194a755c10219e6c9a1858d4b9b0e124a81c02ab834ef409283a",
+  "plan_path": "artifacts/q3a-cloud-20261126/a/plan.json",
+  "plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
   "dataset_manifest": {
     "schema_version": 1,
     "seed": 2026,
@@ -12,18 +12,18 @@
       "test": 400
     },
     "sha256": {
-      "train.jsonl": "cde2b02c24978146fc33f9e12fec87290ee42a89267eeb6e2bb013eed030f5e8",
-      "validation.jsonl": "2656db4a3ce2eecaac020761801fb0e890e0ef1de460e99db9ca5dd738953b73",
-      "test.jsonl": "22e219ae7797b8bf84c5c44280783b0e8138e8d5485b55798ee5d44472b1a11d"
+      "train.jsonl": "bb2fd3c8568ebb75c3c7fe1ae431a05ce0e6babb657db04db177d183886bc573",
+      "validation.jsonl": "4284e893a0a46b4e6b8091e13574ff36d5cc8973598ee5b01cba695d323c5f90",
+      "test.jsonl": "4c8294483a190eb71768e2ee39f8e6722ad585a0c095ad2f5aa03efaed2d59e4"
     },
     "origin": "controlled synthetic, not human-authored",
     "surface_family_disjoint": true,
-    "template_revision": "selective-v3-deduplicated",
-    "duplicate_source_draws_rejected": 4,
-    "generator_code_sha256": "a3dc4ba2ac09bac69edb8cf15119681b82ca4c356312433e4160a43494c36782",
+    "template_revision": "selective-v4-numeric-nuisance-control",
+    "duplicate_source_draws_rejected": 0,
+    "generator_code_sha256": "e9268709f81b0f5ddbc2041183b56414d62fbc8d5a11f19db9bb1f7f4dd9e33d",
     "naturalistic_transfer": "requires separately registered licensed sources and real labels",
     "human_labels_collected": false,
-    "dataset_id": "f78e3b90583b9378e9c6ecac2e509afff9de026a49fce9bad96e310a9e640cf9"
+    "dataset_id": "623091c0178df3208605757222b20ed18d17fc3f4576b3f63edeb53f4b61094d"
   },
   "models": {
     "mingru": {
@@ -59,7 +59,7 @@
       "relative_parameter_gap": 0.009241904761904762
     }
   },
-  "maximum_task_context": 1664,
+  "maximum_task_context": 1748,
   "budget": {
     "post_runs": 24,
     "post_targets": 48000000,
@@ -67,7 +67,7 @@
     "unique_warmup_targets": 30000000,
     "selection_reserve_targets": 7200000
   },
-  "shared_warmup_plan": "artifacts/three-q3-final-20261126/a/plan.json",
+  "shared_warmup_plan": "artifacts/q3a-cloud-20261126/a/plan.json",
   "shared_warmup_manifest": {
     "dataset": "roneneldan/TinyStories + mechanically derived general format examples",
     "revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",

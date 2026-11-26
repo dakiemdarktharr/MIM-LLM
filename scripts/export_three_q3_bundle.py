@@ -64,7 +64,9 @@ def main():
                 {
                     "registry": a.registry,
                     "files": {f.relative_to(root).as_posix(): sha256(f) for f in files},
-                    "training_authorized": False,
+                    "training_authorized": read_json(
+                        root / "configs/training_permission.json"
+                    )["model_training_authorized"],
                     "C_production_bank_exists": False,
                     "external_dataset_license": "TinyStories CDLA-Sharing-1.0; retain original provenance/terms",
                 },

@@ -22,7 +22,7 @@ from mim_llm.q3a.evaluate import (
     paired_bootstrap,
     read_labels,
 )
-from mim_llm.q3a.io import read_rows, write_rows
+from mim_llm.q3a.io import read_rows, write_json, write_rows
 from mim_llm.q3a.objectives import (
     batch_examples,
     encode_example,
@@ -40,9 +40,14 @@ from mim_llm.tokenizer import ByteTokenizer
 from mim_llm.training_gate import TrainingNotAuthorized, require_training_permission
 
 
-def test_all_training_entrypoints_locked_before_side_effects(tmp_path):
+def test_all_training_entrypoints_locked_before_side_effects(tmp_path, monkeypatch):
+    import mim_llm.training_gate as gate
     from mim_llm.tokenizer_train import train_tokenizer
     from mim_llm.train import train
+
+    policy = tmp_path / "closed-policy.json"
+    write_json(policy, {"model_training_authorized": False, "tokenizer_fitting_authorized": False})
+    monkeypatch.setattr(gate, "POLICY", policy)
 
     for operation in ("model", "tokenizer"):
         with pytest.raises(TrainingNotAuthorized):
@@ -53,7 +58,7 @@ def test_all_training_entrypoints_locked_before_side_effects(tmp_path):
         train("missing", tmp_path / "old", ModelConfig())
     with pytest.raises(TrainingNotAuthorized):
         train_tokenizer("missing", str(tmp_path / "token.model"))
-    assert not list(tmp_path.iterdir())
+    assert list(tmp_path.iterdir()) == [policy]
 
 
 @pytest.mark.parametrize("i", range(20))
@@ -75,6 +80,13 @@ def test_counterfactual_contract(i):
     assert (
         sum(x != y for x, y in zip(base["prompt"], noop["prompt"]))
         == b["scenarios"]["surface"]["character_edits"]
+    )
+    control = b["scenarios"]["surface"]
+    assert base["world"]["background_clock"] != control["world"]["background_clock"]
+    assert base["world"]["power_return"] == control["world"]["power_return"]
+    assert (
+        sum(x != y for x, y in zip(base["prompt"], control["prompt"]))
+        == control["character_edits"]
     )
     assert all(len(s["reference"].split(". ")) == 3 for s in b["scenarios"].values())
 

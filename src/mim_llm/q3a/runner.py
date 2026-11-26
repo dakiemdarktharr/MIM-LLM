@@ -9,9 +9,12 @@ from __future__ import annotations
 import json
 import math
 import os
+import platform
 import random
+import sys
 import time
 from dataclasses import asdict
+from datetime import UTC, datetime
 from functools import lru_cache
 from pathlib import Path
 
@@ -84,6 +87,7 @@ def validation_loss(model, examples, context, batch_size, device):
         "ce": total / tokens,
         "perplexity": math.exp(min(total / tokens, 80)),
         "targets": tokens,
+        "perplexity_clipped": total / tokens > 80,
     }
 
 
@@ -174,7 +178,7 @@ def execute(
         "cursor": 0,
         "train_seconds": 0.0,
         "validation_seconds": 0.0,
-        "best_validation_ce": float("inf"),
+        "best_validation_ce": None,
     }
     if resume:
         saved = restore_checkpoint(
@@ -194,6 +198,21 @@ def execute(
                 ) as handle:
                     for e in discarded:
                         handle.write(json.dumps(e) + "\n")
+        if (out / "validation.jsonl").exists():
+            records = read_rows(out / "validation.jsonl")
+            discarded_validation = [
+                e for e in records if e["update"] > stats["updates"]
+            ]
+            if discarded_validation:
+                with (out / "validation.jsonl").open("w", encoding="utf-8") as handle:
+                    for e in records:
+                        if e["update"] <= stats["updates"]:
+                            handle.write(json.dumps(e) + "\n")
+                with (out / "replayed-validation-work.jsonl").open(
+                    "a", encoding="utf-8"
+                ) as handle:
+                    for e in discarded_validation:
+                        handle.write(json.dumps(e) + "\n")
     elif (out / "latest.pt").exists():
         raise FileExistsError(out / "latest.pt")
     if device.startswith("cuda"):
@@ -201,6 +220,35 @@ def execute(
     start = time.perf_counter()
     invocation_train = 0.0
     invocation_validation = 0.0
+    invocation_started_utc = datetime.now(UTC).isoformat()
+    with (out / "environment.jsonl").open("a", encoding="utf-8") as handle:
+        handle.write(
+            json.dumps(
+                {
+                    "started_utc": invocation_started_utc,
+                    "resume": resume,
+                    "python": sys.version,
+                    "platform": platform.platform(),
+                    "torch": torch.__version__,
+                    "cuda": torch.version.cuda,
+                    "cudnn": torch.backends.cudnn.version(),
+                    "gpu": torch.cuda.get_device_name()
+                    if device.startswith("cuda")
+                    else None,
+                    "gpu_total_bytes": torch.cuda.get_device_properties(0).total_memory
+                    if device.startswith("cuda")
+                    else None,
+                    "precision": "float32",
+                    "plan_id": plan["plan_id"],
+                    "actual_parameters": parameter_count(model),
+                    "config": c,
+                    "dataset_id": plan["dataset_id"],
+                    "warmup_sha256": plan["warmup_sha256"],
+                    "parent_sha256": parent_sha,
+                }
+            )
+            + "\n"
+        )
 
     def checkpoint(complete=False):
         return {
@@ -274,17 +322,36 @@ def execute(
             stats["updates"] += 1
             stats["train_seconds"] += elapsed
             event = {
+                "utc": datetime.now(UTC).isoformat(),
                 "update": stats["updates"],
                 "targets": stats["trained_targets"],
                 "ce": float(loss.detach()),
                 "js": float(js.detach()),
                 "gradient_norm": float(norm),
                 "seconds": elapsed,
+                "objective": float(objective.detach()),
+                "target_delta": n,
+                "processed_input_tokens": stats["processed_input_tokens"],
+                "batch_input_tokens": int(batch["attention_mask"].sum()),
+                "learning_rate": optimizer.param_groups[0]["lr"],
+                "supervised_targets_per_train_second": n / elapsed,
+                "probe_input_tokens": extra["probe_input_tokens"],
+                "probe_positions": extra["probe_positions"],
+                "epoch": epoch,
+                "cursor": cursor,
+                "peak_allocated_bytes": torch.cuda.max_memory_allocated()
+                if device.startswith("cuda")
+                else None,
+                "peak_reserved_bytes": torch.cuda.max_memory_reserved()
+                if device.startswith("cuda")
+                else None,
             }
             with (out / "metrics.jsonl").open("a", encoding="utf-8") as f:
                 f.write(json.dumps(event) + "\n")
             if (
-                stats["updates"] % c["checkpoint_every_updates"] == 0
+                stats["updates"]
+                % c.get("validation_every_updates", c["checkpoint_every_updates"])
+                == 0
                 or stats["trained_targets"] == run["targets"]
             ):
                 tic = time.perf_counter()
@@ -294,13 +361,34 @@ def execute(
                 dt = time.perf_counter() - tic
                 invocation_validation += dt
                 stats["validation_seconds"] += dt
-                improved = v["ce"] < stats["best_validation_ce"]
+                improved = (
+                    stats["best_validation_ce"] is None
+                    or v["ce"] < stats["best_validation_ce"]
+                )
                 if improved:
                     stats["best_validation_ce"] = v["ce"]
+                with (out / "validation.jsonl").open("a", encoding="utf-8") as f:
+                    f.write(
+                        json.dumps(
+                            {
+                                "utc": datetime.now(UTC).isoformat(),
+                                "update": stats["updates"],
+                                "trained_targets": stats["trained_targets"],
+                                "seconds": dt,
+                                "corpus": "mixed warmup validation"
+                                if run["phase"] == "warmup"
+                                else "controlled A1 validation",
+                                **v,
+                            }
+                        )
+                        + "\n"
+                    )
                 saved = checkpoint()
                 atomic_checkpoint(out / "latest.pt", saved)
                 if improved:
                     atomic_checkpoint(out / "best.pt", saved)
+            elif stats["updates"] % c["checkpoint_every_updates"] == 0:
+                atomic_checkpoint(out / "latest.pt", checkpoint())
         complete = stats["trained_targets"] == run["targets"]
         saved = checkpoint(complete)
         atomic_checkpoint(out / "latest.pt", saved)
@@ -321,6 +409,11 @@ def execute(
         raise
     report = {
         "plan_id": plan["plan_id"],
+        "invocation_started_utc": invocation_started_utc,
+        "invocation_finished_utc": datetime.now(UTC).isoformat(),
+        "config": c,
+        "dataset_id": plan["dataset_id"],
+        "checkpoint_sha256": sha256(out / "latest.pt"),
         "run": run,
         "actual_parameters": parameter_count(model),
         "stats": stats,

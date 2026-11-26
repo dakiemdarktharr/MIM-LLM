@@ -1,3 +1,5 @@
+> **Scope/authorization update, 26 November 2026:** Q3-A now uses numeric irrelevant-clock edits as A2, replacing the historical punctuation control. Q3-A bounded Colab training is authorized; B/C/Q1 and tokenizer fitting remain closed. Current plan ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142. See [scope review](SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md). Earlier zero-training receipts below describe their original preparation session.
+
 # Evidence-backed manuscript status
 
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile

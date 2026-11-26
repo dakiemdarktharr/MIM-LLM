@@ -1,6 +1,6 @@
 {
   "revision": 3,
-  "status": "methods_prepared_training_locked_not_preregistered",
+  "status": "Q3A_bounded_Colab_training_authorized",
   "title": "Learning When a Premise Change Should Not Change a Story",
   "arms": [
     "effective",
@@ -8,7 +8,7 @@
     "effective_plus_matched_punctuation_surface",
     "semantic_noop_plus_train_only_probe_JS"
   ],
-  "primary_contrast": "effective_plus_semantic_noop minus effective_plus_byte_edit_matched_punctuation",
+  "primary_contrast": "effective_plus_task_relevant_noop minus effective_plus_numeric_nuisance_clock_control",
   "backbones": [
     "mingru",
     "transformer"
@@ -50,5 +50,7 @@
     "shared_warmup": "six A-plan initializations, reused with exact checkpoint hashes",
     "optimizer_updates_this_preparation": 0,
     "production_history_bank_created": false
-  }
+  },
+  "operational_scope_review": "docs/SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md",
+  "current_snapshot": "configs/q3a/prepared_snapshot.json"
 }

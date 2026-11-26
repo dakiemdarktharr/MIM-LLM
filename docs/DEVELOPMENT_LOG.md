@@ -218,3 +218,27 @@ and this conversation; the Obsidian vault contains the fuller research notebook.
   tests or training. Long-term complete MIM-based chat remains unestablished.
 
 - Added a B/C annotation rubric and beginner terminology guide; it requires real validation readers before freezing, and contains no collected human judgments.
+
+
+## 2026-11-26 — Scope review and Q3-A Colab launch preparation
+
+User explicitly authorized Q3-A training on the confirmed Pro+ account and Drive persistence. B/C/Q1 and tokenizer fitting remain closed. A2 replaces historical punctuation edits with a decision-irrelevant numeric clock: independent time, same byte/edit count; A1 is decision-preserving variation of the relevant power time. No claim of pure semantic causality or acceptance probability.
+
+Read primary task/method sections for DTO, Counterfactual Invariance, Delayed Supervision and Enaction; primary abstract/metadata for StateWise, SEED and Flide. Reused completed Undermind25Nov search as candidate evidence, not a new exhaustive search. C's nine grammar forms remain a feasibility pilot; independent-paper claim requires transfer/insight. Q1's compression+forking novelty remains unresolved.
+
+Added step UTC/objective/CE/JS/LR/gradient/token/cursor/time/VRAM logging, validation CE/PPL/corpus/denominator records, environment/software/GPU receipts and checkpoint SHA. Separated regular checkpoint100updates from validation500updates and final. Preserve replayed training and validation work. Driver verifies initial zero-update checkpoint on Drive before any updates, then latest/previous copies after120second chunks. No global atomic-transaction claim for Drive rename. Initial cloud soft cap20min, seed0 shared warm-ups only, before writing/compute feasibility and matched A1/A2 post runs.
+
+Checks:133non-training tests pass;4authorized optimizer/JS/resume/memorization tests pass. Their fictional unit fixtures are engineering evidence, not trained scientific findings. All4LaTeX builds pass. Initial6.4MB notebook upload succeeded but its embedded source caused UI timeouts; closed that browser tab and changed generator to a lightweight notebook plus separate bundle. CPU bootstrap may have been requested; no cloud GPU/warm-up/checkpoint has been verified at this log point.
+
+Current plan: `ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142`; max context1,748 tokens; models2,099,864/2,119,408 parameters. Registry artifacts/q3a-cloud-20261126/registry.json, controlled data data/processed/q3a-launch-20261126. Prior fingerprints/IDs stay historical, not resumed. Local tokenizer fitting remains false.
+
+See docs/SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md. Drafted-with-results/submitted/accepted/published remain unachieved. Actual cloud runtime, CU burn, scientific metrics and Drive verification will be appended only after observed.
+
+
+## 2026-11-26 — Active goal through Q3-A manuscript and evidence QA
+
+Explicit user goal: complete Q3-A training, real analysis/manuscript, prior-literature comparison and a journal-specific quality audit. No acceptance/quartile guarantee; no fabricated labels or positive findings; no extra-CU purchase or B/C/Q1 training. Goal remains active until evidence gates genuinely complete or stop/merge is resolved.
+
+Light notebook now created in the confirmed Pro+ account: private notebook URL retained in local/vault receipts . CPU runtime connected; source-bundle.zip upload visible. First execute request during allocation failed with fetch error; after backend connection, Drive-mount cell ran to an explicit access prompt. No cloud GPU/warm-up/Drive checkpoint verified yet. A manual Google Drive permission step is pending. No new request for training permission is needed.
+
+Bundle SHA2562ad7e8d63189ffc84b5802cf31df01950d596bc2d57021a56f8f9e7240ac6f2b; plan ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142. All4LaTeX builds pass, updated A5pages visually inspected. Current goal/evidence gates: docs/Q3_A_ACTIVE_GOAL.vi.md.

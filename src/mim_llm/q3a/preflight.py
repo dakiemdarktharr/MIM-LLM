@@ -19,8 +19,8 @@ from .plan import load_plan
 
 def preflight(plan_path, output, *, device="cpu"):
     plan = load_plan(plan_path)
-    if read_json(POLICY).get("model_training_authorized") is not False:
-        raise ValueError("This preparation expects the training lock to be closed")
+    if read_json(POLICY).get("tokenizer_fitting_authorized") is not False:
+        raise ValueError("The fixed-byte pipeline does not authorize tokenizer fitting")
     torch.set_num_threads(2)
     reports = []
     bundles = read_rows(Path(plan["data_dir"]) / "train.jsonl")

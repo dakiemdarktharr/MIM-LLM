@@ -15,11 +15,8 @@ def preflight(plan_path, output, *, device="cpu"):
     plan = load_plan(plan_path)
     torch.set_num_threads(2)
     permission = read_json(POLICY)
-    if (
-        permission["model_training_authorized"]
-        or permission["tokenizer_fitting_authorized"]
-    ):
-        raise ValueError("Preparation requires closed permission")
+    if permission["tokenizer_fitting_authorized"]:
+        raise ValueError("Fixed-byte checks do not authorize tokenizer fitting")
     checks = []
     for kind in plan["config"]["backbones"]:
         model = (

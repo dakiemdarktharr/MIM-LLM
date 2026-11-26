@@ -45,6 +45,7 @@
   ],
   "primary_metric": "source-paired joint success on base/effective and base/noop, stratified by pair kind",
   "smallest_useful_effect": null,
-  "status": "prepared_not_preregistered_not_authorized",
-  "surface_control": "meaning-preserving punctuation with matched byte length and character edits; not full paraphrase"
+  "status": "authorized_bounded_Q3A_initial_session",
+  "surface_control": "decision-irrelevant numeric clock edit, matched byte length and character edits; no full paraphrase claim",
+  "validation_every_updates": 500
 }

@@ -52,7 +52,7 @@ Causal Transformer & 259 & 2 & 248 & 2,119,408\\
 Both use the same fixed UTF-8 byte tokenizer, context 2,048 and dropout zero.
 Special IDs are PAD=0, BOS=1 and EOS=2; bytes map to IDs 3--258. No tokenizer
 fitting is needed. The parameter difference is approximately 0.93\%; the longest
-prepared prompt plus reserved generation length is 1,664 tokens. This operational
+prepared prompt plus reserved generation length is 1,748 tokens. This operational
 configuration replaces preliminary vocabulary-512/context-256 counting examples.
 It is a preparation choice, not evidence that either model can write well.
 
@@ -95,7 +95,8 @@ Measure training time, GPU name, allocated/reserved VRAM, processed tokens,
 probe cost and selection cost. A \(6P\) per processed-token proxy omits attention's
 quadratic term and probe/optimizer/validation costs and is not total FLOPs.
 The host is an RTX 5050 Laptop; Colab GPU, credit burn and training throughput
-have not been measured. No training was authorized during preparation.
+have not been measured. The original preparation permitted no optimization;
+the later launch phase authorizes bounded training after engineering checks.
 
 \section{Scoring, selection and inference protocol}
 Use EOS termination and shared sampling: temperature 0.8, top-k 40, up to 512
@@ -125,8 +126,9 @@ claiming a source-only interval captures optimization uncertainty.
 
 Before optimization, run causal future-token tests, padded/full/step/reset
 equivalence, label alignment, finite CE/JS gradients, permission-lock and
-data-integrity checks without optimizer updates. Tiny-batch memorization and
-interrupted-training integration tests are deliberately deferred until training
-is explicitly authorized. No human labels or trained results exist for this
-revision. Prepared code and a compiled methods draft do not establish a
+data-integrity checks without optimizer updates. Authorized tiny-batch
+memorization and interrupted-training fixtures have subsequently passed for
+both backbones; these are engineering checks, not scientific findings.
+No human labels or controlled test effects exist for this revision.
+Prepared code and a compiled methods draft do not establish a
 successful experiment, novel finding or conversational assistant capability.

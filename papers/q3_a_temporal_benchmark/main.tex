@@ -1,9 +1,10 @@
 \documentclass[11pt,a4paper]{article}
 \input{../shared/preamble}
 \renewcommand{\projectstatus}{\begin{quote}\small\textbf{Methods draft and
-preparation record, 26 November 2026.} Code has undergone non-optimizing
-checks. Model/tokenizer training is on hold. No trained results, human
-annotations, submission or editorial outcome is implied.\end{quote}}
+launch record, 26 November 2026.} Non-optimizing checks and authorized
+optimizer, memorization and resume fixtures have passed. Empirical evaluation
+is pending; no controlled test effect, human annotation or editorial outcome
+is implied.\end{quote}}
 \title{Learning When a Premise Change Should Not Change a Story}
 \author{}
 \date{Methods draft and preparation: 26 November 2026}
@@ -47,7 +48,7 @@ Preserved propositions are time/world indexed, not permanent facts.
 Arm & Training distribution/objective & Interpretation\\\midrule
 A0 & Effective intervention pairs, CE & Change-focused reference\\
 A1 & Effective plus semantic no-op pairs, CE & Consequence-level selectivity\\
-A2 & Effective plus matched punctuation changes, CE & Surface-form augmentation control\\
+A2 & Effective plus irrelevant numeric-clock edits, CE & Matched nuisance augmentation control\\
 A3 & A1 plus probe-span response matching & Published-invariance adaptation\\
 \bottomrule\end{tabularx}\end{table}
 
@@ -59,11 +60,13 @@ Include named shortcuts (last-recipient, clock-only, always-change and no-change
 to audit the development data. Keep complete template/paraphrase families and
 source stories outside training.
 
-The operational surface control replaces sentence-ending periods with
-exclamation marks, preserving propositional content. Its byte length and number
-of edited characters equal those of the paired numeric no-op. It is not a full
-semantic paraphrase control: edit location and character class differ. Report
-those remaining limitations and require transfer beyond punctuation/clock templates.
+The operational control shifts an explicitly unrelated museum clock by one
+minute. Its independent starting time is sampled conditional on matching the
+power-time no-op's byte length and number of edited numeric characters. All
+conditions include the same background-clock premise; only this control changes
+it. Decision targets remain unchanged. Edit location and causal relevance still
+differ, so this does not identify a pure semantic effect. Require transfer beyond
+clock templates. This control replaces the earlier punctuation-only preparation.
 
 For A3, match next-token distributions only on canonical factual-probe answers
 known to be invariant, with a fixed continuation prefix. A schematic penalty is
