@@ -1,14 +1,14 @@
 {
   "as_of": "2026-11-26",
   "study": "Q3-A",
-  "goal_status": "blocked_awaiting_Drive_consent_handoff_return_not_complete",
+  "goal_status": "active_feasibility_repair_required_not_complete",
   "plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
   "training_bundle_sha256": "2ad7e8d63189ffc84b5802cf31df01950d596bc2d57021a56f8f9e7240ac6f2b",
   "manual_handoff": {
-    "state": "awaiting_user_return_after_Drive_consent_handoff",
-    "repolled_browser": false,
+    "state": "resolved_mount_and_cloud_readback_verified",
+    "repolled_browser": true,
     "training_permission_already_granted": true,
-    "consent_completion_reconfirmed": false
+    "consent_completion_reconfirmed": true
   },
   "requirements": [
     {
@@ -32,32 +32,65 @@
     },
     {
       "id": "training_matrix",
-      "status": "unverified_not_started_by_observation",
+      "status": "two_seed0_warmups_complete_posttraining_not_launched",
       "expected_warmup_runs": 6,
       "expected_post_runs": 24,
       "expected_post_targets": 48000000,
-      "verified_complete_run_ids": []
+      "verified_complete_run_ids": [
+        "warmup-transformer-s0",
+        "warmup-mingru-s0"
+      ],
+      "completed_warmup_targets": 10000000,
+      "completed_post_runs": 0
     },
     {
       "id": "drive_persistence",
-      "status": "awaiting_permission_and_roundtrip_verification",
-      "verified_scientific_checkpoint_sha256": null,
-      "verified_cloud_metric_files": []
+      "status": "first_session_verified_after_runtime_deallocation",
+      "verified_scientific_checkpoint_sha256": {
+        "warmup-transformer-s0/final.pt": "bff431959d4eeb17707d1b63c61b63fef14fd90a704349879aac75ed0990195a",
+        "warmup-mingru-s0/final.pt": "e366ae6e6a26e01af4ee79ba9cef1758c3d26793e5f3b19fd78a356a7e6e7c83"
+      },
+      "verified_cloud_metric_files": [
+        "warmup-transformer-s0/metrics.jsonl",
+        "warmup-transformer-s0/validation.jsonl",
+        "warmup-mingru-s0/metrics.jsonl",
+        "warmup-mingru-s0/validation.jsonl"
+      ],
+      "archive_sha256": "3e9a2631cd851d873fc9a4917c7fa7857fbe89922f92faf8fb32c38c7303b8fe",
+      "cloud_archive_bytes": 46329484,
+      "cloud_archive_files_verified": 27,
+      "total_verified_step_metric_rows": 8800
     },
     {
       "id": "resource_budget",
-      "status": "unmeasured",
-      "observed_colab_GPU": null,
-      "CU_balance": null,
-      "CU_per_hour": null,
+      "status": "initial_T4_workload_measured_full_study_cap_pending",
+      "observed_colab_GPU": "Tesla T4",
+      "CU_balance": 599.25,
+      "CU_per_hour": 1.24,
       "study_GPU_hours_cap": null,
       "initial_invocation_soft_cap_seconds": 1200,
-      "purchase_extra_CU_authorized": false
+      "purchase_extra_CU_authorized": false,
+      "last_observed_CU_before_disconnect": 599.25,
+      "rate_is_UI_approximation": true,
+      "total_actual_CU_debit": null,
+      "initial_driver_soft_cap_seconds": 600,
+      "warmup_driver_elapsed_seconds": 296.442831549,
+      "initial_GPU_runtime_disconnected": true,
+      "CU_before_GPU_work": 599.49,
+      "CU_balance_context": "Last UI observation before 2026-11-26T09:15:42Z disconnect; not a final bill or a live balance"
     },
     {
       "id": "writing_feasibility",
-      "status": "not_evaluated",
-      "must_precede_full_matrix": true
+      "status": "failed_initial_qualitative_inspection_not_human_scores",
+      "must_precede_full_matrix": true,
+      "evidence": [
+        "docs/Q3_A_COLAB_PILOT_20261126.vi.md"
+      ],
+      "inspected_outputs": 6,
+      "distinct_validation_sources": 2,
+      "mingru_three_prompts_identical": true,
+      "primary_human_labels_collected": false,
+      "posttraining_expansion_allowed": false
     },
     {
       "id": "test_registration",
@@ -103,8 +136,10 @@
     },
     {
       "id": "scientific_results_and_statistics",
-      "status": "not_available",
-      "must_report": "Each seed, paired source uncertainty, coverage/evasion, contradictions, fluency/general PPL, costs and negative results."
+      "status": "calibration_metrics_available_no_primary_condition_results",
+      "must_report": "Each seed, paired source uncertainty, coverage/evasion, contradictions, fluency/general PPL, costs and negative results.",
+      "primary_results_available": false,
+      "warmup_statistics_available": true
     },
     {
       "id": "manuscript",
@@ -160,6 +195,8 @@
     "next_required_action": "User completes Google Drive notebook access and explicitly returns browser control; then verify mount before the authorized bounded Q3-A run.",
     "no_verified_live_remote_training_job": true,
     "objective_shrunk_or_marked_complete": false,
-    "latex_still_held_until_real_results": true
+    "latex_still_held_until_real_results": true,
+    "resolved_on": "2026-11-26",
+    "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
   }
 }
