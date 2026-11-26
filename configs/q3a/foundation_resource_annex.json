@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-26",
+  "base_plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "effective_before_invocation": 2,
+  "maximum_invocations_before": 8,
+  "maximum_invocations": 16,
+  "unchanged_resource_limits": {
+    "seconds_per_invocation": 1100,
+    "maximum_observed_cu_per_hour": 6,
+    "minimum_available_cu": 20,
+    "maximum_observed_balance_drop": 16,
+    "purchase_authorized": false,
+    "review_after_first_invocation": true
+  },
+  "learning_plan_changed": false,
+  "purchases_authorized": false,
+  "extra_studies_or_post_matrix_authorized": false,
+  "test_released": false,
+  "observed_balance_anchor_cu": 597.61,
+  "optimistic_remaining_seconds": 8042.08337743265,
+  "original_remaining_seconds": 7700,
+  "assessment_filename": "20261126T143714Z-resource-assessment.json",
+  "assessment_sha256": "34642b184653d6d5372565e221228587cf801cac824971b5b228aef47749e343",
+  "profile_filename": "20261126T143714Z-nonupdating-resource-profile.json",
+  "profile_sha256": "05dbe95887aa98d1d6f24f4a5f2f90ec24a2891049799f524ab604ca11a49b17",
+  "authorization_basis": "Existing explicit user authorization to complete Q3-A on current Colab Pro+ credits; original eight-driver limit was an agent planning assumption. Resource-only prospective revision, same sixteen-CU cap; no purchase or scope expansion.",
+  "annex_id": "1b22c463e3d8dab6831cb3c8183099504e0c5698bcc417d783f2bbe3251bb514"
+}

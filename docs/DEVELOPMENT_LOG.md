@@ -437,3 +437,24 @@ Newallocationattempts showed0GPU sessions, then explicitNoBackendWithGPUAvailabl
 
 
 Verification completion: full default suite after subword post components:189passed/16trainingdeselected (7.95s); only4new non-updating component tests were added. No further optimizer/profile/test-set access or LaTeX build. Git/Drive evidence from the prior entry remains unchanged.
+
+
+## 2026-11-26 — Fixed subword foundation writing-review preparation
+
+Added a separate nontraining review tool outside foundation fingerprints. Prepared the SAME16validation prefix hashes plus one unconditional prompt/model, T.8/topk40/seed17/max128BPE,34expected real samples after both100Mtarget parents complete. Both parents checked before any output; flush partial rows, no completed receipt on failure, no overwrites, human labels null/writing-gate undecided. Four synthetic/nonoptimizer tests passed; default suite193passed/16deselected, Ruff passed. Preparation is not actual generation, quality or human evidence. Public hashes: configs/q3a/foundation_writing_review_receipt.json; details docs/Q3_A_FOUNDATION_WRITING_REVIEW_20261126.vi.md.
+
+Drive identity refresh completed on CPU at14:25:09Z,0updates/0newscientificdriver slots;191byte receipt read back with connector. UI0sessions/rate0 afterward. L4 later allocated (UI2.33CUh,596.66CU), kernel connection pending at observation. No resource profile or new optimizer run claimed. Goal ACTIVE/incomplete; no primary test or LaTeX.
+
+
+## 2026-11-26 — User requested fewer repeated Drive confirmations
+
+User explicitly asked to keep Drive connected. Updated notebook profiler success path to retain the same mounted VM for immediate resource-gated continuation; failure still releases VM. V3 child does not unassign. All scientific caps/permissions unchanged. Official Colab FAQ checked: new runtimes normally require Drive authorization; automatic remount is conditional, VM lifetime finite. No promise of permanent mount or credential persistence. Policy: docs/COLAB_DRIVE_SESSION_POLICY_20261126.vi.md. Bootstrap V3 eventually verified73members on NVIDIA L4/Torch2.14.1+cu130; one earlier bootstrap KeyboardInterrupt preserved in notebook (no optimizer). Resource profile requested but must verify its actual output before reporting throughput.
+
+
+## 2026-11-26 — L4 profile, resource-only annex before driver2
+
+Measured32trainbatches/stage/backbone with no optimizer. L4 forward/backward targets/s: Transformer LM33571.66/SFT7451.41, minGRU LM45431.77/SFT14188.70. Learned weights bitwise unchanged; no validation/test. Cloud readback SHA verified profile05dbe95887aa…/assessment34642b184653…; optimistic remaining8042.08s exceeds original7700s (excludes AdamW/host/checkpoint/validation). No optimizer under the failed original resource feasibility gate.
+
+Prospective resource-only annex1b22c463e3d8dab6831cb3c8183099504e0c5698bcc417d783f2bbe3251bb514 revises agent planning assumption8→16driver slots under existing user authorization to complete Q3-A. Retains1100s/driver,16CU observed-drop anchor597.61, existing credits only; unchanged c18learning plan/100Mtargets/model/tokenizer/data/seed/decoding. Driver and archive verifier bind annex/evidence to ledger before invocation2, reject dropping/changing/retroactively adding annex. No new purchase/primarypost/B/C/Q1/test/LaTeX. Keeps mounted VM between immediate authorized steps per user request. Not a promise of completion or writing quality.
+
+198nontraining tests passed/16deselected; Ruff passed. Original real invocation1archive still verifies16members/7366contiguous finite metrics without pickle. Prepared V4orchestration overlay; train resume must first check uploaded hashes and fresh UIresources. GoalACTIVE/incomplete. Details: docs/Q3_A_FOUNDATION_RESOURCE_PROFILE_20261126.vi.md and docs/COLAB_DRIVE_SESSION_POLICY_20261126.vi.md.

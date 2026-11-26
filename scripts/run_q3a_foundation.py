@@ -14,6 +14,7 @@ from mim_llm.foundation.modeling import FoundationConfig, build_foundation
 from mim_llm.foundation.plan import load_plan
 from mim_llm.foundation.runner import execute
 from mim_llm.q3a.io import read_json, sha256, write_json
+from mim_llm.q3a_subword.resources import check_ledger_annex, resource_cap
 
 
 @torch.inference_mode()
@@ -118,10 +119,12 @@ def main():
     parser.add_argument("--plan", required=True)
     parser.add_argument("--drive", required=True)
     parser.add_argument("--wall-seconds", type=int, default=1100)
+    parser.add_argument("--resource-annex")
     args = parser.parse_args()
     torch.set_num_threads(2)
     plan = load_plan(args.plan)
-    cap = plan["config"]["resource_cap"]
+    annex = read_json(args.resource_annex) if args.resource_annex else None
+    cap = resource_cap(plan, annex)
     if not 1 <= args.wall_seconds <= cap["seconds_per_invocation"]:
         raise ValueError("Shorter wall cap must stay within the plan maximum")
     wall_seconds = args.wall_seconds
@@ -162,12 +165,29 @@ def main():
             "invocations": [],
         }
     )
+    check_ledger_annex(ledger, annex, sha256(args.resource_annex) if annex else None)
+    if annex:
+        assessment = drive / "sessions" / annex["assessment_filename"]
+        profile = drive / "sessions" / annex["profile_filename"]
+        if (
+            sha256(assessment) != annex["assessment_sha256"]
+            or sha256(profile) != annex["profile_sha256"]
+        ):
+            raise ValueError("Resource annex evidence changed")
+        measured = read_json(assessment)
+        if measured["plan_id"] != plan["plan_id"] or measured["optimizer_updates"] != 0:
+            raise ValueError("Wrong resource assessment")
     if (
         ledger["plan_id"] != plan["plan_id"]
         or len(ledger["invocations"]) >= cap["maximum_invocations"]
         or any(r["status"] == "reserved" for r in ledger["invocations"])
         or ledger["starting_available_cu"] - observation["available_cu"]
         >= cap["maximum_observed_balance_drop"]
+        or (
+            annex is not None
+            and annex["observed_balance_anchor_cu"] - observation["available_cu"]
+            >= cap["maximum_observed_balance_drop"]
+        )
     ):
         raise ValueError("Budget cap/unresolved invocation: no automatic extension")
     stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
@@ -191,6 +211,14 @@ def main():
     ):
         p = Path(name)
         verified_copy(p, drive / "inputs" / (p.stem + "-" + sha256(p)[:12] + p.suffix))
+    if annex:
+        p = Path(args.resource_annex)
+        verified_copy(p, drive / "inputs" / (p.stem + "-" + sha256(p)[:12] + p.suffix))
+        helper = Path("src/mim_llm/q3a_subword/resources.py")
+        verified_copy(
+            helper,
+            drive / "inputs" / ("resource-helper-" + sha256(helper)[:12] + ".py"),
+        )
     if Path("source-bundle.zip").exists():
         verified_copy(
             "source-bundle.zip",

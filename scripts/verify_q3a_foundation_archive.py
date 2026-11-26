@@ -11,6 +11,7 @@ from datetime import UTC, datetime
 from pathlib import Path, PurePosixPath
 
 from mim_llm.q3a.io import sha256, signature
+from mim_llm.q3a_subword.resources import check_ledger_annex, resource_cap
 
 
 def verify(path, expected_sha256, plan_id):
@@ -61,10 +62,26 @@ def verify(path, expected_sha256, plan_id):
         ):
             raise ValueError("Plan identity mismatch")
         ledger = json.loads(archive.read("foundation-budget.json"))
+        annex = None
+        if ledger.get("resource_annex"):
+            candidates = [
+                n
+                for n in names
+                if n.startswith("inputs/foundation_resource_annex-")
+                and n.endswith(".json")
+            ]
+            if len(candidates) != 1:
+                raise ValueError("Require one recorded resource annex")
+            annex = json.loads(archive.read(candidates[0]))
+            check_ledger_annex(ledger, annex, manifest[candidates[0]])
+            for key in ("assessment", "profile"):
+                member = "sessions/" + annex[key + "_filename"]
+                if manifest.get(member) != annex[key + "_sha256"]:
+                    raise ValueError("Resource annex evidence missing or changed")
+        cap = resource_cap(plan, annex)
         if (
             ledger["plan_id"] != plan_id
-            or len(ledger["invocations"])
-            > plan["config"]["resource_cap"]["maximum_invocations"]
+            or len(ledger["invocations"]) > cap["maximum_invocations"]
         ):
             raise ValueError("Wrong ledger")
         events = []

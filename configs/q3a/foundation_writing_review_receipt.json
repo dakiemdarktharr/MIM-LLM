@@ -1,0 +1,28 @@
+{
+  "purpose": "fixed validation writing feasibility, not primary Q3-A evaluation",
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "corpus_sha256": "f1af895c66d7d689dfb794619cd6d91f658ce221ab29d0c27b71f9401556ffbc",
+  "recipe_sha256": "72741927f3d981cea45bdb3eddf635738c35a435f4f1a33aec78cb50b9fa4fe9",
+  "tokenizer_sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+  "decoding": {
+    "temperature": 0.8,
+    "top_k": 40,
+    "seed": 17,
+    "max_new_tokens": 128
+  },
+  "expected_samples": 34,
+  "human_labels": false,
+  "test_performance_measured": false,
+  "source_sha256": "6047364c71dd10d57ebe119874484b9d7a84254be5c20ebefa34774257614fc6",
+  "review_id": "5a0d0425dd44c68933fd1407d18558000802d2214be819deb2328932c1c056d2",
+  "as_of": "2026-11-26",
+  "status": "prepared_only_no_real_generation",
+  "private_manifest_sha256": "aa937fa87759c692cc5f790d51cf59020a064050748a459d88026878ee5a5e07",
+  "conditional_validation_prompts": 16,
+  "unconditional_prompts": 1,
+  "real_model_samples_generated": 0,
+  "optimizer_updates": 0,
+  "nontraining_tests_passed": 193,
+  "training_tests_deselected": 16,
+  "report": "docs/Q3_A_FOUNDATION_WRITING_REVIEW_20261126.vi.md"
+}

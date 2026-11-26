@@ -18,7 +18,14 @@ verifier = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(verifier)
 
 
-def fixture_archive(tmp_path, change=None):
+def fixture_archive(
+    tmp_path,
+    change=None,
+    *,
+    resource_annex=False,
+    invocation_count=1,
+    bad_annex_evidence=False,
+):
     plan = {
         "runs": [{"id": "foundation-transformer-s0"}, {"id": "foundation-mingru-s0"}],
         "config": {
@@ -76,6 +83,39 @@ def fixture_archive(tmp_path, change=None):
             json.dumps(r) + "\n" for r in metric
         ).encode(),
     }
+    if resource_annex:
+        from mim_llm.q3a.io import read_json
+
+        annex = read_json("configs/q3a/foundation_resource_annex.json")
+        annex["base_plan_id"] = plan["plan_id"]
+        annex["unchanged_resource_limits"] = {}
+        blobs = {
+            "assessment": b'{"fixture": "no real measurement"}',
+            "profile": b'{"fixture": "no real profile"}',
+        }
+        for key, blob in blobs.items():
+            name = "sessions/" + annex[key + "_filename"]
+            files[name] = blob
+            annex[key + "_sha256"] = hashlib.sha256(blob).hexdigest()
+        if bad_annex_evidence:
+            annex["assessment_sha256"] = "0" * 64
+        annex.pop("annex_id")
+        annex["annex_id"] = signature(annex)
+        raw = json.dumps(annex).encode()
+        files["inputs/foundation_resource_annex-fixture.json"] = raw
+        files["foundation-budget.json"] = json.dumps(
+            {
+                "plan_id": plan["plan_id"],
+                "invocations": [
+                    {"status": "finished"} for _ in range(invocation_count)
+                ],
+                "resource_annex": {
+                    "annex_id": annex["annex_id"],
+                    "sha256": hashlib.sha256(raw).hexdigest(),
+                    "effective_before_invocation": 2,
+                },
+            }
+        ).encode()
     out = tmp_path / "evidence.zip"
     with zipfile.ZipFile(out, "x") as archive:
         for name, value in files.items():
@@ -115,3 +155,25 @@ def test_valid_hashes_do_not_excuse_invalid_target_or_finite_accounting(
     )
     with pytest.raises(ValueError):
         verifier.verify(path, sha256(path), identifier)
+
+
+@pytest.mark.parametrize(
+    "count,corrupt,passes", [(16, False, True), (17, False, False), (2, True, False)]
+)
+def test_archive_resource_annex_requires_evidence_and_enforces_extended_cap(
+    tmp_path, count, corrupt, passes
+):
+    path, identifier = fixture_archive(
+        tmp_path,
+        resource_annex=True,
+        invocation_count=count,
+        bad_annex_evidence=corrupt,
+    )
+    if passes:
+        assert (
+            verifier.verify(path, sha256(path), identifier)["checkpoint_pickle_loaded"]
+            is False
+        )
+    else:
+        with pytest.raises(ValueError):
+            verifier.verify(path, sha256(path), identifier)

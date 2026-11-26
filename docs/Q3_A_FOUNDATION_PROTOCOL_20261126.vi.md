@@ -134,3 +134,19 @@ vượt cap thì không mở driver2 dưới lời hứa rằng đủ ngân sác
 infeasibility và quyết định tiếp theo trước mọi cập nhật. Nếu lower bound nằm
 dưới cap cũng chưa bảo đảm đủ, vẫn giữ giới hạn8slot/16CU observed drop và báo
 incomplete khi cần. Không dùng chẩn đoán này để mở test hoặc săn hiệu ứng A1−A2.
+
+## Resource-only annex sau profile, trước driver2
+
+Profile L4 cho optimistic8042s >7700s còn lại. Trần8lượt là giả định kỹ thuật
+của agent; quyền người dùng hiện có yêu cầu hoàn thànhQ3-A bằng CU đang có.
+Annex `configs/q3a/foundation_resource_annex.json` có hash riêng và hiệu lực
+trước driver2 thay trần8 bằng16lượt, giữ1100s/lượt và trần16CU từUI597,61.
+Không đổi learning plan c18/model/data/seed/targets/tokenizer/decoding. Ledger
+lưu annex riêng, verifier kiểm annex và source profile; không sửa receipt cũ.
+Chi tiết `docs/Q3_A_FOUNDATION_RESOURCE_PROFILE_20261126.vi.md`.
+
+Theo yêu cầu mới của người dùng, giữ Drive mount/VM giữa những bước hợp lệ tiếp
+ngay trong cùng phiên; không unassign chỉ vì xong một driver. Host chỉ flush/
+unmount/unassign ở cuối công việc hoặc khi lỗi/cap làm không thể tiếp tục.
+Chính sách tại `docs/COLAB_DRIVE_SESSION_POLICY_20261126.vi.md`. Những dòng
+8slot và host-finally sau mỗi driver ở phần cũ là lịch sử trước annex này.
