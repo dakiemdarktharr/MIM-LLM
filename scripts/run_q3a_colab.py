@@ -79,15 +79,27 @@ def main():
     verified_copy(
         "configs/training_permission.json", drive / "inputs" / "permission.json"
     )
-    verified_copy("BUNDLE-MANIFEST.json", drive / "inputs" / "BUNDLE-MANIFEST.json")
+    verified_copy(
+        "BUNDLE-MANIFEST.json",
+        drive
+        / "inputs"
+        / ("BUNDLE-MANIFEST-" + sha256("BUNDLE-MANIFEST.json")[:12] + ".json"),
+    )
     if Path("source-bundle.zip").exists():
-        verified_copy("source-bundle.zip", drive / "inputs" / "source-bundle.zip")
+        verified_copy(
+            "source-bundle.zip",
+            drive
+            / "inputs"
+            / ("source-bundle-" + sha256("source-bundle.zip")[:12] + ".zip"),
+        )
     for file in [
         "docs/SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md",
         "DATA_NOTICES.md",
         __file__,
     ]:
-        verified_copy(file, drive / "inputs" / Path(file).name)
+        source = Path(file)
+        versioned = source.stem + "-" + sha256(source)[:12] + source.suffix
+        verified_copy(source, drive / "inputs" / versioned)
     packages = subprocess.check_output(["python", "-m", "pip", "freeze"], text=True)
     (session / (stamp + "-packages.txt")).write_text(packages)
     jobs = (

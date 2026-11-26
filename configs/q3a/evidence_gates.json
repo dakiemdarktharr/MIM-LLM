@@ -227,7 +227,7 @@
     "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
   },
   "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
-  "active_calibration_bundle_sha256": "e384dafcd2df61d970db3bb8b7afc451f9e0e05eb68757939409060b9eb7080c",
+  "active_calibration_bundle_sha256": "5d3d9c6b57fb4d9fabf6bf55a67cf6e756cf0eceda2c1925342a5d96937e0b5b",
   "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md",
-  "active_calibration_resource_amendment": "Observed NVIDIA L4, mandatory High-RAM, UI2.33CU/h and599.14CU before first run; first driver finished, archive downloaded and25hashes verified; next bounded resume pending."
+  "active_calibration_resource_amendment": "Portable T4/L4 resume after observed automatic fallback; per-segment hardware recorded, no bitwise or matched-compute trajectory claim; same three-driver cap. Unused fallback VM ended before optimizer."
 }

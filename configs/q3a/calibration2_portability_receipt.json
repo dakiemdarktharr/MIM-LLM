@@ -1,0 +1,18 @@
+{
+  "as_of": "2026-11-26",
+  "plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
+  "learning_implementation_fingerprints_unchanged": true,
+  "source_bundle_file": "artifacts/q3a-calibration2-20261126/calibration2-portable-source-bundle.zip",
+  "source_bundle_sha256": "5d3d9c6b57fb4d9fabf6bf55a67cf6e756cf0eceda2c1925342a5d96937e0b5b",
+  "source_bundle_bytes": 24029991,
+  "bundle_members_verified": 64,
+  "prior_immutable_bundle_sha256": "e384dafcd2df61d970db3bb8b7afc451f9e0e05eb68757939409060b9eb7080c",
+  "permitted_hardware": [
+    "T4",
+    "L4"
+  ],
+  "count_every_training_driver_in_same_three_invocation_ledger": true,
+  "reason": "Colab auto-fell back from L4 to T4 on an unused VM. Record every segment hardware and preserve shared final initialization; do not claim bitwise trajectory identity or equal warmup compute.",
+  "declared_before_next_optimizer": true,
+  "no_post_training_enabled": true
+}

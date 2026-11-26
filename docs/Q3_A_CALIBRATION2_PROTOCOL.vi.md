@@ -88,3 +88,22 @@ wrapper quan sát 1.115,721 giây, gồm khởi động/kết thúc. Tham số n
 thực hiện có thể kéo dài thêm. Không gọi 3.300 giây là hard cap thời gian thuê
 GPU hay hóa đơn CU. **Số lượt tối đa ba** vẫn bị chặn bằng ledger. Giữ nguyên
 protocol/source bundle đã dùng trên Drive; ghi rõ correction này sau đo.
+
+## Sửa đổi portability trước optimizer tiếp theo
+
+Sau lượt 1, Colab tự cấp T4 dù đã chọn L4; lượt VM dự phòng này chưa chạy
+calibration driver và mount Drive timeout, đã được kết thúc. Không coi nó là
+thời gian train bằng không chi phí: debit CU của allocation/setup chưa biết.
+Để không phụ thuộc vào một GPU SKU không được bảo đảm, **thay yêu cầu cùng
+GPU class** bằng resume có ghi rõ từng chặng T4/L4. Số target, tối đa ba driver,
+tokenizer, corpus, optimizer, seed/RNG checkpoint và toàn bộ learning loop giữ
+nguyên. Không nhận trajectory bitwise-identical qua hai GPU hay matched-compute
+comparison giữa hai warm-up. Các arm so sánh sau này vẫn cần chung checkpoint
+khởi tạo thực sự; báo GPU/giây/CU quan sát của từng chặng riêng.
+
+Driver lưu GPU trong từng invocation và giữ lịch sử cũ. Bundle/manifest/script
+được lưu bằng tên có hash để không ghi đè input phiên trước; archive bỏ ZIP lồng
+nhau nhưng source ZIP riêng vẫn giữ trên Drive. Scientific plan ID không đổi vì
+learning implementation/data/config không đổi; phiên bản orchestration mới có
+bundle hash riêng, phải xác minh trước optimizer. Chưa dùng kết quả A1/A2/test
+để chọn sửa đổi tài nguyên này. Rate UI <=6CU/giờ và số dư >=10CU vẫn bắt buộc.

@@ -58,14 +58,26 @@ def reserve_invocation(path, plan_id):
     return ledger
 
 
+def record_hardware(ledger, gpu_name):
+    """Preserve observed hardware for each segment, including legacy ledgers."""
+    previous = ledger.get("gpu_name", gpu_name)
+    for entry in ledger["invocations"][:-1]:
+        entry.setdefault("gpu_name", previous)
+    ledger["invocations"][-1]["gpu_name"] = gpu_name
+    ledger.setdefault("initial_gpu_name", previous)
+    ledger["gpu_name"] = gpu_name
+    ledger["gpu_history"] = list(
+        dict.fromkeys(x["gpu_name"] for x in ledger["invocations"])
+    )
+    ledger["hardware_changed_across_segments"] = len(ledger["gpu_history"]) > 1
+
+
 def export_evidence(drive, stamp):
     drive = Path(drive)
     members = []
     for name in ("inputs", "sessions", "inspections"):
         members += [
-            p
-            for p in (drive / name).rglob("*")
-            if p.is_file() and p.name != "source-bundle.zip"
+            p for p in (drive / name).rglob("*") if p.is_file() and p.suffix != ".zip"
         ]
     members += [drive / "calibration-budget.json"]
     for folder in (drive / "runs").glob("warmup-*-s0"):
@@ -137,13 +149,8 @@ def main():
             "Record real UI GPU/CU/rate before calibration; do not buy credits"
         )
     ledger_path = drive / "calibration-budget.json"
-    if (
-        ledger_path.exists()
-        and read_json(ledger_path).get("gpu_name") != torch.cuda.get_device_name()
-    ):
-        raise ValueError("Keep both new warmups on the same GPU class")
     ledger = reserve_invocation(ledger_path, plan["plan_id"])
-    ledger["gpu_name"] = torch.cuda.get_device_name()
+    record_hardware(ledger, torch.cuda.get_device_name())
     ledger["resource_observation"] = observation
     write_json(ledger_path, ledger, replace=True)
     stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
@@ -155,7 +162,9 @@ def main():
         "scripts/inspect_q3a_warmup.py",
         "scripts/inspect_q3a_more_prefixes.py",
     ):
-        verified_copy(file, drive / "inputs" / Path(file).name)
+        source = Path(file)
+        versioned = source.stem + "-" + sha256(source)[:12] + source.suffix
+        verified_copy(source, drive / "inputs" / versioned)
     verified_copy(
         drive / "resource-observation.json",
         sessions / (stamp + "-resource-observation.json"),

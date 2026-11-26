@@ -34,6 +34,7 @@ def main():
             "scripts/run_q3a_calibration.py",
             "scripts/inspect_q3a_warmup.py",
             "scripts/inspect_q3a_more_prefixes.py",
+            "scripts/verify_q3a_trained_paths.py",
             "data/raw/q3a-tinystories.jsonl",
             "data/raw/q3a-tinystories.jsonl.manifest.json",
         )
