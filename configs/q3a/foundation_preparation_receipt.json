@@ -1,0 +1,89 @@
+{
+  "as_of_utc": "2026-11-26",
+  "stage": "prepared_before_first_remote_optimizer",
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "bundle_sha256": "b1c97087a3415fc4c1b65dc4fa5a8496917ded649087add55d40352bec55e5d9",
+  "bundle_bytes": 92702119,
+  "bundle_members_verified": 74,
+  "encoded_manifest_sha256": "f2a2906f851139274ca38d46a056f64a205780c49ce04ba17791d80982196642",
+  "corpus_sha256": "f1af895c66d7d689dfb794619cd6d91f658ce221ab29d0c27b71f9401556ffbc",
+  "splits": {
+    "train-lm": {
+      "rows": 300169,
+      "sources": 300000,
+      "targets": 66859228
+    },
+    "train-sft": {
+      "rows": 271170,
+      "unconditional_rows": 135905,
+      "targets": 10708980,
+      "conditional_rows": 135265
+    },
+    "validation-lm": {
+      "rows": 300,
+      "sources": 300,
+      "targets": 61573
+    },
+    "validation-sft": {
+      "rows": 312,
+      "unconditional_rows": 156,
+      "targets": 12192,
+      "conditional_rows": 156
+    }
+  },
+  "audit": {
+    "train_sources": 6000,
+    "counts": {
+      "same_A1_A2_input_length": 6000,
+      "same_A1_A2_edit_distance": 6000,
+      "same_A1_A2_hamming": 6000,
+      "same_invariant_targets": 6000
+    },
+    "mismatches": [],
+    "input_sha256": "bb2fd3c8568ebb75c3c7fe1ae431a05ce0e6babb657db04db177d183886bc573",
+    "tokenizer_spec": {
+      "sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+      "vocab_size": 50257,
+      "bos_id": 50256,
+      "eos_id": 50256,
+      "pad_id": 50256,
+      "eos_token": "<|endoftext|>"
+    },
+    "audit_source_sha256": "486c48893c32d613b4d5c6825acb2fa975d568a62698f42a3be136883648e434",
+    "model_or_tokenizer_updates": 0,
+    "validation_test_inspected": false,
+    "matched_token_counts_do_not_prove_lexical_or_causal_equivalence": true
+  },
+  "models": {
+    "transformer": {
+      "actual_parameters": 3681984,
+      "token_embeddings": 3216448,
+      "position_embeddings": 65536,
+      "other_parameters": 400000
+    },
+    "mingru": {
+      "actual_parameters": 3682887,
+      "token_embeddings": 3216448,
+      "position_embeddings": 0,
+      "other_parameters": 466439
+    }
+  },
+  "verification": {
+    "default_tests_passed": 179,
+    "training_tests_deselected": 16,
+    "foundation_authorized_synthetic_training_tests_passed": 4,
+    "real_data_optimizer_updates": 0,
+    "gpu_throughput": null,
+    "colab_gpu_hours": null,
+    "human_labels": 0,
+    "independent_readers_available": 1,
+    "test_tokenized": false
+  },
+  "main_environment_change": {
+    "tokenizers": "0.23.3 installed --no-deps",
+    "hub": "1.33.0 unchanged",
+    "fsspec": "2026.2.0 unchanged",
+    "transformers_installed_in_main": false
+  },
+  "completion_claim": false
+}

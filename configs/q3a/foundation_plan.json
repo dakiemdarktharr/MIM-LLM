@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "purpose": "one bounded replacement of failed language feasibility; not primary Q3-A",
+  "config": {
+    "study": "q3a-bounded-subword-language-foundation",
+    "context": 1024,
+    "pad_id": 50256,
+    "batch_size": 4,
+    "grad_clip": 1.0,
+    "weight_decay": 0.1,
+    "checkpoint_every_updates": 250,
+    "stages": [
+      {
+        "name": "lm",
+        "targets": 80000000,
+        "warmup_targets": 500000,
+        "learning_rate": 0.001,
+        "minimum_lr": 0.0001
+      },
+      {
+        "name": "sft",
+        "targets": 20000000,
+        "warmup_targets": 100000,
+        "learning_rate": 0.0003,
+        "minimum_lr": 3e-05
+      }
+    ],
+    "models": {
+      "transformer": {
+        "embedding_width": 64,
+        "width": 64,
+        "layers": 8,
+        "heads": 4
+      },
+      "mingru": {
+        "embedding_width": 64,
+        "width": 325,
+        "layers": 2,
+        "heads": 4
+      }
+    },
+    "decoding": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "seed": 17,
+      "max_new_tokens": 128
+    },
+    "resource_cap": {
+      "maximum_invocations": 8,
+      "seconds_per_invocation": 1100,
+      "maximum_observed_cu_per_hour": 6,
+      "minimum_available_cu": 20,
+      "maximum_observed_balance_drop": 16,
+      "purchase_authorized": false,
+      "review_after_first_invocation": true
+    },
+    "other_seeds_and_post_matrix_held": true,
+    "test_locked": true
+  },
+  "data_dir": "data/processed/q3a-foundation-20261126",
+  "data_manifest_sha256": "f2a2906f851139274ca38d46a056f64a205780c49ce04ba17791d80982196642",
+  "data_summary": {
+    "train-lm": {
+      "rows": 300169,
+      "sources": 300000,
+      "targets": 66859228
+    },
+    "train-sft": {
+      "rows": 271170,
+      "unconditional_rows": 135905,
+      "targets": 10708980,
+      "conditional_rows": 135265
+    },
+    "validation-lm": {
+      "rows": 300,
+      "sources": 300,
+      "targets": 61573
+    },
+    "validation-sft": {
+      "rows": 312,
+      "unconditional_rows": 156,
+      "targets": 12192,
+      "conditional_rows": 156
+    }
+  },
+  "corpus_sha256": "f1af895c66d7d689dfb794619cd6d91f658ce221ab29d0c27b71f9401556ffbc",
+  "tokenizer": "data/raw/gpt-neo-tokenizer/tokenizer.json",
+  "tokenizer_spec": {
+    "sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+    "vocab_size": 50257,
+    "bos_id": 50256,
+    "eos_id": 50256,
+    "pad_id": 50256,
+    "eos_token": "<|endoftext|>"
+  },
+  "implementation_fingerprints": {
+    "foundation/__init__.py": "bef111fa99b042a762c9ed84b7e43751425f607f268b9c0e57f6c72e6570fa2f",
+    "foundation/codec.py": "4f8bc919aac9fbf1b76cb7dbc3a8d575334675df5b8aa8e0881b160796ba7f90",
+    "foundation/control_audit.py": "1f6e8e3b892ac2e62cfb22195ce83f418b527f15cb3703cb13eedc8be8278121",
+    "foundation/corpus.py": "cf17ec4c6e936331879ed54beabdace7561d1fa51be17fd6cd659a5747444fb7",
+    "foundation/generation.py": "16ea4d65002a0f14c299a6e4dc2e737168c43aba02c3d74f08ffaeae78314ebb",
+    "foundation/modeling.py": "c336e6b3fed281b5c42d0b4fcd762691e7e22389258482e59916fdb7f4cef781",
+    "foundation/objectives.py": "3777867a109465268e980f82839a9bb583859077bd6da4441e5e835222df7f4e",
+    "foundation/plan.py": "a3ec1a36fcdd2ab1b59733ebc4b252d4a9e284c8a867bace9099624b18800c6c",
+    "foundation/runner.py": "a8ad381932b0156a9f3a0988a46468210680b0b02caa93a6821a0e78a53db6df",
+    "models.py": "340ff3ac6566439edef3bc9e9a6e6f6292e390bf24b2b5c24c757af168d3cd6e",
+    "q3a/io.py": "f086af4cd49fe4fbb1520388876792bbb628f4f421c2b2f5f1e64a597c8b047c",
+    "training_gate.py": "2a1704105e5193362ed3aeb81e8f5fe8359a0ba2461255b8c03a12478c97d996"
+  },
+  "models": {
+    "transformer": {
+      "config": {
+        "kind": "transformer",
+        "vocab_size": 50257,
+        "embedding_width": 64,
+        "width": 64,
+        "layers": 8,
+        "context": 1024,
+        "heads": 4,
+        "dropout": 0.0
+      },
+      "actual_parameters": 3681984,
+      "token_embeddings": 3216448,
+      "position_embeddings": 65536,
+      "other_parameters": 400000
+    },
+    "mingru": {
+      "config": {
+        "kind": "mingru",
+        "vocab_size": 50257,
+        "embedding_width": 64,
+        "width": 325,
+        "layers": 2,
+        "context": 1024,
+        "heads": 4,
+        "dropout": 0.0
+      },
+      "actual_parameters": 3682887,
+      "token_embeddings": 3216448,
+      "position_embeddings": 0,
+      "other_parameters": 466439
+    }
+  },
+  "runs": [
+    {
+      "id": "foundation-transformer-s0",
+      "kind": "transformer",
+      "seed": 0
+    },
+    {
+      "id": "foundation-mingru-s0",
+      "kind": "mingru",
+      "seed": 0
+    }
+  ],
+  "test_locked": true,
+  "measured_throughput": null,
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41"
+}

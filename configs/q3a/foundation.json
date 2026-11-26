@@ -1,0 +1,29 @@
+{
+  "study": "q3a-bounded-subword-language-foundation",
+  "context": 1024,
+  "pad_id": 50256,
+  "batch_size": 4,
+  "grad_clip": 1.0,
+  "weight_decay": 0.1,
+  "checkpoint_every_updates": 250,
+  "stages": [
+    {"name": "lm", "targets": 80000000, "warmup_targets": 500000, "learning_rate": 0.001, "minimum_lr": 0.0001},
+    {"name": "sft", "targets": 20000000, "warmup_targets": 100000, "learning_rate": 0.0003, "minimum_lr": 0.00003}
+  ],
+  "models": {
+    "transformer": {"embedding_width": 64, "width": 64, "layers": 8, "heads": 4},
+    "mingru": {"embedding_width": 64, "width": 325, "layers": 2, "heads": 4}
+  },
+  "decoding": {"temperature": 0.8, "top_k": 40, "seed": 17, "max_new_tokens": 128},
+  "resource_cap": {
+    "maximum_invocations": 8,
+    "seconds_per_invocation": 1100,
+    "maximum_observed_cu_per_hour": 6,
+    "minimum_available_cu": 20,
+    "maximum_observed_balance_drop": 16,
+    "purchase_authorized": false,
+    "review_after_first_invocation": true
+  },
+  "other_seeds_and_post_matrix_held": true,
+  "test_locked": true
+}
