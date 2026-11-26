@@ -124,10 +124,22 @@ def test_foundation_general_validation_requires_complete_parent(
         "tokenizer_spec": plan["tokenizer_spec"],
     }
     monkeypatch.setattr(lm, "load_foundation_plan", lambda p: foundation)
-    original.update(
-        identity={"plan_id": foundation["plan_id"], "run": run, "precision": "float32"},
-        stats={"stage": 2, "stage_targets": 0, "targets": 100, "updates": 1},
-    )
+    # Use the actual foundation.runner.checkpoint schema. A post checkpoint
+    # with extra config/tokenizer keys previously masked the real reader bug.
+    original = {
+        "identity": {
+            "plan_id": foundation["plan_id"],
+            "run": run,
+            "precision": "float32",
+            "device_type": "cpu",
+        },
+        "model": original["model"],
+        "optimizer": {},
+        "stats": {"stage": 2, "stage_targets": 0, "targets": 100, "updates": 1},
+        "rng_cpu": torch.get_rng_state(),
+        "rng_cuda": None,
+        "complete": True,
+    }
     checkpoint = tmp_path / "SYNTHETIC-foundation.pt"
     torch.save(original, checkpoint)
     monkeypatch.setattr(
@@ -143,6 +155,9 @@ def test_foundation_general_validation_requires_complete_parent(
         and result["sources"] == 1
         and result["phase"] == "foundation"
     )
+    assert result["checkpoint_schema"] == "foundation_identity"
+    assert "strict_model_state_dict" in result["configuration_tokenizer_binding"]
+    assert "config" not in original and "tokenizer_spec" not in original
     original["complete"] = False
     torch.save(original, checkpoint)
     with pytest.raises(ValueError, match="complete declared"):

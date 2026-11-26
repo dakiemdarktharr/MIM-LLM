@@ -54,3 +54,12 @@ account, lưu credential hoặc mở public dữ liệu để né xác thực.
 
 Sửa câu cap8driver còn sót ở phần quy trình: annex được ghi trước lượt2 đã
 nâng thành16; thay đổi này chỉ sửa tài liệu, không tăng ngân sách hiện hành.
+
+### Xác nhận bằng công việc thật — 27/11/2026
+
+Mount đã hoạt động và được giữ qua các lượt4–10; ghi chép kernel còn Connecting
+ở trên là lịch sử. Connector đã đọc lại ledger, receipt và các phần ZIP lượt9
+độc lập, không hỏi grant mới. Giới hạn một file256MiB được xử lý bằng các phần
+100MiB có hash rồi ghép đúng byte, không thay quyền chia sẻ hoặc thêm credential.
+Hiện không có bước xác thực cá nhân đang chờ. Giữ mount giữa công việc hợp lệ
+theo chính sách; không hứa filesystem mount tồn tại sau khi Google xóa VM.

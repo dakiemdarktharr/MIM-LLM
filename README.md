@@ -1,4 +1,4 @@
-> **Current execution, 27 November 2026:** Q3-A driver 8 is independently audited: the Transformer completed **80M LM targets** and **17,658,120 / 20M SFT response targets** (201,513 updates). Its CPU/FP64 numerical gate met the unchanged bounds; earlier FP32 failures remain recorded. **Driver 9 is running**, session `20261126T193700Z`, on the retained T4/Drive mount without another grant. See the [driver 8 audit](docs/Q3_A_FOUNDATION_INVOCATION8_20261127.vi.md). Transformer: **3,681,984** actual parameters; factorized minGRU: **3,682,887**, not started at the driver8 audit. Neither is MIM. The English methods source now describes the subword pipeline; it remains uncompiled. No new writing panel, human labels, primary post/test results or publication milestone exists. B/C/Q1 training and tokenizer fitting remain closed.
+> **Current execution, 27 November 2026:** Driver 9 is independently audited: Transformer **3,681,984 parameters** completed 80M LM+20M SFT targets; factorized minGRU **3,682,887 parameters** reached 17,353,105 LM targets. Both numerical gates passed. **Driver 10 is running** on the retained T4/Drive mount without another grant. Same-data CPU/FP64 replay found general-validation PPL worsened from 9.41 before SFT to 83.44 after SFT. Preserve this negative observation; writing quality remains unmeasured. See the [driver9 audit](docs/Q3_A_FOUNDATION_INVOCATION9_20261127.vi.md). No new writing panel, real human labels, primary post/test results or publication milestone exists. Neither backbone is MIM; B/C/Q1 training and tokenizer fitting remain closed.
 
 > **Historical byte calibration:** Each baseline completed 50M supervised byte targets, but review of all 34 fixed samples failed writing/prefix-conditioning feasibility. Its final Drive archive was independently verified (53 files, 81,262 step rows), and that earlier VM was released. The failures remain in the [calibration report](docs/Q3_A_CALIBRATION2_RESULTS_20261126.vi.md). Changing corpus, tokenizer and model configuration together is a feasibility revision, not an isolated causal test of tokenization or a positive architectural result. Further matrix expansion still requires writing review.
 
@@ -65,7 +65,7 @@ does change. The one-time rule does not uniquely require opening at 9:05.
 
 ## Four standalone study designs
 
-1. **Learning When a Premise Change Should Not Change a Story:** semantic no-op
+1. **Learning When Premise Changes Preserve Narrative Consequences:** semantic no-op
    training versus byte/edit-matched irrelevant numeric-clock controls and an invariance adaptation.
 2. **Tokens or State Changes?** token delay versus semantic-write interference
    under matched supervision and explicit processing-cost controls.
@@ -153,7 +153,7 @@ Drafted, submitted, accepted and published remain separate milestones.
 
 Generated PDFs remain local and ignored by Git; version source and QA records.
 
-### Historical three-study preparation — 26 November 2026
+### Historical three-study preparation â€” 26 November 2026
 
 The common warm-up retains 3,000/300/300 underlying TinyStories source groups
 and adds 2,792/277/280 mechanically derived, same-split three-sentence

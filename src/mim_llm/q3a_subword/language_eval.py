@@ -191,13 +191,17 @@ def general_perplexity(
             or sha256(general_corpus) != foundation["corpus_sha256"]
         ):
             raise ValueError("Exact frozen general corpus snapshot required")
-    if (
-        saved.get("config") != plan["models"][run["kind"]]["config"]
-        or saved.get("tokenizer_spec") != foundation["tokenizer_spec"]
-        or any(
-            t.is_floating_point() and t.dtype != torch.float32
-            for t in saved["model"].values()
-        )
+    # Foundation checkpoints deliberately store only a signed-plan identity,
+    # model/optimizer/RNG state and counters. The pinned plan binds their model
+    # configuration and tokenizer; those fields are NOT top-level checkpoint
+    # metadata. Post checkpoints have a separate explicit metadata schema.
+    metadata_matches = phase == "foundation" or (
+        saved.get("config") == plan["models"][run["kind"]]["config"]
+        and saved.get("tokenizer_spec") == foundation["tokenizer_spec"]
+    )
+    if not metadata_matches or any(
+        t.is_floating_point() and t.dtype != torch.float32
+        for t in saved["model"].values()
     ):
         raise ValueError("Model/tokenizer/FP32 declaration differs")
     previous = (
@@ -244,6 +248,14 @@ def general_perplexity(
         return {
             **result,
             "phase": phase,
+            "checkpoint_schema": "foundation_identity"
+            if phase == "foundation"
+            else "post_explicit_metadata",
+            "configuration_tokenizer_binding": (
+                "verified_foundation_plan_id_and_strict_model_state_dict"
+                if phase == "foundation"
+                else "explicit_post_metadata_and_verified_foundation_plan"
+            ),
             "split": split,
             "kind": "general_text_next_token_perplexity",
             "plan_id": plan["plan_id"],

@@ -1,0 +1,290 @@
+{
+  "as_of": "2026-11-27",
+  "session": "20261126T193700Z",
+  "driver_index": 9,
+  "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "gpu": "Tesla T4",
+  "runs": {
+    "foundation-transformer-s0": {
+      "complete": true,
+      "stats": {
+        "stage": 2,
+        "stage_targets": 0,
+        "targets": 100000000,
+        "input_tokens": 113197507,
+        "updates": 216366,
+        "epoch": 0,
+        "cursor": 0,
+        "train_seconds": 7604.648528861309,
+        "validation_seconds": 1.4214046729985057
+      },
+      "per_stage": {
+        "lm": 80000000,
+        "sft": 20000000
+      },
+      "metric_rows_verified": 216366,
+      "latest_sha256": "8d8a5a20de709b59fa2b1508e383dd582c0f9adf03cef61884e37573e0577beb",
+      "final_sha256": "30c5b6b8a8006f4ce1bc4a7d962adcbe0548b13eeb395daca1b8694647964c45",
+      "last_peak_allocated_bytes": 210883584,
+      "actual_parameters": 3681984,
+      "model_role": "baseline_not_MIM",
+      "new_targets_in_driver": 2341880,
+      "new_updates_in_driver": 14853,
+      "optimizer_seconds_this_driver": 460.4876376649463,
+      "targets_per_optimizer_second_this_driver": 5085.652270439378,
+      "peak_allocated_bytes_this_driver": 233714176,
+      "FP32_diagnostic_sha256": "37d638c95dadd764c0f59d95433af09267eb1803e80880d9674fba596d739b0f",
+      "FP64_diagnostic_sha256": "1ae97cabb0c64e04f88738db101cfbcdd5da286bb3ddb445653364e6292716ab",
+      "FP64_max_path_logit_error": 9.947598300641403e-14,
+      "FP64_max_decode_policy_L1": 1.866264304553611e-14,
+      "FP64_argmax_mismatches": 0,
+      "FP32_max_decode_policy_L1": 8.902093075214992e-06,
+      "training_loss_and_gradients_bitwise_equal": true,
+      "reviewed_policy_contract_met": true
+    },
+    "foundation-mingru-s0": {
+      "complete": false,
+      "stats": {
+        "stage": 0,
+        "stage_targets": 17353105,
+        "targets": 17353105,
+        "input_tokens": 17353105,
+        "updates": 19498,
+        "epoch": 0,
+        "cursor": 77992,
+        "train_seconds": 503.5738559281781,
+        "validation_seconds": 0.0
+      },
+      "per_stage": {
+        "lm": 17353105,
+        "sft": 0
+      },
+      "metric_rows_verified": 19498,
+      "latest_sha256": "05f8ad49d9667bdcc35b18c857e4189af52fd020dfeb591615eadd8b31062cb0",
+      "final_sha256": null,
+      "last_peak_allocated_bytes": 1591668224,
+      "actual_parameters": 3682887,
+      "model_role": "baseline_not_MIM",
+      "new_targets_in_driver": 17353105,
+      "new_updates_in_driver": 19498,
+      "optimizer_seconds_this_driver": 503.5738559281781,
+      "targets_per_optimizer_second_this_driver": 34459.90056019703,
+      "peak_allocated_bytes_this_driver": 1721988096,
+      "FP32_diagnostic_sha256": "e1fddc5647c9cf9a584322173c5976afc51aed6f3f663d22ba5e8f0b0a254fde",
+      "FP64_diagnostic_sha256": "014bb5f6c17922f024b9e63556274f4bd717aa1afe039c0225929a67f9700495",
+      "FP64_max_path_logit_error": 3.907985046680551e-14,
+      "FP64_max_decode_policy_L1": 8.174220306710056e-15,
+      "FP64_argmax_mismatches": 0,
+      "FP32_max_decode_policy_L1": 5.3723805534295775e-06,
+      "training_loss_and_gradients_bitwise_equal": true,
+      "reviewed_policy_contract_met": true
+    }
+  },
+  "verified_complete_seed0_parents": 1,
+  "archive_sha256": "b92fa27369389e92ad94494e958f025384982169495c2c35ce57f99a6f6d28d7",
+  "archive_bytes": 275033915,
+  "members_verified": 100,
+  "metric_rows_verified": 235864,
+  "independent_cloud_readback": true,
+  "independent_verification_at_utc": "2026-11-26T20:04:23.294910+00:00",
+  "connector_single_file_limit_bytes": 268435456,
+  "readback_method": "three independently downloaded SHA256-checked parts reassembled into the exact original ZIP; immutable original retained",
+  "parts_manifest_sha256": "c0cdac19d81fb3ef38506ea4658663f4f0848bed9514df2fa812692a10e34017",
+  "driver_return_code": 0,
+  "ledger_finished": true,
+  "driver_seconds": 1082.9848279989983,
+  "reserved_soft_driver_seconds": 1100,
+  "driver_invocations_consumed": 9,
+  "maximum_driver_invocations": 16,
+  "backend_policy_id": "ca5621d4d52d349ec22b7eabc4e35bf38984f9461016e7196f6e3c037d69ef48",
+  "all_learned_backbones_independently_reviewed": true,
+  "training_precision": "float32",
+  "production_inference": "CPU/FP64",
+  "scheduled_training_validation": {
+    "foundation-transformer-s0": [
+      {
+        "update": 89757,
+        "stage": "lm",
+        "trained_targets": 80000000,
+        "ce": 2.2417144972230285,
+        "perplexity": 9.409449941595582,
+        "targets": 61573,
+        "perplexity_clipped": false,
+        "seconds": 0.8409309349999603
+      },
+      {
+        "update": 216366,
+        "stage": "sft",
+        "trained_targets": 100000000,
+        "ce": 1.9756615377688815,
+        "perplexity": 7.211388682179701,
+        "targets": 12192,
+        "perplexity_clipped": false,
+        "seconds": 0.5804737379985454
+      }
+    ],
+    "foundation-mingru-s0": []
+  },
+  "scheduled_validation_note": "FP32 end-stage diagnostics on different target sets: LM61573 general BPE targets at80M versus12192 response-only SFT targets at100M; not directly comparable and not the new post-SFT general-language PPL",
+  "same_mount_retained": true,
+  "no_new_Drive_grant": true,
+  "test_evaluated": false,
+  "human_labels": 0,
+  "primary_post_runs": 0,
+  "compiler_run": false,
+  "cu_attributable_invoice": null,
+  "previous_FP32_failure_remains_failed": true,
+  "local_final_equivalence_receipt_sha256": "9f794f8456a88eb34e0f4895a35e048c487beddf81669402b0c2d083969c7fc6",
+  "final_equivalence_note": "All final/latest model state tensors, identity and stats exactly equal despite distinct serialization byte hashes. State-dict elements count aliases separately; actual trainable parameters remain3681984.",
+  "reader_schema_error_preserved": true,
+  "reader_schema_failure_receipt_sha256": "c54f44befb49844d29838a90e5a6f0708c55a09c1bcf61ca6f390f6a8cc77dc6",
+  "corrected_general_PPL_implementation_sha256": "16fda9282bb124df4b0c3cbf3570f0a436b8cc5f3ad917b4110f909b357d7545",
+  "post_SFT_general_validation": {
+    "nll_nats_per_target": 4.424111775018596,
+    "perplexity": 83.43866199409597,
+    "perplexity_clipped": false,
+    "targets": 61573,
+    "windows": 300,
+    "sources": 300,
+    "uncertainty": {
+      "nll_ci95": [
+        4.290391207146755,
+        4.5570364378771275
+      ],
+      "perplexity_ci95": [
+        72.9950190878163,
+        95.30063157587014
+      ],
+      "perplexity_ci_clipped": false,
+      "source_clusters": 300,
+      "draws": 2000,
+      "seed": 2026,
+      "scope": "whole-source resampling conditional on this trained checkpoint; not across-training-seed uncertainty"
+    },
+    "phase": "foundation",
+    "checkpoint_schema": "foundation_identity",
+    "configuration_tokenizer_binding": "verified_foundation_plan_id_and_strict_model_state_dict",
+    "split": "validation",
+    "kind": "general_text_next_token_perplexity",
+    "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+    "run": {
+      "id": "foundation-transformer-s0",
+      "kind": "transformer",
+      "seed": 0
+    },
+    "checkpoint_sha256": "30c5b6b8a8006f4ce1bc4a7d962adcbe0548b13eeb395daca1b8694647964c45",
+    "actual_parameters": 3681984,
+    "tokenizer_sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+    "general_corpus_sha256": "f1af895c66d7d689dfb794619cd6d91f658ce221ab29d0c27b71f9401556ffbc",
+    "encoded_manifest_sha256": "f2a2906f851139274ca38d46a056f64a205780c49ce04ba17791d80982196642",
+    "selection_sha256": null,
+    "implementation_sha256": "16fda9282bb124df4b0c3cbf3570f0a436b8cc5f3ad917b4110f909b357d7545",
+    "torch": "2.10.0+cu128",
+    "device": "cpu",
+    "gpu": null,
+    "mha_fastpath_enabled": false,
+    "inference_precision": "float64",
+    "inference_backend": "CPU_FP64_MHA_off_stable_token_ID_topk_v1",
+    "optimizer_updates": 0,
+    "weights_and_checkpoint_unchanged": true,
+    "temperature_or_topk_applied": false,
+    "EOS_supervised": true,
+    "state_reset_each_window": true,
+    "evaluation_seconds": 18.588861300000644,
+    "writing_or_logic_measured": false,
+    "metric_unit": "natural-log NLL per frozen BPE target, including EOS; not directly comparable across tokenizers",
+    "raw_report_sha256": "644a945cbd5322e6c6294eb2640f12bac4b260d018155d36ad2bcd431ced0739"
+  },
+  "paired_stage_retention": {
+    "utc": "2026-11-26T20:14:53.978083+00:00",
+    "purpose": "secondary paired stage-retention validation diagnostic",
+    "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+    "run": {
+      "id": "foundation-transformer-s0",
+      "kind": "transformer",
+      "seed": 0
+    },
+    "actual_parameters": 3681984,
+    "checkpoint_sha256": {
+      "pre_sft": "84ce54dc104013da04e98100b2654fa5bb122a24dcac275116b2a6751644b81c",
+      "post_sft": "30c5b6b8a8006f4ce1bc4a7d962adcbe0548b13eeb395daca1b8694647964c45"
+    },
+    "pre_training_targets": 80000000,
+    "post_training_targets": 100000000,
+    "post_minus_pre_nll_nats_per_target": 2.1823972059024146,
+    "paired_source_ci95": [
+      2.045994036211637,
+      2.31128173601491
+    ],
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 2026,
+    "uncertainty_scope": "source sampling conditional on this one initialization and its two observed stages; no matched continued-LM control or across-seed causal claim",
+    "split": "validation",
+    "targets_equal": true,
+    "EOS_supervised": true,
+    "device": "cpu",
+    "precision": "float64",
+    "inference_backend": "CPU_FP64_MHA_off_stable_token_ID_topk_v1",
+    "torch": "2.10.0+cu128",
+    "optimizer_updates": 0,
+    "test_access": false,
+    "tokenizer_sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+    "encoded_manifest_sha256": "f2a2906f851139274ca38d46a056f64a205780c49ce04ba17791d80982196642",
+    "implementation_sha256": "1608d1e58983b24fea39ea261ef1688d8e946f7e166a9fd9791ba8d6bb53fd12",
+    "language_eval_source_sha256": "16fda9282bb124df4b0c3cbf3570f0a436b8cc5f3ad917b4110f909b357d7545",
+    "writing_gate_changed": false,
+    "writing_or_logic_measured": false,
+    "stages": {
+      "pre_sft": {
+        "nll_nats_per_target": 2.241714569116179,
+        "perplexity": 9.409450618070608,
+        "perplexity_clipped": false,
+        "targets": 61573,
+        "windows": 300,
+        "sources": 300,
+        "uncertainty": {
+          "nll_ci95": [
+            2.195585268796058,
+            2.2864550227909604
+          ],
+          "perplexity_ci95": [
+            8.98525830952941,
+            9.839993227394025
+          ],
+          "perplexity_ci_clipped": false,
+          "source_clusters": 300,
+          "draws": 2000,
+          "seed": 2026,
+          "scope": "whole-source resampling conditional on this trained checkpoint; not across-training-seed uncertainty"
+        },
+        "evaluation_seconds": 17.972820099999808
+      },
+      "post_sft": {
+        "nll_nats_per_target": 4.424111775018596,
+        "perplexity": 83.43866199409597,
+        "perplexity_clipped": false,
+        "targets": 61573,
+        "windows": 300,
+        "sources": 300,
+        "uncertainty": {
+          "nll_ci95": [
+            4.290391207146755,
+            4.5570364378771275
+          ],
+          "perplexity_ci95": [
+            72.9950190878163,
+            95.30063157587014
+          ],
+          "perplexity_ci_clipped": false,
+          "source_clusters": 300,
+          "draws": 2000,
+          "seed": 2026,
+          "scope": "whole-source resampling conditional on this trained checkpoint; not across-training-seed uncertainty"
+        },
+        "evaluation_seconds": 15.271971300000587
+      }
+    },
+    "raw_report_sha256": "53be85fe9b74d4d9cf46c8773b8d6933b4924f0baa7a3a0458af46059c3f1f0e"
+  },
+  "secondary_reports_Drive_persistence": "local_verified_upload_pending"
+}
