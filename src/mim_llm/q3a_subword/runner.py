@@ -78,6 +78,9 @@ def execute(
     run = next((r for r in plan["runs"] if r["id"] == run_id), None)
     if run is None:
         raise ValueError("Unknown subword post run")
+    # Match the reviewed explicit inference path in diagnostic validation.
+    # Real post runs remain held; this does not modify the active foundation.
+    torch.backends.mha.set_fastpath_enabled(False)
     if device.startswith("cuda"):
         if not torch.cuda.is_available():
             raise ValueError("CUDA unavailable")
@@ -132,6 +135,7 @@ def execute(
         "run": run,
         "parent_sha256": parent["checkpoint_sha256"],
         "precision": "float32_TF32_disabled",
+        "mha_fastpath_enabled": False,
         "device_type": torch.device(device).type,
     }
     stats = {
@@ -168,6 +172,7 @@ def execute(
             "device": device,
             "gpu": torch.cuda.get_device_name() if device.startswith("cuda") else None,
             "soft_seconds_limit": seconds_limit,
+            "mha_fastpath_enabled": torch.backends.mha.get_fastpath_enabled(),
         },
     )
 

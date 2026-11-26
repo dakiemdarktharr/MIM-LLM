@@ -137,6 +137,15 @@ def test_parent_matrix_requires_seed_identity_completion_and_archive_audit(
     parents, models, _ = plan.resolve_parents(items, config)
     assert len(parents) == 6 and set(models) == {"mingru", "transformer"}
     assert {p["run"]["seed"] for p in parents.values()} == {0, 1, 2}
+    # Identical immutable tokenizer bytes may live at different local paths.
+    for i, foundation in enumerate(foundations.values()):
+        foundation["tokenizer"] = f"synthetic-copy-{i}"
+    assert len(plan.resolve_parents(items, config)[0]) == 6
+    one = next(iter(foundations.values()))
+    one["corpus_sha256"] = "different-synthetic-corpus"
+    with pytest.raises(ValueError, match="corpus/tokenizer/schedules"):
+        plan.resolve_parents(items, config)
+    one["corpus_sha256"] = "synthetic-corpus"
     with pytest.raises(ValueError, match="all six"):
         plan.resolve_parents(items[:-1], config)
     with pytest.raises(ValueError, match="Duplicate"):

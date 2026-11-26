@@ -28,6 +28,9 @@ def fingerprints():
         root / "q3a/data.py",
         root / "q3a/io.py",
         root / "q3a/objectives.py",
+        root / "q3a/runner.py",
+        root / "q3a/evaluate.py",
+        root / "q3a_reviewed_analysis.py",
     ]
     return {p.relative_to(root).as_posix(): source_sha256(p) for p in sorted(paths)}
 
@@ -144,16 +147,18 @@ def resolve_parents(items, config):
             raise ValueError("Backbone configuration/count differs between seeds")
         models[run["kind"]] = info
         compatibility = {
-            "tokenizer": foundation["tokenizer"],
             "tokenizer_spec": foundation["tokenizer_spec"],
             "corpus_sha256": foundation["corpus_sha256"],
             "stages": foundation["config"]["stages"],
         }
-        if common is not None and compatibility != common:
+        if common is not None and compatibility != {
+            k: common[k] for k in compatibility
+        }:
             raise ValueError(
                 "Foundation corpus/tokenizer/schedules differ across seeds"
             )
-        common = compatibility
+        if common is None:
+            common = {**compatibility, "tokenizer": foundation["tokenizer"]}
         parents[key] = {
             "foundation_plan": str(item["foundation_plan"]),
             "foundation_plan_sha256": sha256(item["foundation_plan"]),

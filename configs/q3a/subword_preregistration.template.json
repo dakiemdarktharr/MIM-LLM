@@ -1,0 +1,20 @@
+{
+  "status": "draft_not_registered",
+  "plan_id": null,
+  "primary_contrast": ["A1", "A2"],
+  "primary_metric": "mean_joint_pair_success_effective_and_noop",
+  "smallest_useful_effect": null,
+  "gpu_hours_cap_per_study": null,
+  "test_results_used": false,
+  "test_source_ids": [],
+  "test_arms": ["A0", "A1", "A2", "A3"],
+  "analysis_version": "q3a-subword-reviewed-quality-1",
+  "analysis_source_sha256": null,
+  "quality_aggregation": "mean_of_two_readers_unless_explicitly_adjudicated",
+  "complete_source_seed_grid_required": true,
+  "sample_method_and_rationale": "Declare a complete-source sample before generating any final-test continuations.",
+  "two_independent_readers_planned": false,
+  "available_real_readers": 1,
+  "independent_second_reader_confirmed": false,
+  "naturalistic_transfer_manifest": null
+}

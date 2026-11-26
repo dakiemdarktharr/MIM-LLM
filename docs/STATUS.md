@@ -2,16 +2,17 @@
 
 # Evidence-backed manuscript status
 
-> **Latest observed state, 27 November 2026:** Driver 4 independently verifies
-> 70,895,155 Transformer LM targets / 79,554 updates; SFT and minGRU remain at
-> zero. The default MHA inference fastpath discrepancy was isolated. With it
-> disabled, same-weight FP64, probability and nonupdating gradient checks
-> support the [disclosed backend decision](Q3_A_BACKEND_REVIEW_20261127.vi.md).
-> Original strict FP32 logit failures remain failed. Driver 5 is running using
-> the same restored T4/Drive mount, immutable c18 learning plan and resource cap.
-> This is engineering feasibility, not a writing or primary-contrast result.
-> Both completed parents, writing review and all primary post runs are pending.
-> No human labels, final-test results, LaTeX build or publication milestones.
+> **Latest observed state, 27 November 2026:** Driver 5 independently verifies
+> the Transformer's 80M LM + 2,785,836 SFT targets / 107,402 updates. minGRU has
+> not started. The prospective numerical contract is met without changing its
+> bound; driver 6 is active on the retained T4/Drive mount. These are language
+> foundation and engineering measurements, not writing or primary effects.
+> Subword generation/selection/blinding/analysis adapters are prepared, while
+> six complete seed-matched parents, writing review, measured study resources,
+> human labels, general-text PPL adapter and transfer evidence are pending.
+> No final test, LaTeX build or publication milestone. See the
+> [driver 5 audit](Q3_A_FOUNDATION_INVOCATION5_20261127.vi.md) and
+> [evaluation adapter](Q3_A_SUBWORD_EVALUATION_20261127.vi.md).
 
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile
 labels are internal planning targets, not editorial outcomes.
