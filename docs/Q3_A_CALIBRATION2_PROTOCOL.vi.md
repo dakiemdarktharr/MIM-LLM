@@ -79,3 +79,12 @@ Plan ID:
 Bundle hash được ghi trong `configs/q3a/calibration2_receipt.json` sau export,
 trước optimizer; receipt nằm ngoài bundle để không tạo vòng tự băm.
 Không compile LaTeX trong calibration; chưa có primary results/nhãn người.
+
+## Đính chính thời gian sau lượt 1, không đổi input snapshot
+
+Lượt 1: inner driver thực tế 1.108,341 giây so với `--wall-seconds 1100`;
+wrapper quan sát 1.115,721 giây, gồm khởi động/kết thúc. Tham số này là
+**soft wall cap**, kiểm tra giữa các bước/chặng; validation/checkpoint sync đang
+thực hiện có thể kéo dài thêm. Không gọi 3.300 giây là hard cap thời gian thuê
+GPU hay hóa đơn CU. **Số lượt tối đa ba** vẫn bị chặn bằng ledger. Giữ nguyên
+protocol/source bundle đã dùng trên Drive; ghi rõ correction này sau đo.

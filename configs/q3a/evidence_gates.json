@@ -16,9 +16,10 @@
       "status": "partially_evidenced",
       "evidence": [
         "docs/SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md",
-        "docs/NOVELTY_AUDIT_V3.vi.md"
+        "docs/NOVELTY_AUDIT_V3.vi.md",
+        "docs/Q3_A_CSR_COMPARISON_20261126.vi.md"
       ],
-      "remaining": "Incremental insight and transfer beyond clock templates must follow real experiments; no novelty certificate."
+      "remaining": "CSR primary source selectively read; no first counterfactual-training claim. Writing feasibility, possible sensitivity component baseline and incremental insight/transfer must be assessed before post-training."
     },
     {
       "id": "engineering_checks",
@@ -42,8 +43,16 @@
       ],
       "completed_warmup_targets": 10000000,
       "completed_post_runs": 0,
-      "new_calibration_started": false,
-      "full_matrix_expansion_held": true
+      "new_calibration_started": true,
+      "full_matrix_expansion_held": true,
+      "calibration2_targets": {
+        "warmup-transformer-s0": 50000000,
+        "warmup-mingru-s0": 17865693
+      },
+      "calibration2_complete_run_ids": [
+        "warmup-transformer-s0"
+      ],
+      "calibration2_completed_post_runs": 0
     },
     {
       "id": "drive_persistence",
@@ -61,7 +70,15 @@
       "archive_sha256": "3e9a2631cd851d873fc9a4917c7fa7857fbe89922f92faf8fb32c38c7303b8fe",
       "cloud_archive_bytes": 46329484,
       "cloud_archive_files_verified": 27,
-      "total_verified_step_metric_rows": 8800
+      "total_verified_step_metric_rows": 8800,
+      "calibration2_first_archive": {
+        "sha256": "91c4c0ad8ce8e691fa35e388ef8504c66d984430688af4369d072501ca144903",
+        "bytes": 49863769,
+        "members_verified": 25,
+        "metric_rows_verified": 55213,
+        "transformer_final_sha256": "5db4e8d81ef58138a80268128c3414e45a354d7d1c3c2e80e8c5039a776316da",
+        "mingru_partial_latest_sha256": "58fd2d2ebc7c8956138a0eec83a3972be4fc2ff2a8e0daf378c263b8f9855527"
+      }
     },
     {
       "id": "resource_budget",
@@ -79,7 +96,13 @@
       "warmup_driver_elapsed_seconds": 296.442831549,
       "initial_GPU_runtime_disconnected": true,
       "CU_before_GPU_work": 599.49,
-      "CU_balance_context": "Last UI observation before 2026-11-26T09:15:42Z disconnect; not a final bill or a live balance"
+      "CU_balance_context": "Last UI observation before 2026-11-26T09:15:42Z disconnect; not a final bill or a live balance",
+      "calibration2_first_driver_observed_seconds": 1115.7208894310002,
+      "calibration2_inner_driver_elapsed_seconds": 1108.34128668,
+      "calibration2_UI_GPU": "NVIDIA L4",
+      "calibration2_UI_CU_per_hour": 2.33,
+      "calibration2_UI_CU_before_first": 599.14,
+      "calibration2_actual_total_debit": null
     },
     {
       "id": "writing_feasibility",
@@ -206,5 +229,5 @@
   "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
   "active_calibration_bundle_sha256": "e384dafcd2df61d970db3bb8b7afc451f9e0e05eb68757939409060b9eb7080c",
   "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md",
-  "active_calibration_resource_amendment": "T4 allocation unavailable; L4 allowed only with observed rate<=6CU/h and >=10CU, same GPU class for both new warmups; not allocated/started yet"
+  "active_calibration_resource_amendment": "Observed NVIDIA L4, mandatory High-RAM, UI2.33CU/h and599.14CU before first run; first driver finished, archive downloaded and25hashes verified; next bounded resume pending."
 }
