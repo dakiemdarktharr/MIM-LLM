@@ -73,6 +73,21 @@ def test_blank_and_partial_ratings_remain_pending(tmp_path, monkeypatch):
     assert all(r["screen_passed"] is None for r in result["by_run"].values())
 
 
+@pytest.mark.parametrize("replace_receipt_hash", [False, True])
+def test_replaced_display_text_rejected_even_when_hash_is_updated(
+    tmp_path, monkeypatch, replace_receipt_hash
+):
+    args = setup_screen(tmp_path, monkeypatch)
+    readable = args[2] / "reader-packet.md"
+    readable.write_text("Replaced text is not a real generation.", encoding="utf-8")
+    if replace_receipt_hash:
+        receipt = read_json(args[2] / "receipt.json")
+        receipt["reader_markdown_sha256"] = sha256(readable)
+        write_json(args[2] / "receipt.json", receipt, replace=True)
+    with pytest.raises(ValueError, match="Displayed Markdown"):
+        decision.decide(*args)
+
+
 def test_unconditional_failure_is_not_rescued_by_conditional_ratings(
     tmp_path, monkeypatch
 ):

@@ -1,5 +1,10 @@
 # Tổng hợp phiếu feasibility — 27/11/2026
 
+> Cập nhật sau khi hai parent seed 0 hoàn tất: đã sinh đủ 34 mẫu FP64 thật;
+> chưa có nhãn người thật, kết luận vẫn pending. Các đoạn chuẩn bị bên dưới
+> được giữ như lịch sử trước khi sinh mẫu. Bản Markdown đọc được và kiểm tra
+> binding được bổ sung trước khi tạo packet thật, không thay rule đã chốt.
+
 Đây là công cụ chuẩn bị trước khi sinh panel subword, không phải đánh giá đã
 thu thập. Hiện chưa có output panel mới hoặc nhãn người thật. Quy tắc đã chốt
 trước đó trong `configs/q3a/foundation_writing_rule.json`, SHA256
@@ -43,3 +48,21 @@ và lặp output dù có nhãn dương. Tất cả fixture nằm trong thư mụ
 ghi rõ giả lập; chúng không phải scientific observations. Ruff đạt. Không có
 optimizer, tokenizer fit, test release hoặc compiler. Không sửa source thuộc
 fingerprint c18; post plan tương lai phải dùng snapshot source cuối mới.
+
+## Bản hiển thị cho người đọc
+
+Packet presentation version 2 thêm `reader-packet.md` từ đúng `packet.jsonl`,
+cùng thứ tự xáo trộn và ẩn run ID. Không thay, bổ sung hoặc điền hộ continuation
+rỗng. Nội dung đặt trong code fence dài hơn mọi chuỗi backtick của đoạn sinh
+để Markdown do model viết không biến thành tiêu đề/mục khác của phiếu.
+
+Receipt ghi hash Markdown. `bound_packet` kiểm cả hash lẫn nội dung tái render
+từ JSON đã bind với output gốc; đổi nội dung rồi cập nhật receipt hash vẫn bị
+từ chối. Như vậy người đọc có bản dễ mở trong Obsidian/Markdown viewer và vẫn
+giữ kiểm tra đối chiếu văn bản. CSV giữ nguyên cột và chưa điền nhãn.
+
+17 tests packet/decision đạt, gồm kiểm tra fence/rỗng và hai trường hợp sửa
+bản hiển thị có/không sửa receipt hash; Ruff đạt sau khi sửa lỗi style
+implicit-concatenation. Fixture test là dữ liệu giả lập riêng, không phải
+34 output thật hoặc đánh giá người. Không thay generation source, tokenizer,
+weights, decoding, rule/hash hoặc nguồn c18 đang được kiểm chứng.

@@ -12,7 +12,7 @@ from collections import Counter
 from pathlib import Path
 
 from ..q3a.io import read_json, read_rows, sha256, source_sha256
-from .writing_packet import FIELDS, checked_samples
+from .writing_packet import FIELDS, checked_samples, reader_markdown
 
 RULE_SHA256 = "590471e3dc722b083e95473c6b3648b18aab7abf0c5746ad1e5d6358d4da7910"
 BINARY = (
@@ -44,6 +44,14 @@ def bound_packet(directory, manifest, packet_directory):
         or len(key) != 34
     ):
         raise ValueError("Packet differs from the original complete review")
+    readable = root / "reader-packet.md"
+    if (
+        receipt.get("presentation_version") != 2
+        or not readable.is_file()
+        or receipt.get("reader_markdown_sha256") != sha256(readable)
+        or readable.read_text(encoding="utf-8") != reader_markdown(public)
+    ):
+        raise ValueError("Displayed Markdown differs from original blinded packet")
     observed = {r["item_id"]: r for r in public}
     keys = {r["item_id"]: r for r in key}
     if len(observed) != 34 or len(keys) != 34 or set(observed) != set(keys):

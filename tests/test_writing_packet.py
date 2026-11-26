@@ -14,7 +14,7 @@ from mim_llm.q3a.io import (
     write_rows,
 )
 from mim_llm.q3a_subword import inference
-from mim_llm.q3a_subword.writing_packet import make_packet
+from mim_llm.q3a_subword.writing_packet import make_packet, reader_markdown
 
 
 def fixture_panel(tmp_path, *, corrupt=False):
@@ -98,6 +98,11 @@ def test_writing_packet_hides_run_ids_and_prefills_no_labels(tmp_path):
     assert result["real_labels_collected"] == 0
     assert result["independent_reader_validation"] is False
     assert read_json(output / "receipt.json")["writing_gate_passed"] is None
+    readable = (output / "reader-packet.md").read_text(encoding="utf-8")
+    assert readable == reader_markdown(packet)
+    assert (
+        "foundation-mingru" not in readable and "foundation-transformer" not in readable
+    )
     with (output / "reader-author.csv").open(newline="", encoding="utf-8") as f:
         labels = list(csv.DictReader(f))
     assert all(
@@ -106,6 +111,22 @@ def test_writing_packet_hides_run_ids_and_prefills_no_labels(tmp_path):
     )
     with pytest.raises(FileExistsError):
         make_packet(directory, manifest, output)
+
+
+def test_readable_packet_keeps_empty_text_and_generated_fences_as_data():
+    text = "Synthetic output.\n```\n## Not a new packet item\n```"
+    rendered = reader_markdown(
+        [
+            {
+                "item_id": "item-0000",
+                "prompt": "Synthetic prefix.",
+                "continuation": text,
+            },
+            {"item_id": "item-0001", "prompt": "Another prefix.", "continuation": ""},
+        ]
+    )
+    assert f"````text\n{text}\n````" in rendered
+    assert "**Continuation**\n\n```text\n\n```" in rendered
 
 
 def test_valid_hashes_do_not_allow_replaced_review_prompt(tmp_path):

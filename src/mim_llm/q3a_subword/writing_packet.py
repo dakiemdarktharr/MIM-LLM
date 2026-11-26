@@ -6,6 +6,7 @@ collects real labels nor establishes independent/inter-rater validation.
 
 import csv
 import random
+import re
 from pathlib import Path
 
 from ..q3a.io import (
@@ -31,6 +32,29 @@ FIELDS = (
     "evidence",
     "elapsed_seconds",
 )
+
+
+def reader_markdown(rows):
+    """Show exact blinded text without treating generated Markdown as markup."""
+    parts = [
+        "# Foundation writing: blinded author-reader packet\n\n",
+        (
+            "Read each prompt and continuation, then fill reader-author.csv. "
+            "Empty outputs remain empty. Keep PRIVATE-key.jsonl closed until "
+            "ratings are saved. No human ratings are prefilled.\n\n"
+        ),
+    ]
+    for row in rows:
+        if not re.fullmatch(r"item-\d{4}", row["item_id"]):
+            raise ValueError("Unexpected blinded item identifier")
+        parts.append(f"## {row['item_id']}\n\n")
+        for field, title in (("prompt", "Prompt"), ("continuation", "Continuation")):
+            text = row[field]
+            fence = "`" * max(
+                3, 1 + max((len(s) for s in re.findall(r"`+", text)), default=0)
+            )
+            parts.append(f"**{title}**\n\n{fence}text\n{text}\n{fence}\n\n")
+    return "".join(parts)
 
 
 def checked_samples(directory, manifest):
@@ -130,6 +154,9 @@ def make_packet(directory, manifest, output, *, seed=2026):
     output.mkdir(parents=True)
     write_rows(output / "packet.jsonl", public)
     write_rows(output / "PRIVATE-key.jsonl", key)
+    (output / "reader-packet.md").write_text(
+        reader_markdown(public), encoding="utf-8", newline="\n"
+    )
     with (output / "reader-author.csv").open(
         "x", encoding="utf-8", newline=""
     ) as handle:
@@ -166,6 +193,8 @@ def make_packet(directory, manifest, output, *, seed=2026):
         "review_id": review["review_id"],
         "source_samples_sha256": sha256(Path(directory) / "samples.jsonl"),
         "packet_sha256": sha256(output / "packet.jsonl"),
+        "presentation_version": 2,
+        "reader_markdown_sha256": sha256(output / "reader-packet.md"),
         "real_labels_collected": 0,
         "reader_count_available": 1,
         "independent_reader_validation": False,
