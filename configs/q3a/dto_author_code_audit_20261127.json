@@ -1,0 +1,160 @@
+{
+  "utc": "2026-11-26T22:06:03.038202+00:00",
+  "purpose": "pinned primary-source reading and scalar mathematical check, not upstream reproduction",
+  "repository": "https://github.com/amelie-girard7/TimeTravel-DifferentiableMetrics",
+  "revision": "a8a6d049d1128d99f5cb1873bcee93ef1075d526",
+  "tree": "29a9be53f113eb46ec7f9a392024b446418b7dd2",
+  "commit_date": "2025-07-23T04:16:14Z",
+  "tree_truncated": false,
+  "paper_link_evidence": "https://arxiv.org/html/2605.24885v1#S1",
+  "files": [
+    {
+      "path": "README.md",
+      "sha": "570f0f6a1fd81f62ccbfc8186270fba8d432ae1c",
+      "bytes": 3298,
+      "sha256": "269d3b7d7fa0a3807a03e51d06dea0f083cca3be4d15f05234becbb1fbc2ab14"
+    },
+    {
+      "path": "LICENSE",
+      "sha": "dca709a2c8d7884acb87e926af059ee261586fef",
+      "bytes": 1070,
+      "sha256": "378051d2de09fc4f799b671a13859f4602330084ffa7949df597471330bcfeec"
+    },
+    {
+      "path": "src/dto/models/model.py",
+      "sha": "d2a553ca24b2c2eb437be07794c51e44579e643a",
+      "bytes": 18705,
+      "sha256": "6933cb7f08013b745cdb628593353fabb00f38dc35eb74ca2a7c6ed28577596a"
+    },
+    {
+      "path": "src/dto/train_dto.py",
+      "sha": "db171f64a1c4279c02d353d7d0584c600f942339",
+      "bytes": 11352,
+      "sha256": "01689d38dc6e94a41fa0a1bef3fda1c4c3d2de1c547d7579b772fdc692011faf"
+    },
+    {
+      "path": "src/dto/utils/config.py",
+      "sha": "0dace614056718eb1ab55c710abd3f6b793b2f78",
+      "bytes": 4160,
+      "sha256": "b307d642a26f7d4d6a5aca05f59d562644958dbc51cf566eb8e8b94d51a44944"
+    },
+    {
+      "path": "src/dto/utils/metrics.py",
+      "sha": "3bb4cc2646ac5cdec935dc52f4e243978d0a1754",
+      "bytes": 10792,
+      "sha256": "1b4ad03c8d3896385f44f1b2ecd7ce5cc78f934c20abfac9255907a1bbee50e7"
+    },
+    {
+      "path": "src/dto/data_loader.py",
+      "sha": "871f12ee2c6eb3243ca032cb3405eb8ee892abc0",
+      "bytes": 3850,
+      "sha256": "3c3a6c0162aface8ab9a7e88f71523ebd4ddaa22922909d75d080052c2478963"
+    },
+    {
+      "path": "src/BARTScore_metric/bart_score.py",
+      "sha": "76ad12453ad1fd290ecabbcf777bc6be96973564",
+      "bytes": 12836,
+      "sha256": "325138bce2bda3897b87188cfb9981add3759c8cab742be68d5c334aabaaac18"
+    },
+    {
+      "path": "src/BARTScore_metric/LICENSE",
+      "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "src/dto/utils/utils.py",
+      "sha": "00459b18c86bfc847a6baaf604e9da3f4fe3d7fb",
+      "bytes": 5855,
+      "sha256": "a30129a8b3580e3afa8d5fc1dc5fc52e429736dc191c857d92528e7f178ef99f"
+    },
+    {
+      "path": "src/dto/calculate-metrics_dto.py",
+      "sha": "b0614d6e8ce65ba8be502b33002478570e3e2dd9",
+      "bytes": 4080,
+      "sha256": "5dd0a30f003d987891dbcdfda56097421124ef71777452be427ecd31d508a5be"
+    },
+    {
+      "path": "src/dto/calculate_metric_line.py",
+      "sha": "800a037d954bf960ed911468c2534a7f2e98b0a3",
+      "bytes": 3601,
+      "sha256": "b6d057320e390deff52ba6f1e0829f671d62fa17fcdbe59130e1c6a7716cf587"
+    }
+  ],
+  "root_license": "MIT",
+  "vendored_BARTScore_license": "Apache-2.0",
+  "static_findings": {
+    "loss": {
+      "path": "src/dto/models/model.py",
+      "lines": [
+        108,
+        129
+      ],
+      "returned_expression": "-score_edited.mean()",
+      "original_score_computed_but_not_loaded_into_final_loss": true,
+      "interpretation": "score-only path consistent with DTO-Score/Eq6; not proof of all paper variants"
+    },
+    "gumbel": {
+      "path": "src/dto/models/model.py",
+      "lines": [
+        78,
+        106
+      ],
+      "temperature_argument": "CONFIG['gumbel_temperature']"
+    },
+    "scorer": {
+      "path": "src/BARTScore_metric/bart_score.py",
+      "lines": [
+        116,
+        292
+      ],
+      "training_score_clamp": [
+        -3.0,
+        -0.5
+      ],
+      "encoder_mask_created_as_all_ones": true,
+      "training_uses_gradient_enabled_input_embeddings": true,
+      "scorer_parameters_frozen_in_MetricsEvaluator": true
+    }
+  },
+  "synthetic_scalar_formula_check": {
+    "raw_scores": [
+      -4.0,
+      -2.0,
+      -0.25
+    ],
+    "clipped_scores": [
+      -3.0,
+      -2.0,
+      -0.5
+    ],
+    "loss_gradient": [
+      0.0,
+      -1.0,
+      0.0
+    ],
+    "scope": "own scalar clamp formula only; no BART, dataset or scientific quality measurement"
+  },
+  "related_journal_article": {
+    "DOI": "10.1145/3785019",
+    "Undermind_cite_key": "Gir26b",
+    "full_text_available_via_Undermind": false,
+    "official_institution_metadata": "https://profiles.uts.edu.au/Inigo.JauregiUnanue/publications",
+    "institution_display_date": "2026-03-06",
+    "Undermind_display_date": "2026-02-10",
+    "read_scope": "metadata and abstract only; no objective equations or results verified from full text"
+  },
+  "upstream_software_imported_or_executed": false,
+  "downloaded_weights_or_datasets": false,
+  "optimizer_updates": 0,
+  "new_model_generations": 0,
+  "human_labels": 0,
+  "primary_test_access": false,
+  "training_plan_changed": false,
+  "limitations": [
+    "Static source snapshot does not identify the exact artifact used for each published table.",
+    "No upstream runtime reproduction, gradient measurement in BART or hardware profiling was performed.",
+    "Code-only or scale differences do not establish new scientific contributions for Q3-A."
+  ],
+  "audit_implementation_sha256": "1655b5bdf5ecd4070bae1c3deb3f0c9c7131c4106ac2fd037c0fc81237412285"
+}

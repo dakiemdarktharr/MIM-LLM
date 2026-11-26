@@ -42,3 +42,23 @@ lỗi số học, không tạo thêm novelty khoa học.
 
 Không đổi source/data/plan của foundation đang chạy, không thêm arm/optimizer,
 không chọn test hoặc viết manuscript có kết quả trong lượt tra này.
+
+## Bổ sung sau khi foundation seed 0 hoàn tất
+
+Đã lookup DOI bài journal qua Undermind (`Gir26b`), kiểm thêm metadata cơ quan
+UTS và thử nguồn publisher. Undermind không có PDF; public PDF endpoint trả
+403 và browser dừng ở security verification. Không giải/bypass challenge;
+phạm vi đọc bài journal vẫn metadata/abstract.
+
+Footnote của preprint DTO dẫn tới repo tác giả. Đã đọc source có pin, kiểm
+12 file/90.956 bytes với Git blob SHA1 và SHA256, không chạy/import upstream
+code hoặc tải weights/data. Snapshot triển khai đường DTO-Score có clamp,
+không phải bằng chứng đã tái lập cả ba biến thể hoặc từng bảng trong paper.
+Chi tiết về source scope, gradient qua frozen scorer, vocabulary/mask/cost và
+quyết định giữ A1−A2 tại [audit code tác giả](Q3_A_DTO_AUTHOR_CODE_AUDIT_20261127.vi.md).
+Receipt: `configs/q3a/dto_author_code_audit_20261127.json`.
+
+Đây là tiến bộ về đối chiếu phương pháp, chưa hạ mức rủi ro novelty hoặc thay
+thế transfer/primary/human evidence. Nguồn LaTeX đã cập nhật trạng thái thật
+của pilot và kết quả validation âm; không compile hoặc nhận là manuscript
+hoàn chỉnh có kết quả chính.

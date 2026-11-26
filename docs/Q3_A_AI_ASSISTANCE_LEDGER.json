@@ -4,7 +4,7 @@
   "tool": "OpenAI Codex desktop",
   "exact_application_version": "26.1120.6357.0",
   "exact_model_identifier": null,
-  "version_note": "Application package version verified locally; exact AI model identifier is not exposed/recorded here. Do not confuse the installed primary runtime package with the model version.",
+  "version_note": "OpenAI.Codex application version 26.1120.6357.0 rechecked locally on 27 November 2026. Separate installed PrimaryRuntime packages 26.1112.611.0 and 26.1123.915.0 are not model identifiers. The exact underlying model ID remains unrecorded; do not infer it from package names.",
   "uses": [
     "research search/synthesis assistance",
     "experimental design and criticism",
@@ -28,14 +28,39 @@
   "recent_activity": {
     "date": "2026-11-27",
     "uses": [
-      "subword methods draft reconciled with actual code/config and source scope",
-      "evidence board corrected from stale byte preparation",
-      "hardware query and metadata audit"
+      "pinned author-code reading, source-hash verification and own scalar-clamp derivative check",
+      "comparison with accessible DTO sections and separately identified TALLIP metadata/abstract",
+      "methods source synchronized with completed seed-zero parents, availability of 34 real samples and negative validation retention"
     ],
+    "audit_evidence": "configs/q3a/dto_author_code_audit_20261127.json",
     "human_labels_created": 0,
     "primary_results_created": false,
     "proprietary_Turnitout_engine_used": false,
     "compilation_performed": false,
+    "upstream_software_imported_or_executed": false,
     "model_identifier_still_unrecorded": true
-  }
+  },
+  "activity_history": [
+    {
+      "date": "2026-11-27",
+      "uses": [
+        "subword methods draft reconciled with actual code/config and source scope",
+        "evidence board corrected from stale byte preparation",
+        "hardware query and metadata audit"
+      ],
+      "human_labels_created": 0,
+      "primary_results_created": false,
+      "proprietary_Turnitout_engine_used": false,
+      "compilation_performed": false,
+      "model_identifier_still_unrecorded": true
+    }
+  ],
+  "application_version_verified_on": "2026-11-27",
+  "external_research_tools": [
+    {
+      "name": "Undermind",
+      "exact_version": null,
+      "purpose": "exact DOI lookup, metadata and OA PDF availability; no PDF-reading subagent used"
+    }
+  ]
 }

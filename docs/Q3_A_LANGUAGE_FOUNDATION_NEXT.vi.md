@@ -1,5 +1,12 @@
 # Q3-A — công việc kế tiếp sau writing gate thất bại
 
+> Cập nhật 27/11: phương án subword c18 đã hoàn tất cả hai parent seed 0
+> (80M LM + 20M SFT mỗi model), được audit độc lập và đã sinh 34 mẫu thật.
+> CSV tác giả vẫn trống; xem [audit cuối](Q3_A_FOUNDATION_INVOCATION13_20261127.vi.md).
+> Các bước chuẩn bị ngày 26/11 dưới đây là lịch sử, không phải lệnh chạy lại.
+> Bước hiện hành là nhãn người thật và review evidence trước khi mở rộng;
+> không fit tokenizer, đổi ngưỡng hoặc train lại để tìm kết quả thuận chiều.
+
 26/11/2026. Đây là hàng đợi chuẩn bị, **chưa phải run plan hay lệnh train**.
 Calibration2 đủ 3/3 lượt; không thêm lượt thứ tư hoặc chạy A0–A3 theo plan cũ.
 

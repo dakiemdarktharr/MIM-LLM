@@ -22,9 +22,11 @@
         "docs/NOVELTY_AUDIT_V3.vi.md",
         "docs/Q3_A_CSR_COMPARISON_20261126.vi.md",
         "docs/Q3_A_TARGETED_NOVELTY_UPDATE_20261127.vi.md",
-        "docs/Q3_A_SUBWORD_EVALUATION_20261127.vi.md"
+        "docs/Q3_A_SUBWORD_EVALUATION_20261127.vi.md",
+        "docs/Q3_A_DTO_AUTHOR_CODE_AUDIT_20261127.vi.md",
+        "configs/q3a/dto_author_code_audit_20261127.json"
       ],
-      "remaining": "Incremental insight/transfer and sensitivity baseline decision still pending. Current generator excludes exact deadline equality and multiple blockers; limit claims or register a separate challenge before post training. No first story/invariance/JS claim."
+      "remaining": "Incremental insight, naturalistic transfer and final sensitivity-baseline decision remain pending. Pinned DTO source now inspected as score-only component; no full reproduction or new algorithm claim. TALLIP full methods unavailable. Existing generator boundary/multiple-blocker support remains limited; limit claims or prospectively register a separate challenge before post training."
     },
     {
       "id": "engineering_checks",
@@ -220,12 +222,14 @@
     },
     {
       "id": "manuscript",
-      "status": "English_subword_methods_source_updated_uncompiled_no_primary_results",
+      "status": "English_source_synced_with_secondary_pilot_facts_primary_incomplete_uncompiled",
       "drafted_with_results": false,
       "submitted": false,
       "accepted": false,
       "published": false,
-      "methods_source": "papers/q3_a_temporal_benchmark/main.tex"
+      "methods_source": "papers/q3_a_temporal_benchmark/main.tex",
+      "contains_actual_secondary_pilot_observations": true,
+      "drafted_with_results_scope": "completed primary-results manuscript; secondary pilot paragraphs do not satisfy milestone"
     },
     {
       "id": "journal",
@@ -524,7 +528,7 @@
     "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
   },
   "blocked_audit": {
-    "state": "progress_foundation_complete_human_feasibility_request_pending",
+    "state": "progress_primary_source_audit_and_manuscript_sync_human_ratings_still_pending",
     "last_goal_turn": "progress",
     "manual_access_blocker_resolved": true,
     "objective_complete": false,

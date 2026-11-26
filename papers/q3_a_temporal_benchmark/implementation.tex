@@ -100,8 +100,10 @@ targets to $10^{-3}$ and decays by a cosine schedule to $10^{-4}$.
 SFT starts with fresh optimizer moments, warms up over 0.1M targets to
 $3\cdot10^{-4}$ and decays to $3\cdot10^{-5}$. These budgets are exposure
 counts per model, not numbers of unique stories. Both seed-zero foundations
-must actually finish before the fixed writing review; they are not yet two
-complete parents at this draft's preparation stage.
+have now completed their declared schedule, with 216,366 updates and
+113,197,507 input tokens each. Final and latest model tensors, identities and
+statistics were checked equal; byte hashes may differ because of serialization.
+This completes two of the six planned parents, not the primary study.
 
 The proposed post-training design has four conditions, two backbones and three
 training seeds: 24 exact-budget runs of 2M response targets, or 48M post targets.
@@ -175,8 +177,10 @@ identical conditional outputs may exceed four after NFKC, casefolding and
 whitespace normalization; raw outputs remain unchanged.
 This is a descriptive engineering choice, not a validated population cutoff.
 It uses the one available author-reader with limited model-ID blinding;
-no independent human-validation claim follows from it. No new panel ratings
-exist at this preparation stage.
+no independent human-validation claim follows from it. All 34 fixed FP64
+outputs now exist: no empty or capped sample was observed, all emitted EOS,
+and each backbone produced 16 distinct conditional outputs. These counts do
+not establish format, fluency or consistency. No real panel ratings exist yet.
 
 Final-test release requires all 24 complete post checkpoints, a fixed decoding
 policy, reviewed writing/validation evidence and a hash-bound local analysis
@@ -216,6 +220,15 @@ EOS. Multiple reset windows are summed within a story before 2,000 whole-source
 bootstrap draws (seed 2026). PPL is not compared across tokenizers and is not a
 logic or fluency judgment. General test text remains behind the registered
 selection; foundation feasibility uses validation only.
+
+As a secondary development diagnostic, the same 300 validation stories and
+61,573 targets were scored at the 80M LM boundary and the completed 100M
+parent. Transformer PPL increased from 9.40945 to 83.43866; minGRU PPL increased
+from 11.56888 to 125.21978. These negative likelihood changes are retained.
+The comparison is conditional on one training seed and lacks a budget-matched
+continued-LM control; it does not identify a cause or measure free-generation
+fluency. It neither substitutes response-only validation PPL for general PPL
+nor licenses selecting a different parent after observing the outcome.
 
 Human-authored transfer remains unresolved. Natural Stories and FairytaleQA
 are candidate sources, not completed transfer datasets. FairytaleQA's pinned

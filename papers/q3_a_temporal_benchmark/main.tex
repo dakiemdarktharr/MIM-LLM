@@ -1,9 +1,10 @@
 \documentclass[11pt,a4paper]{article}
 \input{../shared/preamble}
 \renewcommand{\projectstatus}{\begin{quote}\small\textbf{Methods draft,
-27 November 2026.} Bounded language-foundation training is in progress.
-Controlled post-training, real human annotation and primary evaluation remain
-pending. This source has not been compiled during the experimental evidence
+27 November 2026.} Both seed-zero language-foundation parents are complete;
+the fixed 34 writing samples await real author ratings. Further seeds,
+controlled post-training and primary evaluation remain pending.
+This source has not been compiled during the experimental evidence
 hold; no test effect or editorial outcome is implied.\end{quote}}
 \title{Learning When Premise Changes Preserve Narrative Consequences}
 \author{}
@@ -27,6 +28,10 @@ and conclusions after registered evaluation. No improvement is claimed.}
 Counterfactual story rewriting is established in TIME TRAVEL~\cite{timetravel};
 PASTA includes story revision under counterfactual participant states~\cite{pasta}.
 DTO optimizes rewriting through a differentiable objective~\cite{dto}.
+Task-specific objectives and evaluation metrics for counterfactual rewriting
+are also studied by Girard et al.~\cite{girard_tallip}.
+\pending{The journal article has been checked at metadata/abstract level;
+obtain its full methods before making a method-level novelty comparison.}
 Counterfactual-invariance alignment uses matched prompts and a group-level
 policy-gradient reward~\cite{cfi}. CSR studies verifier-approved trace edits and
 reports target accuracy, coverage and null-edit preservation alongside
