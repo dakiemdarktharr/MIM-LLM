@@ -110,3 +110,14 @@ không tự mở driver kế tiếp. Writing panel vẫn chờ cả hai parent10
 tác giả thật theo rule đã chốt. Chỉ một người đọc hiện có, chưa xác nhận độc lập.
 Post/seed mở rộng, transfer, primary test, manuscript có kết quả và LaTeX vẫn
 chưa hoàn thành; không có mốc submitted/accepted/published.
+
+
+## Secondary Drive reports: resolved
+
+The52,667byte private bundle was directly uploaded and independently read back
+with the Drive connector. Exact ZIP SHA
+2fa9e3c7b21ea6771994666f6495a17367d94c90bd767c0f5b1827f7a6d9bd23
+and all16members match the manifest. Code snapshot
+822be6d97985d56951faed0c51e0717700d3203c is included. Private parent/shared=false
+were verified; no new grant, credential storage or permission change. Earlier
+local-only status is historical; the secondary reports are now on Drive.

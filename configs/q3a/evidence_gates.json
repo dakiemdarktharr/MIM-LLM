@@ -78,13 +78,13 @@
       "evidence": [
         "docs/Q3_A_FOUNDATION_INVOCATION9_20261127.vi.md"
       ],
-      "secondary_read_only_reports": "local_verified_upload_pending"
+      "secondary_read_only_reports": "independent_connector_upload_and_exact_raw_readback_16_member_hashes"
     },
     {
       "id": "resource_budget",
       "status": "foundation_cap_measured_partial_study_cap_pending",
       "current_GPU": "Tesla T4",
-      "last_observed_UI_CU_balance": 588.69,
+      "last_observed_UI_CU_balance": 588.22,
       "last_observed_UI_CU_per_hour": 1.87,
       "foundation_anchor_CU": 597.61,
       "foundation_observed_drop_cap_CU": 16,
@@ -225,7 +225,7 @@
     }
   ],
   "completion_rule": "Every requirement needs authoritative evidence covering its scope; the board itself cannot prove completion.",
-  "current_next_action": "Persist secondary Windows CPU validation reports on Drive; monitor driver10/Cell38 and Cell39. Audit changed minGRU weights and terminal archive before next driver. Both100Mparents and34genuine author ratings precede expansion. Preserve negative retention; no LaTeX.",
+  "current_next_action": "Monitor driver10/Cell38 and corrected queued Cell39. Audit terminal minGRU archive and new numerical receipts before next driver. Secondary Windows CPU reports now independently persisted through the connector. Keep test/post/LaTeX held.",
   "backup_rotation_correction": "Old resumed local previous.pt could overwrite the just-rotated remote backup; latest.pt unaffected. Fixed for subsequent orchestration; keep old input bundle and disclose older-backup limitation.",
   "language_foundation_next_work": "docs/Q3_A_LANGUAGE_FOUNDATION_NEXT.vi.md",
   "external_reference_diagnostic": {
@@ -280,9 +280,9 @@
     "ledger_reservation_read_back_with_connector": true,
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
     "gpu": "Tesla T4",
-    "live_checkpoint_observed_UTC": "2026-11-26T20:09:49.074080+00:00",
-    "live_mingru_LM_targets": 24987217,
-    "live_latest_sha256": "e29b37e4456ca72c80c9b23f945eb20b755df81de03b7768bd3e8991156d59ca",
+    "live_checkpoint_observed_UTC": "2026-11-26T20:20:05.574795+00:00",
+    "live_mingru_LM_targets": 44086028,
+    "live_latest_sha256": "9fd0d5849b570afb1d20f526f447fbb2b15a8c9edf1e7dfe6700b45cad1aaee4",
     "live_is_not_independent_archive_audit": true,
     "queued_read_only_cell": 39
   },

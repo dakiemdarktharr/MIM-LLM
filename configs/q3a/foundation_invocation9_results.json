@@ -286,5 +286,16 @@
     },
     "raw_report_sha256": "53be85fe9b74d4d9cf46c8773b8d6933b4924f0baa7a3a0458af46059c3f1f0e"
   },
-  "secondary_reports_Drive_persistence": "local_verified_upload_pending"
+  "secondary_reports_Drive_persistence": "independent_connector_upload_and_exact_raw_readback_16_member_hashes",
+  "secondary_reports_bundle": {
+    "sha256": "2fa9e3c7b21ea6771994666f6495a17367d94c90bd767c0f5b1827f7a6d9bd23",
+    "bytes": 52667,
+    "members": 16,
+    "code_commit": "822be6d97985d56951faed0c51e0717700d3203c",
+    "shared": false,
+    "correct_private_project_parent_verified": true,
+    "extra_Drive_grant_requested": false,
+    "credentials_stored": false,
+    "weight_or_raw_text_in_bundle": false
+  }
 }
