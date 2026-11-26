@@ -6,6 +6,10 @@ trước đó trong `configs/q3a/foundation_writing_rule.json`, SHA256
 `590471e3dc722b083e95473c6b3648b18aab7abf0c5746ad1e5d6358d4da7910`,
 được giữ nguyên; công cụ không hạ ngưỡng để đạt pass.
 
+Hướng dẫn tiếng Việt cho người chấm và các mốc độ trôi chảy được bổ sung
+trước khi sinh panel trong [hướng dẫn tác giả](Q3_A_AUTHOR_READER_GUIDE.vi.md).
+Không sửa source generation, 34 prompt, rule/hash hay ngưỡng đã khai báo.
+
 `scripts/score_q3a_foundation_writing.py` đọc panel đầy đủ, manifest, packet đã
 ẩn model ID, private key và CSV do người đọc thực sự điền. Nó đối chiếu từng
 prompt/continuation/mapping với output nguồn và kiểm hash trước khi tổng hợp.
