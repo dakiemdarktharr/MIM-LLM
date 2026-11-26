@@ -75,8 +75,16 @@
     },
     {
       "id": "licensed_naturalistic_transfer",
-      "status": "not_verified",
-      "manifest": null
+      "status": "candidate_source_pinned_human_task_and_evaluation_pending",
+      "manifest": null,
+      "candidate_manifest": "configs/q3a/transfer_sources.candidates.json",
+      "evidence": [
+        "docs/Q3_A_TRANSFER_SOURCE_AUDIT_20261126.vi.md"
+      ],
+      "candidate_source_story_clusters": 10,
+      "human_semantically_audited_pairs": 0,
+      "accepted_transfer_pairs": 0,
+      "generic_obligation_schema_implemented": false
     },
     {
       "id": "quality_aggregation",

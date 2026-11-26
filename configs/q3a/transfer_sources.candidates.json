@@ -1,0 +1,57 @@
+{
+  "as_of": "2026-11-26",
+  "status": "candidate_source_audit_only",
+  "training_use": false,
+  "human_semantically_audited_pairs": 0,
+  "accepted_transfer_pairs": 0,
+  "final_transfer_manifest": null,
+  "sources": [
+    {
+      "id": "naturalstories",
+      "repository": "https://github.com/languageMIT/naturalstories",
+      "revision": "4700daad696e942f5aba23c957a7423d0de66612",
+      "paper": "https://doi.org/10.1007/s10579-020-09503-7",
+      "source_type": "human_edited_narratives_with_targeted_rare_syntax",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_scope_evidence": "repository_LICENSE.txt_and_paper_corpus_footnote",
+      "source_story_clusters_observed": 10,
+      "whole_units_observed": 10256,
+      "whole_unit_count_is_lexical_word_count": false,
+      "reconstructed_story_UTF8_byte_range": [5209, 6538],
+      "full_stories_fit_current_context": false,
+      "files": {
+        "words.tsv": "0955415234babe7fe6890e447d96a2520175f5ea2b8eb130bd31e6aea94e4495",
+        "LICENSE.txt": "58032a8173195237068ab02d429948bc3233d8e6858d1b9ddfdc47e3bbc3d847",
+        "README.md": "02fcc9104a8887c3f67e1be47d17a7253476628dbacde3fccec67a76deef285f"
+      },
+      "status": "source_pinned_license_identified_human_task_audit_pending"
+    },
+    {
+      "id": "propara",
+      "repository": "https://github.com/allenai/propara",
+      "revision": "51a3cccbedcbe5f92276f9925e0ce1e6ec4247bb",
+      "paper": "https://arxiv.org/abs/1805.06975",
+      "source_type": "human_authored_procedural_paragraphs",
+      "repository_license": "Apache-2.0",
+      "external_data_package_license_fully_checked": false,
+      "status": "component_diagnostic_candidate_not_a_narrative_generation_test"
+    },
+    {
+      "id": "trip",
+      "repository": "https://github.com/sled-group/Verifiable-Coherent-NLU",
+      "revision": "a50f08c77a81456e9f6bb0d85bc1d7400bc827cc",
+      "paper": "https://aclanthology.org/2021.findings-emnlp.422/",
+      "official_card": "https://huggingface.co/datasets/sled-umich/TRIP/blob/main/README.md",
+      "official_card_license": [],
+      "status": "license_unresolved_no_corpus_import"
+    }
+  ],
+  "required_before_evaluation": [
+    "source_and_derivative_license_attribution_preserved",
+    "self_contained_context_fit_with_generation_reserve",
+    "real_human_intervention_and_obligation_audit",
+    "general_proposition_schema_and_two_reader_rubric",
+    "parent_story_level_split_and_uncertainty",
+    "prospective_sample_decoding_and_analysis_lock"
+  ]
+}
