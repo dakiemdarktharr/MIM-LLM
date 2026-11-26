@@ -1,14 +1,14 @@
 {
   "as_of": "2026-11-27",
   "study": "Q3-A",
-  "goal_status": "active_driver12_after_driver11_LM_complete_SFT_measured_and_independent_audit",
+  "goal_status": "active_driver13_after_independent_driver12_SFT_audit",
   "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
   "training_bundle_sha256": "b1c97087a3415fc4c1b65dc4fa5a8496917ded649087add55d40352bec55e5d9",
   "manual_handoff": {
-    "state": "resolved_same_mount_reused_through_driver12",
+    "state": "resolved_same_mount_reused_through_driver13",
     "training_permission_already_granted": true,
     "another_Drive_grant_requested": false,
-    "evidence": "docs/Q3_A_FOUNDATION_INVOCATION11_20261127.vi.md",
+    "evidence": "docs/Q3_A_FOUNDATION_INVOCATION12_20261127.vi.md",
     "permanent_mount_promised": false
   },
   "requirements": [
@@ -55,7 +55,7 @@
       "verified_complete_foundation_parents": 1,
       "current_audited_transformer_LM_targets": 80000000,
       "current_audited_transformer_SFT_targets": 20000000,
-      "current_audited_mingru_targets": 81299378,
+      "current_audited_mingru_targets": 92248567,
       "expected_post_runs": 24,
       "post_pilot_targets_per_run": 2000000,
       "conditional_confirmation_targets_per_run": 10000000,
@@ -64,23 +64,23 @@
       "other_seed_plans_implemented": false,
       "full_matrix_expansion_held": true,
       "evidence": [
-        "configs/q3a/foundation_invocation11_results.json",
+        "configs/q3a/foundation_invocation12_results.json",
         "configs/q3a/subword_post.template.json"
       ],
       "current_audited_mingru_LM_targets": 80000000,
-      "current_audited_mingru_SFT_targets": 1299378
+      "current_audited_mingru_SFT_targets": 12248567
     },
     {
       "id": "drive_persistence",
-      "status": "driver11_three_parts_reassembled_exact_original_while_mount_retained",
-      "archive_sha256": "f080f7b5bb6e5f3d8fb1cdd4dc66bca44b1ba39e73ef91df1bf9773802b2b9bc",
-      "archive_bytes": 301394499,
-      "members_verified": 127,
-      "total_verified_step_metric_rows": 314340,
+      "status": "driver12_three_parts_reassembled_exact_original_while_mount_retained",
+      "archive_sha256": "b2471c51817b265732627f1c21691120b236e981ebc16a8a8592112b7db1482b",
+      "archive_bytes": 296656536,
+      "members_verified": 137,
+      "total_verified_step_metric_rows": 383658,
       "latest_sha256": "8d8a5a20de709b59fa2b1508e383dd582c0f9adf03cef61884e37573e0577beb",
       "readback_after_VM_release": false,
       "evidence": [
-        "docs/Q3_A_FOUNDATION_INVOCATION11_20261127.vi.md"
+        "docs/Q3_A_FOUNDATION_INVOCATION12_20261127.vi.md"
       ],
       "secondary_read_only_reports": "independent_connector_upload_and_exact_raw_readback_16_member_hashes"
     },
@@ -88,7 +88,7 @@
       "id": "resource_budget",
       "status": "foundation_cap_measured_partial_study_cap_pending",
       "current_GPU": "Tesla T4",
-      "last_observed_UI_CU_balance": 586.97,
+      "last_observed_UI_CU_balance": 586.2,
       "last_observed_UI_CU_per_hour": 1.87,
       "foundation_anchor_CU": 597.61,
       "foundation_observed_drop_cap_CU": 16,
@@ -102,11 +102,11 @@
       "T4_mingru_training_throughput_measured": true,
       "evidence": [
         "configs/q3a/foundation_resource_annex.json",
-        "configs/q3a/foundation_invocation11_results.json"
+        "configs/q3a/foundation_invocation12_results.json"
       ],
       "T4_mingru_LM_targets_per_optimizer_second": 34428.41360070471,
-      "T4_mingru_SFT_throughput": "measured_one_short_pure_SFT_segment",
-      "T4_mingru_SFT_targets_per_optimizer_second": 11529.698545703612
+      "T4_mingru_SFT_throughput": "measured_nine_pure_SFT_chunks",
+      "T4_mingru_SFT_targets_per_optimizer_second": 11776.02864929586
     },
     {
       "id": "writing_feasibility",
@@ -237,7 +237,7 @@
     }
   ],
   "completion_rule": "Every requirement needs authoritative evidence covering its scope; the board itself cannot prove completion.",
-  "current_next_action": "Monitor Cell41/driver12 and its inline read-only follow-up; audit terminal archive and changed minGRU receipts before next driver. Update the short-segment SFT forecast with longer measurements. Both100Mparents and genuine author writing ratings precede expansion; test/LaTeX remain held.",
+  "current_next_action": "Monitor Cell42/driver13 and its inline read-only follow-up; audit terminal archive/proofs. After both100Mparents are genuinely complete and numerical-reviewed, generate the frozen34 writing samples on canonical CPU/FP64, obtain real author ratings without imputation, and run paired minGRU validation-retention diagnostic. No automatic post/seed/test/LaTeX release.",
   "backup_rotation_correction": "Old resumed local previous.pt could overwrite the just-rotated remote backup; latest.pt unaffected. Fixed for subsequent orchestration; keep old input bundle and disclose older-backup limitation.",
   "language_foundation_next_work": "docs/Q3_A_LANGUAGE_FOUNDATION_NEXT.vi.md",
   "external_reference_diagnostic": {
@@ -262,13 +262,13 @@
   },
   "foundation_current": {
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
-    "receipt": "configs/q3a/foundation_invocation11_results.json",
-    "audited_driver_index": 11,
+    "receipt": "configs/q3a/foundation_invocation12_results.json",
+    "audited_driver_index": 12,
     "transformer_LM_targets": 80000000,
     "transformer_SFT_targets": 20000000,
     "transformer_updates": 216366,
-    "mingru_targets": 81299378,
-    "driver_invocations_reserved": 12,
+    "mingru_targets": 92248567,
+    "driver_invocations_reserved": 13,
     "maximum_driver_invocations": 16,
     "writing_gate": "unmeasured_for_subword_replacement",
     "primary_runs": 0,
@@ -276,7 +276,7 @@
     "active_driver_not_completed": true,
     "verified_complete_parents": 1,
     "mingru_LM_targets": 80000000,
-    "mingru_SFT_targets": 1299378
+    "mingru_SFT_targets": 12248567
   },
   "latest_nontraining_suite": {
     "passed": 233,
@@ -284,29 +284,29 @@
     "scientific_results": false
   },
   "latest_remote_execution": {
-    "session": "20261126T205946Z",
-    "driver_index": 12,
+    "session": "20261126T212456Z",
+    "driver_index": 13,
     "state": "verified_live_not_terminal",
-    "UI_available_cu_at_driver_start": 586.97,
+    "UI_available_cu_at_driver_start": 586.2,
     "UI_rate_at_driver_start": 1.87,
     "same_mounted_vm_reused": true,
     "source_and_initial_checkpoint_hashes_verified": true,
     "ledger_reservation_read_back_with_connector": true,
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
     "gpu": "Tesla T4",
-    "execution_cell": 41,
+    "execution_cell": 42,
     "read_only_followup_in_same_script": true,
-    "host_source_sha256": "1dc27dcad46e4a0f226662954eeb6135d4b40c4eb54eb9dbefa979bbf35c088c",
+    "host_source_sha256": "e6b33e8eacc98a0d70c132f42feeb465f5a777694bcdaa170ee3d98f305d6e38",
     "no_automatic_next_driver": true
   },
   "latest_verified_foundation_checkpoint": {
-    "session": "20261126T203337Z",
-    "driver_index": 11,
+    "session": "20261126T205946Z",
+    "driver_index": 12,
     "complete_foundation": false,
     "complete_seed0_parents": 1,
-    "report": "docs/Q3_A_FOUNDATION_INVOCATION11_20261127.vi.md",
-    "results": "configs/q3a/foundation_invocation11_results.json",
-    "archive_sha256": "f080f7b5bb6e5f3d8fb1cdd4dc66bca44b1ba39e73ef91df1bf9773802b2b9bc",
+    "report": "docs/Q3_A_FOUNDATION_INVOCATION12_20261127.vi.md",
+    "results": "configs/q3a/foundation_invocation12_results.json",
+    "archive_sha256": "b2471c51817b265732627f1c21691120b236e981ebc16a8a8592112b7db1482b",
     "runs": {
       "foundation-transformer-s0": {
         "complete": true,
@@ -315,7 +315,7 @@
       },
       "foundation-mingru-s0": {
         "complete": false,
-        "latest_sha256": "ae1736a5b704a0fbc6c0ab9a4f22eca1e118f61c77ff0f9bec375f346657e7bf",
+        "latest_sha256": "7ed081a7dc113528089858aa1d1409566f84a3cdc7266a264147b78c3291c9ee",
         "final_sha256": null
       }
     }
