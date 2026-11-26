@@ -1,0 +1,30 @@
+{
+  "input_sha256": "bb2fd3c8568ebb75c3c7fe1ae431a05ce0e6babb657db04db177d183886bc573",
+  "tokenizer_spec": {
+    "sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+    "vocab_size": 50257,
+    "bos_id": 50256,
+    "eos_id": 50256,
+    "pad_id": 50256,
+    "eos_token": "<|endoftext|>"
+  },
+  "counts": {
+    "source_bundles": 6000,
+    "story_CE_rows": 24000,
+    "invariant_probe_pairs": 30000,
+    "probe_rows": 60000
+  },
+  "maximum_input_tokens": 305,
+  "context": 1024,
+  "stable_prompt_response_boundaries": true,
+  "model_created": false,
+  "optimizer_updates": 0,
+  "tokenizer_updates": 0,
+  "validation_test_read": false,
+  "source_sha256": "0efab55ac821aed01a9ecce36baf81798e9be677b43ff26517d9342fb0438df2",
+  "objective_source_sha256": "500f9486b6ff26d082795436367d86281de336d8d15b04a04be236f9b00f48be",
+  "not_a_released_post_training_plan": true,
+  "nonupdating_tests_passed": 4,
+  "foundation_plan_still_verifies": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
+  "not_a_complete_post_pipeline": true
+}
