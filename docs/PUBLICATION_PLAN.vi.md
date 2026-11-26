@@ -1,3 +1,5 @@
+> **26/11/2026, Q3-A:** [Fresh journal verification](Q3_A_JOURNAL_VERIFICATION_20261126.vi.md) supersedes older fee/rank-access notes for J.UCS. SJR2025 Q3CS and general zero-fee policy corroborated; JCR/active-index checks remain separate. IA2025 JIF/Q4 on publisher metrics page must not be replaced by its older Q2.
+
 # Publication planning — revision 3 current, earlier survey archived below
 
 **25/11/2026:** Dùng [portfolio v3](PORTFOLIO_V3.vi.md) và

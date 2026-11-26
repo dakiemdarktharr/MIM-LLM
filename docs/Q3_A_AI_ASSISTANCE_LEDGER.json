@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-26",
+  "status": "draft_disclosure_record_not_submission_ready",
+  "tool": "OpenAI Codex desktop",
+  "exact_application_version": "26.1120.6357.0",
+  "exact_model_identifier": null,
+  "version_note": "Application package version verified locally; exact AI model identifier is not exposed/recorded here. Do not confuse the installed primary runtime package with the model version.",
+  "uses": [
+    "research search/synthesis assistance",
+    "experimental design and criticism",
+    "code and test drafting/debugging",
+    "deterministic synthetic-template design",
+    "methods/draft/report prose and LaTeX assistance",
+    "source and verification record preparation"
+  ],
+  "not_done": [
+    "No human reader labels fabricated",
+    "No scientific test effect created",
+    "No submission or funding acknowledgement made"
+  ],
+  "data_method_disclosure_required": "Controlled sources are deterministic programmatic templates developed with AI-assisted code; derived TinyStories examples retain original source provenance and license.",
+  "human_authors_responsible": true,
+  "human_final_review_completed": false,
+  "human_annotation_consent_or_ethics_determination": null,
+  "journal_policy": "https://lib.jucs.org/about#AuthorGuidelines",
+  "application_version_source": "Get-AppxPackage -Name *Codex*: OpenAI.Codex 26.1120.6357.0"
+}

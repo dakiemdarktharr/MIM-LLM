@@ -242,3 +242,16 @@ Explicit user goal: complete Q3-A training, real analysis/manuscript, prior-lite
 Light notebook now created in the confirmed Pro+ account: private notebook URL retained in local/vault receipts . CPU runtime connected; source-bundle.zip upload visible. First execute request during allocation failed with fetch error; after backend connection, Drive-mount cell ran to an explicit access prompt. No cloud GPU/warm-up/Drive checkpoint verified yet. A manual Google Drive permission step is pending. No new request for training permission is needed.
 
 Bundle SHA2562ad7e8d63189ffc84b5802cf31df01950d596bc2d57021a56f8f9e7240ac6f2b; plan ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142. All4LaTeX builds pass, updated A5pages visually inspected. Current goal/evidence gates: docs/Q3_A_ACTIVE_GOAL.vi.md.
+
+
+## 2026-11-26 — Journal and annotation evidence while Drive handoff is pending
+
+No browser calls were made while user takeover remained pending. Goal stays active; no new cloud training/Drive verification is claimed. Meaningful independent progress: J.UCS SJR2025 0.308/Q3 Computer Science(miscellaneous), rank216/403, read from SCImago primary record via indexed results; direct reader403 recorded. Publisher about page fetched through a normal public GET200 and its fee/author/AI/review/license requirements inspected. DOAJ API corroborates no APC/no other charges and current CC BY4.0, resolving stale indexed CC BY-ND metadata. JCR/current active Scopus/WoS coverage not independently verified; no claim of acceptance probability or funding approval.
+
+J.UCS V5 template and V6_2026 publishing agreement downloaded/hashes logged locally; nothing signed/submitted. StyleGuideV4 PDF403 recorded. Crossref metadata confirmed two scope precedents (10.3897/jucs.118889 and10.3897/jucs.137103); do not treat metadata as full-text review. IA's own metrics page now reports JIF2025 Q4 versus2024 Q2; cannot call it a freshly verified Q3 backup.
+
+Calculated real matrix annotation load:24post runs,12primary runs,3roles,1decode seed. At an ASSUMED2minutes/output/reader and2readers,24sources need57.6reader-hours for primary,115.2for all arms;400sources need960/1920hours. Not measured annotation times or power estimates. Pilot readers/precision/source sampling must precede final test; no fake human labels.
+
+Created16-requirement evidence board and AI-use ledger. Product version OpenAI.Codex26.1120.6357.0 verified via local package metadata; model ID unrecorded, not invented. Source inspection flagged A coverage/fluency aggregation using readerA when no adjudication. Frozen training bundle unchanged; a versioned analysis correction and tests are required before real-label analysis. No manipulation of human ratings or silent checkpoint provenance changes.
+
+Files: docs/Q3_A_JOURNAL_VERIFICATION_20261126.vi.md; docs/Q3_A_ANNOTATION_FEASIBILITY.vi.md; configs/q3a/evidence_gates.json; docs/Q3_A_AI_ASSISTANCE_LEDGER.json; scripts/plan_q3a_annotation_load.py. Receipts: artifacts/q3a-journal-audit-20261126. Publication/training milestones remain incomplete.
