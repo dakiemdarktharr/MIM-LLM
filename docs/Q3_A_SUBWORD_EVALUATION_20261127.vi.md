@@ -12,7 +12,8 @@ Các module mới tách khỏi byte pipeline lịch sử:
 - `q3a_subword.analysis`: kiểm hash receipt, ID subword nguyên bản và decode
   đúng snapshot, gồm token0 hợp lệ. Từ chối text đã sửa, EOS/BOS/PAD nằm trong
   emitted IDs hoặc metadata lệch nguồn. Không dùng byte-ID259 decoder cũ.
-- `q3a_subword.cli`: `freeze-selection`, `generate`, `blind-packet`, `analyze`.
+- `q3a_subword.cli`: `freeze-selection`, `generate`, `blind-packet`, `analyze`,
+  `perplexity`.
   Xem `python -m mim_llm.q3a_subword.cli --help`; không có lệnh tự train/mở test.
 
 Model chỉ nhận natural prompt. World/mandatory facts lưu trong scoring record
@@ -64,7 +65,7 @@ Default suite223passed/18trainingdeselected, Ruff pass;2synthetic optimizer
 tests pass riêng. Các fixture ghi rõ giả lập, không là human/model results.
 
 Còn trước primary launch: writing feasibility thật,6genuine parents, ngân sách
-toàn study và orchestration đo máy thật, general-text PPL adapter, local analysis
+toàn study và orchestration đo máy thật, general-text PPL thực đo, local analysis
 registration/human effort, transfer có quyền dùng và novelty decision. Không gọi
 toàn pipeline sẵn sàng hoặc manuscript có kết quả chỉ từ các kiểm tra này.
 
@@ -84,3 +85,38 @@ version generator/manifest, giữ paired numeric/BPE controls và freeze cohort
 trước xem output; không sửa âm thầm test hiện có. Câu trả lời có nhiều nguyên
 nhân hợp lệ không thể bị chấm sai chỉ vì khác một reference reason duy nhất.
 Đây là yêu cầu scope đang mở, không bằng chứng tính mới hoặc đã tạo dataset mới.
+
+## General-language perplexity: code có, phép đo mới chưa có
+
+`q3a_subword.language_eval` tính cross-entropy trên toàn vocabulary, không áp
+temperature/top-k. Với tổng negative log-likelihood `L` và `N` token đích,
+`PPL = exp(L/N)`. EOS vẫn được chấm dù có cùng ID với PAD: chỉ vị trí nhãn
+`-100` bị bỏ qua, không bỏ mọi token mang special ID. Token0 là văn bản hợp lệ.
+PPL thấp hơn biểu thị dự đoán token tốt hơn trên corpus/tokenizer ấy; không tự
+chứng minh đoạn viết hợp logic, tự nhiên hoặc có ích trong hội thoại.
+
+Validation foundation chỉ nhận parent đã hoàn tất cả80M LM và20M SFT; không
+mở test foundation. Post test đòi checkpoint/selection đã freeze và đăng ký
+`all_frozen_general_test_sources_next_token_with_EOS`, cùng hash nguyên corpus.
+Test được tokenize bằng snapshot cố định, mọi source test đều được giữ, reset
+trạng thái theo cửa sổ như objective train. Không lấy nhiều cửa sổ cùng truyện
+làm nhiều mẫu độc lập: cộng NLL/số token theo source trước bootstrap2000lượt,
+seed2026. Khoảng bất định là conditional trên checkpoint, không thay được
+biến thiên giữa training seeds. Giữ per-source sums để so sánh ghép cặp sau này.
+
+Hàm inference ghi hash checkpoint, nguồn, tokenizer, số tham số thật, backend,
+thời gian và kiểm trọng số không đổi; không có optimizer. MHA/TF32 được trả về
+flag ban đầu cả khi lỗi. CLI từ chối output đã tồn tại trước tính toán.
+4tests giả lập mới kiểm khóa test trước đọc corpus, EOS/PAD và token0, truyện
+dài chia cửa sổ, gom source, bootstrap theo trọng số và parent chưa hoàn tất.
+Default suite227passed/18trainingdeselected; Ruff pass. Đây là kiểm code,
+**chưa chạy PPL mới trên model thật**. PPL9,4094 đã báo trước thuộc validation
+LM80M trước SFT, không được đổi nhãn thành PPL của foundation100M.
+
+**Cập nhật sau lỗi số học lượt6:** [audit backend](Q3_A_FOUNDATION_INVOCATION6_20261127.vi.md)
+giữ nguyên FAIL củaFP32/top-k, chuyển mọi generation và PPL mới sangCPU/FP64.
+Generator không downcast logits/sampling vềFP32; exact score ties giải theo
+tokenID. Receipt/registration/analysis v2 khóa backend này; dữ liệu train và
+weights lưu vẫnFP32. Foundation manifest trước đây cần tạo lại cùng prompts
+với source hash mới. Các đoạn trước của note mô tả tiến độ lịch sử; kiểm tra
+hiện hành232passed/18deselected, chưa có thêm model/human/test results.

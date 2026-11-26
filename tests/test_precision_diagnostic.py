@@ -34,3 +34,23 @@ def test_distribution_diagnostic_detects_a_changed_winning_token():
     )
     assert r["argmax_mismatches"] == 1
     assert r["max_decode_policy_L1"] > 1.0
+
+
+def test_topk_boundary_diagnostic_retains_discrete_jump_without_optimizer():
+    path = Path(__file__).resolve().parents[1] / "scripts/diagnose_q3a_topk_boundary.py"
+    spec = importlib.util.spec_from_file_location("topk_diagnostic", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    reference = torch.tensor([[[1.0] * 39 + [1e-7, 0.0]]], dtype=torch.float64)
+    actual = reference.float()
+    actual[0, 0, 39:] = torch.tensor([0.0, 1e-7])
+    before = actual.clone()
+    result = module.boundary_rows(actual, reference, torch.ones(1, 1, dtype=torch.bool))
+    assert result["positions_over_unchanged_L1_limit"] == 1
+    assert result["max_native_policy_L1"] > 1e-4
+    row = result["largest_boundary_events"][0]
+    assert row["position_batch_time"] == [0, 0]
+    assert row["max_logit_error"] < 1e-6
+    assert row["only_in_actual_CPU_topk"] == [40]
+    assert row["only_in_reference_topk"] == [39]
+    assert torch.equal(actual, before)

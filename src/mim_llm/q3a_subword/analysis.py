@@ -13,18 +13,22 @@ from ..q3a.evaluate import analyze, read_labels
 from ..q3a.io import read_json, read_rows, sha256, signature, source_sha256
 from ..q3a_reviewed_analysis import JOIN_FIELDS, QUALITY_RULE, validate_panel
 from .evaluate import read_selection
+from .inference import BACKEND
 from .plan import load_plan
 
-VERSION = "q3a-subword-reviewed-quality-1"
+VERSION = "q3a-subword-reviewed-quality-2"
 PRIMARY_METRIC = "mean_joint_pair_success_effective_and_noop"
 
 
 def join_generations(plan, key, files):
     for path in files:
         receipt = read_json(str(path) + ".receipt.json")
-        if receipt.get("complete") is not True or receipt.get(
-            "output_sha256"
-        ) != sha256(path):
+        if (
+            receipt.get("complete") is not True
+            or receipt.get("output_sha256") != sha256(path)
+            or receipt.get("inference_backend") != BACKEND
+            or receipt.get("inference_precision") != "float64"
+        ):
             raise ValueError("A complete hash-matching generation receipt is required")
     rows = [r for path in files for r in read_rows(path)]
     byid = {r["generation_id"]: r for r in rows}
@@ -45,6 +49,7 @@ def join_generations(plan, key, files):
             any(row[k] != item[k] for k in JOIN_FIELDS)
             or row["plan_id"] != plan["plan_id"]
             or row["run"] != known.get(row["run"]["id"])
+            or row.get("inference_backend") != BACKEND
         ):
             raise ValueError("Generation plan/run differs from its key")
         identity = signature(

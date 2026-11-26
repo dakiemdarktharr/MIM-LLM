@@ -131,6 +131,8 @@ def panel(codec, tmp_path, monkeypatch):
         "status": "frozen_before_test_generation",
         "plan_id": plan["plan_id"],
         "test_results_used": False,
+        "general_text_test_policy": "all_frozen_general_test_sources_next_token_with_EOS",
+        "inference_backend": evaluate.BACKEND,
         "primary_contrast": ["A1", "A2"],
         "primary_metric": analysis.PRIMARY_METRIC,
         "analysis_version": analysis.VERSION,
@@ -290,7 +292,12 @@ def test_subword_join_accepts_token_zero_and_detects_repaired_text(panel, tmp_pa
     write_rows(output, rows)
     write_json(
         str(output) + ".receipt.json",
-        {"complete": True, "output_sha256": sha256(output)},
+        {
+            "complete": True,
+            "output_sha256": sha256(output),
+            "inference_backend": evaluate.BACKEND,
+            "inference_precision": "float64",
+        },
         replace=True,
     )
     with pytest.raises(ValueError, match="unmodified subword"):

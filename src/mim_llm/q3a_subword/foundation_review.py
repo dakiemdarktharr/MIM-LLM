@@ -11,10 +11,11 @@ from pathlib import Path
 import torch
 
 from ..foundation.codec import FrozenTokenizer
-from ..foundation.generation import generate
 from ..foundation.modeling import FoundationConfig, build_foundation
 from ..foundation.plan import load_plan
 from ..q3a.io import read_json, read_rows, sha256, signature, source_sha256, write_json
+from . import inference
+from .inference import generate
 
 
 def fixed_prompts(recipe, rows):
@@ -80,6 +81,8 @@ def prepare_review(plan_path, recipe_path, corpus, output):
         "human_labels": False,
         "test_performance_measured": False,
         "source_sha256": source_sha256(__file__),
+        "inference_backend": inference.BACKEND,
+        "inference_source_sha256": source_sha256(inference.__file__),
     }
     value["review_id"] = signature(value)
     write_json(output, value)
@@ -112,6 +115,8 @@ def verify_review(value, plan):
         or value["tokenizer_sha256"] != plan["tokenizer_spec"]["sha256"]
         or value["decoding"] != plan["config"]["decoding"]
         or value["source_sha256"] != source_sha256(__file__)
+        or value.get("inference_backend") != inference.BACKEND
+        or value.get("inference_source_sha256") != source_sha256(inference.__file__)
         or value["expected_samples"] != 34
         or len(value["prompts"]) != 17
     ):
@@ -122,6 +127,8 @@ def generate_review(plan_path, manifest, checkpoint_root, output, *, device="cpu
     """Only private/local or Drive outputs; no automatic writing-success labels."""
     import json
 
+    if device != "cpu":
+        raise ValueError("Reviewed generation uses the canonical CPU/FP64 backend")
     plan = load_plan(plan_path)
     review = read_json(manifest)
     verify_review(review, plan)
@@ -149,6 +156,8 @@ def generate_review(plan_path, manifest, checkpoint_root, output, *, device="cpu
             "plan_id": plan["plan_id"],
             "manifest_sha256": sha256(manifest),
             "device": device,
+            "inference_backend": inference.BACKEND,
+            "inference_source_sha256": source_sha256(inference.__file__),
             "checkpoint_sha256": {r["id"]: digest for r, _, digest in parents},
             "expected_samples": 34,
             "optimizer_updates": 0,
@@ -164,9 +173,13 @@ def generate_review(plan_path, manifest, checkpoint_root, output, *, device="cpu
             check_complete_parent(saved, plan, run)
             if sha256(path) != digest:
                 raise ValueError("Parent checkpoint changed during review")
-            model = build_foundation(
-                FoundationConfig(**plan["models"][run["kind"]]["config"])
-            ).to(device)
+            model = (
+                build_foundation(
+                    FoundationConfig(**plan["models"][run["kind"]]["config"])
+                )
+                .double()
+                .cpu()
+            )
             model.load_state_dict(saved["model"], strict=True)
             del saved
             samples = []

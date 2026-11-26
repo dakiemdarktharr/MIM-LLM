@@ -11,10 +11,10 @@ from pathlib import Path
 import torch
 
 from ..foundation.codec import FrozenTokenizer
-from ..foundation.generation import generate
 from ..foundation.modeling import FoundationConfig, build_foundation
 from ..q3a import data
 from ..q3a.io import read_json, read_rows, sha256, signature, source_sha256, write_json
+from .inference import BACKEND, generate
 from .plan import load_plan
 
 ROLES = ("base", "effective", "noop")
@@ -54,6 +54,7 @@ def complete_checkpoint(path, plan):
 
 def validate_registration(plan, registration):
     from . import analysis
+    from .language_eval import GENERAL_TEST_POLICY
 
     effect, cap = (
         registration.get("smallest_useful_effect"),
@@ -71,6 +72,8 @@ def validate_registration(plan, registration):
         or registration.get("quality_aggregation") != analysis.QUALITY_RULE
         or registration.get("complete_source_seed_grid_required") is not True
         or registration.get("two_independent_readers_planned") is not True
+        or registration.get("general_text_test_policy") != GENERAL_TEST_POLICY
+        or registration.get("inference_backend") != BACKEND
         or not registration.get("sample_method_and_rationale", "").strip()
         or type(effect) not in (int, float)
         or not math.isfinite(effect)
@@ -187,6 +190,8 @@ def read_selection(plan, path):
 def generate_panel(
     plan_path, checkpoint, output, *, split="validation", device="cpu", selection=None
 ):
+    if device != "cpu":
+        raise ValueError("Reviewed generation uses the canonical CPU/FP64 backend")
     previous_mha = torch.backends.mha.get_fastpath_enabled()
     previous_matmul = torch.backends.cuda.matmul.allow_tf32
     previous_cudnn = torch.backends.cudnn.allow_tf32
@@ -229,8 +234,10 @@ def _generate_panel(
     )
     if any(p.exists() for p in (output, started_path, receipt_path)):
         raise FileExistsError(output)
-    model = build_foundation(FoundationConfig(**saved["config"]), seed=run["seed"]).to(
-        device
+    model = (
+        build_foundation(FoundationConfig(**saved["config"]), seed=run["seed"])
+        .double()
+        .cpu()
     )
     model.load_state_dict(saved["model"], strict=True)
     model.eval()
@@ -264,6 +271,8 @@ def _generate_panel(
         "human_labels": False,
         "inference_gold_state_table": False,
         "mha_fastpath_enabled": False,
+        "inference_backend": BACKEND,
+        "inference_precision": "float64",
         "torch": str(torch.__version__),
         "device": device,
         "gpu": torch.cuda.get_device_name() if device.startswith("cuda") else None,
@@ -306,6 +315,7 @@ def _generate_panel(
                         "actual_parameters": actual_parameters,
                         "primary_evaluation": split == "test",
                         "inference_gold_state_table": False,
+                        "inference_backend": BACKEND,
                     }
                     row["generation_id"] = signature(
                         {

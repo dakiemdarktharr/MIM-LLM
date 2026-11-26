@@ -2,10 +2,12 @@
 
 import argparse
 import json
+from pathlib import Path
 
 from ..q3a.io import write_json
 from .analysis import reviewed_analyze
 from .evaluate import freeze_selection, generate_panel, prepare_blind_packet
+from .language_eval import general_perplexity
 
 
 def main():
@@ -27,6 +29,16 @@ def main():
     generation.add_argument("--device", default="cpu")
     generation.add_argument("--selection")
     generation.add_argument("--output", required=True)
+    ppl = sub.add_parser("perplexity")
+    ppl.add_argument("--plan", required=True)
+    ppl.add_argument("--checkpoint", required=True)
+    ppl.add_argument("--phase", choices=["foundation", "post"], default="post")
+    ppl.add_argument("--split", choices=["validation", "test"], default="validation")
+    ppl.add_argument("--selection")
+    ppl.add_argument("--general-corpus")
+    ppl.add_argument("--device", default="cpu")
+    ppl.add_argument("--draws", type=int, default=2000)
+    ppl.add_argument("--output", required=True)
     packet = sub.add_parser("blind-packet")
     packet.add_argument("--plan", required=True)
     packet.add_argument("--generations", nargs="+", required=True)
@@ -40,6 +52,8 @@ def main():
     analysis.add_argument("--adjudicated")
     analysis.add_argument("--draws", type=int, default=2000)
     a = parser.parse_args()
+    if Path(a.output).exists():
+        raise FileExistsError(a.output)
     if a.command == "freeze-selection":
         result = freeze_selection(
             a.plan,
@@ -67,6 +81,19 @@ def main():
         result = prepare_blind_packet(
             a.plan, a.generations, a.output, selection=a.selection
         )
+    elif a.command == "perplexity":
+        result = general_perplexity(
+            a.plan,
+            a.checkpoint,
+            phase=a.phase,
+            split=a.split,
+            selection=a.selection,
+            general_corpus=a.general_corpus,
+            device=a.device,
+            draws=a.draws,
+        )
+        write_json(a.output, result)
+        result = {k: v for k, v in result.items() if k != "per_source"}
     else:
         result = reviewed_analyze(
             a.plan,

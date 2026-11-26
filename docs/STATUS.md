@@ -2,16 +2,16 @@
 
 # Evidence-backed manuscript status
 
-> **Latest observed state, 27 November 2026:** Driver 5 independently verifies
-> the Transformer's 80M LM + 2,785,836 SFT targets / 107,402 updates. minGRU has
-> not started. The prospective numerical contract is met without changing its
-> bound; driver 6 is active on the retained T4/Drive mount. These are language
-> foundation and engineering measurements, not writing or primary effects.
-> Subword generation/selection/blinding/analysis adapters are prepared, while
-> six complete seed-matched parents, writing review, measured study resources,
-> human labels, general-text PPL adapter and transfer evidence are pending.
+> **Latest observed state, 27 November 2026:** Driver 6 independently verifies
+> the Transformer's 80M LM + 7,784,033 SFT targets / 139,032 updates. minGRU has
+> not started. Old FP32/top-40 gate FAIL is preserved. CPU/FP64 replacement
+> inference met the same bounds, with unchanged FP32 training/data/caps. No
+> driver 7 had started at this audit. Same Drive mount retained, no new grant.
+> Subword generation/selection/blinding/analysis/general-text PPL code exists;
+> six genuine complete parents, writing review, measured study resources,
+> human labels, real post/PPL measurements and transfer evidence are pending.
 > No final test, LaTeX build or publication milestone. See the
-> [driver 5 audit](Q3_A_FOUNDATION_INVOCATION5_20261127.vi.md) and
+> [driver 6 audit](Q3_A_FOUNDATION_INVOCATION6_20261127.vi.md) and
 > [evaluation adapter](Q3_A_SUBWORD_EVALUATION_20261127.vi.md).
 
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile

@@ -86,6 +86,8 @@ def test_review_manifest_binds_decoding_and_source():
         "tokenizer_sha256": "tok",
         "decoding": {"seed": 17},
         "source_sha256": source_sha256(review.__file__),
+        "inference_backend": review.inference.BACKEND,
+        "inference_source_sha256": source_sha256(review.inference.__file__),
         "prompts": review.fixed_prompts(recipe, rows),
         "expected_samples": 34,
     }
@@ -164,6 +166,8 @@ def test_review_generation_checks_both_parents_and_keeps_all_samples(
         "tokenizer_sha256": "fixture",
         "decoding": plan["config"]["decoding"],
         "source_sha256": source_sha256(review.__file__),
+        "inference_backend": review.inference.BACKEND,
+        "inference_source_sha256": source_sha256(review.inference.__file__),
         "prompts": review.fixed_prompts(recipe, rows),
         "expected_samples": 34,
     }

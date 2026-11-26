@@ -93,3 +93,67 @@ def test_backend_review_rejects_drift_and_policy_relaxation(monkeypatch, drift):
             plan_id=policy["plan_id"],
             checkpoint_sha256="synthetic",
         )
+
+
+def test_FP64_replacement_keeps_limits_and_same_checkpoint_proof_chain(monkeypatch):
+    root = Path(__file__).resolve().parents[1]
+    monkeypatch.syspath_prepend(str(root / "scripts"))
+    spec = importlib.util.spec_from_file_location(
+        "FP64_reviewed_backend", root / "scripts/run_q3a_foundation_fp64_reviewed.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    policy = read_json(root / "configs/q3a/foundation_fp64_backend_policy.json")
+    prior = fixture_proof(
+        read_json(root / "configs/q3a/foundation_backend_policy.json")
+    )
+    # Keep a synthetic failed old receipt: a replacement must not rewrite it.
+    prior["cases"][0]["FP32_vs_FP64"]["dense_eval"]["max_decode_policy_L1"] = 0.0057
+    proof = {
+        **copy.deepcopy(prior),
+        "original_FP32_proof_sha256": "SYNTHETIC-prior",
+        "implementation_sha256": policy["diagnostic_script_sha256"],
+        "inference_source_sha256": policy["inference_source_sha256"],
+        "backend": policy["backend"],
+        "device": "cpu",
+        "precision": "float64",
+        "original_checkpoint_precision": "float32",
+        "mha_fastpath_enabled": False,
+        "cases": [
+            {
+                "split": split,
+                "time": t,
+                "path_checks": {"passed": True},
+                "production_vs_reference": copy.deepcopy(
+                    prior["cases"][1]["FP32_vs_FP64"]
+                ),
+            }
+            for split, t in [("validation-lm", 641), ("train-lm", 1024)]
+        ],
+    }
+    args = {
+        "plan_id": policy["plan_id"],
+        "checkpoint_sha256": "synthetic",
+        "prior_sha256": "SYNTHETIC-prior",
+    }
+    module.check_review(policy, proof, prior, **args)
+    assert (
+        prior["cases"][0]["FP32_vs_FP64"]["dense_eval"]["max_decode_policy_L1"]
+        == 0.0057
+    )
+    with pytest.raises(ValueError, match="proof chain"):
+        module.check_review(
+            policy, proof, prior, **{**args, "checkpoint_sha256": "other"}
+        )
+    broken = copy.deepcopy(proof)
+    broken["cases"][0]["production_vs_reference"]["token_step"][
+        "max_decode_policy_L1"
+    ] = 0.0057
+    with pytest.raises(ValueError, match="unchanged"):
+        module.check_review(policy, broken, prior, **args)
+    relaxed = {**policy, "probability_L1_limit": 0.01}
+    relaxed["policy_id"] = signature(
+        {k: v for k, v in relaxed.items() if k != "policy_id"}
+    )
+    with pytest.raises(ValueError, match="relax"):
+        module.check_review(relaxed, proof, prior, **args)
