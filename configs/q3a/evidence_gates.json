@@ -190,9 +190,10 @@
     },
     {
       "id": "journal",
-      "status": "fee_and_SJR_verified_remaining_submission_checks",
+      "status": "fees_SJR2025Q3_current_SCIE_and_Scopus2026_coverage_evidenced_JCR_pending",
       "evidence": [
-        "docs/Q3_A_JOURNAL_VERIFICATION_20261126.vi.md"
+        "docs/Q3_A_JOURNAL_VERIFICATION_20261126.vi.md",
+        "configs/q3a/journal_indexing_verification_20261127.json"
       ],
       "candidate": "Journal of Universal Computer Science",
       "SJR_year": 2025,
@@ -200,7 +201,12 @@
       "SJR_category": "Computer Science (miscellaneous)",
       "SJR_quartile": "Q3",
       "JCR_independently_verified": false,
-      "active_Scopus_WoS_coverage_independently_verified": false
+      "active_Scopus_WoS_coverage_independently_verified": true,
+      "current_SCIE_listing_direct_browser_verified": true,
+      "Scopus_displayed_coverage_years": [
+        1996,
+        2026
+      ]
     },
     {
       "id": "AI_and_ethics_disclosure",

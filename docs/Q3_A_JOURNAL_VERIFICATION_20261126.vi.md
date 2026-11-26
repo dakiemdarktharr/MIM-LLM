@@ -65,3 +65,35 @@ TemplateV5 tải thành công, SHA256
 `3506bfc490c87b965c8463db3db5ab71d223d43c703910673158248ecee5b77e`.
 StyleGuideV4 PDF bị403. PublishingAgreementV6_2026 đã tải, **chưa ký/nộp**.
 Download receipts giữ local tại `artifacts/q3a-journal-audit-20261126`.
+
+## Cập nhật chỉ mục trực tiếp — 27/11/2026
+
+Phần trên giữ nguyên như lịch sử26/11. Những thiếu hụt về chỉ mục nay được
+thu hẹp bằng hai lần đọc **giao diện công khai chính chủ**, không dùng lời
+tự khai của publisher để thay dữ liệu từ cơ sở chỉ mục:
+
+| Nguồn chính chủ | Dữ kiện đã quan sát | Phạm vi còn thiếu |
+|---|---|---|
+| [Clarivate Master Journal List](https://mjl.clarivate.com/search-results), truy vấn eISSN0948-6968, submitEnter | Một exact match; đúng title/ISSN0948-695X và eISSN0948-6968; **SCIE**, thêm Current Contents Engineering, Computing & Technology và Essential Science Indicators | Không xác minh được năm coverage lịch sử hoặc JCR/JIF/quartile từ màn hình này. Profile chi tiết yêu cầu free login; chưa tạo account/đăng nhập. |
+| [Scopus Preview, source145537](https://www.scopus.com/sourceid/145537), đi theo [CiteScore link của publisher](https://www.scopus.com/source/sourceInfo.url?sourceId=145537) | Đúng title/ISSN/publisher Graz; sourceJournal; coverage hiển thị **1996–2026**. CiteScore2025=2.6, tính05/05/2026; SJR2025=0.308; SNIP2025=0.491. Tracker2026=2.6, cập nhật05/11/2026. | Coverage tới năm hiện tại không đảm bảo journal sẽ tiếp tục được lập chỉ mục lúc ta nộp/xuất bản trong tương lai. Tracker chưa là số annual cuối. |
+
+Scopus còn hiển thị CiteScore2025 rank71/135, percentile47 cho Mathematics:
+Theoretical Computer Science;137/241, percentile43 cho Computer Science:
+General Computer Science. Ghi nguyên metric và category; không đổi chúng
+thành SJR hay JCR. Publisher profile ghi Q4Theoretical Computer Science nhưng
+không đồng nhất được mục đó với panel rank này, nên không dùng thông tin
+publisher để thay kết quả trực tiếp Scopus. JCR/JIF theo năm vẫn **chưa xác minh
+độc lập**; SCIE không tự chứng minh một quartile cụ thể.
+
+Thử đọc lại SCImago journal page trong browser gặp security verification;
+không giải/bypass challenge. Giữ bằng chứng Q3Computer Science(miscellaneous),
+SJR2025=0.308 từ official rank/search listing đã ghi26/11; giá trị0.308 nay
+được đối chiếu thêm ở Scopus trực tiếp. Không tuyên bố đã đọc trực tiếp trang
+quartile mới trong lần này. Điều kiện phí đã kiểm26/11 giữ nguyên; phải kiểm
+lại phí/hạng/chỉ mục khi nộp. Receipt có cấu trúc:
+`configs/q3a/journal_indexing_verification_20261127.json`.
+
+Trạng thái hiện hành: **đã xác minh phí và hạng SJR2025Q3 nêu trên, cùng bản
+ghi SCIE hiện hành và Scopus coverage tới2026; JCR còn thiếu**. Việc này không
+nâng bản thảo thành paper đạt chuẩn, không xác nhận UEH tài trợ và không thay
+thế các kết quả/nhãn người/transfer chưa có. Chưa có hành động submission.

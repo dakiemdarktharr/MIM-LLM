@@ -1,0 +1,70 @@
+{
+  "as_of": "2026-11-27",
+  "journal": "Journal of Universal Computer Science",
+  "ISSN": "0948-695X",
+  "eISSN": "0948-6968",
+  "publisher": "Graz University of Technology",
+  "purpose": "Submission planning only; no manuscript submission, acceptance or funding claim",
+  "MJL": {
+    "official_url": "https://mjl.clarivate.com/search-results",
+    "alternative_official_search_url": "https://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?ISSN=0948-6968&PC=MASTER",
+    "method": "Live public browser UI: enter eISSN0948-6968 and submit Enter; one exact title/ISSN match observed",
+    "exact_matches": 1,
+    "ISSN_pair_matched": true,
+    "core_collection": "Science Citation Index Expanded",
+    "additional_indexes": ["Current Contents Engineering, Computing & Technology", "Essential Science Indicators"],
+    "current_listing_directly_verified": true,
+    "historical_coverage_years_verified": false,
+    "profile_requires_free_login": true,
+    "new_account_or_login_used": false,
+    "JCR_year_quartile_verified": false
+  },
+  "Scopus": {
+    "official_url": "https://www.scopus.com/sourceid/145537",
+    "publisher_CiteScore_link": "https://www.scopus.com/source/sourceInfo.url?sourceId=145537",
+    "source_id": "145537",
+    "method": "Live public Scopus Preview source details, after the official publisher CiteScore link",
+    "title_and_ISSN_pair_matched": true,
+    "displayed_coverage_years": [1996, 2026],
+    "source_type": "Journal",
+    "current_year_coverage_directly_verified": true,
+    "future_continued_coverage_guaranteed": false,
+    "CiteScore": {"year": 2025, "value": 2.6, "calculated_on": "2026-05-05"},
+    "SJR": {"year": 2025, "value": 0.308, "quartile_not_shown_in_this_panel": true},
+    "SNIP": {"year": 2025, "value": 0.491},
+    "CiteScoreTracker": {"year": 2026, "value": 2.6, "last_updated": "2026-11-05", "is_final_annual_metric": false},
+    "CiteScore_rank_2025": [
+      {"area": "Mathematics", "category": "Theoretical Computer Science", "rank": 71, "denominator": 135, "percentile": 47},
+      {"area": "Computer Science", "category": "General Computer Science", "rank": 137, "denominator": 241, "percentile": 43}
+    ],
+    "login_used": false
+  },
+  "SJR_quartile": {
+    "year": 2025,
+    "category": "Computer Science (miscellaneous)",
+    "quartile": "Q3",
+    "value": 0.308,
+    "source": "https://www.scimagojr.com/journalsearch.php?q=145537&tip=sid",
+    "quartile_evidence_date": "2026-11-26",
+    "quartile_evidence": "Official SCImago search-index/rank listing documented in docs/Q3_A_JOURNAL_VERIFICATION_20261126.vi.md",
+    "current_direct_page_attempt": "Cloudflare security verification; no challenge solved or bypassed",
+    "independent_value_crosscheck": "Direct Scopus source details2025 SJR0.308 on2026-11-27",
+    "CiteScore_not_used_as_SJR_quartile": true
+  },
+  "fees": {
+    "previous_verification_date": "2026-11-26",
+    "official_policy": "https://lib.jucs.org/about#PublicationFeesandOperationCosts",
+    "DOAJ_API": "https://doaj.org/api/search/journals/issn%3A0948-6968?pageSize=10",
+    "required_APC_or_other_charges_found": false,
+    "waiver_or_membership_assumed": false,
+    "details": "docs/Q3_A_JOURNAL_VERIFICATION_20261126.vi.md"
+  },
+  "remaining": [
+    "Clarivate JCR/JIF year/category/quartile independent confirmation remains missing; publisher profile values have no stated JIF year",
+    "Verify policies, indexing and rank again at actual submission",
+    "UEH funding eligibility/approval not established; no faculty coauthor reported",
+    "Scientific writing, human evaluation, naturalistic transfer and primary results incomplete"
+  ],
+  "overall_status": "Fees and SJR2025Q3ComputerScience evidence retained; current SCIE listing and Scopus coverage through2026 directly verified; JCR pending",
+  "editorial_outcome": {"submitted": false, "accepted": false, "published": false}
+}
