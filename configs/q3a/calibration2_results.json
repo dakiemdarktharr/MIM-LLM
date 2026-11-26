@@ -1,0 +1,191 @@
+{
+  "as_of": "2026-11-26",
+  "plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
+  "status": "calibration_complete_writing_gate_failed_not_primary_results",
+  "source_report": "docs/Q3_A_CALIBRATION2_RESULTS_20261126.vi.md",
+  "archive": {
+    "archive_sha256": "db500f041531cc797362e43691bf0c696da227f458c591ddb0e8c4b5d0904db1",
+    "archive_bytes": 52053267,
+    "members_verified": 53
+  },
+  "runs": {
+    "warmup-mingru-s0": {
+      "complete": true,
+      "actual_parameters": 2099864,
+      "stats": {
+        "trained_targets": 50000000,
+        "processed_input_tokens": 50000209,
+        "probe_input_tokens": 0,
+        "probe_positions": 0,
+        "updates": 40631,
+        "epoch": 1,
+        "cursor": 25570,
+        "train_seconds": 1075.4047562660044,
+        "validation_seconds": 154.0018739299997,
+        "best_validation_ce": 0.8582766068585375
+      },
+      "checkpoint_file": "runs/warmup-mingru-s0/final.pt",
+      "checkpoint_sha256": "7b9c8feffd4c9acec590cf488de81695558b4f5e3e6e6c32caae49cea66c6788",
+      "metric_rows_verified": 40631
+    },
+    "warmup-transformer-s0": {
+      "complete": true,
+      "actual_parameters": 2119408,
+      "stats": {
+        "trained_targets": 50000000,
+        "processed_input_tokens": 50000209,
+        "probe_input_tokens": 0,
+        "probe_positions": 0,
+        "updates": 40631,
+        "epoch": 1,
+        "cursor": 25570,
+        "train_seconds": 571.1036684259939,
+        "validation_seconds": 95.24572802000057,
+        "best_validation_ce": 0.9763454867296828
+      },
+      "checkpoint_file": "runs/warmup-transformer-s0/final.pt",
+      "checkpoint_sha256": "5db4e8d81ef58138a80268128c3414e45a354d7d1c3c2e80e8c5039a776316da",
+      "metric_rows_verified": 40631
+    }
+  },
+  "general_original_validation": [
+    {
+      "run_id": "warmup-mingru-s0",
+      "checkpoint_sha256": "7b9c8feffd4c9acec590cf488de81695558b4f5e3e6e6c32caae49cea66c6788",
+      "actual_parameters": 2099864,
+      "plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
+      "general_validation_original_stories_only": {
+        "ce": 0.9421398491729116,
+        "perplexity": 2.5654652576519514,
+        "targets": 250090,
+        "perplexity_clipped": false
+      }
+    },
+    {
+      "run_id": "warmup-transformer-s0",
+      "checkpoint_sha256": "5db4e8d81ef58138a80268128c3414e45a354d7d1c3c2e80e8c5039a776316da",
+      "actual_parameters": 2119408,
+      "plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
+      "general_validation_original_stories_only": {
+        "ce": 1.0900140661967168,
+        "perplexity": 2.974315909581503,
+        "targets": 250090,
+        "perplexity_clipped": false
+      }
+    }
+  ],
+  "writing_diagnostics": {
+    "mingru": {
+      "outputs": 17,
+      "prefix_outputs": 16,
+      "distinct_prefix_continuations": 6,
+      "largest_identical_prefix_output_group": 10,
+      "all_utf8_valid": true,
+      "at_512_token_cap": 0,
+      "machine_sentence_counts": {
+        "2": 3,
+        "3": 13,
+        "4": 1
+      },
+      "human_labels_null": true,
+      "qualitative_assistant_inspection": "writing/prefix-conditioning gate not met; not formal human judgments"
+    },
+    "transformer": {
+      "outputs": 17,
+      "prefix_outputs": 16,
+      "distinct_prefix_continuations": 16,
+      "largest_identical_prefix_output_group": 1,
+      "all_utf8_valid": true,
+      "at_512_token_cap": 1,
+      "machine_sentence_counts": {
+        "2": 7,
+        "4": 3,
+        "8": 1,
+        "3": 6
+      },
+      "human_labels_null": true,
+      "qualitative_assistant_inspection": "writing/prefix-conditioning gate not met; not formal human judgments"
+    },
+    "inference_checks": {
+      "cases": 24,
+      "passed": true,
+      "max_abs_error": 5.14984130859375e-05,
+      "all_future_edit_past_errors_zero": true
+    },
+    "primary_scores_computed": false,
+    "automated_counts_are_not_fluency_or_consistency_scores": true
+  },
+  "posthoc_conditioning_diagnosis": {
+    "mingru": {
+      "prefix_and_instruction": {
+        "stories": 16,
+        "source_mean_ce": 0.9042015746235847,
+        "target_weighted_ce": 0.9072695527642605
+      },
+      "instruction_only": {
+        "stories": 16,
+        "source_mean_ce": 0.9122648537158966,
+        "target_weighted_ce": 0.9153747205554122
+      },
+      "prefix_only": {
+        "stories": 16,
+        "source_mean_ce": 0.9070331305265427,
+        "target_weighted_ce": 0.9098879534562655
+      }
+    },
+    "transformer": {
+      "prefix_and_instruction": {
+        "stories": 16,
+        "source_mean_ce": 1.0117792449891567,
+        "target_weighted_ce": 1.0162452359073773
+      },
+      "instruction_only": {
+        "stories": 16,
+        "source_mean_ce": 1.0448986291885376,
+        "target_weighted_ce": 1.055254604972777
+      },
+      "prefix_only": {
+        "stories": 16,
+        "source_mean_ce": 1.0132218524813652,
+        "target_weighted_ce": 1.0177410247490735
+      }
+    }
+  },
+  "calibration_driver_ledger": [
+    {
+      "index": 1,
+      "utc": "2026-11-26T09:58:57.985146+00:00",
+      "status": "finished",
+      "reserved_driver_seconds": 1100,
+      "returncode": 0,
+      "driver_observed_seconds": 1115.7208894310002,
+      "gpu_name": "NVIDIA L4"
+    },
+    {
+      "index": 2,
+      "utc": "2026-11-26T11:00:40.124206+00:00",
+      "status": "finished",
+      "reserved_driver_seconds": 1100,
+      "gpu_name": "Tesla T4",
+      "returncode": 0,
+      "driver_observed_seconds": 1120.8696770430001
+    },
+    {
+      "index": 3,
+      "utc": "2026-11-26T11:29:59.178358+00:00",
+      "status": "finished",
+      "reserved_driver_seconds": 1100,
+      "gpu_name": "Tesla T4",
+      "returncode": 0,
+      "driver_observed_seconds": 57.173023683999986
+    }
+  ],
+  "last_UI_CU_after_release": 597.61,
+  "active_remote_sessions_after_release": 0,
+  "total_attributable_billed_CU": null,
+  "post_training_runs": 0,
+  "human_labels": false,
+  "final_test_performance_measured": false,
+  "latex_compiled": false,
+  "goal_complete": false
+}

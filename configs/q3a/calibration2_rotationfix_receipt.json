@@ -11,6 +11,8 @@
   "driver_invocation_cap_unchanged": 3,
   "full_default_tests_passed": 166,
   "training_tests_deselected": 12,
-  "new_bundle_executed": false,
-  "conditional_next_use": "Only if the existing bounded calibration needs its remaining third invocation; otherwise later declared orchestration."
+  "new_bundle_executed": true,
+  "conditional_next_use": "Only if the existing bounded calibration needs its remaining third invocation; otherwise later declared orchestration.",
+  "executed_session": "20261126T113004Z",
+  "real_remote_previous_sha256_after_rotation": "8eb5332958b4c6fa6d9d9408df459ef699503753b8da1a9449e1a4f9d9540e68"
 }

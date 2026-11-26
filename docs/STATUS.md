@@ -2,12 +2,13 @@
 
 # Evidence-backed manuscript status
 
-> **Latest observed state, 26 November 2026, 11:01 UTC:** Q3-A training is
-> authorized and the goal is active. The initial 5M-target warm-ups failed the
-> qualitative writing check. One bounded calibration is now resuming minGRU
-> from 17,865,693 targets on T4 (driver invocation 2/3); Transformer completed
-> 50M targets on L4. Both baselines have about 2.1M parameters; neither is a
-> MIM-LM. No A0–A3 post-training, final-test results or real human labels exist.
+> **Latest observed state, 26 November 2026:** Q3-A's bounded calibration
+> completed 50M targets per baseline across all three allowed drivers. The
+> 34 fixed writing samples still fail the qualitative feasibility check. The
+> final Drive archive was independently downloaded and verified; GPU released.
+> Both baselines have about 2.1M parameters; neither is a MIM-LM. No A0–A3
+> post-training, final-test results or real human labels exist. The goal is
+> active; further training needs an evidence-backed prospective amendment.
 > Only the author is currently available as a reader. Earlier preparation/hold
 > statements below describe their historical session and do not revoke current
 > Q3-A authorization. No LaTeX compilation before the actual scientific phases.

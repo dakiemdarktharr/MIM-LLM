@@ -1,11 +1,12 @@
 # Goal Q3-A — active từ 26/11/2026
 
-> **Trạng thái hiện hành, 26/11/2026 11:01 UTC:** goal ACTIVE; quyền Drive đã
-> được giải quyết. Calibration2 đang resume minGRU trên T4 từ checkpoint thật,
-> lượt driver thứ 2/3. Transformer đã đủ 50M target; minGRU có 17.865.693 target
-> trước lượt này. Các đoạn ghi `blocked` phía dưới là lịch sử đã được thay thế.
-> Chưa mở A0–A3, test hoặc biên dịch LaTeX. Hiện chỉ có người dùng làm reader;
-> chưa có nhãn người hay độ đồng thuận giữa hai reader.
+> **Trạng thái hiện hành, 26/11/2026:** goal ACTIVE; Drive đã giải quyết.
+> Calibration2 hoàn tất cả hai baseline 50M target/model sau 3/3 lượt; GPU đã
+> trả lại. Archive 53 tệp/81.262 dòng metric đã tải lại và kiểm tra độc lập.
+> Writing gate vẫn chưa đạt sau khi đọc đủ 34 output: không mở A0–A3, test,
+> thêm lượt calibration2 hoặc biên dịch LaTeX. [Báo cáo đo thật và chẩn đoán](Q3_A_CALIBRATION2_RESULTS_20261126.vi.md).
+> Các đoạn `blocked` phía dưới là lịch sử đã được thay thế. Hiện chỉ có người
+> dùng làm reader; chưa có nhãn người hay độ đồng thuận giữa hai reader.
 
 Người dùng yêu cầu tiếp tục tới khi train, viết, đối chiếu tài liệu và kiểm tra
 chất lượng bài hoàn tất. Đây là Q3-A đang triển khai; B/C/Q1 chưa được cấp lệnh

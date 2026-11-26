@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-26",
   "study": "Q3-A",
-  "goal_status": "active_bounded_calibration2_resume_not_complete",
+  "goal_status": "active_calibration2_complete_writing_gate_failed_no_expansion",
   "plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
   "training_bundle_sha256": "2ad7e8d63189ffc84b5802cf31df01950d596bc2d57021a56f8f9e7240ac6f2b",
   "manual_handoff": {
@@ -29,11 +29,14 @@
       ],
       "observed_nontraining_tests": 166,
       "observed_Q3A_training_tests": 4,
-      "not_scientific_findings": true
+      "not_scientific_findings": true,
+      "calibration2_trained_CUDA_path_cases": 24,
+      "calibration2_trained_CUDA_max_abs_error": 5.14984130859375e-05,
+      "read_only_conditioning_diagnostic_forward_cases": 96
     },
     {
       "id": "training_matrix",
-      "status": "two_seed0_warmups_complete_posttraining_not_launched",
+      "status": "calibration2_seed0_complete_writing_gate_failed_no_post",
       "expected_warmup_runs": 6,
       "expected_post_runs": 24,
       "expected_post_targets": 48000000,
@@ -46,21 +49,23 @@
       "new_calibration_started": true,
       "full_matrix_expansion_held": true,
       "calibration2_targets": {
-        "warmup-transformer-s0": 50000000,
-        "warmup-mingru-s0": 49847937
+        "warmup-mingru-s0": 50000000,
+        "warmup-transformer-s0": 50000000
       },
       "calibration2_complete_run_ids": [
+        "warmup-mingru-s0",
         "warmup-transformer-s0"
       ],
       "calibration2_completed_post_runs": 0,
-      "calibration2_driver_invocations_reserved": 2,
-      "calibration2_current_session": "20261126T110045Z",
+      "calibration2_driver_invocations_reserved": 3,
+      "calibration2_current_session": "20261126T113004Z",
       "calibration2_resume_verified_from_existing_checkpoint": true,
-      "calibration2_second_driver_finished": true
+      "calibration2_second_driver_finished": true,
+      "calibration2_all_three_drivers_finished": true
     },
     {
       "id": "drive_persistence",
-      "status": "first_session_verified_after_runtime_deallocation",
+      "status": "calibration2_final_checkpoints_logs_and_archive_verified_after_release",
       "verified_scientific_checkpoint_sha256": {
         "warmup-transformer-s0/final.pt": "bff431959d4eeb17707d1b63c61b63fef14fd90a704349879aac75ed0990195a",
         "warmup-mingru-s0/final.pt": "e366ae6e6a26e01af4ee79ba9cef1758c3d26793e5f3b19fd78a356a7e6e7c83"
@@ -90,11 +95,22 @@
         "metric_rows_verified": 81133,
         "mingru_partial_latest_sha256": "8eb5332958b4c6fa6d9d9408df459ef699503753b8da1a9449e1a4f9d9540e68",
         "cloud_fetch_after_zero_active_sessions_observed": true
+      },
+      "calibration2_final_archive": {
+        "archive_sha256": "db500f041531cc797362e43691bf0c696da227f458c591ddb0e8c4b5d0904db1",
+        "archive_bytes": 52053267,
+        "members_verified": 53,
+        "metric_rows_verified": 81262,
+        "cloud_fetch_after_zero_active_sessions_observed": true,
+        "final_checkpoint_sha256": {
+          "warmup-mingru-s0": "7b9c8feffd4c9acec590cf488de81695558b4f5e3e6e6c32caae49cea66c6788",
+          "warmup-transformer-s0": "5db4e8d81ef58138a80268128c3414e45a354d7d1c3c2e80e8c5039a776316da"
+        }
       }
     },
     {
       "id": "resource_budget",
-      "status": "initial_T4_workload_measured_full_study_cap_pending",
+      "status": "bounded_language_calibration_measured_full_study_cap_pending",
       "observed_colab_GPU": "Tesla T4",
       "CU_balance": 599.25,
       "CU_per_hour": 1.24,
@@ -123,20 +139,28 @@
       "calibration2_second_driver_observed_seconds": 1120.8696770430001,
       "calibration2_second_inner_driver_seconds": 1111.5386924210002,
       "calibration2_last_UI_CU_after_second": 597.71,
-      "calibration2_runtime_released_after_second": true
+      "calibration2_runtime_released_after_second": true,
+      "calibration2_last_UI_CU_after_release": 597.61,
+      "calibration2_runtime_released_after_third": true,
+      "calibration2_maximum_invocations_exhausted": true
     },
     {
       "id": "writing_feasibility",
-      "status": "failed_initial_qualitative_inspection_not_human_scores",
+      "status": "failed_calibration2_qualitative_review_all34_outputs_not_human_scores",
       "must_precede_full_matrix": true,
       "evidence": [
-        "docs/Q3_A_COLAB_PILOT_20261126.vi.md"
+        "docs/Q3_A_COLAB_PILOT_20261126.vi.md",
+        "docs/Q3_A_CALIBRATION2_RESULTS_20261126.vi.md"
       ],
       "inspected_outputs": 6,
       "distinct_validation_sources": 2,
       "mingru_three_prompts_identical": true,
       "primary_human_labels_collected": false,
-      "posttraining_expansion_allowed": false
+      "posttraining_expansion_allowed": false,
+      "calibration2_inspected_outputs": 34,
+      "calibration2_distinct_validation_prefix_sources": 16,
+      "calibration2_mingru_largest_identical_group": 10,
+      "calibration2_mingru_distinct_prefix_outputs": 6
     },
     {
       "id": "test_registration",
@@ -250,10 +274,10 @@
     "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
   },
   "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
-  "active_calibration_bundle_sha256": "5d3d9c6b57fb4d9fabf6bf55a67cf6e756cf0eceda2c1925342a5d96937e0b5b",
+  "active_calibration_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b",
   "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md",
   "active_calibration_resource_amendment": "Portable T4/L4 resume after observed automatic fallback; per-segment hardware recorded, no bitwise or matched-compute trajectory claim; same three-driver cap. Unused fallback VM ended before optimizer.",
-  "current_next_action": "Finish bounded calibration2 resume; independently verify Drive evidence and all fixed validation writing before deciding post-training. Test and LaTeX remain held.",
+  "current_next_action": "Preserve negative writing findings, diagnose language foundation and audit a published reference implementation before any new prospectively bounded training amendment. Do not expand A0-A3 or compile LaTeX.",
   "backup_rotation_correction": "Old resumed local previous.pt could overwrite the just-rotated remote backup; latest.pt unaffected. Fixed for subsequent orchestration; keep old input bundle and disclose older-backup limitation.",
   "conditional_next_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b"
 }
