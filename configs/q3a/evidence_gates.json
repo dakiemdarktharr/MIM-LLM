@@ -1,14 +1,14 @@
 {
   "as_of": "2026-11-27",
   "study": "Q3-A",
-  "goal_status": "active_driver11_after_driver10_independent_audit_and_exact_proof_reuse",
+  "goal_status": "active_driver12_after_driver11_LM_complete_SFT_measured_and_independent_audit",
   "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
   "training_bundle_sha256": "b1c97087a3415fc4c1b65dc4fa5a8496917ded649087add55d40352bec55e5d9",
   "manual_handoff": {
-    "state": "resolved_same_mount_reused_through_driver11",
+    "state": "resolved_same_mount_reused_through_driver12",
     "training_permission_already_granted": true,
     "another_Drive_grant_requested": false,
-    "evidence": "docs/Q3_A_FOUNDATION_INVOCATION10_20261127.vi.md",
+    "evidence": "docs/Q3_A_FOUNDATION_INVOCATION11_20261127.vi.md",
     "permanent_mount_promised": false
   },
   "requirements": [
@@ -31,7 +31,8 @@
         "docs/DEVELOPMENT_LOG.md",
         "docs/Q3_A_FOUNDATION_INVOCATION7_20261127.vi.md",
         "docs/Q3_A_FOUNDATION_INVOCATION9_20261127.vi.md",
-        "docs/Q3_A_FOUNDATION_INVOCATION10_20261127.vi.md"
+        "docs/Q3_A_FOUNDATION_INVOCATION10_20261127.vi.md",
+        "docs/Q3_A_FOUNDATION_INVOCATION11_20261127.vi.md"
       ],
       "observed_nontraining_tests": 233,
       "observed_Q3A_training_tests": 4,
@@ -54,7 +55,7 @@
       "verified_complete_foundation_parents": 1,
       "current_audited_transformer_LM_targets": 80000000,
       "current_audited_transformer_SFT_targets": 20000000,
-      "current_audited_mingru_targets": 50849604,
+      "current_audited_mingru_targets": 81299378,
       "expected_post_runs": 24,
       "post_pilot_targets_per_run": 2000000,
       "conditional_confirmation_targets_per_run": 10000000,
@@ -63,21 +64,23 @@
       "other_seed_plans_implemented": false,
       "full_matrix_expansion_held": true,
       "evidence": [
-        "configs/q3a/foundation_invocation10_results.json",
+        "configs/q3a/foundation_invocation11_results.json",
         "configs/q3a/subword_post.template.json"
-      ]
+      ],
+      "current_audited_mingru_LM_targets": 80000000,
+      "current_audited_mingru_SFT_targets": 1299378
     },
     {
       "id": "drive_persistence",
-      "status": "driver10_three_parts_reassembled_exact_original_while_mount_retained",
-      "archive_sha256": "11ef3ec805b82e110be65cfec5044507c193380d74af152a2c0ba16bcac6649e",
-      "archive_bytes": 270347134,
-      "members_verified": 113,
-      "total_verified_step_metric_rows": 273436,
+      "status": "driver11_three_parts_reassembled_exact_original_while_mount_retained",
+      "archive_sha256": "f080f7b5bb6e5f3d8fb1cdd4dc66bca44b1ba39e73ef91df1bf9773802b2b9bc",
+      "archive_bytes": 301394499,
+      "members_verified": 127,
+      "total_verified_step_metric_rows": 314340,
       "latest_sha256": "8d8a5a20de709b59fa2b1508e383dd582c0f9adf03cef61884e37573e0577beb",
       "readback_after_VM_release": false,
       "evidence": [
-        "docs/Q3_A_FOUNDATION_INVOCATION10_20261127.vi.md"
+        "docs/Q3_A_FOUNDATION_INVOCATION11_20261127.vi.md"
       ],
       "secondary_read_only_reports": "independent_connector_upload_and_exact_raw_readback_16_member_hashes"
     },
@@ -85,7 +88,7 @@
       "id": "resource_budget",
       "status": "foundation_cap_measured_partial_study_cap_pending",
       "current_GPU": "Tesla T4",
-      "last_observed_UI_CU_balance": 587.6,
+      "last_observed_UI_CU_balance": 586.97,
       "last_observed_UI_CU_per_hour": 1.87,
       "foundation_anchor_CU": 597.61,
       "foundation_observed_drop_cap_CU": 16,
@@ -99,10 +102,11 @@
       "T4_mingru_training_throughput_measured": true,
       "evidence": [
         "configs/q3a/foundation_resource_annex.json",
-        "configs/q3a/foundation_invocation10_results.json"
+        "configs/q3a/foundation_invocation11_results.json"
       ],
       "T4_mingru_LM_targets_per_optimizer_second": 34428.41360070471,
-      "T4_mingru_SFT_throughput": "not_measured"
+      "T4_mingru_SFT_throughput": "measured_one_short_pure_SFT_segment",
+      "T4_mingru_SFT_targets_per_optimizer_second": 11529.698545703612
     },
     {
       "id": "writing_feasibility",
@@ -233,7 +237,7 @@
     }
   ],
   "completion_rule": "Every requirement needs authoritative evidence covering its scope; the board itself cannot prove completion.",
-  "current_next_action": "Monitor Cell40/driver11 and its inline read-only follow-up. Audit terminal archive and changed minGRU numerical receipts before driver12. Measure actual minGRU SFT throughput if the scheduled stage is reached. Keep writing/human/post/test/LaTeX gates intact.",
+  "current_next_action": "Monitor Cell41/driver12 and its inline read-only follow-up; audit terminal archive and changed minGRU receipts before next driver. Update the short-segment SFT forecast with longer measurements. Both100Mparents and genuine author writing ratings precede expansion; test/LaTeX remain held.",
   "backup_rotation_correction": "Old resumed local previous.pt could overwrite the just-rotated remote backup; latest.pt unaffected. Fixed for subsequent orchestration; keep old input bundle and disclose older-backup limitation.",
   "language_foundation_next_work": "docs/Q3_A_LANGUAGE_FOUNDATION_NEXT.vi.md",
   "external_reference_diagnostic": {
@@ -258,19 +262,21 @@
   },
   "foundation_current": {
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
-    "receipt": "configs/q3a/foundation_invocation10_results.json",
-    "audited_driver_index": 10,
+    "receipt": "configs/q3a/foundation_invocation11_results.json",
+    "audited_driver_index": 11,
     "transformer_LM_targets": 80000000,
     "transformer_SFT_targets": 20000000,
     "transformer_updates": 216366,
-    "mingru_targets": 50849604,
-    "driver_invocations_reserved": 11,
+    "mingru_targets": 81299378,
+    "driver_invocations_reserved": 12,
     "maximum_driver_invocations": 16,
     "writing_gate": "unmeasured_for_subword_replacement",
     "primary_runs": 0,
     "human_labels": 0,
     "active_driver_not_completed": true,
-    "verified_complete_parents": 1
+    "verified_complete_parents": 1,
+    "mingru_LM_targets": 80000000,
+    "mingru_SFT_targets": 1299378
   },
   "latest_nontraining_suite": {
     "passed": 233,
@@ -278,33 +284,29 @@
     "scientific_results": false
   },
   "latest_remote_execution": {
-    "session": "20261126T203337Z",
-    "driver_index": 11,
+    "session": "20261126T205946Z",
+    "driver_index": 12,
     "state": "verified_live_not_terminal",
-    "UI_available_cu_at_driver_start": 587.75,
+    "UI_available_cu_at_driver_start": 586.97,
     "UI_rate_at_driver_start": 1.87,
     "same_mounted_vm_reused": true,
     "source_and_initial_checkpoint_hashes_verified": true,
     "ledger_reservation_read_back_with_connector": true,
     "plan_id": "c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41",
     "gpu": "Tesla T4",
-    "execution_cell": 40,
+    "execution_cell": 41,
     "read_only_followup_in_same_script": true,
-    "host_source_sha256": "eda1e918d0b72ed3e6620880bb40d8fcc55530e72309414cff2fcfc08be50b55",
-    "no_automatic_next_driver": true,
-    "live_checkpoint_observed_UTC": "2026-11-26T20:37:47.217702+00:00",
-    "live_mingru_LM_targets": 58446689,
-    "live_latest_sha256": "0633035889ca9523edc9f8ceaf21101d603e315d063d40997c07b91b332bf448",
-    "live_is_not_independent_archive_audit": true
+    "host_source_sha256": "1dc27dcad46e4a0f226662954eeb6135d4b40c4eb54eb9dbefa979bbf35c088c",
+    "no_automatic_next_driver": true
   },
   "latest_verified_foundation_checkpoint": {
-    "session": "20261126T200540Z",
-    "driver_index": 10,
+    "session": "20261126T203337Z",
+    "driver_index": 11,
     "complete_foundation": false,
     "complete_seed0_parents": 1,
-    "report": "docs/Q3_A_FOUNDATION_INVOCATION10_20261127.vi.md",
-    "results": "configs/q3a/foundation_invocation10_results.json",
-    "archive_sha256": "11ef3ec805b82e110be65cfec5044507c193380d74af152a2c0ba16bcac6649e",
+    "report": "docs/Q3_A_FOUNDATION_INVOCATION11_20261127.vi.md",
+    "results": "configs/q3a/foundation_invocation11_results.json",
+    "archive_sha256": "f080f7b5bb6e5f3d8fb1cdd4dc66bca44b1ba39e73ef91df1bf9773802b2b9bc",
     "runs": {
       "foundation-transformer-s0": {
         "complete": true,
@@ -313,7 +315,7 @@
       },
       "foundation-mingru-s0": {
         "complete": false,
-        "latest_sha256": "31dae33a16955115b00e48eb4644ce600a088b25901dc003680639f6d9892f41",
+        "latest_sha256": "ae1736a5b704a0fbc6c0ab9a4f22eca1e118f61c77ff0f9bec375f346657e7bf",
         "final_sha256": null
       }
     }
