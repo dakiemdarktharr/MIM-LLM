@@ -1,0 +1,107 @@
+{
+  "as_of": "2026-11-26",
+  "purpose": "Private external-reference inference diagnosis, not a matched or held-out paper comparison",
+  "model_id": "roneneldan/TinyStories-1M",
+  "model_revision": "77f1b168e219585646439073245fe87e56b3023e",
+  "weights_sha256": "07f9609ea882b8163ff3b23d40e2b82cb715d409631beb15c84b164f3877dae7",
+  "tokenizer_id": "EleutherAI/gpt-neo-125m",
+  "tokenizer_revision": "21def0189f5705e2521767faed922f1f15e7d7db",
+  "transformers": "5.24.1",
+  "runtime": "isolated artifact target directory, main venv not modified",
+  "device": "cpu",
+  "cpu_threads": 2,
+  "sources": [
+    {
+      "source_id": "tinystories-01708cbf5129fca14e325d00",
+      "prompt_sha256": "1a5a382452ecd5597d11fc85582916b6fef852d85772aca6039c0c81d0edf088"
+    },
+    {
+      "source_id": "tinystories-0204552a14c8a1118f391e2d",
+      "prompt_sha256": "a5bb33e2623c898e1ffa160e3ff2107fb03f40d2e8428693b7af1d1f5edbdd7f"
+    },
+    {
+      "source_id": "tinystories-025054112a585123ae3d875f",
+      "prompt_sha256": "4c759cc2b83857919c7d086b319923cbec20df5ceb383512cdd14fd11a6cbac2"
+    },
+    {
+      "source_id": "tinystories-033d93665c61fe464ff38615",
+      "prompt_sha256": "d06a1e77a2490c8717211f6051d2136dfa3baaf7140c1398ddb8c1366914f193"
+    },
+    {
+      "source_id": "tinystories-040219c17db20b00fb9bb6be",
+      "prompt_sha256": "f1db80f6764c114be6e09c991effb2f03071c4fa554316850a2f5614da5f1d75"
+    },
+    {
+      "source_id": "tinystories-063ad93f19ee502bff04567c",
+      "prompt_sha256": "12443093c54db8bc4fff8b6809aa4be37831c0fc6e81db37d94df99e5d88601a"
+    },
+    {
+      "source_id": "tinystories-0aa07c898e5056a0e5ff475b",
+      "prompt_sha256": "52256deed3c7705545d4a4f6bc227bcdadd29633360238e8e18e1514f26111db"
+    },
+    {
+      "source_id": "tinystories-0d8eb1398a060d654ab0b764",
+      "prompt_sha256": "368e151373d6cb9ed0de29de7c0ff4db165230d0008a90ad589d283fb74265df"
+    },
+    {
+      "source_id": "tinystories-0e53498766a2b066e70e9124",
+      "prompt_sha256": "78e9becb22f77052d801c869df9f13c562ae1fe642b1a154216b4197e3b23474"
+    },
+    {
+      "source_id": "tinystories-1411371f8834ccecf020741b",
+      "prompt_sha256": "bfe249a2e5b3b3a0ef2654af9bebbac9ad26c15d9aaeec9c62d6b874dc07de95"
+    },
+    {
+      "source_id": "tinystories-1486730b541131da5715ac7a",
+      "prompt_sha256": "99d41eaf152cf7ade87014752d1bfc49e3cba7ab0887119cfc022086565801b9"
+    },
+    {
+      "source_id": "tinystories-14ef6c2946475a2a6ca217d5",
+      "prompt_sha256": "581083c8b26acd3f64adf60e0b8942c869376d92b99b56322a4ea26fa36c713c"
+    },
+    {
+      "source_id": "tinystories-1e1b42e19fdef19b515b7af6",
+      "prompt_sha256": "9a64ffa3a9f409df893915a108cc7d379b3a4c7d0b76e8fbe54180d73b37647e"
+    },
+    {
+      "source_id": "tinystories-1ee4123936743512c4a93df9",
+      "prompt_sha256": "cbb1cce9d266f3f4f98376e351a22fd0781e0dad39bc91b61f32d35d837345de"
+    },
+    {
+      "source_id": "tinystories-236ea749dbb4343808952255",
+      "prompt_sha256": "a675471dca581dc938db5c3035908c5f47279ba191890a14de8c0520e69e7cc8"
+    },
+    {
+      "source_id": "tinystories-24bfc0961ebcf4f6c0b54931",
+      "prompt_sha256": "d5e513e0af0622e8bbbf3b7f23628d6a993bd1885d6413f5ddee5d8f85b4206d"
+    }
+  ],
+  "conditions": [
+    "prefix_only",
+    "prefix_and_instruction"
+  ],
+  "decoding": {
+    "max_new_tokens": 128,
+    "do_sample": true,
+    "temperature": 0.8,
+    "top_k": 40,
+    "top_p": 1.0,
+    "num_beams": 1,
+    "repetition_penalty": 1.0,
+    "seed": 17
+  },
+  "all32_retained": true,
+  "training_overlap_unverified": true,
+  "model_weight_license_unresolved": true,
+  "redistribute_weights": false,
+  "use_as_training_parent": false,
+  "optimizer_updates": 0,
+  "tokenizer_fitting": false,
+  "primary_evaluation": false,
+  "human_labels": false,
+  "final_test_performance": false,
+  "declared_before_generation": true,
+  "source_corpus_sha256": "22eb4bb062f6276548fb7c673304ff468f88179a2e43cca004da0015fca8727b",
+  "private_manifest_sha256": "2ec5e6d8dc78e1e4e7f30c26dbd889172804d6d56b58ce698f0b4e5fab9f5672",
+  "private_manifest_newline": "CRLF"
+}

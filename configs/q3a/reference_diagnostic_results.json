@@ -1,0 +1,66 @@
+{
+  "model_id": "roneneldan/TinyStories-1M",
+  "revision": "77f1b168e219585646439073245fe87e56b3023e",
+  "weights_sha256": "07f9609ea882b8163ff3b23d40e2b82cb715d409631beb15c84b164f3877dae7",
+  "actual_parameters": 3745984,
+  "token_embedding_parameters": 3216448,
+  "vocab_size": 50257,
+  "configured_position_limit": 2048,
+  "torch": "2.10.0+cu128",
+  "transformers": "5.24.1",
+  "device": "cpu",
+  "optimizer_updates": 0,
+  "tokenizer_fitted": false,
+  "training_overlap_unverified": true,
+  "model_weight_license_unresolved": true,
+  "primary_evaluation": false,
+  "human_labels": false,
+  "samples": 32,
+  "elapsed_seconds": 17.647040300013032,
+  "output_sha256": "dc958a20a7bc55020d6162daf0ee90b84c111f118bd6ce3a19c84a451849e47e",
+  "complete": true,
+  "as_of": "2026-11-26",
+  "interpretation": "Private inference diagnostic, not a matched/held-out paper comparison or a passed writing gate",
+  "report": "docs/Q3_A_REFERENCE_DIAGNOSTIC_20261126.vi.md",
+  "output_accounting": {
+    "samples": 32,
+    "null_human_labels": true,
+    "complete_source_condition_panel": true,
+    "by_condition": {
+      "prefix_only": {
+        "distinct_outputs": 16,
+        "at128token_cap": 11
+      },
+      "prefix_and_instruction": {
+        "distinct_outputs": 16,
+        "at128token_cap": 5
+      }
+    },
+    "training_overlap_unverified": true,
+    "primary_evaluation": false
+  },
+  "training_only_tokenizer_profile": {
+    "tokenizer_revision": "21def0189f5705e2521767faed922f1f15e7d7db",
+    "tokenizer_json_sha256": "f6ed3d307010c244c22aeffbde05f419cf277c23e64cf98b673cac5449cfeff5",
+    "tokenizer_fitted_or_vocab_pruned": false,
+    "train_stories": 30000,
+    "utf8_bytes_excluding_special_tokens": 27415677,
+    "BPE_tokens_excluding_special_tokens": 6819822,
+    "byte_per_BPE_token": 4.019998909062436,
+    "input_length_including_BOS_quantiles_nearest_rank": {
+      "0.5": 196,
+      "0.95": 468,
+      "0.99": 670,
+      "1.0": 1064
+    },
+    "train_stories_over512inputs": 1015,
+    "train_stories_over1024inputs": 16,
+    "roundtrip_mismatches": 0,
+    "common_suffix_utf8_bytes": 63,
+    "common_suffix_BPE_tokens": 15,
+    "validation_test_text_not_tokenized_for_this_profile": true,
+    "optimizer_updates": 0
+  },
+  "new_training_authorized_by_this_receipt": false,
+  "main_venv_dependencies_unchanged": true
+}

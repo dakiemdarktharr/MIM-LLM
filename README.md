@@ -98,6 +98,10 @@ a small causal Transformer and a token-shift GRU. Token-shift GRU is **not** ful
 RWKV. Tokenization, training/resume and a synthetic smoke benchmark exist.
 Q3-A's separate pipeline now implements paired response training, invariant-probe
 JS, checkpointing, generation, blank blind annotation and source-paired analysis.
+An [offline external-reference diagnostic](docs/Q3_A_REFERENCE_DIAGNOSTIC_20261126.vi.md)
+also counted the published TinyStories-1M checkpoint at **3,745,984** actual
+parameters and retained 32 samples. It is not a matched-data/compute comparison
+or evidence that our models pass the writing gate.
 B/C add delayed QA branches, genuine frozen-history collection/matching,
 unconstrained two-stage evaluation, blank blind annotation and clustered analysis.
 Q3-A optimizer/overfit/resume checks and real language warm-ups have run.

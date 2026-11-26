@@ -122,9 +122,11 @@ tham chiếu đã phát hành, đối chiếu tokenizer/corpus/schedule rồi ch
 window 256/context 512 và tokenizer GPT-Neo với 10K token thường gặp. Đây là
 thiết lập khác byte LM hiện tại; chưa xác minh được full training schedule từ
 đoạn nguồn đã đọc, nên không nêu số training tokens của họ. Model card
-[TinyStories-1M](https://huggingface.co/roneneldan/TinyStories-1M) là ứng viên
-kiểm tra tham chiếu, chưa được chạy ở đây; tên “1M” không thay cho phép đếm tham
-số thực và quyền phân phối trọng số cần đối chiếu riêng.
+[TinyStories-1M](https://huggingface.co/roneneldan/TinyStories-1M) được chọn làm
+ứng viên tham chiếu ở thời điểm chốt calibration. Sau đó đã chạy một
+[chẩn đoán riêng không optimizer](Q3_A_REFERENCE_DIAGNOSTIC_20261126.vi.md),
+đếm thực 3.745.984 tham số; không phải matched comparison hoặc model của ta.
+Quyền phân phối trọng số vẫn chưa được xác minh.
 
 Novelty vẫn theo [CSR audit](Q3_A_CSR_COMPARISON_20261126.vi.md); khả năng viết
 không đạt không chứng minh hoặc bác bỏ A1−A2. Goal Q3-A vẫn **active/chưa hoàn

@@ -277,7 +277,18 @@
   "active_calibration_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b",
   "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md",
   "active_calibration_resource_amendment": "Portable T4/L4 resume after observed automatic fallback; per-segment hardware recorded, no bitwise or matched-compute trajectory claim; same three-driver cap. Unused fallback VM ended before optimizer.",
-  "current_next_action": "Preserve negative writing findings, diagnose language foundation and audit a published reference implementation before any new prospectively bounded training amendment. Do not expand A0-A3 or compile LaTeX.",
+  "current_next_action": "Prepare one prospectively bounded language-foundation replacement plan with a frozen published tokenizer, actual parameter counts, unchanged held-out groups, tokenized A1/A2 control audit and measured resource gates. No new optimizer until that implementation/plan is ready; keep calibration2 closed.",
   "backup_rotation_correction": "Old resumed local previous.pt could overwrite the just-rotated remote backup; latest.pt unaffected. Fixed for subsequent orchestration; keep old input bundle and disclose older-backup limitation.",
-  "conditional_next_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b"
+  "conditional_next_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b",
+  "language_foundation_next_work": "docs/Q3_A_LANGUAGE_FOUNDATION_NEXT.vi.md",
+  "external_reference_diagnostic": {
+    "status": "complete_read_only_not_matched_paper_comparison",
+    "actual_parameters": 3745984,
+    "samples": 32,
+    "optimizer_updates": 0,
+    "tokenizer_fitted": false,
+    "primary_scores": false,
+    "model_weight_license_unresolved": true,
+    "evidence": "docs/Q3_A_REFERENCE_DIAGNOSTIC_20261126.vi.md"
+  }
 }
