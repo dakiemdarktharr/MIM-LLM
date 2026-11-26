@@ -57,3 +57,8 @@ Initial GPU invocation cap20phút phục vụ calibration/feasibility; không ph
 ## 26/11 — Superseding phase order
 
 User explicitly requires actual data collection, training, test/evaluation and result analysis before any further LaTeX compilation. Both build scripts now stop before compiler access without real phase evidence. No TeX was run after this instruction. See [phase order](MANUSCRIPT_PHASE_ORDER.vi.md). Historical layout receipts do not release this hold. Goal still requires actual experiments and manuscript, and manual Drive consent remains pending.
+
+
+## 26/11 — Trạng thái mới nhất: blocked, chưa hoàn thành
+
+Goal tool đã xác nhận `blocked`: chờ người dùng hoàn tất quyền Drive và trả quyền điều khiển trình duyệt. Điều kiện này lặp qua ít nhất ba goal turns; các phần chuẩn bị độc lập đã được thực hiện trước khi chuyển trạng thái. Không có job train từ xa đang chạy được xác minh. Không poll browser khi takeover còn pending. Toàn bộ mục tiêu và quyền train Q3-A vẫn giữ nguyên; không xin lại quyền train. Sau khi được trả điều khiển, xác minh Drive mount/persistence rồi tiếp tục warm-up giới hạn và các pha thí nghiệm. Không compile thêm trước kết quả thật.

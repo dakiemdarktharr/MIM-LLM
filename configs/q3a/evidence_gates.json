@@ -1,13 +1,14 @@
 {
   "as_of": "2026-11-26",
   "study": "Q3-A",
-  "goal_status": "active_not_complete",
+  "goal_status": "blocked_awaiting_Drive_consent_handoff_return_not_complete",
   "plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
   "training_bundle_sha256": "2ad7e8d63189ffc84b5802cf31df01950d596bc2d57021a56f8f9e7240ac6f2b",
   "manual_handoff": {
     "state": "awaiting_user_return_after_Drive_consent_handoff",
     "repolled_browser": false,
-    "training_permission_already_granted": true
+    "training_permission_already_granted": true,
+    "consent_completion_reconfirmed": false
   },
   "requirements": [
     {
@@ -151,5 +152,14 @@
       "submission_requires_user_action": true
     }
   ],
-  "completion_rule": "Every requirement needs authoritative evidence covering its scope; the board itself cannot prove completion."
+  "completion_rule": "Every requirement needs authoritative evidence covering its scope; the board itself cannot prove completion.",
+  "blocked_audit": {
+    "date": "2026-11-26",
+    "same_manual_blocker_repeated_at_least_three_goal_turns": true,
+    "independent_preparation_work_completed_before_blocking": true,
+    "next_required_action": "User completes Google Drive notebook access and explicitly returns browser control; then verify mount before the authorized bounded Q3-A run.",
+    "no_verified_live_remote_training_job": true,
+    "objective_shrunk_or_marked_complete": false,
+    "latex_still_held_until_real_results": true
+  }
 }
