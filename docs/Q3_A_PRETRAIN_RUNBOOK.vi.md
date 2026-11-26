@@ -93,9 +93,15 @@ không phải hard billing cap. Cần theo dõi CU/runtime thực và ngân sác
 study qua nhiều invocation; không dùng resume để bỏ qua cap.
 
 Sau khi đủ validation, chuẩn bị `freeze-selection`, `generate`, `perplexity`,
-`blind-packet`, `analyze --output ...`, `results-table`; xem `--help` của từng
+`blind-packet`, phân tích và `results-table`; xem `--help` của từng
 lệnh. Test general-text PPL chưa có auto release; trước mắt chỉ validation PPL.
 Test generation chỉ chấp nhận checkpoint hoàn tất đủ budget, đã freeze hash.
+
+**Cập nhật 26/11:** dùng `python -m mim_llm.q3a_reviewed_analysis` cho nhãn
+Q3-A. [Analysis review](Q3_A_ANALYSIS_REVIEW.vi.md) quy định trung bình hai
+reader, panel source/seed đầy đủ và đăng ký SHA phân tích trước test. Lệnh
+`analyze` cũ được giữ để tái lập phiên bản đã khóa, có hạn chế coverage/fluency
+lấy reader A nếu không có phân xử. Không dùng đầu ra cũ làm báo cáo quality mới.
 
 `freeze-selection` yêu cầu đủ 24 checkpoint post-training và file registration
 có đúng plan ID, primary contrast, smallest useful effect, cap GPU-giờ và danh
@@ -142,9 +148,11 @@ optimizer làm tốc độ train, không hard-code Colab GPU/CU/h hoặc giá m�
 
 ## Các giới hạn phải giữ rõ
 
-Code đã chuẩn bị không chứng minh model biết viết hoặc giả thuyết đúng. Kiểm
-tra optimizer-step, memorization và training-resume end-to-end **chưa chạy** vì
-lệnh cấm train. Naturalistic transfer set, human labels, hiệu ứng tối thiểu,
+Code đã chuẩn bị không chứng minh model biết viết hoặc giả thuyết đúng.
+**Cập nhật 26/11:** người dùng đã cấp quyền Q3-A; bốn kiểm tra engineering
+optimizer/JS/memorization/resume đã đạt với fixture hư cấu. Đây là bằng chứng
+kỹ thuật, không phải kết quả training khoa học. Naturalistic transfer set,
+human labels, hiệu ứng tối thiểu,
 preregistration, budget GPU/CU và các kết quả vẫn cần hoàn thành ở đúng giai
 đoạn. Draft để trống kết quả và tác giả; không đạt mốc bản thảo có kết quả,
 submitted, accepted hoặc published từ việc compile này.

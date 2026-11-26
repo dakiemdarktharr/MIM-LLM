@@ -6,6 +6,12 @@
   "gpu_hours_cap_per_study": null,
   "test_results_used": false,
   "test_source_ids": [],
+  "test_arms": ["A0", "A1", "A2", "A3"],
+  "analysis_version": "q3a-reviewed-quality-1",
+  "analysis_source_sha256": null,
+  "quality_aggregation": "mean_of_two_readers_unless_explicitly_adjudicated",
+  "complete_source_seed_grid_required": true,
+  "text_validity_role": "secondary_writing_metric_human_format_remains_primary",
   "sample_method_and_rationale": "Fill using source strata before generating final-test outputs; retain complete pairs and all compared systems/seeds.",
   "two_independent_readers_planned": true,
   "naturalistic_transfer_manifest": null

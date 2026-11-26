@@ -47,3 +47,8 @@ Initial GPU invocation cap20phút phục vụ calibration/feasibility; không ph
 ## 26/11 — Evidence audit update
 
 [Journal verification](Q3_A_JOURNAL_VERIFICATION_20261126.vi.md), [annotation feasibility](Q3_A_ANNOTATION_FEASIBILITY.vi.md) and `configs/q3a/evidence_gates.json` identify what is verified and still missing. No browser poll while manual Drive handoff is pending; no cloud progress assumed.
+
+
+## 2026-11-26 — Analysis correction verified
+
+[Versioned analysis review](Q3_A_ANALYSIS_REVIEW.vi.md): average both readers for coverage/fluency; require complete source/seed/role/arm panels, original generation checks and prospective analysis/source registration.15new regression tests; full suite148passed/12deselected. Training bundle/plan unchanged. No real human labels, scientific outputs or cloud progress established; Drive handoff remains pending.

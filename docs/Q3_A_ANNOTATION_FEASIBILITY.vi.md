@@ -56,3 +56,8 @@ vẫn là protocol riêng. Chưa thay code training/evaluation trong immutable b
 Các trường `smallest_useful_effect`, `gpu_hours_cap_per_study`,
 `test_source_ids`, `naturalistic_transfer_manifest` còn trống theo đúng tình
 trạng chưa có evidence. Không điền số/human labels để vượt gate hình thức.
+
+
+## 2026-11-26 — Analysis correction verified
+
+[Versioned analysis review](Q3_A_ANALYSIS_REVIEW.vi.md): average both readers for coverage/fluency; require complete source/seed/role/arm panels, original generation checks and prospective analysis/source registration.15new regression tests; full suite148passed/12deselected. Training bundle/plan unchanged. No real human labels, scientific outputs or cloud progress established; Drive handoff remains pending.
