@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-26",
   "study": "Q3-A",
-  "goal_status": "active_feasibility_repair_required_not_complete",
+  "goal_status": "active_bounded_calibration2_resume_not_complete",
   "plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
   "training_bundle_sha256": "2ad7e8d63189ffc84b5802cf31df01950d596bc2d57021a56f8f9e7240ac6f2b",
   "manual_handoff": {
@@ -27,7 +27,7 @@
       "evidence": [
         "docs/DEVELOPMENT_LOG.md"
       ],
-      "observed_nontraining_tests": 153,
+      "observed_nontraining_tests": 166,
       "observed_Q3A_training_tests": 4,
       "not_scientific_findings": true
     },
@@ -47,12 +47,16 @@
       "full_matrix_expansion_held": true,
       "calibration2_targets": {
         "warmup-transformer-s0": 50000000,
-        "warmup-mingru-s0": 17865693
+        "warmup-mingru-s0": 49847937
       },
       "calibration2_complete_run_ids": [
         "warmup-transformer-s0"
       ],
-      "calibration2_completed_post_runs": 0
+      "calibration2_completed_post_runs": 0,
+      "calibration2_driver_invocations_reserved": 2,
+      "calibration2_current_session": "20261126T110045Z",
+      "calibration2_resume_verified_from_existing_checkpoint": true,
+      "calibration2_second_driver_finished": true
     },
     {
       "id": "drive_persistence",
@@ -78,6 +82,14 @@
         "metric_rows_verified": 55213,
         "transformer_final_sha256": "5db4e8d81ef58138a80268128c3414e45a354d7d1c3c2e80e8c5039a776316da",
         "mingru_partial_latest_sha256": "58fd2d2ebc7c8956138a0eec83a3972be4fc2ff2a8e0daf378c263b8f9855527"
+      },
+      "calibration2_second_archive": {
+        "sha256": "b8031a931de58fb6a3b468e6e3a425fa6a6b982d11010df779e07b4d35fa7954",
+        "bytes": 52004859,
+        "members_verified": 38,
+        "metric_rows_verified": 81133,
+        "mingru_partial_latest_sha256": "8eb5332958b4c6fa6d9d9408df459ef699503753b8da1a9449e1a4f9d9540e68",
+        "cloud_fetch_after_zero_active_sessions_observed": true
       }
     },
     {
@@ -102,7 +114,16 @@
       "calibration2_UI_GPU": "NVIDIA L4",
       "calibration2_UI_CU_per_hour": 2.33,
       "calibration2_UI_CU_before_first": 599.14,
-      "calibration2_actual_total_debit": null
+      "calibration2_actual_total_debit": null,
+      "calibration2_second_GPU": "Tesla T4",
+      "calibration2_second_UI_CU_before": 598.17,
+      "calibration2_second_UI_CU_per_hour": 1.24,
+      "calibration2_second_resource_record_UTC": "2026-11-26T11:00:35.315643+00:00",
+      "calibration2_total_billed_CU": null,
+      "calibration2_second_driver_observed_seconds": 1120.8696770430001,
+      "calibration2_second_inner_driver_seconds": 1111.5386924210002,
+      "calibration2_last_UI_CU_after_second": 597.71,
+      "calibration2_runtime_released_after_second": true
     },
     {
       "id": "writing_feasibility",
@@ -132,7 +153,9 @@
       "cost_estimate_evidence": "docs/Q3_A_ANNOTATION_FEASIBILITY.vi.md",
       "estimates_are_measurements": false,
       "available_readers_reported_by_user": 1,
-      "second_reader_available": false
+      "second_reader_available": false,
+      "author_only_validation_rubric_pilot_permitted": true,
+      "two_reader_confirmation_requirement_satisfied": false
     },
     {
       "id": "licensed_naturalistic_transfer",
@@ -229,5 +252,8 @@
   "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
   "active_calibration_bundle_sha256": "5d3d9c6b57fb4d9fabf6bf55a67cf6e756cf0eceda2c1925342a5d96937e0b5b",
   "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md",
-  "active_calibration_resource_amendment": "Portable T4/L4 resume after observed automatic fallback; per-segment hardware recorded, no bitwise or matched-compute trajectory claim; same three-driver cap. Unused fallback VM ended before optimizer."
+  "active_calibration_resource_amendment": "Portable T4/L4 resume after observed automatic fallback; per-segment hardware recorded, no bitwise or matched-compute trajectory claim; same three-driver cap. Unused fallback VM ended before optimizer.",
+  "current_next_action": "Finish bounded calibration2 resume; independently verify Drive evidence and all fixed validation writing before deciding post-training. Test and LaTeX remain held.",
+  "backup_rotation_correction": "Old resumed local previous.pt could overwrite the just-rotated remote backup; latest.pt unaffected. Fixed for subsequent orchestration; keep old input bundle and disclose older-backup limitation.",
+  "conditional_next_bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b"
 }

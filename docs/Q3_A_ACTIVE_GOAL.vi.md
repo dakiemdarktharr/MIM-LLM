@@ -1,5 +1,12 @@
 # Goal Q3-A — active từ 26/11/2026
 
+> **Trạng thái hiện hành, 26/11/2026 11:01 UTC:** goal ACTIVE; quyền Drive đã
+> được giải quyết. Calibration2 đang resume minGRU trên T4 từ checkpoint thật,
+> lượt driver thứ 2/3. Transformer đã đủ 50M target; minGRU có 17.865.693 target
+> trước lượt này. Các đoạn ghi `blocked` phía dưới là lịch sử đã được thay thế.
+> Chưa mở A0–A3, test hoặc biên dịch LaTeX. Hiện chỉ có người dùng làm reader;
+> chưa có nhãn người hay độ đồng thuận giữa hai reader.
+
 Người dùng yêu cầu tiếp tục tới khi train, viết, đối chiếu tài liệu và kiểm tra
 chất lượng bài hoàn tất. Đây là Q3-A đang triển khai; B/C/Q1 chưa được cấp lệnh
 train. Goal không phải cam kết acceptance hoặc quartile của một bài tương lai.

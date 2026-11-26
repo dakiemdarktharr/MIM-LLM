@@ -37,6 +37,25 @@ def verified_copy(source, target, *, keep_previous=False):
     return expected
 
 
+def sync_run_files(folder, remote):
+    """Keep previous.pt owned by remote latest rotation, not a stale restore."""
+    folder, remote = Path(folder), Path(remote)
+    hashes = {}
+    for path in sorted(folder.glob("*")):
+        if (
+            path.is_file()
+            and path.suffix in {".pt", ".json", ".jsonl"}
+            and path.name != "previous.pt"
+        ):
+            hashes[path.name] = verified_copy(
+                path, remote / path.name, keep_previous=path.name == "latest.pt"
+            )
+    previous = remote / "previous.pt"
+    if previous.is_file():
+        hashes["previous.pt"] = sha256(previous)
+    return hashes
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--plan", required=True)
@@ -126,14 +145,7 @@ def main():
 
     def sync_run(identifier):
         folder = local / identifier
-        hashes = {}
-        for p in sorted(folder.glob("*")):
-            if p.is_file() and p.suffix in {".pt", ".json", ".jsonl"}:
-                hashes[p.name] = verified_copy(
-                    p,
-                    drive / "runs" / identifier / p.name,
-                    keep_previous=p.name == "latest.pt",
-                )
+        hashes = sync_run_files(folder, drive / "runs" / identifier)
         event(type="drive_sync_verified", run=identifier, sha256=hashes)
 
     started = time.perf_counter()

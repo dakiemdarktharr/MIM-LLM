@@ -1,0 +1,16 @@
+{
+  "as_of": "2026-11-26",
+  "plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
+  "bundle_sha256": "14b762319ad9c1dab80407ff18437c1ed9e5ca57524ff17ad517735ed612e48b",
+  "bundle_bytes": 24030746,
+  "members_verified": 64,
+  "source_bundle_file": "artifacts/q3a-calibration2-20261126/calibration2-rotationfix-source-bundle.zip",
+  "previous_bundle_still_running_sha256": "5d3d9c6b57fb4d9fabf6bf55a67cf6e756cf0eceda2c1925342a5d96937e0b5b",
+  "change": "Do not upload stale local previous.pt after rotating remote latest.pt.",
+  "learning_fingerprints_unchanged": true,
+  "driver_invocation_cap_unchanged": 3,
+  "full_default_tests_passed": 166,
+  "training_tests_deselected": 12,
+  "new_bundle_executed": false,
+  "conditional_next_use": "Only if the existing bounded calibration needs its remaining third invocation; otherwise later declared orchestration."
+}

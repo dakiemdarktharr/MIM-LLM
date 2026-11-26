@@ -1,5 +1,12 @@
 # Q3-A: công sức nhãn người trước khi khóa test
 
+> **Cập nhật 26/11/2026:** người dùng xác nhận chỉ có bản thân làm reader.
+> Hai reader trong bảng là giả định lập kế hoạch, chưa được bố trí. Có thể pilot
+> rubric/thời gian trên validation với một người, giữ mù tên hệ thống và ghi rõ
+> đó là đánh giá của tác giả; không tính inter-rater reliability hoặc gọi là
+> hai đánh giá độc lập. Đánh giá xác nhận theo protocol hai reader vẫn còn thiếu.
+> Calibration ngôn ngữ không phụ thuộc vào việc bố trí reader thứ hai.
+
 Ngày26/11/2026. Plan hiện hành:
 `ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142`.
 Đây là phép tính **dự kiến**, không phải thời gian gán nhãn đã đo hoặc power analysis.

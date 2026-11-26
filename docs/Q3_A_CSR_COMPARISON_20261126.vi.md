@@ -55,6 +55,13 @@ Calibration2 đang học ngôn ngữ chung; chưa chạy A0/A1/A2/A3 và chưa m
 Không thay code training/fingerprints trong lúc warm-up chạy. Các sửa scope
 thực sự sau audit cần plan/provenance mới, giữ nguyên mọi run đã xảy ra.
 
+Kiểm tra thêm Appendix I.2–I.3 trong nguồn chính: tác giả đã so sánh các loss
+divergence, gồm JS. Vì vậy, đổi KL thành JS cũng không tự tạo novelty cho A3.
+Đối chứng bổ sung, nếu triển khai sau feasibility, cần không gian đáp án probe
+được xác định và sensitivity chỉ cho cặp effective có đáp án buộc đổi; không
+áp loss buộc khác lên toàn bộ đoạn truyện. Đó sẽ là một component adaptation,
+không phải tái lập hệ editor/verifier CSR. Chưa thêm arm hay optimizer nào.
+
 Candidate [Written Once, Read Differently: How Language Models' Own Answers
 Steer Their Next Ones](https://arxiv.org/abs/2611.03198) mới được xác minh ở mức
 metadata/abstract trong lượt này; chưa xem như một full-text audit hoặc bằng

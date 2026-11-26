@@ -1,4 +1,4 @@
-> **Execution update, 26 November 2026:** Two real seed-0 baseline warm-ups completed on Colab T4, 5 million supervised byte targets each. Validation writing inspection failed; no A0/A1/A2/A3 post-training or final-test evaluation has run. A single bounded language calibration is prepared under plan `ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660`; only its two seed-0 warm-ups are enabled. See the [pilot report](docs/Q3_A_COLAB_PILOT_20261126.vi.md) and [prospective calibration protocol](docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md). B/C/Q1 and tokenizer fitting remain closed. Earlier zero-training receipts describe their original preparation sessions.
+> **Execution update, 26 November 2026:** The first two seed-0 baseline warm-ups completed on Colab T4, 5 million supervised byte targets each, but failed the qualitative writing check. One bounded language calibration is now running under plan `ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660`: Transformer completed 50M targets on L4; minGRU is resuming on T4 from its persisted checkpoint. Only these two seed-0 warm-ups are enabled. No A0–A3 post-training or final-test evaluation has run. See the [pilot report](docs/Q3_A_COLAB_PILOT_20261126.vi.md) and [calibration protocol](docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md). B/C/Q1 and tokenizer fitting remain closed. Earlier zero-training receipts describe their original preparation sessions.
 
 # MIM-LLM
 
@@ -64,7 +64,7 @@ does change. The one-time rule does not uniquely require opening at 9:05.
 ## Four standalone study designs
 
 1. **Learning When a Premise Change Should Not Change a Story:** semantic no-op
-   training versus byte/edit-matched punctuation controls and an invariance adaptation.
+   training versus byte/edit-matched irrelevant numeric-clock controls and an invariance adaptation.
 2. **Tokens or State Changes?** token delay versus semantic-write interference
    under matched supervision and explicit processing-cost controls.
 3. **Controlled Roll-In Distributions for State-Consistent Story Continuation:**
@@ -79,8 +79,9 @@ The three training studies each plan four arms, two backbones and three seeds,
 with equal token/selection caps and equal GPU-hour caps chosen after profiling.
 Earlier BPE-512/context-256 counting examples are historical. All three studies'
 prepared fixed-byte/context-2048 minGRU has **2,099,864** parameters (width 662);
-the Transformer has **2,119,408** (width 248). New-configuration throughput and writing
-quality are unmeasured. A pilot allocates 48M post-training targets per study,
+the Transformer has **2,119,408** (width 248). Initial warm-up throughput has been
+measured; writing feasibility failed initially and is under bounded repair.
+A pilot allocates 48M post-training targets per study,
 with shared warm-up counted once and a separate 15% selection reserve.
 
 See the [current design and budgets](docs/PORTFOLIO_V3.vi.md),
@@ -99,8 +100,8 @@ Q3-A's separate pipeline now implements paired response training, invariant-prob
 JS, checkpointing, generation, blank blind annotation and source-paired analysis.
 B/C add delayed QA branches, genuine frozen-history collection/matching,
 unconstrained two-stage evaluation, blank blind annotation and clustered analysis.
-Optimizer integration and overfit tests await authorization; no new weights
-have been trained. A production C bank cannot yet exist. See the
+Q3-A optimizer/overfit/resume checks and real language warm-ups have run.
+B/C optimization remains unauthorized; no production C history bank is claimed. See the
 [three-study handoff](docs/THREE_Q3_PRETRAIN_RUNBOOK.vi.md),
 [preparation-only Colab notebook](notebooks/Three_Q3_Prepare_Colab.ipynb), [legacy runbook](docs/RUNBOOK.md) and
 [original mechanism map](docs/RESEARCH.md) for their verified scope.
@@ -121,7 +122,9 @@ architecture only if strong controls and memory-quality trade-offs justify it.
 Directions may be revised, merged or stopped. Reused artifacts and prior findings
 must be disclosed and cited, without presenting an old result table as new.
 
-The publication budget is 0 VND; paid cloud or API use is not assumed. Journal
+The publication budget is 0 VND. The user has authorized Q3-A to use their existing
+Colab Pro+ credits; no additional subscription, extra-credit purchase or paid API
+use is authorized. Journal
 fees, active indexing and subject/year-specific quartiles need fresh verification.
 Drafted, submitted, accepted and published remain separate milestones.
 
@@ -130,17 +133,23 @@ Drafted, submitted, accepted and published remain separate milestones.
 - Public repository and research plans exist.
 - The legacy prototype was smoke-tested on the actual **RTX 5050 Laptop GPU
   (8,151 MiB reported by nvidia-smi)**; this machine has no RTX 3060 installed.
-- No scientific or editorial outcome has been established.
+- Real seed-0 baseline checkpoints and warm-up logs have been saved to Drive;
+  the first evidence archive was independently downloaded and hash-verified.
+- No primary hypothesis result, human-evaluation result or editorial outcome has
+  been established. The running baselines are not MIM-LM.
 
 Generated PDFs remain local and ignored by Git; version source and QA records.
 
-### Three-study preparation — 26 November 2026
+### Historical three-study preparation — 26 November 2026
 
 The common warm-up retains 3,000/300/300 underlying TinyStories source groups
 and adds 2,792/277/280 mechanically derived, same-split three-sentence
 instruction examples. No benchmark state labels are added; the 5M-target
 cap per initialization is unchanged. General perplexity uses original
-held-out stories only. No writing quality or training throughput is known.
+held-out stories only. This describes the initial preparation snapshot. Q3-A's
+subsequent bounded calibration expands only training sources to 30,000 and adds
+conditional continuation examples, preserving the original held-out stories;
+see its separate plan and resource/provenance amendment above.
 
 Each study has a Vietnamese briefing with ten difficult advisor questions
 and proposed evidence-based answers: [A](docs/Q3_A_BRIEF_AND_ADVISOR_QA.vi.md),

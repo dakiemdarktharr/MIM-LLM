@@ -107,3 +107,15 @@ nhau nhưng source ZIP riêng vẫn giữ trên Drive. Scientific plan ID không
 learning implementation/data/config không đổi; phiên bản orchestration mới có
 bundle hash riêng, phải xác minh trước optimizer. Chưa dùng kết quả A1/A2/test
 để chọn sửa đổi tài nguyên này. Rate UI <=6CU/giờ và số dư >=10CU vẫn bắt buộc.
+
+## Correction: bản dự phòng khi resume, phát hiện trong lượt 2
+
+Mã orchestration cũ khôi phục cả `previous.pt` xuống local. Khi sync theo thứ
+tự tên file, bản local cũ này có thể ghi đè bản `previous.pt` vừa được xoay từ
+`latest.pt` trên Drive. Vì vậy không nhận bản dự phòng ở lượt 2 là luôn thuộc
+chặng ngay trước đó. Các SHA của `latest.pt`, metric/target và Transformer final
+vẫn được kiểm tra; chưa phát hiện mất checkpoint chính hoặc sửa trajectory.
+Giữ nguyên bundle đang chạy và mọi log cũ. Mã dùng cho lượt sau bỏ local
+`previous.pt` khỏi danh sách upload; chỉ phép xoay remote latest được tạo backup.
+Hai regression checks xác minh backup không bị tệp restore cũ ghi đè và sync
+lặp không đổi backup. Không đổi learning code, plan, target hay ba-lượt cap.
