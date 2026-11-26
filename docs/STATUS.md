@@ -1,17 +1,19 @@
-> **Scope/authorization update, 26 November 2026:** Q3-A now uses numeric irrelevant-clock edits as A2, replacing the historical punctuation control. Q3-A bounded Colab training is authorized; B/C/Q1 and tokenizer fitting remain closed. Current plan ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142. See [scope review](SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md). Earlier zero-training receipts below describe their original preparation session.
+> **Scope/authorization update, 26 November 2026:** Q3-A uses numeric irrelevant-clock edits as A2. Its active subword foundation plan is c18fcecd62ada83af8de97752496dac7b89837197206b5d7398bd81f4b4eca41 with a prospective resource-only annex before driver2. The earlier ba881daafbbd… plan describes byte preparation. B/C/Q1 training and tokenizer fitting remain closed. See the [foundation protocol](Q3_A_FOUNDATION_PROTOCOL_20261126.vi.md) and [scope review](SCOPE_REVIEW_BEFORE_TRAIN_20261126.vi.md).
 
 # Evidence-backed manuscript status
 
-> **Latest observed state, 26 November 2026:** Q3-A's bounded calibration
-> completed 50M targets per baseline across all three allowed drivers. The
-> 34 fixed writing samples still fail the qualitative feasibility check. The
-> final Drive archive was independently downloaded and verified; GPU released.
-> Both baselines have about 2.1M parameters; neither is a MIM-LM. No A0–A3
-> post-training, final-test results or real human labels exist. The goal is
-> active; further training needs an evidence-backed prospective amendment.
-> Only the author is currently available as a reader. Earlier preparation/hold
-> statements below describe their historical session and do not revoke current
-> Q3-A authorization. No LaTeX compilation before the actual scientific phases.
+> **Latest observed state, 26 November 2026:** Subword foundation driver2 is
+> running on the same mounted Colab L4/Drive session. The Transformer baseline
+> has 3,681,984 actual parameters; the factorized minGRU variant has 3,682,887.
+> Neither is MIM. Training remains partial; the declared80M LM+20M response-SFT
+> targets per model, writing review and the primary post matrix are incomplete.
+> The [resource profile and annex](Q3_A_FOUNDATION_RESOURCE_PROFILE_20261126.vi.md)
+> retain the16CU observed-drop cap, with no purchase. The older50M-byte calibration
+> completed but failed the34sample writing review; those negative results and
+> released VM are historical. No A0–A3 post-training, final-test results or real
+> human labels exist. Only the author is available as a reader; independent
+> agreement is unmeasured. The goal remains active. All manuscripts stay locked
+> against compilation until the actual scientific phases are complete.
 
 As of 2026-11-26, revision 3 defines four standalone research directions. Quartile
 labels are internal planning targets, not editorial outcomes.
@@ -39,7 +41,7 @@ See [current portfolio](PORTFOLIO_V3.vi.md) and [novelty audit](NOVELTY_AUDIT_V3
 The evaluator-only A and mechanism-only C scopes from earlier revisions are
 historical. Three training studies now have equal pilot/confirmation caps.
 Actual backbone counts and initial warm-up throughput were measured. The first
-writing inspection failed; calibration results remain pending. Colab UI rates
+byte-writing inspections failed; subword writing results remain pending. Colab UI rates
 are observations, not a verified total bill. Human reliability is unmeasured.
 
 Q3-A uses the user's existing Colab Pro+ credits. No extra-credit purchase,

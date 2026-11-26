@@ -475,3 +475,8 @@ Live driver2 checkpoint observations: at14:47:52Z Transformer9018559targets/1011
 ## 2026-11-26 — Blank author-reader writing packet implemented
 
 Added q3a_subword/writing_packet.py and scripts/prepare_q3a_writing_packet.py, separate from immutable foundation source. Requires completed34sample review with matching manifest/parent/hash/prompt; retains empty/repeated/truncated outputs, hides model IDs, writes PRIVATE-key separately, all rating/rater/timing fields blank. One available author-reader is disclosed; not independent/two-rater validation or an automatic writing pass. Three synthetic nontraining checks pass; full default suite201passed/16deselected and Ruff passed. No real generation/human labels from this tool yet. Original c18learning plan still verifies. Source protocol updated; no LaTeX.
+
+
+## 2026-11-26 — Public status corrected for active subword foundation
+
+README/STATUS now lead with the active c18subword foundation and actual3681984/3682887baseline parameter counts, same mounted L4session/Drive, pending80M+20M budgets/writing/primarypost. Previous byte50Mfailure/GPUrelease remain explicitly historical. Documented that jointly changing corpus/tokenizer/configuration does not isolate tokenization or prove architecture gains, and that B/C byte pipelines do not automatically accept subword parents. No paper milestone advanced; no positive/writing/human/test claim added.

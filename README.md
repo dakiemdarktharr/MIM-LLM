@@ -1,4 +1,6 @@
-> **Execution update, 26 November 2026:** Bounded language calibration completed 50M supervised byte targets per baseline, but review of all 34 fixed samples still did not pass the writing/prefix-conditioning feasibility gate. The final Drive archive was independently downloaded and verified (53 files, 81,262 step rows); GPU released. No A0–A3 post-training, final-test scores or real human labels exist. See the [measured calibration report](docs/Q3_A_CALIBRATION2_RESULTS_20261126.vi.md), [initial pilot](docs/Q3_A_COLAB_PILOT_20261126.vi.md), and [protocol](docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md). Further matrix expansion is held at the writing gate; B/C/Q1 training and tokenizer fitting remain closed. Earlier receipts preserve their historical states.
+> **Current execution, 26 November 2026:** Q3-A's bounded subword language-foundation training is in progress on Colab L4, reusing the same mounted Drive between eligible drivers. Its Transformer and factorized minGRU variants have **3,681,984** and **3,682,887** actual parameters; neither is a MIM model. The frozen published 50,257-token tokenizer is not fitted or pruned. The declared 80M LM + 20M response-SFT targets per model are not yet complete. See the [foundation protocol](docs/Q3_A_FOUNDATION_PROTOCOL_20261126.vi.md), [first verified checkpoint](docs/Q3_A_FOUNDATION_INVOCATION1_20261126.vi.md), [measured resource annex](docs/Q3_A_FOUNDATION_RESOURCE_PROFILE_20261126.vi.md), and [Drive-session policy](docs/COLAB_DRIVE_SESSION_POLICY_20261126.vi.md). No A0–A3 post-training, final-test results or real human labels exist. B/C/Q1 training, tokenizer fitting and all manuscript compilation remain closed.
+
+> **Historical byte calibration:** Each baseline completed 50M supervised byte targets, but review of all 34 fixed samples failed writing/prefix-conditioning feasibility. Its final Drive archive was independently verified (53 files, 81,262 step rows), and that earlier VM was released. The failures remain in the [calibration report](docs/Q3_A_CALIBRATION2_RESULTS_20261126.vi.md). Changing corpus, tokenizer and model configuration together is a feasibility revision, not an isolated causal test of tokenization or a positive architectural result. Further matrix expansion still requires writing review.
 
 # MIM-LLM
 
@@ -96,8 +98,15 @@ The earlier PyTorch prototype implements vector MIM, N/S/M ablations, a learned
 projection of both consecutive states, LSTM, Nested LSTM, GRU, minGRU, Delta-RNN,
 a small causal Transformer and a token-shift GRU. Token-shift GRU is **not** full
 RWKV. Tokenization, training/resume and a synthetic smoke benchmark exist.
-Q3-A's separate pipeline now implements paired response training, invariant-probe
+Q3-A's prepared byte pipeline implements paired response training, invariant-probe
 JS, checkpointing, generation, blank blind annotation and source-paired analysis.
+The current subword extension has foundation training, compatible CE/JS helpers,
+a fixed writing-review exporter and a blank author-reader packet tool. Its
+primary post-training runner/plan and evaluation migration are not yet complete;
+passing foundation or software checks does not release that matrix. The
+available reader is currently the author alone; no independent-reader agreement
+or human ratings are claimed. B/C's prepared byte pipelines do not automatically
+accept the new subword parents.
 An [offline external-reference diagnostic](docs/Q3_A_REFERENCE_DIAGNOSTIC_20261126.vi.md)
 also counted the published TinyStories-1M checkpoint at **3,745,984** actual
 parameters and retained 32 samples. It is not a matched-data/compute comparison
