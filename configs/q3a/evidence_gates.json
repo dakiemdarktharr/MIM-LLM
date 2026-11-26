@@ -204,6 +204,7 @@
     "resolution": "User completed consent; real Drive mount/probe, source bundle, two warmups and post-deallocation authenticated cloud archive readback verified."
   },
   "active_calibration_plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
-  "active_calibration_bundle_sha256": "2a1628b6a778007a92179742884f6dfec2dba29641f47f5f63b5a92769711522",
-  "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md"
+  "active_calibration_bundle_sha256": "e384dafcd2df61d970db3bb8b7afc451f9e0e05eb68757939409060b9eb7080c",
+  "calibration_protocol": "docs/Q3_A_CALIBRATION2_PROTOCOL.vi.md",
+  "active_calibration_resource_amendment": "T4 allocation unavailable; L4 allowed only with observed rate<=6CU/h and >=10CU, same GPU class for both new warmups; not allocated/started yet"
 }

@@ -3,9 +3,9 @@
   "plan_id": "ef827ca21a627ce714caaea1d0ab52b293f858e526e654358bbb633c36328660",
   "prior_pilot_plan_id": "ba881daafbbd3334ba7c8b7f437415ec3f196e09ee921f5135022375c825f142",
   "plan_file": "artifacts/q3a-calibration2-20261126/plan.json",
-  "source_bundle_file": "artifacts/q3a-calibration2-20261126/calibration2-source-bundle.zip",
-  "source_bundle_sha256": "2a1628b6a778007a92179742884f6dfec2dba29641f47f5f63b5a92769711522",
-  "source_bundle_bytes": 24026393,
+  "source_bundle_file": "artifacts/q3a-calibration2-20261126/calibration2-resource-source-bundle.zip",
+  "source_bundle_sha256": "e384dafcd2df61d970db3bb8b7afc451f9e0e05eb68757939409060b9eb7080c",
+  "source_bundle_bytes": 24026884,
   "bundle_members_verified": 63,
   "data_manifest": "data/processed/q3a-continuation-calibration2.jsonl.manifest.json",
   "data_sha256": "a23917217e47bbb221a525b0cddab6bc8510240a541a23d720eda9fa57992b70",
@@ -23,5 +23,14 @@
   "second_reader_available": false,
   "tokenizer_fitting": false,
   "primary_condition_training_enabled": false,
-  "B_C_Q1_training_enabled": false
+  "B_C_Q1_training_enabled": false,
+  "superseded_unexecuted_bundle_sha256": "2a1628b6a778007a92179742884f6dfec2dba29641f47f5f63b5a92769711522",
+  "allowed_GPU_classes": [
+    "T4",
+    "L4"
+  ],
+  "L4_High_RAM_required_by_UI": true,
+  "maximum_UI_CU_per_hour": 6,
+  "minimum_UI_CU_balance": 10,
+  "reason_for_resource_amendment": "Colab refused T4 allocation before calibration; L4 is a fallback only after UI rate verification, no optimizer executed yet"
 }

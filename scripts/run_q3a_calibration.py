@@ -110,10 +110,10 @@ def main():
         or plan["config"]["warmup_targets"] != 50_000_000
     ):
         raise ValueError("Require prospectively declared calibration2 plan")
-    if not torch.cuda.is_available() or "T4" not in torch.cuda.get_device_name():
-        raise RuntimeError(
-            "Use the observed T4 setting; remeasure before another GPU class"
-        )
+    if not torch.cuda.is_available() or not any(
+        kind in torch.cuda.get_device_name() for kind in ("T4", "L4")
+    ):
+        raise RuntimeError("Calibration allows T4 or the declared L4 fallback only")
     drive = Path(a.drive).resolve()
     if (
         not drive.is_relative_to(Path("/content/drive/MyDrive").resolve())
@@ -125,8 +125,27 @@ def main():
             "Use the separate calibration2 destination, preserving the old pilot"
         )
     drive.mkdir(parents=True, exist_ok=True)
+    observation = read_json(drive / "resource-observation.json")
+    if (
+        observation.get("plan_id") != plan["plan_id"]
+        or observation.get("observed_gpu_name") != torch.cuda.get_device_name()
+        or observation.get("UI_rate_checked_before_training") is not True
+        or not 0 < observation.get("UI_approximate_CU_per_hour", 0) <= 6
+        or observation.get("UI_available_CU", 0) < 10
+    ):
+        raise ValueError(
+            "Record real UI GPU/CU/rate before calibration; do not buy credits"
+        )
     ledger_path = drive / "calibration-budget.json"
+    if (
+        ledger_path.exists()
+        and read_json(ledger_path).get("gpu_name") != torch.cuda.get_device_name()
+    ):
+        raise ValueError("Keep both new warmups on the same GPU class")
     ledger = reserve_invocation(ledger_path, plan["plan_id"])
+    ledger["gpu_name"] = torch.cuda.get_device_name()
+    ledger["resource_observation"] = observation
+    write_json(ledger_path, ledger, replace=True)
     stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     sessions = drive / "sessions"
     sessions.mkdir(exist_ok=True)
@@ -137,6 +156,10 @@ def main():
         "scripts/inspect_q3a_more_prefixes.py",
     ):
         verified_copy(file, drive / "inputs" / Path(file).name)
+    verified_copy(
+        drive / "resource-observation.json",
+        sessions / (stamp + "-resource-observation.json"),
+    )
     start = time.perf_counter()
     status = None
     process = None

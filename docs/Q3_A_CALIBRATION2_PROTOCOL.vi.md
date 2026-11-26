@@ -29,7 +29,13 @@ không chọn cấu hình theo hiệu ứng mong muốn. Kết quả âm cũ gi�
 
 Tối đa **3 lượt driver × 1.100 giây** cho hai warm-up seed 0, có lưu/khôi phục
 Drive. Khi hết số lượt, dừng kể cả model chưa đủ token; không tự cấp thêm lượt.
-Mỗi lượt cần GPU T4, High-RAM tắt và kiểm tra CU/rate. Tổng 3.300 giây driver
+Ưu tiên GPU T4/High-RAM tắt. **Sửa đổi tài nguyên trước optimizer mới:** Colab
+đã báo không cấp được T4, nên cho phép fallback L4; UI L4 bắt buộc High-RAM
+(switch bị disabled), cần ghi chi phí đi kèm. Chỉ chạy nếu rate UI đã đọc
+không quá 6 CU/giờ và số dư ít nhất 10 CU; giữ cùng GPU class cho cả hai warm-up
+mới. Ghi `resource-observation.json` trước train và ở từng session, không xem
+ước tính UI là hóa đơn. Không dùng thông lượng T4 để gọi là đo được trên L4.
+Tổng 3.300 giây driver
 không phải GPU-hours đã trả: allocation/setup/inspection/Drive I/O cũng tiêu CU.
 Mỗi GPU session đặt mục tiêu soft cap 20 phút; ngắt khi lượt driver và sync xong.
 Không mua thêm CU và không chạy B/C/Q1 hoặc tokenizer fitting.
